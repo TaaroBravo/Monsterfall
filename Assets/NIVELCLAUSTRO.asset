@@ -22,31 +22,11 @@ MonoBehaviour:
   colorSpace: 0
   skyBox: {fileID: 2100000, guid: 5d58357e4c0915541aa843bef78aa32d, type: 2}
   ambientLight: 1
-  ambientColor:
-    r: 0.19607843
-    g: 0.24705882
-    b: 0.3882353
-    a: 1
-  skyColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  equatorColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  groundColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  sunColor:
-    r: 0.28627452
-    g: 0.45490196
-    b: 0.62352943
-    a: 1
+  ambientColor: {r: 0.19607843, g: 0.24705882, b: 0.3882353, a: 1}
+  skyColor: {r: 1, g: 1, b: 1, a: 1}
+  equatorColor: {r: 1, g: 1, b: 1, a: 1}
+  groundColor: {r: 1, g: 1, b: 1, a: 1}
+  sunColor: {r: 0.28627452, g: 0.45490196, b: 0.62352943, a: 1}
   sunIntensity: 0.98
   sunFlare: {fileID: 0}
   indirectIntensity: 1.51
@@ -54,19 +34,11 @@ MonoBehaviour:
   fogDistance: 0
   fogHeight: 91.21
   fogHeightIntensity: 0.5
-  fogColor:
-    r: 0.61960787
-    g: 0.7372549
-    b: 0.85490197
-    a: 1
+  fogColor: {r: 0.61960787, g: 0.7372549, b: 0.85490197, a: 1}
   fogIntensity: 4
   bIntensity: 0.59
   bThreshould: 0.802
-  bColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  bColor: {r: 1, g: 1, b: 1, a: 1}
   dirtTexture: {fileID: 2800000, guid: 7a9afd715627eed46aebced3fbe4a5a1, type: 3}
   dirtIntensity: 7.91
   mobileOptimizedBloom: 0
@@ -75,11 +47,7 @@ MonoBehaviour:
   aoRadius: 1.22
   aoIntensity: 0.7
   ambientOnly: 0
-  aoColor:
-    r: 0
-    g: 0.003921569
-    b: 0.32941177
-    a: 1
+  aoColor: {r: 0, g: 0.003921569, b: 0.32941177, a: 1}
   aoQuality: 3
   vLight: 0
   vLightLevel: 1
@@ -97,6 +65,7 @@ MonoBehaviour:
   afUpdate: 0.001
   afRayLength: 10
   afLayer:
+    serializedVersion: 2
     m_Bits: 1
   exposureIntensity: 0.41
   contrastValue: 0.299
@@ -104,16 +73,8 @@ MonoBehaviour:
   colorMode: 0
   saturation: 0
   gamma: -0.101
-  colorGamma:
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  colorLift:
-    r: 0
-    g: 0
-    b: 0
-    a: 1
+  colorGamma: {r: 0, g: 0, b: 0, a: 1}
+  colorLift: {r: 0, g: 0, b: 0, a: 1}
   lut: {fileID: 0}
   vignetteIntensity: 0.175
   CA_Intensity: 0.1
@@ -129,21 +90,13 @@ MonoBehaviour:
   shaftQuality: 2
   shaftDistance: 0.713
   shaftBlur: 3
-  shaftColor:
-    r: 1
-    g: 0.7411765
-    b: 0.57254905
-    a: 1
+  shaftColor: {r: 1, g: 0.7411765, b: 0.57254905, a: 1}
   eyeKeyValue: 0.179
   aaMode: 1
   translucency: 0.014
   ambient: 0
   shadows: 0
-  tranColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 0
+  tranColor: {r: 1, g: 1, b: 1, a: 0}
   windSpeed: 0
   windScale: 0
   CustomShader: Legacy Shaders/Transparent/Diffuse
