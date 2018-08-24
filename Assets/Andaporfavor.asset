@@ -31,12 +31,12 @@ MonoBehaviour:
   sunIntensity: 0.98
   sunFlare: {fileID: 0}
   indirectIntensity: 1.51
-  fogMode: 0
+  fogMode: 2
   fogDistance: 0
   fogHeight: 91.21
   fogHeightIntensity: 0.5
   fogColor: {r: 0.61960787, g: 0.7372549, b: 0.85490197, a: 1}
-  fogIntensity: 4
+  fogIntensity: 4.8
   bIntensity: 0.59
   bThreshould: 0.802
   bColor: {r: 1, g: 1, b: 1, a: 1}
