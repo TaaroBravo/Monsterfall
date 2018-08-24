@@ -43,6 +43,11 @@ public class PlayerInput : MonoBehaviour
                 player.FallOff();
             if (Input.GetButtonDown(hability3Button))
                 player.Hook();
+            if (controller == Controller.J)
+            {
+                if (Mathf.Round(Input.GetAxisRaw(hability3Button)) < 0)
+                    player.Hook();
+            }
             if (Input.GetButtonDown(normalAttack))
                 player.AttackNormal("Pressed");
             if (Input.GetButtonUp(normalAttack))

@@ -153,7 +153,7 @@ public class PlayerController : Player
         {
             foreach (var m in myMoves.Values)
                 m.Update();
-            if ((canJump && controller.isGrounded && !isFallingOff) || (delayJump && controller.isGrounded) || coyoteBool && canJump)
+            if ((canJump && controller.isGrounded && !isFallingOff) || (delayJump && controller.isGrounded) || coyoteBool && canJump && !isFallingOff)
             {
                 myMoves["Jump"].Move();
                 canJump = false;
@@ -236,7 +236,7 @@ public class PlayerController : Player
 
     IEnumerator StunCoroutine(float x)
     {
-        while(true)
+        while (true)
         {
             canMove = false;
             myAnim.SetBool("Stunned", true);
@@ -348,7 +348,7 @@ public class PlayerController : Player
 
     public void Dash()
     {
-        if (canDash && !isFallingOff)
+        if (canDash && !isFallingOff && !isDashing)
             hability["Dash"].Hability();
     }
 
@@ -378,6 +378,18 @@ public class PlayerController : Player
             hitCharged = false;
             PS_Charged.Stop();
         }
+
+        if (myLife <= 0 && !isDead)
+        {
+            myAnim.Play("Death");
+            isDead = true;
+            controller.enabled = false;
+        }
+        else if (myLife <= 0)
+        {
+            myAnim.SetBool("Running", false);
+
+        }
     }
     #endregion
 
@@ -388,11 +400,13 @@ public class PlayerController : Player
 
         if (stunnedByHit)
         {
-            UpdateMyLife(50);
+            if (!isDead)
+                UpdateMyLife(50);
         }
         else
         {
-            UpdateMyLife(10);
+            if (!isDead)
+                UpdateMyLife(10);
         }
         if (stunnedByHit && currentImpactStunTimer > 0.1f)
         {
@@ -484,6 +498,12 @@ public class PlayerController : Player
             isCharged = true;
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp"))
+        {
+            canJump = false;
+            coyoteBool = false;
+        }
     }
     #endregion
 
@@ -492,11 +512,12 @@ public class PlayerController : Player
     {
         myLife -= Mathf.RoundToInt(damage);
         myLifeUI.TakeDamage(Mathf.RoundToInt(damage));
-        if (myLife <= 0)
+        if (myLife <= 0 && !isDead)
         {
             canMove = false;
+            myAnim.StopPlayback();
             myAnim.Play("Death");
-            StartCoroutine(Death(3f));
+            //StartCoroutine(Death(3f));
             Destroy(gameObject, 3f);
         }
     }

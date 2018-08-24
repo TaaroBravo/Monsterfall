@@ -24,19 +24,24 @@ public class HorizontalMovement : IMove
         if (player.controller.isGrounded)
         {
             player.verticalVelocity = -player.gravity * Time.deltaTime;
-            player.myAnim.SetBool("Jumping", false);
-            player.myAnim.SetBool("Grounded", true);
+            if (!player.isDead)
+            {
+                //Hacerlo con un bool en la animacion
+                player.myAnim.SetBool("Jumping", false);
+                player.myAnim.SetBool("Grounded", true);
+            }
         }
         else
         {
             player.verticalVelocity -= player.gravity * Time.deltaTime;
+            if(!player.isDead)
             player.myAnim.SetBool("Grounded", false);
         }
 
         movement = player.GetComponent<PlayerInput>().MainHorizontal();
         if (movement != 0)
         {
-            if (!player.myAnim.GetBool("Jumping"))
+            if (!player.myAnim.GetBool("Jumping") && !player.isDead)
                 player.myAnim.SetBool("Running", true);
             currentSpeedTimer += Time.deltaTime / slowSpeedCharge;
 
@@ -46,7 +51,8 @@ public class HorizontalMovement : IMove
         else
         {
             currentSpeedTimer = 1;
-            player.myAnim.SetBool("Running", false);
+            if (!player.isDead)
+                player.myAnim.SetBool("Running", false);
         }
     }
 

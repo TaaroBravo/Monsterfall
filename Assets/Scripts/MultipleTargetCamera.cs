@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 [RequireComponent(typeof(Camera))]
 public class MultipleTargetCamera : MonoBehaviour
 {
@@ -12,6 +14,11 @@ public class MultipleTargetCamera : MonoBehaviour
     public float minZoom = 100f;
     public float maxZoom = 65f;
     public float zoomLimiter = 50f;
+
+    public float posLimitX;
+    public float negLimitX;
+    public float posLimitY;
+    public float negLimitY;
 
     private Vector3 velocity;
     private Camera cam;
@@ -26,8 +33,28 @@ public class MultipleTargetCamera : MonoBehaviour
         if (targets.Count == 0)
             return;
 
+        for (int i = 0; i < targets.Count; i++)
+            if (targets[i] == null)
+                targets.Remove(targets[i]);
+
         Move();
         Zoom();
+        BoundsOfCamera();
+    }
+
+    void BoundsOfCamera()
+    {
+        if (transform.position.x > posLimitX)
+            transform.position = new Vector3(posLimitX, transform.position.y, transform.position.z);
+
+        if (transform.position.x < negLimitX)
+            transform.position = new Vector3(negLimitX, transform.position.y, transform.position.z);
+
+        if (transform.position.y > posLimitY)
+            transform.position = new Vector3(transform.position.x, posLimitY, transform.position.z);
+
+        if (transform.position.y < negLimitY)
+            transform.position = new Vector3(transform.position.x, negLimitY, transform.position.z);
     }
 
     void Zoom()
