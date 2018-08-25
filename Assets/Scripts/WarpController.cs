@@ -7,6 +7,7 @@ public class WarpController : MonoBehaviour {
     public WarpController parentWarp;
     public Transform zoneToRespawn;
     public Transform zoneToTeleportHook;
+    public Transform zoneToReturnHook;
 
     public void WarpWithParent(Transform pl)
     {

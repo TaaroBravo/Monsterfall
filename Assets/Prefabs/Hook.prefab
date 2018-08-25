@@ -125,6 +125,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 70
   targetTravelSpeed: 50
-  maxDistance: 30
+  maxDistance: 40
   fired: 0
   hooked: 0
+  returnFail: 0
+  spawnPoint: {fileID: 0}
+  endPoint: {fileID: 0}
