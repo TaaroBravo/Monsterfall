@@ -34,7 +34,7 @@ public class HookHability : IHability
                 x = Mathf.Sign(player.transform.forward.x);
 
             hook.Fire(new Vector3(x, y, 0));
-            hook.OnReachedTarget += t => t.StartStun(1f);
+            hook.OnReachedTarget += t => t.StartStun(0.5f);
             player.usingHability = true;
         }
     }

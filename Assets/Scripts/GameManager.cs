@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,11 +25,18 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        Cursor.visible = false;
     }
 
     private void Start()
     {
         StartCoroutine(StartGame(timeToStart));
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene(0);
     }
 
     IEnumerator StartGame(float x)
@@ -58,6 +66,5 @@ public class GameManager : MonoBehaviour
         finishedGame = true;
         foreach (var player in myPlayers)
             player.canMove = false;
-        //youWin.SetActive(true);
     }
 }

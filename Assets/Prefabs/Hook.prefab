@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33415574305863020}
   - component: {fileID: 23784119601972970}
   - component: {fileID: 114979553709577768}
+  - component: {fileID: 65136830240116626}
+  - component: {fileID: 54379839679419458}
   m_Layer: 0
   m_Name: Hook
   m_TagString: Untagged
@@ -35,13 +37,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1962348797501292}
-  m_LocalRotation: {x: -0.49999928, y: -0.5000007, z: 0.49999928, w: 0.5000007}
-  m_LocalPosition: {x: -0.11200034, y: 1.0034332, z: 0.585434}
+  m_LocalRotation: {x: -0.00000006322026, y: -0.7071068, z: 0.00000006322026, w: 0.7071068}
+  m_LocalPosition: {x: -0.109996244, y: 1.5299981, z: 0.87001103}
   m_LocalScale: {x: 0.20504592, y: 0.20504624, z: 0.20504612}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 90.00001}
+  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
 --- !u!23 &23784119601972970
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -83,6 +85,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1962348797501292}
   m_Mesh: {fileID: 4300000, guid: 387a6d632a6888e448edf2f630b063cd, type: 3}
+--- !u!54 &54379839679419458
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962348797501292}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65136830240116626
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962348797501292}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.7586372, y: 5.44913, z: 0.7075149}
+  m_Center: {x: -4.3087875e-13, y: -1.8950248, z: 0.000000044703484}
 --- !u!114 &114979553709577768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -94,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d5f379386bdb344886c5ef42e0cbb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 40
-  targetTravelSpeed: 30
-  maxDistance: 25
+  speed: 70
+  targetTravelSpeed: 50
+  maxDistance: 30
   fired: 0
   hooked: 0

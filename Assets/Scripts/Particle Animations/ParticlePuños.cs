@@ -8,8 +8,10 @@ public class ParticlePuños : MonoBehaviour {
     PlayerController yo;
     public ParticleSystem puñoderecho;
     public ParticleSystem puñoizquierdo;
-    ParticleSystem.EmissionModule puñoder;
-    ParticleSystem.EmissionModule puñoizq;
+    [HideInInspector]
+    public ParticleSystem.EmissionModule puñoder;
+    [HideInInspector]
+    public ParticleSystem.EmissionModule puñoizq;
     bool PrenderPuñoDerecho;
     bool PrenderPuñoIzquierdo;
     float TimerDeActivacion;
