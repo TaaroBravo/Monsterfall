@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Linq;
 
 public class PortalesFeedback : MonoBehaviour
 {
@@ -22,6 +24,9 @@ public class PortalesFeedback : MonoBehaviour
     List<Vector3> PortalDerFinalPositions = new List<Vector3>();
     List<Vector3> PortalIzqFinalPositions = new List<Vector3>();
 
+    public WarpController leftWarp;
+    public WarpController rightWarp;
+
     void Start()
     {
         for (int i = 0; i < PortalDerParticles.Count; i++)
@@ -41,6 +46,9 @@ public class PortalesFeedback : MonoBehaviour
                 PortalIzqParticles[i].transform.position.y,
                 PortalIzqParticles[i].transform.position.z));
         }
+
+        leftWarp.OnTeleportPlayer += () => ActivateRightPortal();
+        rightWarp.OnTeleportPlayer += () => ActivateLeftPortal();
     }
 
     void Update()
@@ -93,7 +101,7 @@ public class PortalesFeedback : MonoBehaviour
         }
     }
 
-    void ActivateRightPortal()
+    public void ActivateRightPortal()
     {
         if (!DerPortalGo && !DerPortalReturn)
         {
@@ -101,7 +109,7 @@ public class PortalesFeedback : MonoBehaviour
             DerPortalGo = true;
         }
     }
-    void ActivateLeftPortal()
+    public void ActivateLeftPortal()
     {
         if (!IzqPortalGo && !IzqPortalReturn)
         {

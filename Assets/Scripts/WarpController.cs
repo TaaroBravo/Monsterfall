@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WarpController : MonoBehaviour {
+
+    public event Action OnTeleportPlayer = delegate { };
 
     public WarpController parentWarp;
     public Transform zoneToRespawn;
@@ -12,6 +15,7 @@ public class WarpController : MonoBehaviour {
     public void WarpWithParent(Transform pl)
     {
         pl.transform.position = parentWarp.zoneToRespawn.position;
+        OnTeleportPlayer();
         StartCoroutine(StopParticles(pl));
     }
 
