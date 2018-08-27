@@ -29,10 +29,15 @@ public class BulletTimerManager : MonoBehaviour
     {
         var markedPlayers = allPlayers.Where(x => x != null).Where(x => x.playerMarked);
         MarkStunnedPlayers(markedPlayers);
+
+        foreach (var p in allPlayers.Where(x => x != null).Where(x => !x.playerMarked))
+            p.transform.Find("MarkedGlow").gameObject.SetActive(false);
     }
 
     void MarkStunnedPlayers(IEnumerable<PlayerController> _players)
     {
         //Feedback del marcado.
+        foreach (var p in _players)
+            p.transform.Find("MarkedGlow").gameObject.SetActive(true);
     }
 }

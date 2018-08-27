@@ -401,7 +401,6 @@ public class PlayerController : Player
     {
         Vector3 impactRelax = Vector3.zero;
         Vector3 impactNormalized = new Vector3(impact.x == 0 ? 0 : Mathf.Sign(impact.x), impact.y == 0 ? 0 : Mathf.Sign(impact.y), 0);
-        Debug.Log(impactNormalized);
 
         if (marked)
         {
@@ -437,9 +436,7 @@ public class PlayerController : Player
         else
         {
             if (marked)
-            {
                 impactVelocity = impactNormalized * impactMarked;
-            }
             else
             {
                 impactRelax = impact;
@@ -504,8 +501,8 @@ public class PlayerController : Player
             {
                 impactVelocity = Vector3.zero;
                 moveVector = Vector3.zero;
-                stunnedByHit = false;
-                playerMarked = false;
+                //stunnedByHit = false;
+                //playerMarked = false;
                 myAnim.SetBool("Stunned", false);
             }
             else if (!stunnedByHit)
