@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerContrains : MonoBehaviour {
+
+    public event Action OnTeleportPlayer = delegate { };
 
     Transform player;
     float myContrains_Z;
@@ -22,6 +25,9 @@ public class PlayerContrains : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("DoorWarp"))
+        {
             other.gameObject.GetComponent<WarpController>().WarpWithParent(transform);
+            OnTeleportPlayer();
+        }
     }
 }

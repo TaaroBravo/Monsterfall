@@ -9,26 +9,26 @@ public class BulletTimerManager : MonoBehaviour
 {
 
     public List<PlayerController> allPlayers;
-    public float distance;
+    //public float distance;
 
-    public PostProcessingBehaviour myCamProf;
-    public PostProcessingProfile slowTimeSO;
+    //public PostProcessingBehaviour myCamProf;
+    //public PostProcessingProfile slowTimeSO;
 
-    private bool slowTime;
-    private float timer;
+    //private bool slowTime;
+    //private float timer;
 
-    private ChromaticAberrationModel.Settings chromaticSettings;
+    //private ChromaticAberrationModel.Settings chromaticSettings;
 
     private void Start()
     {
-        myCamProf = Camera.main.GetComponent<PostProcessingBehaviour>();
-        chromaticSettings = slowTimeSO.chromaticAberration.settings;
+        //myCamProf = Camera.main.GetComponent<PostProcessingBehaviour>();
+        //chromaticSettings = slowTimeSO.chromaticAberration.settings;
     }
 
     void Update()
     {
-        var stunnedPlayers = allPlayers.Where(x => x != null).Where(x => x.stunnedByHit).Where(x => x.impactSpeed > 30);
-        MarkStunnedPlayers(stunnedPlayers);
+        var markedPlayers = allPlayers.Where(x => x != null).Where(x => x.playerMarked);
+        MarkStunnedPlayers(markedPlayers);
     }
 
     void MarkStunnedPlayers(IEnumerable<PlayerController> _players)

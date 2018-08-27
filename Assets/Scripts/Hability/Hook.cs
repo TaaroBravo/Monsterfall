@@ -26,12 +26,16 @@ public class Hook : MonoBehaviour
     public bool hooked;
     public bool returnFail;
 
+    public bool hookGrabbed;
+
     public Transform spawnPoint;
     public Transform endPoint;
 
     private PlayerController _myPlayer;
     private PlayerController _target;
+    private PlayerController _playerGrabbedHook;
     private Transform _warpedPos;
+    private Transform _whereIWarped;
 
     void Start()
     {
@@ -41,12 +45,16 @@ public class Hook : MonoBehaviour
 
     void Update()
     {
+        if(hookGrabbed)
+        {
+            CounterHook();
+            return;
+        }
 
         if (fired && !hooked)
         {
             transform.parent = null;
             transform.position = Vector3.MoveTowards(transform.position, transform.position + _direction, speed * Time.deltaTime);
-            //_currentDistance = (transform.position - _playerPos).magnitude;
             _currentTime += Time.deltaTime;
             _currentDistance = speed * _currentTime;
             _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _myPlayer).FirstOrDefault();
@@ -80,6 +88,7 @@ public class Hook : MonoBehaviour
         }
     }
 
+    #region Fire Hook
     public void Fire(Vector3 dir)
     {
         fired = true;
@@ -143,6 +152,39 @@ public class Hook : MonoBehaviour
         target.myAnim.Play("Stunned");
         target.controller.enabled = true;
     }
+#endregion
+
+    #region Counter
+    public void SetHookGrabbed(PlayerController p)
+    {
+        hookGrabbed = true;
+        _playerGrabbedHook = p;
+        p.GetComponent<PlayerContrains>().OnTeleportPlayer += () => DisableWarpedZone();
+    }
+
+    void CounterHook()
+    {
+        transform.parent = _playerGrabbedHook.transform;
+        if (_warpedPos)
+        {
+            _myPlayer.controller.enabled = true;
+            _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, _whereIWarped.position, targetTravelSpeed * Time.deltaTime);
+        }
+        else
+        {
+            //Cuidado porque se puede seguir moviendo el player que lo agarro y llevandoselo eternamente
+            _myPlayer.controller.enabled = false;
+            _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, _playerGrabbedHook.transform.position, targetTravelSpeed * Time.deltaTime);
+            if ((_playerGrabbedHook.transform.position - _myPlayer.transform.position).magnitude <= 1)
+                ReachedTarget(_myPlayer);
+        }
+    }
+
+    void DisableWarpedZone()
+    {
+        _whereIWarped = null;
+    }
+    #endregion
 
     PlayerController FindMyPlayer(Transform trans)
     {
@@ -160,8 +202,11 @@ public class Hook : MonoBehaviour
             if (_target)
                 door.WarpHook(_target.transform);
             if (!_warpedPos)
+            {
                 _warpedPos = door.parentWarp.zoneToReturnHook;
-            else
+                _whereIWarped = door.zoneToRespawn;
+            }
+            else 
                 _warpedPos = null;
         }
     }

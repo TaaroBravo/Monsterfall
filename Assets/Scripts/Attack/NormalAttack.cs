@@ -46,7 +46,7 @@ public class NormalAttack : IAttack
                 player.hitParticles.Play();
                 if (target != null)
                 {
-                    target.ReceiveDamage(new Vector3(Mathf.Sign(player.transform.forward.x) * CalculateImpact(currentPressed), 0, 0));
+                    target.ReceiveDamage(new Vector3(Mathf.Sign(player.transform.localScale.z) * CalculateImpact(currentPressed), 0, 0), currentPressed >= maxPressed);
                     target.WhoHitedMe(player);
                     player.whoIHited = target;
                     player.myAnim.SetBool("ReleaseAForward", false);

@@ -61,7 +61,7 @@ public class PlayerController : Player
     public bool canDash = true;
     #endregion
 
-    #region ImpactVariables
+    #region Impact Variables
     public Vector3 impactVelocity;
 
     public float impactSpeed = 20;
@@ -73,6 +73,8 @@ public class PlayerController : Player
     public float hitHeadReject;
     public float maxNoStunVelocityLimit;
     public float maxStunVelocityLimit;
+
+    public float impactMarked;
 
     bool canAttack;
 
@@ -89,16 +91,12 @@ public class PlayerController : Player
 
     public Collider attackColliders;
 
-    #region Dictionary
-    private Dictionary<string, IMove> myMoves = new Dictionary<string, IMove>();
-    private Dictionary<string, IAttack> attacks = new Dictionary<string, IAttack>();
-    private Dictionary<string, IHability> hability = new Dictionary<string, IHability>();
-    #endregion
 
     public PlayerController whoHitedMe;
     public PlayerController whoIHited;
     public bool isDead;
     public bool stunnedByHit;
+    public bool playerMarked;
 
     public float chargedEffect;
     public bool isCharged;
@@ -111,6 +109,12 @@ public class PlayerController : Player
     public ParticleSystem PS_Charged;
     public ParticleSystem PS_Fall;
     public Animator myAnim;
+
+    #region Dictionary
+    private Dictionary<string, IMove> myMoves = new Dictionary<string, IMove>();
+    private Dictionary<string, IAttack> attacks = new Dictionary<string, IAttack>();
+    private Dictionary<string, IHability> hability = new Dictionary<string, IHability>();
+    #endregion
 
     private void Awake()
     {
@@ -136,9 +140,7 @@ public class PlayerController : Player
         Attack();
         StunAndMark();
 
-        //Guarda con esto al morir
         controller.Move(moveVector * Time.deltaTime);
-
     }
 
     #region Moves & Jump
@@ -254,6 +256,7 @@ public class PlayerController : Player
         {
             whoHitedMe = null;
             stunnedByHit = false;
+            playerMarked = false;
             myAnim.SetBool("Stunned", false);
             currentImpactStunTimer = 0;
             impactVelocity = Vector3.zero;
@@ -394,14 +397,25 @@ public class PlayerController : Player
     #endregion
 
     #region ReceiveDamage
-    public void ReceiveDamage(Vector3 impact)
+    public void ReceiveDamage(Vector3 impact, bool marked = false)
     {
         Vector3 impactRelax = Vector3.zero;
+        Vector3 impactNormalized = new Vector3(impact.x == 0 ? 0 : Mathf.Sign(impact.x), impact.y == 0 ? 0 : Mathf.Sign(impact.y), 0);
+        Debug.Log(impactNormalized);
+
+        if (marked)
+        {
+            playerMarked = true;
+            //X 1. Marcar. 
+            //X 2. Volver a false el playerMarked al volver chocar.
+            //3. Su velocidad de movimiento es menor. [Setear la velocidad]
+            //4. En el bullettime hacemos que todos los que estén marcados se pinten.
+        }
 
         if (stunnedByHit)
         {
             if (!isDead)
-                UpdateMyLife(50);
+                UpdateMyLife(25);
         }
         else
         {
@@ -410,17 +424,29 @@ public class PlayerController : Player
         }
         if (stunnedByHit && currentImpactStunTimer > 0.1f)
         {
-            impactRelax = (impactVelocity.magnitude / residualStunImpact) * impact;
-            impactRelax = new Vector3(Mathf.Abs(impactRelax.x) > maxStunVelocityLimit ? Mathf.Sign(impactRelax.x) * maxStunVelocityLimit : impactRelax.x, Mathf.Abs(impactRelax.y) > maxStunVelocityLimit ? Mathf.Sign(impactRelax.y) * maxStunVelocityLimit : impactRelax.y, 0);
-            impactVelocity = impactRelax;
+            if (marked)
+                impactVelocity = impactNormalized * impactMarked * 1.5f;
+            else
+            {
+                impactRelax = (impactVelocity.magnitude / residualStunImpact) * impact;
+                impactRelax = new Vector3(Mathf.Abs(impactRelax.x) > maxStunVelocityLimit ? Mathf.Sign(impactRelax.x) * maxStunVelocityLimit : impactRelax.x, Mathf.Abs(impactRelax.y) > maxStunVelocityLimit ? Mathf.Sign(impactRelax.y) * maxStunVelocityLimit : impactRelax.y, 0);
+                impactVelocity = impactRelax;
+            }
             SetImpacts();
         }
         else
         {
-            impactRelax = impact;
-            if (impact.magnitude >= maxNoStunVelocityLimit)
-                impactRelax = new Vector3(Mathf.Abs(impactRelax.x) != 0 ? Mathf.Sign(impactRelax.x) * maxNoStunVelocityLimit : 0, Mathf.Abs(impactRelax.y) != 0 ? Mathf.Sign(impactRelax.y) * maxNoStunVelocityLimit : 0, 0);
-            impactVelocity = impactRelax;
+            if (marked)
+            {
+                impactVelocity = impactNormalized * impactMarked;
+            }
+            else
+            {
+                impactRelax = impact;
+                if (impact.magnitude >= maxNoStunVelocityLimit)
+                    impactRelax = new Vector3(Mathf.Abs(impactRelax.x) != 0 ? Mathf.Sign(impactRelax.x) * maxNoStunVelocityLimit : 0, Mathf.Abs(impactRelax.y) != 0 ? Mathf.Sign(impactRelax.y) * maxNoStunVelocityLimit : 0, 0);
+                impactVelocity = impactRelax;
+            }
             SetImpacts();
             stunnedByHit = true;
             myAnim.SetBool("Stunned", true);
@@ -457,6 +483,7 @@ public class PlayerController : Player
                 verticalVelocity = -hitHeadReject;
                 moveVector.y = verticalVelocity;
                 stunnedByHit = false;
+                playerMarked = false;
                 myAnim.SetBool("Stunned", false);
             }
         }
@@ -466,6 +493,7 @@ public class PlayerController : Player
             {
                 SmoothHitRefleject();
                 stunnedByHit = false;
+                playerMarked = false;
                 myAnim.SetBool("Stunned", false);
             }
         }
@@ -477,6 +505,7 @@ public class PlayerController : Player
                 impactVelocity = Vector3.zero;
                 moveVector = Vector3.zero;
                 stunnedByHit = false;
+                playerMarked = false;
                 myAnim.SetBool("Stunned", false);
             }
             else if (!stunnedByHit)

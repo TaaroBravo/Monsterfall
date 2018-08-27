@@ -67,4 +67,5 @@ public class GameManager : MonoBehaviour
         foreach (var player in myPlayers)
             player.canMove = false;
     }
+
 }

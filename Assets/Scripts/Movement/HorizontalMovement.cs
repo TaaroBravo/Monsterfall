@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class HorizontalMovement : IMove
 {
-
     float movement;
     float maxSpeedTimer;
     float slowSpeedCharge;
     float currentSpeedTimer;
+
+    float scale;
+
     public HorizontalMovement(PlayerController pl)
     {
         player = pl;
         currentSpeedTimer = 1;
         maxSpeedTimer = player.maxSpeedChargeTimer;
         slowSpeedCharge = player.slowSpeedCharge;
+        scale = Mathf.Abs(player.transform.localScale.x);
     }
 
     public override void Update()
@@ -58,9 +61,13 @@ public class HorizontalMovement : IMove
 
     public override void Move()
     {
-        player.transform.eulerAngles = movement == 0 ? player.transform.eulerAngles : new Vector3(0, Mathf.Sign(player.moveVector.x) * 90, 0); //FLIPEARLO
         if (player.canMove)
         {
+            if (movement > 0)
+                player.transform.localScale = new Vector3(-scale, scale, scale);
+            else if (movement < 0)
+                player.transform.localScale = new Vector3(-scale, scale, -scale);
+
             if (!player.controller.isGrounded && movement == 0 && player.moveVector.x != 0)
                 player.moveVector.x += -Mathf.Sign(player.moveVector.x) * 1.5f;
             else

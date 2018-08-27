@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class HookHability : IHability
 {
     Hook hook;
     Vector3 dir;
+
+    Hook grabHook;
 
     public HookHability(PlayerController p, Hook _hook, float _timerCoolDown = 0)
     {
@@ -25,13 +28,18 @@ public class HookHability : IHability
 
     public override void Hability()
     {
-        if (timerCoolDown < 0)
+        grabHook = Physics.OverlapSphere(player.transform.position, 10f).Select(x => x.GetComponent<Hook>()).Where(x => x != null).FirstOrDefault();
+        //Va a necesitar un cooldown o un feedback de cuándo puede agarrarlo.
+        if (grabHook)
+            grabHook.SetHookGrabbed(player);
+
+        if (timerCoolDown < 0 && !grabHook)
         {
             hook.gameObject.SetActive(true);
             float x = player.GetComponent<PlayerInput>().MainHorizontal();
             float y = player.GetComponent<PlayerInput>().MainVertical();
             if (x + y == 0)
-                x = Mathf.Sign(player.transform.forward.x);
+                x = Mathf.Sign(player.transform.localScale.z);
 
             hook.Fire(new Vector3(x, y, 0));
             hook.OnReachedTarget += t => t.StartStun(0.5f);

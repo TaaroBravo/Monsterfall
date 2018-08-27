@@ -111,6 +111,12 @@ public class PlayerControllerCI : Editor
         fadeVariablesImpact.target = EditorGUILayout.Foldout(fadeVariablesImpact.target, "Variables de Impacto");
         if (EditorGUILayout.BeginFadeGroup(fadeVariablesImpact.faded))
         {
+            EditorGUILayout.LabelField("Marcado:", EditorStyles.boldLabel);
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            player.impactMarked = EditorGUILayout.FloatField(new GUIContent("Impact Marked Velocity", "¿A qué velocidad constante se va a mover estando marcado?"), player.impactMarked);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space();
             EditorGUILayout.LabelField("Stun:", EditorStyles.boldLabel);
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();

@@ -44,7 +44,7 @@ public class UpAttack : IAttack
                 player.hitParticles.Play();
                 if (target != null)
                 {
-                    target.ReceiveDamage(new Vector3(0, CalculateImpact(currentPressed), 0));
+                    target.ReceiveDamage(new Vector3(0, CalculateImpact(currentPressed), 0), currentPressed >= maxPressed);
                     player.whoIHited = target;
                     player.myAnim.SetBool("ReleaseAUp", true);
                 }
