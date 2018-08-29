@@ -35,7 +35,7 @@ MonoBehaviour:
   fogDistance: 0
   fogHeight: 91.21
   fogHeightIntensity: 0.5
-  fogColor: {r: 0.61960787, g: 0.7372549, b: 0.85490197, a: 1}
+  fogColor: {r: 0.66479236, g: 0.7588668, b: 0.85294116, a: 1}
   fogIntensity: 4.7
   bIntensity: 0.59
   bThreshould: 0.802
