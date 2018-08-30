@@ -186,8 +186,8 @@ public class PortalesFeedback : MonoBehaviour
                 Particles == PortalDerParticles? Particles[i].transform.position.x - DistanceToGo :
                 Particles[i].transform.position.x
                 ,
-                Particles == PortalTopParticles ? Particles[i].transform.position.y - DistanceToGo :
-                Particles == PortalBotParticles ? Particles[i].transform.position.y + DistanceToGo :
+                Particles == PortalTopParticles ? Particles[i].transform.position.y - 2.3f :
+                Particles == PortalBotParticles ? Particles[i].transform.position.y + 6f :
                 Particles[i].transform.position.y
                 ,
                 Particles[i].transform.position.z));
