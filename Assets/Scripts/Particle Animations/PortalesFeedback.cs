@@ -81,8 +81,9 @@ public class PortalesFeedback : MonoBehaviour
             for (int i = 0; i < PortalDerParticles.Count; i++)
             {
                 PortalDerParticles[i].transform.position = Vector3.Lerp(PortalDerStartPositions[i], PortalDerFinalPositions[i], DerPortalTimer / TimeToGo);
-                var main = PortalDerParticles[i].GetComponent<ParticleSystem>().main;
-                main.startColor = new Color(255, 234, 255);
+                //var main = PortalDerParticles[i].GetComponent<ParticleSystem>().main;
+                //Color lerpcolor = new Color(1, 0.9f, 1);
+                //main.startColor = lerpcolor;
             }
 
             if (DerPortalTimer >= TimeToGo)
@@ -97,9 +98,9 @@ public class PortalesFeedback : MonoBehaviour
             for (int i = 0; i < PortalDerParticles.Count; i++)
             {
                 PortalDerParticles[i].transform.position = Vector3.Lerp(PortalDerFinalPositions[i], PortalDerStartPositions[i], DerPortalTimer / TimeToReturn);
-                var main = PortalDerParticles[i].GetComponent<ParticleSystem>().main;
-                Color lerpcolor = new Color(255 - DerPortalTimer * 510, 234, 255);
-                main.startColor = lerpcolor;
+                //var main = PortalDerParticles[i].GetComponent<ParticleSystem>().main;
+                //Color lerpcolor = new Color(1 - DerPortalTimer / TimeToReturn, 0.9f, 1);
+                //main.startColor = lerpcolor;
             }
             if (DerPortalTimer >= TimeToReturn)
             {
@@ -110,7 +111,9 @@ public class PortalesFeedback : MonoBehaviour
         if (IzqPortalGo)
         {
             for (int i = 0; i < PortalIzqParticles.Count; i++)
+            {
                 PortalIzqParticles[i].transform.position = Vector3.Lerp(PortalIzqStartPositions[i], PortalIzqFinalPositions[i], IzqPortalTimer / TimeToGo);
+            }
             if (IzqPortalTimer >= TimeToGo)
             {
                 IzqPortalTimer = 0;
@@ -121,7 +124,9 @@ public class PortalesFeedback : MonoBehaviour
         else if (IzqPortalReturn)
         {
             for (int i = 0; i < PortalIzqParticles.Count; i++)
+            {
                 PortalIzqParticles[i].transform.position = Vector3.Lerp(PortalIzqFinalPositions[i], PortalIzqStartPositions[i], IzqPortalTimer / TimeToReturn);
+            } 
             if (IzqPortalTimer >= TimeToReturn)
             {
                 IzqPortalTimer = 0;
@@ -131,7 +136,10 @@ public class PortalesFeedback : MonoBehaviour
         if (TopPortalGo)
         {
             for (int i = 0; i < PortalTopParticles.Count; i++)
+            {
                 PortalTopParticles[i].transform.position = Vector3.Lerp(PortalTopStartPositions[i], PortalTopFinalPositions[i], TopPortalTimer / TimeToGo);
+            }
+                
             if (TopPortalTimer >= TimeToGo)
             {
                 TopPortalTimer = 0;
@@ -142,7 +150,9 @@ public class PortalesFeedback : MonoBehaviour
         else if (TopPortalReturn)
         {
             for (int i = 0; i < PortalTopParticles.Count; i++)
+            {
                 PortalTopParticles[i].transform.position = Vector3.Lerp(PortalTopFinalPositions[i], PortalTopStartPositions[i], TopPortalTimer / TimeToReturn);
+            }
             if (TopPortalTimer >= TimeToReturn)
             {
                 TopPortalTimer = 0;
@@ -152,7 +162,9 @@ public class PortalesFeedback : MonoBehaviour
         if (BotPortalGo)
         {
             for (int i = 0; i < PortalBotParticles.Count; i++)
+            {
                 PortalBotParticles[i].transform.position = Vector3.Lerp(PortalBotStartPositions[i], PortalBotFinalPositions[i], BotPortalTimer / TimeToGo);
+            }
             if (BotPortalTimer >= TimeToGo)
             {
                 BotPortalTimer = 0;
@@ -163,7 +175,9 @@ public class PortalesFeedback : MonoBehaviour
         else if (BotPortalReturn)
         {
             for (int i = 0; i < PortalBotParticles.Count; i++)
+            {
                 PortalBotParticles[i].transform.position = Vector3.Lerp(PortalBotFinalPositions[i], PortalBotStartPositions[i], BotPortalTimer / TimeToReturn);
+            }
             if (BotPortalTimer >= TimeToReturn)
             {
                 BotPortalTimer = 0;
@@ -171,6 +185,7 @@ public class PortalesFeedback : MonoBehaviour
             }
         }
         #endregion
+        //DebugKeys();
     }
 
     //void DebugKeys()
@@ -190,7 +205,7 @@ public class PortalesFeedback : MonoBehaviour
                 Particles == PortalDerParticles? Particles[i].transform.position.x - DistanceToGo :
                 Particles[i].transform.position.x
                 ,
-                Particles == PortalTopParticles ? Particles[i].transform.position.y - 2.3f :
+                Particles == PortalTopParticles ? Particles[i].transform.position.y - 3f :
                 Particles == PortalBotParticles ? Particles[i].transform.position.y + 6f :
                 Particles[i].transform.position.y
                 ,
