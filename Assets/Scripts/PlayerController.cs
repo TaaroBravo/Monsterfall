@@ -286,10 +286,13 @@ public class PlayerController : Player
             {
                 GetComponent<ParticlePuños>().PuñoAActivar("recto");
                 attacks["NormalAttack"].Attack(attackColliders);
+                PS_Charged.Stop();
+                PS_Charged.gameObject.SetActive(false);
                 StartCoroutine(CanAttack(0.1f));
             }
             else
             {
+                PS_Charged.gameObject.SetActive(true);
                 attacks["NormalAttack"].Pressed();
             }
         }
@@ -303,10 +306,13 @@ public class PlayerController : Player
             {
                 GetComponent<ParticlePuños>().PuñoAActivar("abajo");
                 attacks["DownAttack"].Attack(attackColliders);
+                PS_Charged.Stop();
+                PS_Charged.gameObject.SetActive(false);
                 StartCoroutine(CanAttack(0.1f));
             }
             else
             {
+                PS_Charged.gameObject.SetActive(true);
                 attacks["DownAttack"].Pressed();
             }
         }
@@ -320,10 +326,13 @@ public class PlayerController : Player
             {
                 GetComponent<ParticlePuños>().PuñoAActivar("arriba");
                 attacks["UpAttack"].Attack(attackColliders);
+                PS_Charged.Stop();
+                PS_Charged.gameObject.SetActive(false);
                 StartCoroutine(CanAttack(0.1f));
             }
             else
             {
+                PS_Charged.gameObject.SetActive(true);
                 attacks["UpAttack"].Pressed();
             }
         }
@@ -405,10 +414,8 @@ public class PlayerController : Player
         if (marked)
         {
             playerMarked = true;
-            //X 1. Marcar. 
-            //X 2. Volver a false el playerMarked al volver chocar.
-            //3. Su velocidad de movimiento es menor. [Setear la velocidad]
-            //4. En el bullettime hacemos que todos los que estén marcados se pinten.
+            PS_Marked.gameObject.SetActive(true);
+            PS_Marked.Play();
         }
 
         if (stunnedByHit)
@@ -542,6 +549,7 @@ public class PlayerController : Player
         {
             canMove = false;
             myAnim.StopPlayback();
+            myAnim.SetTrigger("Death");
             myAnim.Play("Death");
             //StartCoroutine(Death(3f));
             Destroy(gameObject, 3f);

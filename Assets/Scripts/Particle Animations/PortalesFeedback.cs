@@ -40,6 +40,9 @@ public class PortalesFeedback : MonoBehaviour
     public WarpController leftWarp;
     public WarpController rightWarp;
 
+    public WarpController upWarp;
+    public WarpController downWarp;
+
     void Start()
     {
         AssignValues(PortalDerStartPositions, PortalDerFinalPositions, PortalDerParticles);
@@ -58,11 +61,12 @@ public class PortalesFeedback : MonoBehaviour
         #endregion
         leftWarp.OnTeleportPlayer += () => ActivateRightPortal();
         rightWarp.OnTeleportPlayer += () => ActivateLeftPortal();
+        upWarp.OnTeleportPlayer += () => ActivateBotPortal();
+        downWarp.OnTeleportPlayer += () => ActivateTopPortal();
     }
 
     void Update()
     {
-        DebugKeys();
         DerPortalTimer += Time.deltaTime;
         IzqPortalTimer += Time.deltaTime;
         TopPortalTimer += Time.deltaTime;
@@ -169,13 +173,13 @@ public class PortalesFeedback : MonoBehaviour
         #endregion
     }
 
-    void DebugKeys()
-    {
-        if (Input.GetKeyDown(KeyCode.O)) ActivateRightPortal();
-        if (Input.GetKeyDown(KeyCode.P)) ActivateLeftPortal();
-        if (Input.GetKeyDown(KeyCode.L)) ActivateTopPortal();
-        if (Input.GetKeyDown(KeyCode.K)) ActivateBotPortal();
-    }
+    //void DebugKeys()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.O)) ActivateRightPortal();
+    //    if (Input.GetKeyDown(KeyCode.P)) ActivateLeftPortal();
+    //    if (Input.GetKeyDown(KeyCode.L)) ActivateTopPortal();
+    //    if (Input.GetKeyDown(KeyCode.K)) ActivateBotPortal();
+    //}
     void AssignValues(List<Vector3> StartPos, List<Vector3> EndPos, List<GameObject> Particles)
     {
         for (int i = 0; i < Particles.Count; i++)

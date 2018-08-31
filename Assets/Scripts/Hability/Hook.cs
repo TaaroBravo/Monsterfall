@@ -6,7 +6,7 @@ using System.Linq;
 
 public class Hook : MonoBehaviour
 {
-
+    public event Action OnFireHook = delegate { };
     public event Action<PlayerController> OnHookTarget = delegate { };
     public event Action<PlayerController> OnReachedTarget = delegate { };
     public event Action OnFailedFire = delegate { };
@@ -37,10 +37,13 @@ public class Hook : MonoBehaviour
     private Transform _warpedPos;
     private Transform _whereIWarped;
 
+    private ParticleSystem _psParry;
+
     void Start()
     {
         _myPlayer = FindMyPlayer(transform.parent);
         gameObject.SetActive(false);
+        _psParry = transform.ChildrenWithComponent<ParticleSystem>().Where(x => x != null).Skip(1).First();
     }
 
     void Update()
@@ -98,6 +101,7 @@ public class Hook : MonoBehaviour
         _direction = ((_playerPos + dir) - _playerPos).normalized;
         transform.up = -_direction;
         _currentTime = 0;
+        OnFireHook();
     }
 
     public void HookTarget(PlayerController target)
@@ -160,6 +164,7 @@ public class Hook : MonoBehaviour
         hookGrabbed = true;
         _playerGrabbedHook = p;
         p.GetComponent<PlayerContrains>().OnTeleportPlayer += () => DisableWarpedZone();
+        _psParry.Play();
     }
 
     void CounterHook()
@@ -176,7 +181,10 @@ public class Hook : MonoBehaviour
             _myPlayer.controller.enabled = false;
             _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, _playerGrabbedHook.transform.position, targetTravelSpeed * Time.deltaTime);
             if ((_playerGrabbedHook.transform.position - _myPlayer.transform.position).magnitude <= 1)
+            {
+                hookGrabbed = false;
                 ReachedTarget(_myPlayer);
+            }
         }
     }
 

@@ -22,8 +22,12 @@ public class UpAttack : IAttack
     {
         base.Update();
         if (isPressing)
+        {
+            if(!player.PS_Charged.isPlaying)
+                player.PS_Charged.Play();
             if (currentPressed <= maxPressed)
                 currentPressed += Time.deltaTime * 2;
+        }
     }
 
     public override void Attack(Collider col)
@@ -52,6 +56,7 @@ public class UpAttack : IAttack
             isPressing = false;
             currentPressed = 1;
             timerCoolDownAttack = coolDownAttack;
+            player.PS_Charged.Stop();
         }
     }
 
