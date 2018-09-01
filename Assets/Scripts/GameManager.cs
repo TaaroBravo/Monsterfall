@@ -33,8 +33,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartGame(timeToStart));
-        infoManager = GameObject.FindObjectOfType<PlayersInfoManager>().GetComponent<PlayersInfoManager>();
-        SetUpInfoPlayers();
+        if (GameObject.FindObjectOfType<PlayersInfoManager>())
+        {
+            infoManager = GameObject.FindObjectOfType<PlayersInfoManager>().GetComponent<PlayersInfoManager>();
+            SetUpInfoPlayers();
+        }
     }
 
     private void Update()
