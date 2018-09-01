@@ -129,7 +129,7 @@ public class PlayerController : Player
         SetAttacks();
         SetHabilities();
         myLifeUI.maxLife = myLife;
-        StartCoroutine(CanAttack(0.1f));
+        StartCoroutine(CanAttack(0.25f));
     }
 
     void Update()
@@ -195,7 +195,17 @@ public class PlayerController : Player
 
     bool IsCloseToGround()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, GetComponent<Collider>().bounds.extents.y + 0.5f);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit, GetComponent<Collider>().bounds.extents.y + 0.5f))
+        {
+            if (hit.collider.isTrigger)
+            {
+                delayJump = false;
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     IEnumerator CoyoteTime(float timer)
@@ -580,7 +590,7 @@ public class PlayerController : Player
         attacks.Add(typeof(NormalAttack).ToString(), new NormalAttack(this, normalAttackCoolDown));
         attacks.Add(typeof(UpAttack).ToString(), new UpAttack(this, upAttackCoolDown));
         attacks.Add(typeof(DownAttack).ToString(), new DownAttack(this, downAttackCoolDown));
-        CanAttack(0.1f);
+        StartCoroutine(CanAttack(0.25f));
     }
 
     private void SetHabilities()

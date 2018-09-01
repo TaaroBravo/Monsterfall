@@ -37,8 +37,10 @@ public class HorizontalMovement : IMove
         else
         {
             player.verticalVelocity -= player.gravity * Time.deltaTime;
-            if(!player.isDead)
-            player.myAnim.SetBool("Grounded", false);
+            if (player.verticalVelocity < -40)
+                player.verticalVelocity = -40;
+            if (!player.isDead)
+                player.myAnim.SetBool("Grounded", false);
         }
 
         movement = player.GetComponent<PlayerInput>().MainHorizontal();
@@ -73,6 +75,18 @@ public class HorizontalMovement : IMove
             else
                 player.moveVector.x = movement * currentSpeedTimer * player.moveSpeed + player.impactVelocity.x;
         }
+        else
+        {
+            float currentX = player.moveVector.x;
+            float newX = currentX - (Mathf.Sign(currentX) * Time.deltaTime * 2);
+            if (Mathf.Round(newX) == 0)
+                player.moveVector.x = 0;
+            else
+                player.moveVector.x = newX;
+        }
+
+        if (GameManager.Instance.finishedGame)
+            player.moveVector.x = 0;
         player.moveVector.y = player.verticalVelocity;
         player.moveVector.z = 0;
     }

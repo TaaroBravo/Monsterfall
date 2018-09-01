@@ -45,37 +45,40 @@ public class HookChain : MonoBehaviour
 
         //InitializeIfNeeded();
 
-        //if (fired)
-        //{
-        //    if (!_ps.isPlaying)
-        //        _ps.Play();
-        //    gameObject.SetActive(true);
-        //    _currentDistance = (transform.position - _posEmitted[_posEmitted.Count - 1]).magnitude;
-        //    if (returning)
-        //    {
-        //        if (_currentDistance >= distanceToEmit)
-        //        {
-        //            _lastParticleEmmited.remainingLifetime = 0;
-        //            _particles = new ParticleSystem.Particle[_particles.Length - 1];
-        //            _posEmitted.RemoveAt(_posEmitted.Count - 1);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (_currentDistance >= distanceToEmit)
-        //        {
-        //            _ps.Emit(1);
-        //            _particles = new ParticleSystem.Particle[_ps.main.maxParticles];
-        //            ParticleSystem.Particle p = _particles[_ps.particleCount - 1];
-        //            _particles[_particles.Length - 1] = p;
-        //            _lastParticleEmmited = _particles[_particles.Length - 1];
-        //            _posEmitted.Add(transform.position);
-        //        }
-        //    }
-        //    //_ps.SetParticles(_particles, _particles.Length);
-        //}
-        //else
-        //    gameObject.SetActive(false);
+        if (fired)
+        {
+            if (!_ps.isPlaying)
+                _ps.Play();
+            gameObject.SetActive(true);
+            //Mi distancia entre la última particula emitida y yo (el gancho)
+            _currentDistance = (transform.position - _posEmitted[_posEmitted.Count - 1]).magnitude;
+            if (returning)
+            {
+                if (_currentDistance >= distanceToEmit)
+                {
+                    _lastParticleEmmited.remainingLifetime = 0;
+                    _particles = new ParticleSystem.Particle[_particles.Length - 1];
+                    _posEmitted.RemoveAt(_posEmitted.Count - 1);
+                }
+            }
+            else
+            {
+                //Si ya paso la distancia para poder emitir
+                if (_currentDistance >= distanceToEmit)
+                {
+                    //Emití lpm.
+                    _ps.Emit(1);
+                    _particles = new ParticleSystem.Particle[_ps.main.maxParticles];
+                    ParticleSystem.Particle p = _particles[_ps.particleCount - 1];
+                    _particles[_particles.Length - 1] = p;
+                    _lastParticleEmmited = _particles[_particles.Length - 1];
+                    _posEmitted.Add(transform.position);
+                }
+            }
+            _ps.SetParticles(_particles, _particles.Length);
+        }
+        else
+            gameObject.SetActive(false);
 
     }
 

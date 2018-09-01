@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    PlayersInfoManager infoManager;
     public List<PlayerController> myPlayers = new List<PlayerController>();
+    public List<GameObject> playersObj = new List<GameObject>();
     public GameObject youWin;
     private static GameManager _instance;
     public static GameManager Instance
@@ -31,12 +33,25 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartGame(timeToStart));
+        infoManager = GameObject.FindObjectOfType<PlayersInfoManager>().GetComponent<PlayersInfoManager>();
+        SetUpInfoPlayers();
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
             SceneManager.LoadScene(0);
+    }
+
+    void SetUpInfoPlayers()
+    {
+        for (int i = 0; i < myPlayers.Count(); i++)
+        {
+            GameObject character = playersObj[infoManager.playersInfo[i].characterChosen];
+            PlayerInput input = character.GetComponent<PlayerInput>();
+            input.controller = (PlayerInput.Controller)infoManager.playersInfo[i].controller;
+            input.id = infoManager.playersInfo[i].ID;
+        }
     }
 
     IEnumerator StartGame(float x)

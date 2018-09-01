@@ -48,6 +48,9 @@ public class Hook : MonoBehaviour
 
     void Update()
     {
+        if (!_myPlayer)
+            Destroy(gameObject);
+
         if(hookGrabbed)
         {
             CounterHook();
@@ -74,6 +77,8 @@ public class Hook : MonoBehaviour
 
         if (hooked)
         {
+            if (!_target)
+                ReturnHook();
             transform.parent = _target.transform;
             if (_warpedPos)
             {
@@ -119,6 +124,9 @@ public class Hook : MonoBehaviour
     {
         fired = false;
         hooked = false;
+        hookGrabbed = false;
+        transform.parent = null;
+        _myPlayer.controller.enabled = true;
         if (_warpedPos)
             transform.position = Vector3.MoveTowards(transform.position, _warpedPos.position, speed * Time.deltaTime);
         else
@@ -169,6 +177,8 @@ public class Hook : MonoBehaviour
 
     void CounterHook()
     {
+        if (!_playerGrabbedHook)
+            ReturnHook();
         transform.parent = _playerGrabbedHook.transform;
         if (_warpedPos)
         {

@@ -39,7 +39,7 @@ public class Dash : IHability {
         {
             player.isDashing = true;
             player.canDash = false;
-            player.moveVector.x = Mathf.Sign(player.transform.rotation.y) * player.dashSpeed;
+            player.moveVector.x = Mathf.Sign(player.transform.localScale.x) * player.dashSpeed;
             player.verticalVelocity = 0;
             player.moveVector.y = player.verticalVelocity;
             timerCoolDown = coolDown;
