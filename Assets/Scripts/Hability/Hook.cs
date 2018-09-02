@@ -43,7 +43,7 @@ public class Hook : MonoBehaviour
     {
         _myPlayer = FindMyPlayer(transform.parent);
         gameObject.SetActive(false);
-        _psParry = transform.ChildrenWithComponent<ParticleSystem>().Where(x => x != null).Skip(1).First();
+        _psParry = transform.ChildrenWithComponent<ParticleSystem>().Where(x => x != null).First();
     }
 
     void Update()
@@ -102,7 +102,8 @@ public class Hook : MonoBehaviour
         fired = true;
         transform.localPosition = spawnPoint.transform.localPosition;
         _startPosition = endPoint.localPosition;
-        _playerPos = endPoint.position;
+        _playerPos = spawnPoint.transform.position;
+        //_playerPos = endPoint.position;
         _direction = ((_playerPos + dir) - _playerPos).normalized;
         transform.up = -_direction;
         _currentTime = 0;
@@ -114,7 +115,7 @@ public class Hook : MonoBehaviour
         hooked = true;
         target.canMove = false;
         _currentTime = 0;
-        //target.transform.position = transform.position; Comentado: El target no cambia de posicion pero el gancho hace bulletrail raro. No comentado: Bullettrail bien pero demas no 
+        target.transform.position = transform.position; //Comentado: El target no cambia de posicion pero el gancho hace bulletrail raro. No comentado: Bullettrail bien pero demas no
         target.controller.enabled = false;
         target.myAnim.Play("GetHit");
         OnHookTarget(target);
@@ -161,6 +162,7 @@ public class Hook : MonoBehaviour
         fired = false;
         transform.parent = _myPlayer.transform;
         transform.localPosition = _startPosition;
+        target.transform.position = endPoint.position;
         target.myAnim.Play("Stunned");
         target.controller.enabled = true;
     }

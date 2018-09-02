@@ -102,10 +102,6 @@ public class PlayerControllerCI : Editor
             player.dashDistance = EditorGUILayout.FloatField("Cuánta distancia recorre", player.dashDistance);
             player.dashCoolDown = EditorGUILayout.FloatField("Cooldown del Dash", player.dashCoolDown);
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Hook:", EditorStyles.boldLabel);
-            EditorGUILayout.Space();
-            player.hookCoolDown = EditorGUILayout.FloatField("Cooldown del Hook", player.hookCoolDown);
-            EditorGUILayout.Space();
         }
         EditorGUILayout.EndFadeGroup();
         fadeVariablesImpact.target = EditorGUILayout.Foldout(fadeVariablesImpact.target, "Variables de Impacto");
@@ -166,14 +162,6 @@ public class PlayerControllerCI : Editor
         EditorGUILayout.LabelField("¿Para qué sirve este script?", EditorStyles.boldLabel);
         EditorGUILayout.HelpBox("Este script es el que maneja todo el personaje con todas sus variables. Si querés cambiar cualquier cosa del personaje, va a estar acá."
             , MessageType.Info);
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Nota extra:", EditorStyles.boldLabel);
-        EditorGUILayout.LabelField("Si cambiás alguna variable de los personajes, ");
-        EditorGUILayout.LabelField("por lo pronto no se actualizan el resto, por lo que tenes que: ");
-        EditorGUILayout.LabelField("1- Click derecho en el editor del script del personaje que modificaste");
-        EditorGUILayout.LabelField("2- Copy Component");
-        EditorGUILayout.LabelField("3- En el resto de los personajes, click derecho en sus respectivos editores");
-        EditorGUILayout.LabelField("4- Paste Component Values");
         Repaint();
     }
 }

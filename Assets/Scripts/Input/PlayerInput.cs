@@ -42,11 +42,11 @@ public class PlayerInput : MonoBehaviour
             if (Input.GetButtonDown(hability2Button))
                 player.FallOff();
             if (Input.GetButtonDown(hability3Button))
-                player.Hook();
+                player.Hability();
             if (controller == Controller.J)
             {
                 if (Mathf.Round(Input.GetAxisRaw(hability3Button)) < 0)
-                    player.Hook();
+                    player.Hability();
             }
             if (Input.GetButtonDown(normalAttack))
                 player.AttackNormal("Pressed");
