@@ -7,6 +7,7 @@ using System.Linq;
 public class Hook : MonoBehaviour
 {
     public event Action OnFireHook = delegate { };
+    public event Action OnReturnedEnd = delegate { };
     public event Action<PlayerController> OnHookTarget = delegate { };
     public event Action<PlayerController> OnReachedTarget = delegate { };
     public event Action OnFailedFire = delegate { };
@@ -139,6 +140,7 @@ public class Hook : MonoBehaviour
                 transform.localPosition = _startPosition;
                 returnFail = false;
                 _warpedPos = null;
+                OnReturnedEnd();
                 OnFailedFire();
                 return;
             }
@@ -155,6 +157,7 @@ public class Hook : MonoBehaviour
 
     public void ReachedTarget(PlayerController target)
     {
+        OnReturnedEnd();
         OnReachedTarget(target);
         _target = null;
         _warpedPos = null;
