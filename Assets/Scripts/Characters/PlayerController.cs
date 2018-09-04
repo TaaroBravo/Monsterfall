@@ -386,8 +386,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!isFallingOff && !stunnedByHit && !isDashing && !usingHability)
         {
-            //myHability();
-            hability["HookHability"].Hability();
+            myHability();
+            //hability["HookHability"].Hability();
         }
     }
 

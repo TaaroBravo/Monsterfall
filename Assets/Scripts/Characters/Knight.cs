@@ -13,6 +13,7 @@ public class Knight : PlayerController {
     public override void Start()
     {
         base.Start();
+        SetHabilities();
     }
 
     public override void Update()

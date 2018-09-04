@@ -5,14 +5,17 @@ using UnityEngine;
 public class Punch : MonoBehaviour
 {
 
+    Vector3 _dir;
+
     private void Update()
     {
-        transform.position += transform.up * 50 * Time.deltaTime;
+        transform.position += _dir.normalized * 50 * Time.deltaTime;
     }
 
     public void Hit(Vector3 dir)
     {
-        transform.up = dir;
+        _dir = dir;
+        transform.up = -dir;
     }
 
 }

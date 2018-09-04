@@ -6,7 +6,8 @@ using UnityEditor.AnimatedValues;
 
 [CustomEditor(typeof(Knight))]
 
-public class KnightCI : Editor {
+public class KnightCI : Editor
+{
 
     AnimBool fadeVariablesMovement;
     AnimBool fadeVariablesAttack;
@@ -104,7 +105,11 @@ public class KnightCI : Editor {
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Hability:", EditorStyles.boldLabel);
             EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Punch");
+            player.punch = (Punch)EditorGUILayout.ObjectField(player.punch, typeof(Punch), true);
             player.punchCooldown = EditorGUILayout.FloatField("Cooldown del Hability", player.punchCooldown);
+            player.powerOfPunch = EditorGUILayout.FloatField("Poder del Puño", player.powerOfPunch);
+            player.activeTime = EditorGUILayout.FloatField("Tiempo activo", player.activeTime);
             EditorGUILayout.Space();
         }
         EditorGUILayout.EndFadeGroup();
@@ -166,6 +171,7 @@ public class KnightCI : Editor {
         EditorGUILayout.LabelField("¿Para qué sirve este script?", EditorStyles.boldLabel);
         EditorGUILayout.HelpBox("Este script es el que maneja todo el personaje con todas sus variables. Si querés cambiar cualquier cosa del personaje, va a estar acá."
             , MessageType.Info);
+
         Repaint();
     }
 }
