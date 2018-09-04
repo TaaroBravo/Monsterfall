@@ -6,19 +6,19 @@ using System.Linq;
 
 public class HookHability : IHability
 {
-    Hook hook;
+    Hook _hook;
     Vector3 dir;
 
     Hook grabHook;
 
-    public HookHability(PlayerController p, Hook _hook, float _timerCoolDown = 0)
+    public HookHability(PlayerController p, Hook hook, float _timerCoolDown = 0)
     {
         player = p;
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
-        hook = _hook;
-        hook.OnFailedFire += () => FailedFire();
-        hook.OnReachedTarget += t => ReachedTarget();
+        _hook = hook;
+        _hook.OnFailedFire += () => FailedFire();
+        _hook.OnReachedTarget += t => ReachedTarget();
     }
 
     public override void Update()
@@ -34,14 +34,14 @@ public class HookHability : IHability
 
         if (timerCoolDown < 0 && !grabHook)
         {
-            hook.gameObject.SetActive(true);
+            _hook.gameObject.SetActive(true);
             float x = player.GetComponent<PlayerInput>().MainHorizontal();
             float y = player.GetComponent<PlayerInput>().MainVertical();
             if (x + y == 0)
                 x = Mathf.Sign(player.transform.localScale.z);
 
-            hook.Fire(new Vector3(x, y, 0));
-            hook.OnReachedTarget += t => t.StartStun(0.5f);
+            _hook.Fire(new Vector3(x, y, 0));
+            _hook.OnReachedTarget += t => t.StartStun(0.5f);
             player.usingHability = true;
         }
     }
@@ -58,7 +58,7 @@ public class HookHability : IHability
 
     void ResetValues()
     {
-        hook.gameObject.SetActive(false);
+        _hook.gameObject.SetActive(false);
         timerCoolDown = coolDown;
         player.usingHability = false;
     }

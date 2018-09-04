@@ -11,6 +11,7 @@ public class Hook : MonoBehaviour
     public event Action<PlayerController> OnHookTarget = delegate { };
     public event Action<PlayerController> OnReachedTarget = delegate { };
     public event Action OnFailedFire = delegate { };
+    public event Action<Vector3, Vector3> OnTeleport = delegate { };
 
     public float speed;
     public float targetTravelSpeed;
@@ -26,6 +27,9 @@ public class Hook : MonoBehaviour
     public bool fired;
     public bool hooked;
     public bool returnFail;
+
+    bool canEnterTeleport;
+    public bool teleportedBack;
 
     public bool hookGrabbed;
 
@@ -45,6 +49,7 @@ public class Hook : MonoBehaviour
         _myPlayer = FindMyPlayer(transform.parent);
         gameObject.SetActive(false);
         _psParry = transform.ChildrenWithComponent<ParticleSystem>().Where(x => x != null).First();
+        teleportedBack = true;
     }
 
     void Update()
@@ -52,7 +57,7 @@ public class Hook : MonoBehaviour
         if (!_myPlayer)
             Destroy(gameObject);
 
-        if(hookGrabbed)
+        if (hookGrabbed)
         {
             CounterHook();
             return;
@@ -100,6 +105,7 @@ public class Hook : MonoBehaviour
     #region Fire Hook
     public void Fire(Vector3 dir)
     {
+        canEnterTeleport = true;
         fired = true;
         transform.localPosition = spawnPoint.transform.localPosition;
         _startPosition = endPoint.localPosition;
@@ -133,8 +139,8 @@ public class Hook : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, _warpedPos.position, speed * Time.deltaTime);
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, _playerPos, speed * Time.deltaTime);
-            if ((_playerPos - transform.position).magnitude <= 1)
+            transform.position = Vector3.MoveTowards(transform.position, spawnPoint.position, speed * Time.deltaTime);
+            if ((spawnPoint.position - transform.position).magnitude <= 1)
             {
                 transform.parent = _myPlayer.transform;
                 transform.localPosition = _startPosition;
@@ -169,7 +175,7 @@ public class Hook : MonoBehaviour
         target.myAnim.Play("Stunned");
         target.controller.enabled = true;
     }
-#endregion
+    #endregion
 
     #region Counter
     public void SetHookGrabbed(PlayerController p)
@@ -218,7 +224,7 @@ public class Hook : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp") && canEnterTeleport)
         {
             WarpController door = other.gameObject.GetComponent<WarpController>();
             door.WarpHook(transform);
@@ -228,9 +234,22 @@ public class Hook : MonoBehaviour
             {
                 _warpedPos = door.parentWarp.zoneToReturnHook;
                 _whereIWarped = door.zoneToRespawn;
+                if (!hooked && !returnFail)
+                {
+                    teleportedBack = false;
+                    OnTeleport(door.zoneToTeleportHook.position, door.parentWarp.zoneToTeleportHook.position);
+                }
             }
-            else 
+            else
+            {
+                if (hooked || returnFail)
+                {
+                    canEnterTeleport = false;
+                    teleportedBack = true;
+                }
                 _warpedPos = null;
+            }
+
         }
     }
 }
