@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NormalAttack : IAttack
 {
+    ParticleSystem ps;
     public NormalAttack(PlayerController pl, float _timerCoolDown = 0)
     {
         player = pl;
@@ -17,6 +18,7 @@ public class NormalAttack : IAttack
         currentPressed = 1;
         maxPressed = 2.5f;
         minImpact = 30;
+        ps = player.PS_Impact;
     }
 
     public override void Update()
@@ -51,6 +53,8 @@ public class NormalAttack : IAttack
                 if (target != null)
                 {
                     target.ReceiveDamage(new Vector3(Mathf.Sign(player.transform.localScale.z) * CalculateImpact(currentPressed), 0, 0), currentPressed >= maxPressed);
+                    ps.transform.up = -Vector3.right * player.transform.localScale.z;
+                    ps.Play();
                     target.WhoHitedMe(player);
                     player.whoIHited = target;
                     player.myAnim.SetBool("ReleaseAForward", false);

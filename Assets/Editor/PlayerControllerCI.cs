@@ -140,7 +140,11 @@ public class PlayerControllerCI : Editor
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Particulas:", EditorStyles.boldLabel);
             EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Jump");
+            player.PS_Jump = (ParticleSystem)EditorGUILayout.ObjectField(player.PS_Jump, typeof(ParticleSystem), true);
             EditorGUILayout.LabelField("Hit");
+            player.hitParticles = (ParticleSystem)EditorGUILayout.ObjectField(player.hitParticles, typeof(ParticleSystem), true);
+            EditorGUILayout.LabelField("Get Hit");
             player.hitParticles = (ParticleSystem)EditorGUILayout.ObjectField(player.hitParticles, typeof(ParticleSystem), true);
             EditorGUILayout.LabelField("Marked");
             player.PS_Marked = (ParticleSystem)EditorGUILayout.ObjectField(player.PS_Marked, typeof(ParticleSystem), true);
@@ -148,6 +152,8 @@ public class PlayerControllerCI : Editor
             player.PS_Stunned = (ParticleSystem)EditorGUILayout.ObjectField(player.PS_Stunned, typeof(ParticleSystem), true);
             EditorGUILayout.LabelField("Charged");
             player.PS_Charged = (ParticleSystem)EditorGUILayout.ObjectField(player.PS_Charged, typeof(ParticleSystem), true);
+            EditorGUILayout.LabelField("Dash");
+            player.PS_Dash = (ParticleSystem)EditorGUILayout.ObjectField(player.PS_Dash, typeof(ParticleSystem), true);
             EditorGUILayout.LabelField("Fall off");
             player.PS_Fall = (ParticleSystem)EditorGUILayout.ObjectField(player.PS_Fall, typeof(ParticleSystem), true);
             EditorGUILayout.Space();

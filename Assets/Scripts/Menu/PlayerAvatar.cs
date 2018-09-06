@@ -39,7 +39,7 @@ public class PlayerAvatar : MonoBehaviour {
         if (onTarget && !ready)
         {
             ready = true;
-            character.color = myColor;
+            //character.color = myColor;
             OnSelectedCharacter(this);
         }
     }

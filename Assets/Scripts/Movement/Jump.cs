@@ -11,6 +11,7 @@ public class Jump : IMove {
 
     public override void Move()
     {
+        player.PS_Jump.Play();
         player.verticalVelocity = player.jumpForce;
         player.moveVector.y = player.verticalVelocity;
         player.myAnim.SetBool("Jumping", true);

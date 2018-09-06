@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Dash : IHability {
 
+    ParticleSystem ps;
     public float dashingTime;
     public float dashTimer;
 
@@ -13,6 +14,7 @@ public class Dash : IHability {
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
         dashTimer = player.dashDistance / player.dashSpeed;
+        ps = player.PS_Dash;
     }
 
     public override void Update()
@@ -26,6 +28,7 @@ public class Dash : IHability {
             dashingTime = 0;
             player.isDashing = false;
             player.myAnim.SetBool("Dashing", false);
+            ps.Stop();
         }
 
         if (player.controller.isGrounded && !player.isDashing)
@@ -37,6 +40,7 @@ public class Dash : IHability {
     {
         if(timerCoolDown < 0)
         {
+            ps.Play();
             player.isDashing = true;
             player.canDash = false;
             player.moveVector.x = Mathf.Sign(player.transform.localScale.z) * player.dashSpeed;

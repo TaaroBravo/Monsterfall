@@ -235,6 +235,7 @@ public class Hook : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp") && canEnterTeleport)
         {
             WarpController door = other.gameObject.GetComponent<WarpController>();
+            Debug.Log(_warpedPos);
             if (!_warpedPos)
             {
                 door.WarpHook(transform);

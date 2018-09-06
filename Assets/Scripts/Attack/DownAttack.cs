@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DownAttack : IAttack
 {
+    ParticleSystem ps;
     public DownAttack(PlayerController pl, float _timerCoolDown = 0)
     {
         player = pl;
@@ -16,6 +17,7 @@ public class DownAttack : IAttack
         currentPressed = 1;
         maxPressed = 2.5f;
         minImpact = 30;
+        ps = player.PS_Impact;
     }
 
     public override void Update()
@@ -50,6 +52,8 @@ public class DownAttack : IAttack
                 if (target != null)
                 {
                     target.ReceiveDamage(new Vector3(0, -CalculateImpact(currentPressed), 0), currentPressed >= maxPressed);
+                    ps.transform.up = -Vector3.down;
+                    ps.Play();
                     player.whoIHited = target;
                     player.myAnim.SetBool("ReleaseADown", true);
                 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UpAttack : IAttack
 {
+    ParticleSystem ps;
+
     public UpAttack(PlayerController pl, float _timerCoolDown = 0)
     {
         player = pl;
@@ -16,6 +18,7 @@ public class UpAttack : IAttack
         currentPressed = 1;
         maxPressed = 2.5f;
         minImpact = 30;
+        ps = player.PS_Impact;
     }
 
     public override void Update()
@@ -49,6 +52,8 @@ public class UpAttack : IAttack
                 if (target != null)
                 {
                     target.ReceiveDamage(new Vector3(0, CalculateImpact(currentPressed), 0), currentPressed >= maxPressed);
+                    ps.transform.up = -Vector3.up;
+                    ps.Play();
                     player.whoIHited = target;
                     player.myAnim.SetBool("ReleaseAUp", true);
                 }

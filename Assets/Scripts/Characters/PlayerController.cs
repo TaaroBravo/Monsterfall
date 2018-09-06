@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     public float gravity;
 
+    public ParticleSystem PS_Jump;
     public float jumpForce = 20;
     public bool isJumping;
     public bool isFalling;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Dash Variables
+    public ParticleSystem PS_Dash;
     public float dashSpeed = 50;
     public float dashDistance = 7;
     public float dashCoolDown;
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Impact Variables
+    public ParticleSystem PS_Impact;
     public Vector3 impactVelocity;
 
     public float impactSpeed = 20;
@@ -415,8 +418,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!isFallingOff && !stunnedByHit && !isDashing && !usingHability)
         {
-            myHability();
-            //hability["HookHability"].Hability();
+            //myHability();
+            hability["HookHability"].Hability();
         }
     }
 
@@ -629,7 +632,7 @@ public class PlayerController : MonoBehaviour
     private void SetHabilities()
     {
         hability.Add(typeof(Dash).ToString(), new Dash(this, dashCoolDown));
-        //hability.Add(typeof(HookHability).ToString(), new HookHability(this, transform.ChildrenWithComponent<Hook>().First(), 1));
+        hability.Add(typeof(HookHability).ToString(), new HookHability(this, transform.ChildrenWithComponent<Hook>().First(), 1));
     }
 
     private void SetImpacts()
