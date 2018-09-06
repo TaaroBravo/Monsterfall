@@ -23,7 +23,10 @@ public class ManagerWindow : EditorWindow
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Forzar escena modificada");
         if (GUILayout.Button("Force Dirty"))
+        {
             UnityEditor.SceneManagement.EditorSceneManager.MarkAllScenesDirty();
+            ((ManagerWindow)GetWindow(typeof(ManagerWindow))).Close();
+        }
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.EndVertical();
         Repaint();

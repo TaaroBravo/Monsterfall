@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public float myLife;
     public CharacterController controller;
+    public PlayerContrains contrains;
 
     #region Movement Variables
     public bool canMove;
@@ -122,10 +123,12 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         myAnim = GetComponent<Animator>();
+        contrains = GetComponent<PlayerContrains>();
     }
 
     public virtual void Start()
     {
+        contrains.OnTeleportPlayer += () => OnTeleported();
         coyoteTime = 0.1f;
         SetMovements();
         SetAttacks();
@@ -210,6 +213,25 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    bool IsTouchingWalls()
+    {
+        RaycastHit hit;
+        Vector3 center = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y);
+        if (Physics.Raycast(center, center - Vector3.right, out hit, GetComponent<Collider>().bounds.extents.x + 1))
+            return true;
+        if (Physics.Raycast(center, center + Vector3.right, out hit, GetComponent<Collider>().bounds.extents.x + 1))
+            return true;
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 1));
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 1));
+    }
+
     IEnumerator CoyoteTime(float timer)
     {
         while (true)
@@ -240,7 +262,9 @@ public class PlayerController : MonoBehaviour
     void StunAndMark()
     {
         if (stunnedByHit)
+        {
             StunUpdate();
+        }
     }
 
     public void StartStun(float x)
@@ -264,7 +288,7 @@ public class PlayerController : MonoBehaviour
     void StunUpdate()
     {
         currentImpactStunTimer += Time.deltaTime;
-        if (currentImpactStunTimer > impactStunMaxTimer)
+        if (currentImpactStunTimer > impactStunMaxTimer || IsTouchingWalls())
         {
             whoHitedMe = null;
             stunnedByHit = false;
@@ -382,6 +406,11 @@ public class PlayerController : MonoBehaviour
             myMoves["FallOff"].Move();
     }
 
+    void OnTeleported()
+    {
+        isFallingOff = false;
+    }
+
     public void Hability()
     {
         if (!isFallingOff && !stunnedByHit && !isDashing && !usingHability)
@@ -415,7 +444,6 @@ public class PlayerController : MonoBehaviour
         else if (myLife <= 0)
         {
             myAnim.SetBool("Running", false);
-
         }
     }
     #endregion
@@ -601,7 +629,7 @@ public class PlayerController : MonoBehaviour
     private void SetHabilities()
     {
         hability.Add(typeof(Dash).ToString(), new Dash(this, dashCoolDown));
-        hability.Add(typeof(HookHability).ToString(), new HookHability(this, transform.ChildrenWithComponent<Hook>().First(), 1));
+        //hability.Add(typeof(HookHability).ToString(), new HookHability(this, transform.ChildrenWithComponent<Hook>().First(), 1));
     }
 
     private void SetImpacts()

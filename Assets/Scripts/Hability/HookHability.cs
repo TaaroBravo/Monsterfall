@@ -28,9 +28,12 @@ public class HookHability : IHability
 
     public override void Hability()
     {
-        grabHook = Physics.OverlapSphere(player.transform.position, 10f).Select(x => x.GetComponent<Hook>()).Where(x => x != null).FirstOrDefault();
-        if (grabHook)
-            grabHook.SetHookGrabbed(player);
+        if(!player.stunnedByHit)
+        {
+            grabHook = Physics.OverlapSphere(player.transform.position, 10f).Select(x => x.GetComponent<Hook>()).Where(x => x != null).FirstOrDefault();
+            if (grabHook)
+                grabHook.SetHookGrabbed(player);
+        }
 
         if (timerCoolDown < 0 && !grabHook)
         {

@@ -10,7 +10,7 @@ public class Pirate : PlayerController {
     public override void Start ()
     {
         base.Start();
-
+        SetHabilities();
 	}
 	
 	public override void Update ()

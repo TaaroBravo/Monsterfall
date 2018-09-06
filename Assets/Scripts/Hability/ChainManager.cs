@@ -56,7 +56,6 @@ public class ChainManager : MonoBehaviour
                     {
                         allChains[i].transform.up = spawnPoint.position - positions[1].Item2;
                         allChains[i].transform.position = spawnPoint.position - (spawnPoint.position - positions[1].Item2).normalized * distanceToSpawn * (i + 1);
-                        //allChains[i].transform.position = positions[1].Item2 + (spawnPoint.position - positions[1].Item2).normalized * distanceToSpawn * i;
                     }
                     else
                     {
@@ -110,11 +109,6 @@ public class ChainManager : MonoBehaviour
     int GetPosition(int index)
     {
         var result = 0;
-        //for (int i = 1; i < positions.Count; i++)
-        //{
-        //    if (index >= positions[i].Item1)
-        //        result = i;
-        //}
         if (positions.Count > 1 && index * distanceToSpawn > Vector3.Distance(spawnPoint.position, positions[1].Item2))
             result = 1;
 

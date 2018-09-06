@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class PlayerAvatar : MonoBehaviour {
@@ -14,6 +15,10 @@ public class PlayerAvatar : MonoBehaviour {
     bool onTarget;
 
     public bool ready;
+
+    public Image character;
+    public Color myColor;
+    public Color baseColor;
 
     float speed;
 
@@ -34,6 +39,7 @@ public class PlayerAvatar : MonoBehaviour {
         if (onTarget && !ready)
         {
             ready = true;
+            character.color = myColor;
             OnSelectedCharacter(this);
         }
     }

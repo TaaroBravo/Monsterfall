@@ -69,7 +69,7 @@ public class Hook : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, transform.position + _direction, speed * Time.deltaTime);
             _currentTime += Time.deltaTime;
             _currentDistance = speed * _currentTime;
-            _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _myPlayer).FirstOrDefault();
+            _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _myPlayer).Where(x => !x.isDead).FirstOrDefault();
 
             if (_currentDistance >= maxDistance)
                 FailedFire();
@@ -90,11 +90,17 @@ public class Hook : MonoBehaviour
             {
                 _target.controller.enabled = true;
                 _target.transform.position = Vector3.MoveTowards(_target.transform.position, _warpedPos.position, targetTravelSpeed * Time.deltaTime);
+                Vector3 targetPos = _target.transform.position;
+                targetPos.z = 0;
+                _target.transform.position = targetPos;
             }
             else
             {
                 _target.controller.enabled = false;
                 _target.transform.position = Vector3.MoveTowards(_target.transform.position, _playerPos, targetTravelSpeed * Time.deltaTime);
+                Vector3 targetPos = _target.transform.position;
+                targetPos.z = 0;
+                _target.transform.position = targetPos;
                 if ((_playerPos - _target.transform.position).magnitude <= 1)
                     ReachedTarget(_target);
             }
@@ -110,6 +116,7 @@ public class Hook : MonoBehaviour
         transform.localPosition = spawnPoint.transform.localPosition;
         _startPosition = endPoint.localPosition;
         _playerPos = spawnPoint.transform.position;
+        _playerPos.z = 0;
         //_playerPos = endPoint.position;
         _direction = ((_playerPos + dir) - _playerPos).normalized;
         transform.up = -_direction;
@@ -120,11 +127,12 @@ public class Hook : MonoBehaviour
     public void HookTarget(PlayerController target)
     {
         hooked = true;
+        if (target.canMove)
+            target.myAnim.Play("GetHit");
         target.canMove = false;
         _currentTime = 0;
         target.transform.position = transform.position; //Comentado: El target no cambia de posicion pero el gancho hace bulletrail raro. No comentado: Bullettrail bien pero demas no
         target.controller.enabled = false;
-        target.myAnim.Play("GetHit");
         OnHookTarget(target);
     }
 
@@ -227,12 +235,11 @@ public class Hook : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp") && canEnterTeleport)
         {
             WarpController door = other.gameObject.GetComponent<WarpController>();
-            door.WarpHook(transform);
-            if (_target)
-                door.WarpHook(_target.transform);
             if (!_warpedPos)
             {
+                door.WarpHook(transform);
                 _warpedPos = door.parentWarp.zoneToReturnHook;
+                _warpedPos.position = new Vector3(_warpedPos.position.x, _warpedPos.position.y, 0);
                 _whereIWarped = door.zoneToRespawn;
                 if (!hooked && !returnFail)
                 {
@@ -244,6 +251,9 @@ public class Hook : MonoBehaviour
             {
                 if (hooked || returnFail)
                 {
+                    if (_target)
+                        door.WarpHook(_target.transform);
+                    door.WarpHook(transform);
                     canEnterTeleport = false;
                     teleportedBack = true;
                 }
