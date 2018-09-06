@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Target
+  - Destroyable
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - DoorWarp
   - Hook
   - Mark
-  - 
+  - Banderas
   - 
   - 
   - 

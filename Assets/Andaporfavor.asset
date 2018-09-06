@@ -78,7 +78,7 @@ MonoBehaviour:
   colorLift: {r: 0, g: 0, b: 0, a: 1}
   lut: {fileID: 0}
   vignetteIntensity: 0.175
-  CA_Intensity: 0.1
+  CA_Intensity: 0.05
   mobileOptimizedChromattic: 0
   ssrQuality: 0
   ssrAtten: 1
