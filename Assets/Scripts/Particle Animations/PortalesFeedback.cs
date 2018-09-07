@@ -7,10 +7,10 @@ using System.Linq;
 public class PortalesFeedback : MonoBehaviour
 {
 
-    public List<GameObject> PortalDerParticles = new List<GameObject>();
-    public List<GameObject> PortalIzqParticles = new List<GameObject>();
-    public List<GameObject> PortalTopParticles = new List<GameObject>();
-    public List<GameObject> PortalBotParticles = new List<GameObject>();
+    public GameObject portalTop;
+    public GameObject portalBot;
+    public GameObject portalIzq;
+    public GameObject portalDer;
     public float DistanceToGo;
     public float TimeToGo;
     public float TimeToReturn;
@@ -27,15 +27,14 @@ public class PortalesFeedback : MonoBehaviour
     float IzqPortalTimer;
     float TopPortalTimer;
     float BotPortalTimer;
-    List<Vector3> PortalDerStartPositions = new List<Vector3>();
-    List<Vector3> PortalIzqStartPositions = new List<Vector3>();
-    List<Vector3> PortalDerFinalPositions = new List<Vector3>();
-    List<Vector3> PortalIzqFinalPositions = new List<Vector3>();
-    List<Vector3> PortalTopStartPositions = new List<Vector3>();
-    List<Vector3> PortalBotStartPositions = new List<Vector3>();
-    List<Vector3> PortalTopFinalPositions = new List<Vector3>();
-    List<Vector3> PortalBotFinalPositions = new List<Vector3>();
-    // Mira esas 25 listas papaaaaaaa, el cancer en codigo...
+    public Vector3 portalTopSP;
+    public Vector3 portalBotSP;
+    public Vector3 portalDerSP;
+    public Vector3 portalIzqSP;
+    public Vector3 portalTopEP;
+    public Vector3 portalBotEP;
+    public Vector3 portalDerEP;
+    public Vector3 portalIzqEP;
 
     public WarpController leftWarp;
     public WarpController rightWarp;
@@ -45,20 +44,14 @@ public class PortalesFeedback : MonoBehaviour
 
     void Start()
     {
-        AssignValues(PortalDerStartPositions, PortalDerFinalPositions, PortalDerParticles);
-        AssignValues(PortalIzqStartPositions, PortalIzqFinalPositions, PortalIzqParticles);
-        AssignValues(PortalTopStartPositions, PortalTopFinalPositions, PortalTopParticles);
-        AssignValues(PortalBotStartPositions, PortalBotFinalPositions, PortalBotParticles);
-        #region BackUp de codigo por si explota AssignValues
-        //for (int i = 0; i < PortalDerParticles.Count; i++)
-        //{
-        //    PortalDerStartPositions.Add(PortalDerParticles[i].transform.position);
-        //    PortalDerFinalPositions.Add(new Vector3(
-        //        PortalDerParticles[i].transform.position.x - DistanceToGo,
-        //        PortalDerParticles[i].transform.position.y,
-        //        PortalDerParticles[i].transform.position.z));
-        //}
-        #endregion
+        portalDerSP = portalDer.transform.position;
+        portalIzqSP = portalIzq.transform.position;
+        portalTopSP = portalTop.transform.position;
+        portalBotSP = portalBot.transform.position;
+        portalDerEP = new Vector3(portalDer.transform.position.x - DistanceToGo, portalDer.transform.position.y, portalDer.transform.position.z);
+        portalIzqEP = new Vector3(portalIzq.transform.position.x + DistanceToGo, portalIzq.transform.position.y, portalIzq.transform.position.z);
+        portalTopEP = new Vector3(portalTop.transform.position.x, portalTop.transform.position.y - 7f, portalTop.transform.position.z);
+        portalBotEP = new Vector3(portalBot.transform.position.x, portalBot.transform.position.y + 6.5f, portalBot.transform.position.z);
         leftWarp.OnTeleportPlayer += () => ActivateRightPortal();
         rightWarp.OnTeleportPlayer += () => ActivateLeftPortal();
         upWarp.OnTeleportPlayer += () => ActivateBotPortal();
@@ -71,21 +64,10 @@ public class PortalesFeedback : MonoBehaviour
         IzqPortalTimer += Time.deltaTime;
         TopPortalTimer += Time.deltaTime;
         BotPortalTimer += Time.deltaTime;
-        //CheckForPortalActivation(DerPortalGo, DerPortalReturn, DerPortalTimer, PortalDerStartPositions, PortalDerFinalPositions, PortalDerParticles);
-        //CheckForPortalActivation(IzqPortalGo, IzqPortalReturn, IzqPortalTimer, PortalIzqStartPositions, PortalIzqFinalPositions, PortalIzqParticles);
-        //CheckForPortalActivation(TopPortalGo, TopPortalReturn, TopPortalTimer, PortalTopStartPositions, PortalTopFinalPositions, PortalTopParticles);
-        //CheckForPortalActivation(BotPortalGo, BotPortalReturn, BotPortalTimer, PortalBotStartPositions, PortalBotFinalPositions, PortalBotParticles);
         #region BackUp de codigo por si explota CheckForPortalActivation
         if (DerPortalGo)
         {
-            for (int i = 0; i < PortalDerParticles.Count; i++)
-            {
-                PortalDerParticles[i].transform.position = Vector3.Lerp(PortalDerStartPositions[i], PortalDerFinalPositions[i], DerPortalTimer / TimeToGo);
-                //var main = PortalDerParticles[i].GetComponent<ParticleSystem>().main;
-                //Color lerpcolor = new Color(1, 0.9f, 1);
-                //main.startColor = lerpcolor;
-            }
-
+            portalDer.transform.position = Vector3.Lerp(portalDerSP, portalDerEP, DerPortalTimer / TimeToGo);
             if (DerPortalTimer >= TimeToGo)
             {
                 DerPortalTimer = 0;
@@ -95,13 +77,7 @@ public class PortalesFeedback : MonoBehaviour
         }
         else if (DerPortalReturn)
         {
-            for (int i = 0; i < PortalDerParticles.Count; i++)
-            {
-                PortalDerParticles[i].transform.position = Vector3.Lerp(PortalDerFinalPositions[i], PortalDerStartPositions[i], DerPortalTimer / TimeToReturn);
-                //var main = PortalDerParticles[i].GetComponent<ParticleSystem>().main;
-                //Color lerpcolor = new Color(1 - DerPortalTimer / TimeToReturn, 0.9f, 1);
-                //main.startColor = lerpcolor;
-            }
+            portalDer.transform.position = Vector3.Lerp(portalDerEP, portalDerSP, DerPortalTimer / TimeToReturn);
             if (DerPortalTimer >= TimeToReturn)
             {
                 DerPortalTimer = 0;
@@ -110,10 +86,7 @@ public class PortalesFeedback : MonoBehaviour
         }
         if (IzqPortalGo)
         {
-            for (int i = 0; i < PortalIzqParticles.Count; i++)
-            {
-                PortalIzqParticles[i].transform.position = Vector3.Lerp(PortalIzqStartPositions[i], PortalIzqFinalPositions[i], IzqPortalTimer / TimeToGo);
-            }
+            portalIzq.transform.position = Vector3.Lerp(portalIzqSP, portalIzqEP, IzqPortalTimer / TimeToGo);
             if (IzqPortalTimer >= TimeToGo)
             {
                 IzqPortalTimer = 0;
@@ -123,10 +96,7 @@ public class PortalesFeedback : MonoBehaviour
         }
         else if (IzqPortalReturn)
         {
-            for (int i = 0; i < PortalIzqParticles.Count; i++)
-            {
-                PortalIzqParticles[i].transform.position = Vector3.Lerp(PortalIzqFinalPositions[i], PortalIzqStartPositions[i], IzqPortalTimer / TimeToReturn);
-            } 
+            portalIzq.transform.position = Vector3.Lerp(portalIzqEP, portalIzqSP, IzqPortalTimer / TimeToReturn);
             if (IzqPortalTimer >= TimeToReturn)
             {
                 IzqPortalTimer = 0;
@@ -135,11 +105,7 @@ public class PortalesFeedback : MonoBehaviour
         }
         if (TopPortalGo)
         {
-            for (int i = 0; i < PortalTopParticles.Count; i++)
-            {
-                PortalTopParticles[i].transform.position = Vector3.Lerp(PortalTopStartPositions[i], PortalTopFinalPositions[i], TopPortalTimer / TimeToGo);
-            }
-                
+            portalTop.transform.position = Vector3.Lerp(portalTopSP, portalTopEP, TopPortalTimer / (TimeToGo));
             if (TopPortalTimer >= TimeToGo)
             {
                 TopPortalTimer = 0;
@@ -149,11 +115,8 @@ public class PortalesFeedback : MonoBehaviour
         }
         else if (TopPortalReturn)
         {
-            for (int i = 0; i < PortalTopParticles.Count; i++)
-            {
-                PortalTopParticles[i].transform.position = Vector3.Lerp(PortalTopFinalPositions[i], PortalTopStartPositions[i], TopPortalTimer / TimeToReturn);
-            }
-            if (TopPortalTimer >= TimeToReturn)
+            portalTop.transform.position = Vector3.Lerp(portalTopEP, portalTopSP, TopPortalTimer / (TimeToReturn + 0.17f));
+            if (TopPortalTimer >= TimeToReturn + 0.17f)
             {
                 TopPortalTimer = 0;
                 TopPortalReturn = false;
@@ -161,10 +124,7 @@ public class PortalesFeedback : MonoBehaviour
         }
         if (BotPortalGo)
         {
-            for (int i = 0; i < PortalBotParticles.Count; i++)
-            {
-                PortalBotParticles[i].transform.position = Vector3.Lerp(PortalBotStartPositions[i], PortalBotFinalPositions[i], BotPortalTimer / TimeToGo);
-            }
+            portalBot.transform.position = Vector3.Lerp(portalBotSP, portalBotEP, BotPortalTimer / (TimeToGo));
             if (BotPortalTimer >= TimeToGo)
             {
                 BotPortalTimer = 0;
@@ -174,43 +134,37 @@ public class PortalesFeedback : MonoBehaviour
         }
         else if (BotPortalReturn)
         {
-            for (int i = 0; i < PortalBotParticles.Count; i++)
-            {
-                PortalBotParticles[i].transform.position = Vector3.Lerp(PortalBotFinalPositions[i], PortalBotStartPositions[i], BotPortalTimer / TimeToReturn);
-            }
-            if (BotPortalTimer >= TimeToReturn)
+            portalBot.transform.position = Vector3.Lerp(portalBotEP, portalBotSP, BotPortalTimer / (TimeToReturn + 0.07f));
+            if (BotPortalTimer >= TimeToReturn + 0.07f)
             {
                 BotPortalTimer = 0;
                 BotPortalReturn = false;
             }
         }
         #endregion
-        //DebugKeys();
+        DebugKeys();
     }
 
-    //void DebugKeys()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.O)) ActivateRightPortal();
-    //    if (Input.GetKeyDown(KeyCode.P)) ActivateLeftPortal();
-    //    if (Input.GetKeyDown(KeyCode.L)) ActivateTopPortal();
-    //    if (Input.GetKeyDown(KeyCode.K)) ActivateBotPortal();
-    //}
-    void AssignValues(List<Vector3> StartPos, List<Vector3> EndPos, List<GameObject> Particles)
+    void DebugKeys()
     {
-        for (int i = 0; i < Particles.Count; i++)
-        {
-            StartPos.Add(Particles[i].transform.position);
-            EndPos.Add(new Vector3(
-                Particles == PortalIzqParticles? Particles[i].transform.position.x + DistanceToGo :
-                Particles == PortalDerParticles? Particles[i].transform.position.x - DistanceToGo :
-                Particles[i].transform.position.x
-                ,
-                Particles == PortalTopParticles ? Particles[i].transform.position.y - 3f :
-                Particles == PortalBotParticles ? Particles[i].transform.position.y + 6f :
-                Particles[i].transform.position.y
-                ,
-                Particles[i].transform.position.z));
-        }
+        if (Input.GetKeyDown(KeyCode.O)) ActivateRightPortal();
+        if (Input.GetKeyDown(KeyCode.P)) ActivateLeftPortal();
+        if (Input.GetKeyDown(KeyCode.L)) ActivateTopPortal();
+        if (Input.GetKeyDown(KeyCode.K)) ActivateBotPortal();
+    }
+    void AssignValues(Vector3 StartingPos, Vector3 EndingPos, GameObject ParticleGO)
+    {
+        StartingPos = ParticleGO.transform.position;
+        EndingPos = new Vector3(
+            ParticleGO == portalIzq ? ParticleGO.transform.position.x + DistanceToGo :
+            ParticleGO == portalDer ? ParticleGO.transform.position.x - DistanceToGo :
+            ParticleGO.transform.position.x
+            ,
+            ParticleGO == portalTop ? ParticleGO.transform.position.y - 3f :
+            ParticleGO == portalBot ? ParticleGO.transform.position.y + 6f :
+            ParticleGO.transform.position.y
+            ,
+            ParticleGO.transform.position.z);
     }
     void CheckForPortalActivation(bool go, bool ret, float timer, List<Vector3> StartPos, List<Vector3> EndPos, List<GameObject> Particles)
     {

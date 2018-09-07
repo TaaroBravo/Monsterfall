@@ -117,7 +117,7 @@ MonoBehaviour:
   Bloom_Enabled: 1
   AA_Enabled: 1
   AO_Enabled: 1
-  MotionBlur_Enabled: 1
+  MotionBlur_Enabled: 0
   Vignette_Enabled: 1
   Chromattic_Enabled: 1
   SSR_Enabled: 1

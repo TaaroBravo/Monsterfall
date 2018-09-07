@@ -33,7 +33,8 @@ public class Counting : MonoBehaviour {
     public float timetofadeFight;
     public float delaytofadeFight;
 
-    void Start () {
+    void Start()
+    {
         _textOneValues = text_uno.GetComponent<RectTransform>();
         _textRoundValues = text_round.GetComponent<RectTransform>();
         _textFightValues = text_fight.GetComponent<RectTransform>();
@@ -50,12 +51,12 @@ public class Counting : MonoBehaviour {
     void Update()
     {
         _timer += Time.deltaTime;
-        crystal.transform.localScale = _timer <= 2.6f ? 
-            Vector3.Lerp(Vector3.zero, _cristalscale, (_timer - 0.5f) / 0.2f) :
-            Vector3.Lerp(_cristalscale, Vector3.zero, (_timer - 2.55f) / 0.25f);
-        _textOneValues.localScale = Vector3.Lerp(Vector3.zero, _finalScaleUNO, (_timer - 0.9f) / maxValueTime);
-        _textRoundValues.localScale = Vector3.Lerp(Vector3.zero, _finalScaleROUND, (_timer - 0.5f) / maxValueTime);
-        _textFightValues.localScale = Vector3.Lerp(Vector3.zero, _finalScaleFIGHT, (_timer - delaytofade - timetofade) / maxValueTime);
+        crystal.transform.localScale = _timer <= 2.8f ? 
+            Vector3.Lerp(Vector3.zero, _cristalscale, (_timer - 0.6f) / 0.2f) :
+            Vector3.Lerp(_cristalscale, Vector3.zero, (_timer - 2.8f) / 0.25f);
+        _textOneValues.localScale = Vector3.Lerp(Vector3.zero, _finalScaleUNO, (_timer - 1f) / maxValueTime);
+        _textRoundValues.localScale = Vector3.Lerp(Vector3.zero, _finalScaleROUND, (_timer - 0.6f) / maxValueTime);
+        _textFightValues.localScale = Vector3.Lerp(Vector3.zero, _finalScaleFIGHT, (_timer - delaytofade - timetofade) / 0.05f);
 
         if (_fadetimer - delaytofade <= timetofade)
         {
