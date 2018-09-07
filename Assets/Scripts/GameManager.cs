@@ -43,7 +43,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(FindObjectOfType<PlayersInfoManager>())
+                Destroy(FindObjectOfType<PlayersInfoManager>().gameObject);
             SceneManager.LoadScene(0);
+        }
     }
 
     void SetUpInfoPlayers()

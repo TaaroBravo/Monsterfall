@@ -57,6 +57,7 @@ public class Hook : MonoBehaviour
         if (!_myPlayer)
             Destroy(gameObject);
 
+
         if (hookGrabbed)
         {
             CounterHook();
@@ -126,6 +127,12 @@ public class Hook : MonoBehaviour
 
     public void HookTarget(PlayerController target)
     {
+        if (target.isDead)
+        {
+            ReturnHook();
+            _target = null;
+            return;
+        }
         hooked = true;
         if (target.canMove)
             target.myAnim.Play("GetHit");
@@ -197,7 +204,11 @@ public class Hook : MonoBehaviour
     void CounterHook()
     {
         if (!_playerGrabbedHook)
+        {
+            _myPlayer.controller.enabled = true;
             ReturnHook();
+            return;
+        }
         transform.parent = _playerGrabbedHook.transform;
         if (_warpedPos)
         {
@@ -235,7 +246,6 @@ public class Hook : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp") && canEnterTeleport)
         {
             WarpController door = other.gameObject.GetComponent<WarpController>();
-            Debug.Log(_warpedPos);
             if (!_warpedPos)
             {
                 door.WarpHook(transform);

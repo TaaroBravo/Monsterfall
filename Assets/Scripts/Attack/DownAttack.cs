@@ -17,7 +17,6 @@ public class DownAttack : IAttack
         currentPressed = 1;
         maxPressed = 2.5f;
         minImpact = 30;
-        ps = player.PS_Impact;
     }
 
     public override void Update()
@@ -36,6 +35,7 @@ public class DownAttack : IAttack
     {
         if (timerCoolDownAttack < 0)
         {
+            ps = player.PS_Impact;
             player.myAnim.SetBool("ReleaseADown", true);
             if (player.myAnim.GetBool("Grounded"))
                 player.myAnim.Play("AttackDown");

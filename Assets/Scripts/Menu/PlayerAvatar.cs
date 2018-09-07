@@ -15,10 +15,10 @@ public class PlayerAvatar : MonoBehaviour {
     bool onTarget;
 
     public bool ready;
+    public bool canMove;
 
-    public Image character;
+    public CharacterUI character;
     public Color myColor;
-    public Color baseColor;
 
     float speed;
 
@@ -36,10 +36,11 @@ public class PlayerAvatar : MonoBehaviour {
 
     public void ActionButton()
     {
-        if (onTarget && !ready)
+        if (onTarget && !ready && !character.player)
         {
             ready = true;
-            //character.color = myColor;
+            character.player = this;
+            character.chosen = true;
             OnSelectedCharacter(this);
         }
     }
@@ -49,6 +50,8 @@ public class PlayerAvatar : MonoBehaviour {
         if(ready)
         {
             ready = false;
+            character.player = null;
+            character.chosen = false;
             OnRejectedCharacter(this);
         }
     }
@@ -58,8 +61,9 @@ public class PlayerAvatar : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Target")
         {
-            string[] character = collision.gameObject.name.Split('-');
-            characterChosen = int.Parse(character[1]);
+            character = collision.GetComponent<CharacterUI>();
+            string[] myChar = collision.gameObject.name.Split('-');
+            characterChosen = int.Parse(myChar[1]);
             onTarget = true;
         }
     }
@@ -67,6 +71,9 @@ public class PlayerAvatar : MonoBehaviour {
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Target")
+        {
+            character = null;
             onTarget = false;
+        }
     }
 }

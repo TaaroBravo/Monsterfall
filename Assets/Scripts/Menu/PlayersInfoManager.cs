@@ -28,6 +28,5 @@ public class PlayersInfoManager : MonoBehaviour {
 	void StartGame()
     {
         SceneManager.LoadScene(1);
-        //Asignar la info a su lugar correspondiente en cada personaje.
     }
 }

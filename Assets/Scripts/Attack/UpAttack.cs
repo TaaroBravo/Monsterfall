@@ -18,7 +18,6 @@ public class UpAttack : IAttack
         currentPressed = 1;
         maxPressed = 2.5f;
         minImpact = 30;
-        ps = player.PS_Impact;
     }
 
     public override void Update()
@@ -26,7 +25,7 @@ public class UpAttack : IAttack
         base.Update();
         if (isPressing)
         {
-            if(!player.PS_Charged.isPlaying)
+            if (!player.PS_Charged.isPlaying)
                 player.PS_Charged.Play();
             if (currentPressed <= maxPressed)
                 currentPressed += Time.deltaTime * 2;
@@ -37,6 +36,7 @@ public class UpAttack : IAttack
     {
         if (timerCoolDownAttack < 0)
         {
+            ps = player.PS_Impact;
             player.myAnim.SetBool("ReleaseAUp", true);
             if (player.myAnim.GetBool("Grounded"))
                 player.myAnim.Play("AttackUp");

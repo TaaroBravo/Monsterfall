@@ -156,7 +156,10 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Death
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102529363875187634}
   m_Solo: 0
@@ -1592,7 +1595,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: DeathAnim
+  m_Name: Death
   m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
@@ -1606,7 +1609,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b3a627284e362ec4eaa19e3f4a7c5693, type: 3}
+  m_Motion: {fileID: 7400000, guid: c9d5b155bfffa194e8709edfccda0c17, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1843,7 +1846,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: c9d5b155bfffa194e8709edfccda0c17, type: 3}
+  m_Motion: {fileID: 7400000, guid: 99422e206d0da324596fa7226d082338, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1883,7 +1886,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Death
+  m_Name: DeathState
   m_Speed: 3
   m_CycleOffset: 0
   m_Transitions: []

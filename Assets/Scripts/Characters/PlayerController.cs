@@ -418,8 +418,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!isFallingOff && !stunnedByHit && !isDashing && !usingHability)
         {
-            //myHability();
-            hability["HookHability"].Hability();
+            myHability();
+            //hability["HookHability"].Hability();
         }
     }
 
@@ -598,7 +598,7 @@ public class PlayerController : MonoBehaviour
             myAnim.SetTrigger("Death");
             myAnim.Play("Death");
             //StartCoroutine(Death(3f));
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, 1.1f);
         }
     }
 
@@ -632,7 +632,7 @@ public class PlayerController : MonoBehaviour
     private void SetHabilities()
     {
         hability.Add(typeof(Dash).ToString(), new Dash(this, dashCoolDown));
-        hability.Add(typeof(HookHability).ToString(), new HookHability(this, transform.ChildrenWithComponent<Hook>().First(), 1));
+        //hability.Add(typeof(HookHability).ToString(), new HookHability(this, transform.ChildrenWithComponent<Hook>().First(), 1));
     }
 
     private void SetImpacts()

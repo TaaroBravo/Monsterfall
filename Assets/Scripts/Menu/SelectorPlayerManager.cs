@@ -4,7 +4,8 @@ using UnityEngine;
 using System;
 using System.Linq;
 
-public class SelectorPlayerManager : MonoBehaviour {
+public class SelectorPlayerManager : MonoBehaviour
+{
 
     private static SelectorPlayerManager _instance;
     public static SelectorPlayerManager Instance
@@ -18,20 +19,21 @@ public class SelectorPlayerManager : MonoBehaviour {
     public List<PlayerAvatar> players = new List<PlayerAvatar>();
     List<PlayerAvatar> _playersReady = new List<PlayerAvatar>();
 
-	void Start ()
+    void Start()
     {
         foreach (var player in players)
         {
             player.OnSelectedCharacter += x => OnChosenCharacter(x);
             player.OnRejectedCharacter += x => OnRejectedCharacter(x);
         }
-	}
-	
-	void Update ()
+    }
+
+    void Update()
     {
+
         if (_playersReady.Count() == 4)
             SetUpInfo();
-	}
+    }
 
     void OnChosenCharacter(PlayerAvatar player)
     {

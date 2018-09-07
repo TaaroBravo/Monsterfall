@@ -149,7 +149,7 @@ public class PirateCI : Editor {
             EditorGUILayout.LabelField("Hit");
             player.hitParticles = (ParticleSystem)EditorGUILayout.ObjectField(player.hitParticles, typeof(ParticleSystem), true);
             EditorGUILayout.LabelField("Get Hit");
-            player.hitParticles = (ParticleSystem)EditorGUILayout.ObjectField(player.hitParticles, typeof(ParticleSystem), true);
+            player.PS_Impact = (ParticleSystem)EditorGUILayout.ObjectField(player.PS_Impact, typeof(ParticleSystem), true);
             EditorGUILayout.LabelField("Marked");
             player.PS_Marked = (ParticleSystem)EditorGUILayout.ObjectField(player.PS_Marked, typeof(ParticleSystem), true);
             EditorGUILayout.LabelField("Stunned");
