@@ -105,6 +105,7 @@ public class PunchHability : IHability
         damage = Vector3.zero;
         _punch.transform.position = spawnPos;
         _punch.transform.parent = player.transform;
+        _punch.transform.localPosition = Vector3.zero;
         player.StopCoroutine(ActiveTime(_activeTime));
         player.usingHability = false;
         active = false;

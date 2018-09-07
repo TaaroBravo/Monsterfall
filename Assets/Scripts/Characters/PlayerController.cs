@@ -505,8 +505,14 @@ public class PlayerController : MonoBehaviour
         {
             if (impact.x != 0)
                 myAnim.Play("GetHit");
-            else if (impact.y < 0 && !myAnim.GetBool("Grounded"))
-                myAnim.Play("GetHitDown");
+            else if (impact.y < 0)
+            {
+                if (!myAnim.GetBool("Grounded"))
+                    myAnim.Play("GetHitDown");
+                else
+                    myAnim.Play("GetHitDown Bot");
+
+            }
             else if (impact.y > 0)
                 myAnim.Play("GetHitUp");
         }
