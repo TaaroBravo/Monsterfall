@@ -219,10 +219,15 @@ public class PlayerController : MonoBehaviour
     bool IsTouchingWalls()
     {
         RaycastHit hit;
-        Vector3 center = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y);
-        if (Physics.Raycast(center, center - Vector3.right, out hit, GetComponent<Collider>().bounds.extents.x + 1))
+        Vector3 bottom = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f);
+        Vector3 top = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f);
+        if (Physics.Raycast(bottom, bottom - Vector3.right + Vector3.up, out hit, GetComponent<Collider>().bounds.extents.x + 2))
             return true;
-        if (Physics.Raycast(center, center + Vector3.right, out hit, GetComponent<Collider>().bounds.extents.x + 1))
+        if (Physics.Raycast(bottom, bottom + Vector3.right + Vector3.up, out hit, GetComponent<Collider>().bounds.extents.x + 2))
+            return true;
+        if (Physics.Raycast(top, top - Vector3.right + Vector3.down, out hit, GetComponent<Collider>().bounds.extents.x + 2))
+            return true;
+        if (Physics.Raycast(top, top + Vector3.right + Vector3.down, out hit, GetComponent<Collider>().bounds.extents.x + 2))
             return true;
         return false;
     }
@@ -230,9 +235,12 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 1));
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 1));
+        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
+        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
+        
     }
 
     IEnumerator CoyoteTime(float timer)
@@ -291,7 +299,7 @@ public class PlayerController : MonoBehaviour
     void StunUpdate()
     {
         currentImpactStunTimer += Time.deltaTime;
-        if (currentImpactStunTimer > impactStunMaxTimer || IsTouchingWalls())
+        if (currentImpactStunTimer > impactStunMaxTimer || (IsTouchingWalls() && impactVelocity.x != 0))
         {
             whoHitedMe = null;
             stunnedByHit = false;
@@ -523,6 +531,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Collisions, Colliders, Triggers
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerInfo {
 
+    public int player_number;
     public int characterChosen;
     public int ID;
     public int controller;

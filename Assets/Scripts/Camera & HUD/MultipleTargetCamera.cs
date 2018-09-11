@@ -6,7 +6,7 @@ using System.Linq;
 [RequireComponent(typeof(Camera))]
 public class MultipleTargetCamera : MonoBehaviour
 {
-    public List<Transform> targets;
+    public List<Transform> targets = new List<Transform>();
 
     public Vector3 offset;
     public float smoothTime = 0.5f;
@@ -23,9 +23,10 @@ public class MultipleTargetCamera : MonoBehaviour
     private Vector3 velocity;
     private Camera cam;
 
-    void Start()
+    private void Awake()
     {
         cam = GetComponent<Camera>();
+        GameManager.Instance.OnSpawnCharacters += x => SetPlayers(x);
     }
 
     void LateUpdate()
@@ -92,4 +93,12 @@ public class MultipleTargetCamera : MonoBehaviour
 
         return bounds.center;
     }
+
+    void SetPlayers(List<PlayerController> heroes)
+    {
+        targets.Clear();
+        foreach (var hero in heroes)
+            targets.Add(hero.transform);
+    }
+
 }

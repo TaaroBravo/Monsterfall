@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class PlayersInfoManager : MonoBehaviour {
 
+    public static PlayersInfoManager Instance { get; private set; }
+
     public List<PlayerInfo> playersInfo = new List<PlayerInfo>();
 
     private void Awake()
     {
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -17,16 +20,23 @@ public class PlayersInfoManager : MonoBehaviour {
         for (int i = 0; i < players.Count; i++)
         {
             PlayerInfo info = new PlayerInfo();
+            info.player_number = players[i].player_number;
             info.controller = (int)players[i].GetComponent<PlayerInputMenu>().controller;
             info.ID = players[i].GetComponent<PlayerInputMenu>().id;
             info.characterChosen = players[i].characterChosen;
             playersInfo.Add(info);
         }
-        StartGame();
+        StartCoroutine(StartGame());
     }
-	
-	void StartGame()
+
+    IEnumerator StartGame()
     {
-        SceneManager.LoadScene(1);
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene(1);
+            StopAllCoroutines();
+            break;
+        }
     }
 }

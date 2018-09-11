@@ -10,6 +10,11 @@ public class PlayerContrains : MonoBehaviour {
     Transform player;
     float myContrains_Z;
 
+    public float minX;
+    public float maxX;
+    public float minY;
+    public float maxY;
+
     void Start ()
     {
         player = gameObject.transform;
@@ -20,6 +25,7 @@ public class PlayerContrains : MonoBehaviour {
     {
         if (player.position.z != 0)
             player.position = new Vector3(player.position.x, player.position.y, myContrains_Z);
+
     }
 
     private void OnTriggerEnter(Collider other)

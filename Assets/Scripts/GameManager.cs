@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    PlayersInfoManager infoManager;
+    public event Action<List<PlayerController>> OnSpawnCharacters = delegate { };
+
+    public PlayersInfoManager infoManager;
     public List<PlayerController> myPlayers = new List<PlayerController>();
     public List<GameObject> playersObj = new List<GameObject>();
     public GameObject youWin;
@@ -32,12 +34,18 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartGame(timeToStart));
-        if (GameObject.FindObjectOfType<PlayersInfoManager>())
+        infoManager = PlayersInfoManager.Instance;
+        if (infoManager)
         {
-            infoManager = GameObject.FindObjectOfType<PlayersInfoManager>().GetComponent<PlayersInfoManager>();
+            myPlayers.Clear();
+            playersObj.Clear();
+            myPlayers = CallSpawnHeroes();
+            foreach (var hero in myPlayers)
+                playersObj.Add(hero.gameObject);
             SetUpInfoPlayers();
+            OnSpawnCharacters(myPlayers);
         }
+        StartCoroutine(StartGame(timeToStart));
     }
 
     private void Update()
@@ -50,14 +58,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    List<PlayerController> CallSpawnHeroes()
+    {
+        List<PlayerController> heroes = new List<PlayerController>();
+        for (int i = 0; i < 4; i++)
+        {
+            var hero = SpawnerHeroes.Instance.SpawnHero(infoManager.playersInfo[i].characterChosen, infoManager.playersInfo[i].player_number);
+            hero.myLifeUI = FindObjectsOfType<LifeUI>().Where(x => x.player_number == infoManager.playersInfo[i].player_number).First();
+            heroes.Add(hero);
+        }
+        return heroes;
+    }
+
     void SetUpInfoPlayers()
     {
         for (int i = 0; i < myPlayers.Count(); i++)
         {
-            GameObject character = playersObj[infoManager.playersInfo[i].characterChosen];
+            GameObject character = playersObj[infoManager.playersInfo[i].player_number];
             PlayerInput input = character.GetComponent<PlayerInput>();
-            input.controller = (PlayerInput.Controller)infoManager.playersInfo[i].controller;
-            input.id = infoManager.playersInfo[i].ID;
+            input.controller = (PlayerInput.Controller)infoManager.playersInfo[infoManager.playersInfo[i].player_number].controller;
+            input.id = infoManager.playersInfo[infoManager.playersInfo[i].player_number].ID;
         }
     }
 

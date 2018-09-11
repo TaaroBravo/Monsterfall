@@ -8,6 +8,11 @@ public class PlayersManager : MonoBehaviour
 
     public List<PlayerController> myPlayers = new List<PlayerController>();
 
+    private void Awake()
+    {
+        GameManager.Instance.OnSpawnCharacters += x => SetPlayers(x);
+    }
+
     void Update()
     {
         var alivePlayers = myPlayers.Where(x => x != null && x.GetComponent<PlayerController>());
@@ -16,5 +21,10 @@ public class PlayersManager : MonoBehaviour
             alivePlayers.First().myAnim.Play("Victory");
             GameManager.Instance.FinishGame();
         }
+    }
+
+    void SetPlayers(List<PlayerController> heroes)
+    {
+        myPlayers = heroes;
     }
 }

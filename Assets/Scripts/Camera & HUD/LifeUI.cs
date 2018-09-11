@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class LifeUI : MonoBehaviour {
 
+    public int player_number;
     public List<Sprite> lifesprites = new List<Sprite>();
 	public Image currentLifeBar;
 
     public float maxLife;
     private float currentLife;
 
-	void Start () {
+	void Start ()
+    {
 		currentLifeBar = GetComponent<Image>();
         currentLife = maxLife;
 	}

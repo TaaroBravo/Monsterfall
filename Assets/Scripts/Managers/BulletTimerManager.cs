@@ -8,21 +8,11 @@ using UnityEngine.PostProcessing;
 public class BulletTimerManager : MonoBehaviour
 {
 
-    public List<PlayerController> allPlayers;
-    //public float distance;
-
-    //public PostProcessingBehaviour myCamProf;
-    //public PostProcessingProfile slowTimeSO;
-
-    //private bool slowTime;
-    //private float timer;
-
-    //private ChromaticAberrationModel.Settings chromaticSettings;
+    public List<PlayerController> allPlayers = new List<PlayerController>();
 
     private void Start()
     {
-        //myCamProf = Camera.main.GetComponent<PostProcessingBehaviour>();
-        //chromaticSettings = slowTimeSO.chromaticAberration.settings;
+        GameManager.Instance.OnSpawnCharacters += x => SetPlayers(x);
     }
 
     void Update()
@@ -32,6 +22,12 @@ public class BulletTimerManager : MonoBehaviour
 
         foreach (var p in allPlayers.Where(x => x != null).Where(x => !x.playerMarked))
             p.transform.Find("MarkedGlow").gameObject.SetActive(false);
+    }
+
+    void SetPlayers(List<PlayerController> heroes)
+    {
+        allPlayers.Clear();
+        allPlayers = heroes;
     }
 
     void MarkStunnedPlayers(IEnumerable<PlayerController> _players)

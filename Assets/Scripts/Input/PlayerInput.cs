@@ -33,6 +33,7 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
+        SetPlayerInput();
         if (player && player.canMove)
         {
             if (Input.GetButtonDown(jumpButton))
