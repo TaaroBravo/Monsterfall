@@ -479,8 +479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e206860cdee5f742815a787d5490197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: 1
-  id: 2
+  controller: 0
+  id: 4
   horizontalMove: 
   verticalMove: 
   actionButton: 
@@ -1449,8 +1449,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e206860cdee5f742815a787d5490197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: 1
-  id: 1
+  controller: 0
+  id: 3
   horizontalMove: 
   verticalMove: 
   actionButton: 

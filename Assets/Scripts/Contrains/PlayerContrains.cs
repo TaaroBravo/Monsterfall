@@ -10,11 +10,6 @@ public class PlayerContrains : MonoBehaviour {
     Transform player;
     float myContrains_Z;
 
-    public float minX;
-    public float maxX;
-    public float minY;
-    public float maxY;
-
     void Start ()
     {
         player = gameObject.transform;
