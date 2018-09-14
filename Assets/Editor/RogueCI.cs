@@ -108,6 +108,7 @@ public class RogueCI : Editor
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Rogue Dash");
             player.hitArea = (Collider)EditorGUILayout.ObjectField(player.hitArea, typeof(Collider), true);
+            player.ps_DashRogue = (ParticleSystem)EditorGUILayout.ObjectField(player.ps_DashRogue, typeof(ParticleSystem), true);
             player.speedOfRogueDash = EditorGUILayout.FloatField("Velocidad del Rogue Dash", player.speedOfRogueDash);
             player.rogueDashCooldown = EditorGUILayout.FloatField("Cooldown del Hability", player.rogueDashCooldown);
             player.powerOfDash = EditorGUILayout.FloatField("Poder del Rogue Dash", player.powerOfDash);

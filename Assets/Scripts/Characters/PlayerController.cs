@@ -116,6 +116,8 @@ public class PlayerController : MonoBehaviour
     public delegate void CallHability();
     public CallHability myHability = delegate { };
 
+    public bool dashRogue;
+
     #region Dictionary
     private Dictionary<string, IMove> myMoves = new Dictionary<string, IMove>();
     private Dictionary<string, IAttack> attacks = new Dictionary<string, IAttack>();

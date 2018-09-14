@@ -107,6 +107,7 @@ public class KnightCI : Editor
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Punch");
             player.punch = (Punch)EditorGUILayout.ObjectField(player.punch, typeof(Punch), true);
+            player.ps_Hability = (ParticleSystem)EditorGUILayout.ObjectField(player.ps_Hability, typeof(ParticleSystem), true);
             player.punchCooldown = EditorGUILayout.FloatField("Cooldown del Hability", player.punchCooldown);
             player.powerOfPunch = EditorGUILayout.FloatField("Poder del Puño", player.powerOfPunch);
             player.activeTime = EditorGUILayout.FloatField("Tiempo activo", player.activeTime);

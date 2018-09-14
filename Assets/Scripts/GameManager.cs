@@ -26,17 +26,7 @@ public class GameManager : MonoBehaviour
     public bool finishedGame;
     public float timeToStart;
 
-    Collider[] limits;
-
-    public bool OutOfLimits(Vector3 pos)
-    {
-        foreach (var limit in limits)
-        {
-            if (limit.bounds.Contains(pos))
-                return true;
-        }
-        return false;
-    }
+    public Collider[] limits;
 
     private void Awake()
     {
@@ -121,6 +111,16 @@ public class GameManager : MonoBehaviour
             startingGame = false;
             break;
         }
+    }
+
+    public bool OutOfLimits(Vector3 pos)
+    {
+        foreach (var limit in limits)
+        {
+            if (limit.bounds.Contains(pos))
+                return true;
+        }
+        return false;
     }
 
     public void FinishGame()

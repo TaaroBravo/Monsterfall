@@ -164,7 +164,7 @@ MonoBehaviour:
   posibleCharacters:
   - {fileID: 21300000, guid: 4d51ce0d5c9bc2f48b22c64b90226f0a, type: 3}
   - {fileID: 21300000, guid: cbaea2390df10e44fa7b1434cc8a3657, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 8eac30981684457489ee6babb6e49d9f, type: 3}
 --- !u!1 &394402841
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
   posibleCharacters:
   - {fileID: 21300000, guid: 75276858868ac0d4492f24e06ed19c02, type: 3}
   - {fileID: 21300000, guid: 3f957b89b39cc5544af855bff6921150, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 8eac30981684457489ee6babb6e49d9f, type: 3}
 --- !u!1 &414205608
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,34 +505,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1 &650310979
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 650310980}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &650310980
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 650310979}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &675550603
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +849,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ea7efc7b2c6949e4daa04284ad791a08, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8eac30981684457489ee6babb6e49d9f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1526,7 +1498,7 @@ MonoBehaviour:
   posibleCharacters:
   - {fileID: 21300000, guid: d86ff7d3f72d80d4fa21eb13cf6892d2, type: 3}
   - {fileID: 21300000, guid: 7702c0816a1261c4084e3ac165700375, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 8eac30981684457489ee6babb6e49d9f, type: 3}
 --- !u!1 &1354082211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,7 +2196,7 @@ MonoBehaviour:
   posibleCharacters:
   - {fileID: 21300000, guid: f3ce11ef0f94c334581da714d092835e, type: 3}
   - {fileID: 21300000, guid: bdf7b7a700ea6054b902eaad7c72a4e5, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 8eac30981684457489ee6babb6e49d9f, type: 3}
 --- !u!1 &1891417171
 GameObject:
   m_ObjectHideFlags: 0

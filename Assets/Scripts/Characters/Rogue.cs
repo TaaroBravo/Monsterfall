@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Rogue : PlayerController {
+public class Rogue : PlayerController
+{
 
     public Collider hitArea;
     public float speedOfRogueDash;
     public float powerOfDash;
     public float dashingTime;
     public float rogueDashCooldown;
+
+    public ParticleSystem ps_DashRogue;
 
     public override void Start()
     {
@@ -20,6 +23,8 @@ public class Rogue : PlayerController {
     public override void Update()
     {
         base.Update();
+        foreach (var h in hability.Values)
+            h.Update();
     }
 
     void RogueHability()
@@ -30,6 +35,6 @@ public class Rogue : PlayerController {
     void SetHabilities()
     {
         myHability = RogueHability;
-        hability.Add(typeof(RogueDashHability).ToString(), new RogueDashHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), hitArea, powerOfDash, dashingTime, speedOfRogueDash, rogueDashCooldown));
+        hability.Add(typeof(RogueDashHability).ToString(), new RogueDashHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), hitArea, ps_DashRogue, powerOfDash, dashingTime, speedOfRogueDash, rogueDashCooldown));
     }
 }

@@ -10,6 +10,8 @@ public class Knight : PlayerController {
     public float activeTime;
     public float punchCooldown;
 
+    public ParticleSystem ps_Hability;
+
     public override void Start()
     {
         base.Start();
@@ -29,6 +31,6 @@ public class Knight : PlayerController {
     void SetHabilities()
     {
         myHability = KnightHability;
-        hability.Add(typeof(PunchHability).ToString(), new PunchHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), punch, powerOfPunch, activeTime, punchCooldown));
+        hability.Add(typeof(PunchHability).ToString(), new PunchHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), ps_Hability, punch, powerOfPunch, activeTime, punchCooldown));
     }
 }

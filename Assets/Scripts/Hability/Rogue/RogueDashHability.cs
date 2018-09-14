@@ -17,10 +17,14 @@ public class RogueDashHability : IHability
     bool active;
 
     Vector3 damage;
+    Vector3 finalPos;
+    Vector3 _dir;
+
+    ParticleSystem _hability;
 
     List<PlayerController> playersHitted = new List<PlayerController>();
 
-    public RogueDashHability(PlayerController p, CdHUDChecker _cooldownHUD, Collider hitArea, float power, float dashingTime, float speed, float _timerCoolDown = 0)
+    public RogueDashHability(PlayerController p, CdHUDChecker _cooldownHUD, Collider hitArea, ParticleSystem hability, float power, float dashingTime, float speed, float _timerCoolDown = 0)
     {
         player = p;
         _speed = speed;
@@ -29,6 +33,8 @@ public class RogueDashHability : IHability
         coolDown = _timerCoolDown;
         _activeTime = dashingTime;
         cooldownHUD = _cooldownHUD;
+        _hitArea = hitArea;
+        _hability = hability;
     }
 
     IEnumerator IsDashingTimer(float x)
@@ -47,9 +53,11 @@ public class RogueDashHability : IHability
     public override void Update()
     {
         base.Update();
+
         if (active)
         {
-            Collider[] cols = Physics.OverlapBox(_hitArea.bounds.center, _hitArea.bounds.extents, _hitArea.transform.rotation, LayerMask.GetMask("Hitbox"));
+            player.transform.position += _dir * _speed * Time.deltaTime;
+            Collider[] cols = Physics.OverlapSphere(_hitArea.bounds.center, _hitArea.bounds.extents.y, LayerMask.GetMask("Hitbox"));
             foreach (Collider c in cols)
             {
                 if (CheckParently(c.transform))
@@ -65,11 +73,6 @@ public class RogueDashHability : IHability
         }
     }
 
-    void DashToPosition(Vector3 finalPos)
-    {
-        player.transform.position = Vector3.MoveTowards(player.transform.position, finalPos, _speed * Time.deltaTime);
-    }
-
     public override void Hability()
     {
         if (timerCoolDown < 0)
@@ -78,16 +81,15 @@ public class RogueDashHability : IHability
             float y = player.GetComponent<PlayerInput>().MainVertical();
             if (x + y == 0)
                 x = Mathf.Sign(player.transform.localScale.z);
-            Vector3 dir = new Vector3(x, y, 0);
-            Vector3 finalPos = CalculateFinalPos(dir);
+            _dir = new Vector3(x, y, 0);
+            finalPos = CalculateFinalPos(_dir);
             if (GameManager.Instance.OutOfLimits(finalPos))
                 return;
-            else
-                DashToPosition(finalPos);
-            damage = dir;
-            player.canMove = false;
+            damage = _dir;
+            _hability.Play();
+            //player.canMove = false;
             player.controller.enabled = false;
-            player.StartCoroutine(IsDashingTimer(timerCoolDown));
+            player.StartCoroutine(IsDashingTimer(_activeTime));
             timerCoolDown = coolDown;
             player.usingHability = true;
         }
@@ -100,8 +102,8 @@ public class RogueDashHability : IHability
     Vector3 CalculateFinalPos(Vector3 dir)
     {
         Vector3 finalPos = Vector3.zero;
-        float distance = _speed * _activeTime;
-        finalPos = (player.transform.position + dir - player.transform.position).normalized * distance;
+        float distance = _speed * _activeTime * 2;
+        finalPos = player.transform.position + (dir * distance);
         return finalPos;
     }
 
@@ -111,6 +113,7 @@ public class RogueDashHability : IHability
         player.myAnim.SetBool("Dashing", false);
         player.controller.enabled = true;
         player.usingHability = false;
+        playersHitted.Clear();
     }
 
     #region Extra Calculation

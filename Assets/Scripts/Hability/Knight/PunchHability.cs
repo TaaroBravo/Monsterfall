@@ -8,6 +8,7 @@ public class PunchHability : IHability
 {
 
     Punch _punch;
+    ParticleSystem _hability;
     float _power;
     float _activeTime;
 
@@ -21,7 +22,7 @@ public class PunchHability : IHability
     List<PlayerController> playersHitted = new List<PlayerController>();
 
 
-    public PunchHability(PlayerController p, CdHUDChecker _cooldownHUD, Punch punch, float power, float activeTime, float _timerCoolDown = 0)
+    public PunchHability(PlayerController p, CdHUDChecker _cooldownHUD, ParticleSystem hability, Punch punch, float power, float activeTime, float _timerCoolDown = 0)
     {
         player = p;
         _punch = punch;
@@ -30,6 +31,7 @@ public class PunchHability : IHability
         coolDown = _timerCoolDown;
         _activeTime = activeTime;
         cooldownHUD = _cooldownHUD;
+        _hability = hability;
     }
 
     public override void Update()
@@ -68,6 +70,7 @@ public class PunchHability : IHability
     {
         if (timerCoolDown < 0)
         {
+            _hability.Play();
             active = true;
             timerCoolDown = coolDown;
             player.usingHability = true;
