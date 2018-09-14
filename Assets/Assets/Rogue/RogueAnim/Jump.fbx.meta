@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 5235e9ee674f9f24697991fcfe72fd3a
-timeCreated: 1536894619
+guid: 9aa03e9f3d55fc64f8d44ee6f9dd8c82
+timeCreated: 1536894621
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -9,9 +9,9 @@ ModelImporter:
     100002: Box001
     100004: Box003
     100006: Box004
-    100008: //RootNode
-    100010: Detail
-    100012: Detail001
+    100008: Detail
+    100010: Detail001
+    100012: //RootNode
     100014: mixamorig:Head
     100016: mixamorig:HeadTop_End
     100018: mixamorig:Hips
@@ -82,9 +82,9 @@ ModelImporter:
     400002: Box001
     400004: Box003
     400006: Box004
-    400008: //RootNode
-    400010: Detail
-    400012: Detail001
+    400008: Detail
+    400010: Detail001
+    400012: //RootNode
     400014: mixamorig:Head
     400016: mixamorig:HeadTop_End
     400018: mixamorig:Hips
@@ -161,7 +161,8 @@ ModelImporter:
     4300008: Box001
     4300010: Box003
     4300012: Box004
-    7400000: mixamo.com
+    7400000: Jump
+    7400002: Landed
     9500000: //RootNode
     13700000: Body
     13700002: Box001
@@ -196,7 +197,63 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Jump
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Landed
+      takeName: mixamo.com
+      firstFrame: 19
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

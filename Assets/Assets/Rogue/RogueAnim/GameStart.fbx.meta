@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 586a0dfcc98bfb94dac2d4c3a2133fb6
-timeCreated: 1536894620
+guid: b16c8b7e023a5a84cbc88a663fff4fdf
+timeCreated: 1536894622
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -161,7 +161,7 @@ ModelImporter:
     4300008: Box001
     4300010: Box003
     4300012: Box004
-    7400000: mixamo.com
+    7400000: GameStart
     9500000: //RootNode
     13700000: Body
     13700002: Box001
@@ -196,7 +196,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: GameStart
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

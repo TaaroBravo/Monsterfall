@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: b16c8b7e023a5a84cbc88a663fff4fdf
-timeCreated: 1536894622
+guid: 09effd27a3633b14ea8f53e9135a7f29
+timeCreated: 1536894617
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Body
-    100002: Box001
-    100004: Box003
-    100006: Box004
-    100008: Detail
-    100010: Detail001
-    100012: //RootNode
+    100000: //RootNode
+    100002: Body
+    100004: Box001
+    100006: Box003
+    100008: Box004
+    100010: Detail
+    100012: Detail001
     100014: mixamorig:Head
     100016: mixamorig:HeadTop_End
     100018: mixamorig:Hips
@@ -78,13 +78,13 @@ ModelImporter:
     100140: mixamorig:Spine1
     100142: mixamorig:Spine2
     100144: Tissue
-    400000: Body
-    400002: Box001
-    400004: Box003
-    400006: Box004
-    400008: Detail
-    400010: Detail001
-    400012: //RootNode
+    400000: //RootNode
+    400002: Body
+    400004: Box001
+    400006: Box003
+    400008: Box004
+    400010: Detail
+    400012: Detail001
     400014: mixamorig:Head
     400016: mixamorig:HeadTop_End
     400018: mixamorig:Hips
@@ -161,7 +161,8 @@ ModelImporter:
     4300008: Box001
     4300010: Box003
     4300012: Box004
-    7400000: mixamo.com
+    7400000: AttackUp
+    7400002: ChargingAttackUp
     9500000: //RootNode
     13700000: Body
     13700002: Box001
@@ -196,7 +197,63 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: AttackUp
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ChargingAttackUp
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
