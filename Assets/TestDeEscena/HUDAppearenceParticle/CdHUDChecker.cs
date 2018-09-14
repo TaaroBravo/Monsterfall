@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CdHUDChecker : MonoBehaviour {
 
+    public int character_chosen;
     public List<Sprite> SkillHUDs = new List<Sprite>();
     public GameObject CDText;
     public ParticleSystem PS_ReadySkill;
@@ -11,17 +12,20 @@ public class CdHUDChecker : MonoBehaviour {
     bool showCDHud;
     float hidetimer;
     float currentCD;
-    public float maxCD;
+
+    Vector3 _localScale;
 
     void Start()
     {
-        AssignSkill(0); // DEBUG
+        AssignSkill(character_chosen);
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         CDText.GetComponent<TextMesh>().color = new Color(1, 1, 1, 0);
+        _localScale = transform.localScale;
     }
     void Update()
     {
         DebugKeys();
+        SetTransform();
         if (onCD) currentCD -= Time.deltaTime;
         if (currentCD < 0)
         {
@@ -42,11 +46,19 @@ public class CdHUDChecker : MonoBehaviour {
             hidetimer = 0;
         }
     }
-    void AssignSkill(int ID)
+
+    void SetTransform()
+    {
+        _localScale.x = -Mathf.Sign(transform.parent.localScale.z) * Mathf.Abs(_localScale.x);
+        transform.localScale = _localScale;
+    }
+
+    public void AssignSkill(int ID)
     {
         GetComponent<SpriteRenderer>().sprite = SkillHUDs[ID];
     }
-    void UseSkill()
+
+    public void UseSkill(float maxCD)
     {
         if (!showCDHud) showCDHud = true;
         if (!onCD)
@@ -57,6 +69,6 @@ public class CdHUDChecker : MonoBehaviour {
     }
     void DebugKeys()
     {
-        if (Input.GetKeyDown(KeyCode.M)) UseSkill();
+        //if (Input.GetKeyDown(KeyCode.M)) UseSkill();
     }
 }

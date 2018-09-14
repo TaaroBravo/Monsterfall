@@ -5,6 +5,7 @@ using UnityEngine;
 abstract public class IHability {
 
     public PlayerController player;
+    public CdHUDChecker cooldownHUD;
     public float timerCoolDown;
     public float coolDown;
 

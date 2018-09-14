@@ -29,6 +29,6 @@ public class Knight : PlayerController {
     void SetHabilities()
     {
         myHability = KnightHability;
-        hability.Add(typeof(PunchHability).ToString(),new PunchHability(this, punch, powerOfPunch, activeTime, punchCooldown));
+        hability.Add(typeof(PunchHability).ToString(), new PunchHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), punch, powerOfPunch, activeTime, punchCooldown));
     }
 }

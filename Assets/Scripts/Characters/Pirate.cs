@@ -26,6 +26,6 @@ public class Pirate : PlayerController {
     void SetHabilities()
     {
         myHability = PirateHability;
-        hability.Add(typeof(HookHability).ToString(), new HookHability(this, transform.ChildrenWithComponent<Hook>().First(), hookCoolDown));
+        hability.Add(typeof(HookHability).ToString(), new HookHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), transform.ChildrenWithComponent<Hook>().First(), hookCoolDown));
     }
 }

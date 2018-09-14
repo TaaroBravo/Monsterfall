@@ -11,11 +11,12 @@ public class HookHability : IHability
 
     Hook grabHook;
 
-    public HookHability(PlayerController p, Hook hook, float _timerCoolDown = 0)
+    public HookHability(PlayerController p, CdHUDChecker _cooldownHUD, Hook hook, float _timerCoolDown = 0)
     {
         player = p;
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
+        cooldownHUD = _cooldownHUD;
         _hook = hook;
         _hook.OnFailedFire += () => FailedFire();
         _hook.OnReachedTarget += t => ReachedTarget();
@@ -46,6 +47,10 @@ public class HookHability : IHability
             _hook.Fire(new Vector3(x, y, 0));
             _hook.OnReachedTarget += t => t.StartStun(0.5f);
             player.usingHability = true;
+        }
+        else
+        {
+            cooldownHUD.UseSkill(coolDown);
         }
     }
 

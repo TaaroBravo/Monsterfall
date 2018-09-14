@@ -283,8 +283,8 @@ ModelImporter:
     4300002: Hat
     4300004: HairBox
     4300006: Handcuff
-    7400000: Body
-    7400002: Death
+    7400000: BodyPirate
+    7400002: DeathPirate
     9500000: //RootNode
     13700000: Body
     13700002: HairBox
@@ -318,7 +318,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Death
+      name: DeathPirate
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 72
@@ -346,7 +346,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Body
+      name: BodyPirate
       takeName: mixamo.com
       firstFrame: 72
       lastFrame: 72

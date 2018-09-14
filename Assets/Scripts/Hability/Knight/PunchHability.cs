@@ -21,7 +21,7 @@ public class PunchHability : IHability
     List<PlayerController> playersHitted = new List<PlayerController>();
 
 
-    public PunchHability(PlayerController p, Punch punch, float power, float activeTime, float _timerCoolDown = 0)
+    public PunchHability(PlayerController p, CdHUDChecker _cooldownHUD, Punch punch, float power, float activeTime, float _timerCoolDown = 0)
     {
         player = p;
         _punch = punch;
@@ -29,6 +29,7 @@ public class PunchHability : IHability
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
         _activeTime = activeTime;
+        cooldownHUD = _cooldownHUD;
     }
 
     public override void Update()
@@ -70,6 +71,10 @@ public class PunchHability : IHability
             active = true;
             timerCoolDown = coolDown;
             player.usingHability = true;
+        }
+        else
+        {
+            cooldownHUD.UseSkill(coolDown);
         }
     }
 

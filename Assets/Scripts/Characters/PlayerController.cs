@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
     public bool isCharged;
     public bool hitCharged;
 
-    public LifeUI myLifeUI;
+    public PlayerHPHud myLifeUI;
 
     public ParticleSystem PS_Stunned;
     public ParticleSystem PS_Marked;
@@ -131,12 +131,11 @@ public class PlayerController : MonoBehaviour
 
     public virtual void Start()
     {
-        contrains.OnTeleportPlayer += () => OnTeleported();
+        contrains.OnTeleportPlayer += (x, y) => OnTeleported();
         coyoteTime = 0.1f;
         SetMovements();
         SetAttacks();
         SetHabilities();
-        myLifeUI.maxLife = myLife;
         StartCoroutine(CanAttack(0.25f));
     }
 
@@ -148,6 +147,8 @@ public class PlayerController : MonoBehaviour
         Attack();
         StunAndMark();
 
+        if (isDead)
+            moveVector = new Vector3(0, -10, 0);
         controller.Move(moveVector * Time.deltaTime);
     }
 

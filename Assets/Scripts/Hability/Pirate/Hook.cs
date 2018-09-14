@@ -44,12 +44,25 @@ public class Hook : MonoBehaviour
 
     private ParticleSystem _psParry;
 
+    PlayerContrains contrains;
+    Vector3 playerSpawnPos;
+    Vector3 playerEndPos;
+    bool playerTeleported;
+
+    private void Awake()
+    {
+        contrains = transform.parent.GetComponent<PlayerContrains>();
+    }
     void Start()
     {
         _myPlayer = FindMyPlayer(transform.parent);
         gameObject.SetActive(false);
         _psParry = transform.ChildrenWithComponent<ParticleSystem>().Where(x => x != null).First();
         teleportedBack = true;
+        contrains.OnTeleportPlayer += (x, y) =>
+        {
+            PlayerTeleported(x, y);
+        };
     }
 
     void Update()
@@ -95,6 +108,15 @@ public class Hook : MonoBehaviour
                 targetPos.z = 0;
                 _target.transform.position = targetPos;
             }
+            else if (playerTeleported)
+            {
+                _target.transform.position = Vector3.MoveTowards(_target.transform.position, playerSpawnPos, targetTravelSpeed * Time.deltaTime);
+                if ((playerSpawnPos - _target.transform.position).magnitude <= 1)
+                {
+                    playerTeleported = false;
+                    _target.transform.position = playerEndPos;
+                }
+            }
             else
             {
                 _target.controller.enabled = false;
@@ -106,6 +128,16 @@ public class Hook : MonoBehaviour
                     ReachedTarget(_target);
             }
 
+        }
+    }
+
+    void PlayerTeleported(Vector3 spawn, Vector3 end)
+    {
+        if(fired && !playerTeleported)
+        {
+            playerTeleported = true;
+            playerSpawnPos = spawn;
+            playerEndPos = end;
         }
     }
 
@@ -138,7 +170,7 @@ public class Hook : MonoBehaviour
             target.myAnim.Play("GetHit");
         target.canMove = false;
         _currentTime = 0;
-        target.transform.position = transform.position; //Comentado: El target no cambia de posicion pero el gancho hace bulletrail raro. No comentado: Bullettrail bien pero demas no
+        target.transform.position = transform.position;
         target.controller.enabled = false;
         OnHookTarget(target);
     }
@@ -152,8 +184,19 @@ public class Hook : MonoBehaviour
         _myPlayer.controller.enabled = true;
         if (_warpedPos)
             transform.position = Vector3.MoveTowards(transform.position, _warpedPos.position, speed * Time.deltaTime);
+        else if (playerTeleported)
+        {
+            Debug.Log("aa");
+            transform.position = Vector3.MoveTowards(transform.position, playerSpawnPos, speed * Time.deltaTime);
+            if ((playerSpawnPos - transform.position).magnitude <= 1)
+            {
+                playerTeleported = false;
+                transform.position = playerEndPos;
+            }
+        }
         else
         {
+            Debug.Log("bb");
             transform.position = Vector3.MoveTowards(transform.position, spawnPoint.position, speed * Time.deltaTime);
             if ((spawnPoint.position - transform.position).magnitude <= 1)
             {
@@ -174,6 +217,7 @@ public class Hook : MonoBehaviour
         returnFail = true;
         fired = false;
         hooked = false;
+        playerTeleported = false;
     }
 
     public void ReachedTarget(PlayerController target)
@@ -184,6 +228,7 @@ public class Hook : MonoBehaviour
         _warpedPos = null;
         hooked = false;
         fired = false;
+        playerTeleported = false;
         transform.parent = _myPlayer.transform;
         transform.localPosition = _startPosition;
         target.transform.position = endPoint.position;
@@ -197,7 +242,7 @@ public class Hook : MonoBehaviour
     {
         hookGrabbed = true;
         _playerGrabbedHook = p;
-        p.GetComponent<PlayerContrains>().OnTeleportPlayer += () => DisableWarpedZone();
+        p.GetComponent<PlayerContrains>().OnTeleportPlayer += (x, y) => DisableWarpedZone();
         _psParry.Play();
     }
 
@@ -214,6 +259,15 @@ public class Hook : MonoBehaviour
         {
             _myPlayer.controller.enabled = true;
             _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, _whereIWarped.position, targetTravelSpeed * Time.deltaTime);
+        }
+        else if(playerTeleported)
+        {
+            _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, playerSpawnPos, targetTravelSpeed * Time.deltaTime);
+            if ((playerSpawnPos - _myPlayer.transform.position).magnitude <= 1)
+            {
+                playerTeleported = false;
+                _myPlayer.transform.position = playerEndPos;
+            }
         }
         else
         {

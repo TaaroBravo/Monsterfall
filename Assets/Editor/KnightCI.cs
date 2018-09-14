@@ -169,7 +169,7 @@ public class KnightCI : Editor
 
             EditorGUILayout.LabelField("Vida HUD:", EditorStyles.boldLabel);
             EditorGUILayout.Space();
-            player.myLifeUI = (LifeUI)EditorGUILayout.ObjectField(player.myLifeUI, typeof(LifeUI), true);
+            player.myLifeUI = (PlayerHPHud)EditorGUILayout.ObjectField(player.myLifeUI, typeof(PlayerHPHud), true);
             EditorGUILayout.Space();
         }
         EditorGUILayout.EndFadeGroup();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Rogue : PlayerController {
 
@@ -29,6 +30,6 @@ public class Rogue : PlayerController {
     void SetHabilities()
     {
         myHability = RogueHability;
-        hability.Add(typeof(RogueDashHability).ToString(), new RogueDashHability(this, hitArea, powerOfDash, dashingTime, speedOfRogueDash, rogueDashCooldown));
+        hability.Add(typeof(RogueDashHability).ToString(), new RogueDashHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), hitArea, powerOfDash, dashingTime, speedOfRogueDash, rogueDashCooldown));
     }
 }

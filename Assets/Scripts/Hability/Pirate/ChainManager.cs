@@ -6,6 +6,7 @@ using System;
 
 public class ChainManager : MonoBehaviour
 {
+
     public Hook hook;
     private Transform spawnPoint;
     public Chain chainPrefab;
@@ -17,6 +18,13 @@ public class ChainManager : MonoBehaviour
     bool onActive;
     bool returned;
 
+    public PlayerContrains contrains;
+
+    private void Awake()
+    {
+        contrains = GetComponent<PlayerContrains>();
+    }
+
     void Start()
     {
         ObjectPoolManager.Instance.AddObjectPool<Chain>(InstantiateChain, Initializate, Finalizate, 100, true);
@@ -26,9 +34,12 @@ public class ChainManager : MonoBehaviour
             spawnPoint = hook.spawnPoint;
             positions.Add(Tuple.Create(0, hook.spawnPoint.position, hook.spawnPoint.position));
         };
-
         hook.OnReturnedEnd += () => returned = true;
         hook.OnTeleport += (x, y) => Teleported(x, y);
+        contrains.OnTeleportPlayer += (x, y) =>
+        {
+            Teleported(y, x);
+        };
     }
 
     private void Update()
@@ -109,7 +120,7 @@ public class ChainManager : MonoBehaviour
     int GetPosition(int index)
     {
         var result = 0;
-        if (positions.Count > 1 && index * distanceToSpawn > Vector3.Distance(spawnPoint.position, positions[1].Item2))
+        if (positions.Count >= 1 && index * distanceToSpawn > Vector3.Distance(spawnPoint.position, positions[1].Item2))
             result = 1;
 
         return result;
@@ -117,7 +128,8 @@ public class ChainManager : MonoBehaviour
 
     void Teleported(Vector3 spawn, Vector3 end)
     {
-        positions.Add(Tuple.Create(allChains.Count - 1, spawn, end));
+        if (hook.gameObject.activeSelf)
+            positions.Add(Tuple.Create(allChains.Count - 1, spawn, end));
     }
 
     Chain InstantiateChain()

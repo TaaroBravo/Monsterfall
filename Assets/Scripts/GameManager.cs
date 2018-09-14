@@ -26,6 +26,18 @@ public class GameManager : MonoBehaviour
     public bool finishedGame;
     public float timeToStart;
 
+    Collider[] limits;
+
+    public bool OutOfLimits(Vector3 pos)
+    {
+        foreach (var limit in limits)
+        {
+            if (limit.bounds.Contains(pos))
+                return true;
+        }
+        return false;
+    }
+
     private void Awake()
     {
         _instance = this;
@@ -64,7 +76,10 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             var hero = SpawnerHeroes.Instance.SpawnHero(infoManager.playersInfo[i].characterChosen, infoManager.playersInfo[i].player_number);
-            hero.myLifeUI = FindObjectsOfType<LifeUI>().Where(x => x.player_number == infoManager.playersInfo[i].player_number).First();
+            hero.myLifeUI = FindObjectsOfType<PlayerHPHud>().Where(x => x.player_number == infoManager.playersInfo[i].player_number).First();
+            hero.myLifeUI.maxHP = hero.myLife;
+            hero.myLifeUI.character_chosen = infoManager.playersInfo[i].characterChosen;
+            SetCooldownHUD(hero.transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), infoManager.playersInfo[i].characterChosen);
             heroes.Add(hero);
         }
         return heroes;
@@ -79,6 +94,11 @@ public class GameManager : MonoBehaviour
             input.controller = (PlayerInput.Controller)infoManager.playersInfo[infoManager.playersInfo[i].player_number].controller;
             input.id = infoManager.playersInfo[infoManager.playersInfo[i].player_number].ID;
         }
+    }
+
+    void SetCooldownHUD(CdHUDChecker cooldownHUD, int character)
+    {
+        cooldownHUD.character_chosen = character;
     }
 
     IEnumerator StartGame(float x)

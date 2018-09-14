@@ -17,11 +17,13 @@ public class LifeUI : MonoBehaviour {
 		currentLifeBar = GetComponent<Image>();
         currentLife = maxLife;
 	}
+
     private void UpdateMyLifeHUD(float damage)
     {
         var ratio = damage / maxLife;
         currentLifeBar.fillAmount -= ratio;
     }
+
     public void TakeDamage(float damage)
     {
         currentLife -= Mathf.RoundToInt(damage);

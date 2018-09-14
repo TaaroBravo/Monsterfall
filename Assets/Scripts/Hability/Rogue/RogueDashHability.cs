@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RogueDashHability : IHability
 {
+
     Collider _hitArea;
 
     float _speed;
@@ -18,7 +20,7 @@ public class RogueDashHability : IHability
 
     List<PlayerController> playersHitted = new List<PlayerController>();
 
-    public RogueDashHability(PlayerController p, Collider hitArea, float power, float dashingTime, float speed, float _timerCoolDown = 0)
+    public RogueDashHability(PlayerController p, CdHUDChecker _cooldownHUD, Collider hitArea, float power, float dashingTime, float speed, float _timerCoolDown = 0)
     {
         player = p;
         _speed = speed;
@@ -26,6 +28,7 @@ public class RogueDashHability : IHability
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
         _activeTime = dashingTime;
+        cooldownHUD = _cooldownHUD;
     }
 
     IEnumerator IsDashingTimer(float x)
@@ -62,6 +65,11 @@ public class RogueDashHability : IHability
         }
     }
 
+    void DashToPosition(Vector3 finalPos)
+    {
+        player.transform.position = Vector3.MoveTowards(player.transform.position, finalPos, _speed * Time.deltaTime);
+    }
+
     public override void Hability()
     {
         if (timerCoolDown < 0)
@@ -71,6 +79,11 @@ public class RogueDashHability : IHability
             if (x + y == 0)
                 x = Mathf.Sign(player.transform.localScale.z);
             Vector3 dir = new Vector3(x, y, 0);
+            Vector3 finalPos = CalculateFinalPos(dir);
+            if (GameManager.Instance.OutOfLimits(finalPos))
+                return;
+            else
+                DashToPosition(finalPos);
             damage = dir;
             player.canMove = false;
             player.controller.enabled = false;
@@ -78,6 +91,18 @@ public class RogueDashHability : IHability
             timerCoolDown = coolDown;
             player.usingHability = true;
         }
+        else
+        {
+            cooldownHUD.UseSkill(coolDown);
+        }
+    }
+
+    Vector3 CalculateFinalPos(Vector3 dir)
+    {
+        Vector3 finalPos = Vector3.zero;
+        float distance = _speed * _activeTime;
+        finalPos = (player.transform.position + dir - player.transform.position).normalized * distance;
+        return finalPos;
     }
 
     void ResetValues()

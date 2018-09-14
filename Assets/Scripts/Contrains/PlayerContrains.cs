@@ -5,7 +5,7 @@ using System;
 
 public class PlayerContrains : MonoBehaviour {
 
-    public event Action OnTeleportPlayer = delegate { };
+    public event Action<Vector3, Vector3> OnTeleportPlayer = delegate { };
 
     Transform player;
     float myContrains_Z;
@@ -27,8 +27,9 @@ public class PlayerContrains : MonoBehaviour {
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("DoorWarp"))
         {
-            other.gameObject.GetComponent<WarpController>().WarpWithParent(transform);
-            OnTeleportPlayer();
+            WarpController door = other.gameObject.GetComponent<WarpController>();
+            door.WarpWithParent(transform);
+            OnTeleportPlayer(door.zoneToTeleportHook.position, door.parentWarp.zoneToTeleportHook.position);
         }
     }
 }
