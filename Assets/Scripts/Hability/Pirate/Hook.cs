@@ -186,7 +186,6 @@ public class Hook : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, _warpedPos.position, speed * Time.deltaTime);
         else if (playerTeleported)
         {
-            Debug.Log("aa");
             transform.position = Vector3.MoveTowards(transform.position, playerSpawnPos, speed * Time.deltaTime);
             if ((playerSpawnPos - transform.position).magnitude <= 1)
             {
@@ -196,7 +195,6 @@ public class Hook : MonoBehaviour
         }
         else
         {
-            Debug.Log("bb");
             transform.position = Vector3.MoveTowards(transform.position, spawnPoint.position, speed * Time.deltaTime);
             if ((spawnPoint.position - transform.position).magnitude <= 1)
             {
@@ -217,7 +215,6 @@ public class Hook : MonoBehaviour
         returnFail = true;
         fired = false;
         hooked = false;
-        playerTeleported = false;
     }
 
     public void ReachedTarget(PlayerController target)
