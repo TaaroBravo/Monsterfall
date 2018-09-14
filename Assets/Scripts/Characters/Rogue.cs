@@ -14,10 +14,13 @@ public class Rogue : PlayerController
 
     public ParticleSystem ps_DashRogue;
 
+    bool enter;
+
     public override void Start()
     {
         base.Start();
         SetHabilities();
+        enter = true;
     }
 
     public override void Update()
@@ -25,6 +28,12 @@ public class Rogue : PlayerController
         base.Update();
         foreach (var h in hability.Values)
             h.Update();
+
+        if (GameManager.Instance.finishedGame && enter)
+        {
+            enter = false;
+            transform.Rotate(0, -90, 0);
+        }
     }
 
     void RogueHability()

@@ -52,7 +52,7 @@ public class NormalAttack : IAttack
                 player.hitParticles.Play();
                 if (target != null)
                 {
-                    target.ReceiveDamage(new Vector3(Mathf.Sign(player.transform.localScale.z) * CalculateImpact(currentPressed), 0, 0), currentPressed >= maxPressed);
+                    target.ReceiveDamage(new Vector3(Mathf.Sign(player.transform.localScale.z) * CalculateImpact(currentPressed * 2), 0, 0), currentPressed >= maxPressed);
                     ps.transform.up = -Vector3.right * player.transform.localScale.z;
                     ps.Play();
                     target.WhoHitedMe(player);

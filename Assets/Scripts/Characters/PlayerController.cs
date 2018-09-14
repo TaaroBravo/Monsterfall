@@ -160,7 +160,12 @@ public class PlayerController : MonoBehaviour
         if (stunnedByHit)
         {
             moveVector.x = impactVelocity.x;
-            moveVector.y = impactVelocity.y;
+            if (moveVector.x > 10)
+            {
+                moveVector.y = 0;
+            }
+            else
+                moveVector.y = impactVelocity.y;
         }
         else
         {
@@ -243,7 +248,7 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
         Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
-        
+
     }
 
     IEnumerator CoyoteTime(float timer)

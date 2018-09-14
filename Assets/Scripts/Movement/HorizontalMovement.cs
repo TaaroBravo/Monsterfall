@@ -59,6 +59,8 @@ public class HorizontalMovement : IMove
             if (!player.isDead)
                 player.myAnim.SetBool("Running", false);
         }
+        if (player.stunnedByHit)
+            player.verticalVelocity = 0;
     }
 
     public override void Move()
@@ -87,7 +89,10 @@ public class HorizontalMovement : IMove
 
         if (GameManager.Instance.finishedGame)
             player.moveVector.x = 0;
-        player.moveVector.y = player.verticalVelocity;
+        if (!player.stunnedByHit)
+            player.moveVector.y = player.verticalVelocity;
+        else
+            player.moveVector.y = 0;
         player.moveVector.z = 0;
     }
 }
