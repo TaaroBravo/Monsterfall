@@ -120,7 +120,7 @@ public class ChainManager : MonoBehaviour
     int GetPosition(int index)
     {
         var result = 0;
-        if (positions.Count >= 1 && index * distanceToSpawn > Vector3.Distance(spawnPoint.position, positions[1].Item2))
+        if (positions.Count > 1 && index * distanceToSpawn > Vector3.Distance(spawnPoint.position, positions[1].Item2))
             result = 1;
 
         return result;
