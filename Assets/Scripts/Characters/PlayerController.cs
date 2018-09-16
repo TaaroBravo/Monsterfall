@@ -249,6 +249,8 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
         Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
 
+        Gizmos.color = Color.green;
+        Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 2);
     }
 
     IEnumerator CoyoteTime(float timer)
@@ -535,7 +537,6 @@ public class PlayerController : MonoBehaviour
         currentImpactStunTimer = 0;
     }
 
-
     #endregion
 
     #region Collisions, Colliders, Triggers
@@ -667,4 +668,5 @@ public class PlayerController : MonoBehaviour
             impactStunMaxTimer = impactSpeed / maxImpactToInfinitStun;
     }
     #endregion
+
 }
