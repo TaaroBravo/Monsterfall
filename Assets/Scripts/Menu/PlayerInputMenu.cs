@@ -23,11 +23,17 @@ public class PlayerInputMenu : MonoBehaviour {
     void Start()
     {
         player = GetComponent<PlayerAvatar>();
-        SetPlayerInput();
     }
 
     private void Update()
     {
+        if (id < 1)
+        {
+            CleanInputs();
+            return;
+        }
+
+        SetPlayerInput();
         if(Input.GetButtonDown(actionButton))
             player.ActionButton();
         if (Input.GetButtonDown(rejectButton))
@@ -54,5 +60,13 @@ public class PlayerInputMenu : MonoBehaviour {
         verticalMove = controller.ToString() + "_MainVertical_P" + id;
         actionButton = controller.ToString() + "_JumpButton_P" + id;
         rejectButton = controller.ToString() + "_DownAttack_P" + id;
+    }
+
+    void CleanInputs()
+    {
+        horizontalMove = "";
+        verticalMove = "";
+        actionButton = "";
+        rejectButton = "";
     }
 }

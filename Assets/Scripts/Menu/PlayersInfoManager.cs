@@ -8,6 +8,7 @@ public class PlayersInfoManager : MonoBehaviour {
     public static PlayersInfoManager Instance { get; private set; }
 
     public List<PlayerInfo> playersInfo = new List<PlayerInfo>();
+    public int playersCount;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class PlayersInfoManager : MonoBehaviour {
 
     public void SetUpInfo(List<PlayerAvatar> players)
     {
+        playersCount = players.Count;
         for (int i = 0; i < players.Count; i++)
         {
             PlayerInfo info = new PlayerInfo();

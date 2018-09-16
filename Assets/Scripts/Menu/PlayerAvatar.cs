@@ -12,14 +12,20 @@ public class PlayerAvatar : MonoBehaviour {
     public event Action<PlayerAvatar> OnSelectedCharacter = delegate { };
     public event Action<PlayerAvatar> OnRejectedCharacter = delegate { };
 
+    //public event Action<PlayerAvatar> OnConnectedToGame = delegate { };
+    public event Action<PlayerAvatar> OnDisconnectedFromGame = delegate { };
+
     PlayerInputMenu input;
     bool onTarget;
 
+    public bool inGame;
     public bool ready;
     public bool canMove;
 
     public CharacterUI character;
     public Color myColor;
+    public Color onColor;
+    public Color offColor;
 
     public Image myBG;
 
@@ -32,20 +38,24 @@ public class PlayerAvatar : MonoBehaviour {
         input = GetComponent<PlayerInputMenu>();
         speed = 200;
         initialPos = transform.position;
+        GetComponent<Image>().color = offColor;
     }
 
     private void Update()
     {
-        if (!ready)
+        if (inGame)
         {
-            transform.position += new Vector3(input.MainHorizontal() * Time.deltaTime * speed, input.MainVertical() * Time.deltaTime * speed, 0);
-            myBG.enabled = false;
-        }
-        else
-        {
-            transform.position = initialPos;
-            myBG.enabled = true;
-            myBG.color = myColor;
+            if (!ready)
+            {
+                transform.position += new Vector3(input.MainHorizontal() * Time.deltaTime * speed, input.MainVertical() * Time.deltaTime * speed, 0);
+                myBG.enabled = false;
+            }
+            else
+            {
+                transform.position = initialPos;
+                myBG.enabled = true;
+                myBG.color = myColor;
+            }
         }
     }
 
@@ -60,13 +70,12 @@ public class PlayerAvatar : MonoBehaviour {
 
     public void RejectButton()
     {
-        if(ready)
+        if (ready)
         {
             ready = false;
             OnRejectedCharacter(this);
         }
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

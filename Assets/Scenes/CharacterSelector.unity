@@ -438,10 +438,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_number: 3
   characterChosen: 0
+  inGame: 0
   ready: 0
   canMove: 0
   character: {fileID: 0}
   myColor: {r: 1, g: 0.88965523, b: 0, a: 1}
+  onColor: {r: 1, g: 1, b: 1, a: 1}
+  offColor: {r: 0.41176468, g: 0.37067175, b: 0.03935985, a: 1}
   myBG: {fileID: 1217980169}
 --- !u!61 &585266647
 BoxCollider2D:
@@ -479,8 +482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e206860cdee5f742815a787d5490197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: 0
-  id: 4
+  controller: 1
+  id: 0
   horizontalMove: 
   verticalMove: 
   actionButton: 
@@ -658,10 +661,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_number: 1
   characterChosen: 0
+  inGame: 0
   ready: 0
   canMove: 0
   character: {fileID: 0}
   myColor: {r: 1, g: 0, b: 0, a: 1}
+  onColor: {r: 1, g: 1, b: 1, a: 1}
+  offColor: {r: 0.39705884, g: 0.0467128, b: 0.0467128, a: 1}
   myBG: {fileID: 1583008564}
 --- !u!61 &694414149
 BoxCollider2D:
@@ -700,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 0
-  id: 2
+  id: 0
   horizontalMove: 
   verticalMove: 
   actionButton: 
@@ -1007,6 +1013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a0917776860bc4fb18e66fa2f1b2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playersCount: 0
 --- !u!1 &1187078040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,10 +1099,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_number: 0
   characterChosen: 0
+  inGame: 0
   ready: 0
   canMove: 0
   character: {fileID: 0}
   myColor: {r: 0, g: 0.2965517, b: 1, a: 1}
+  onColor: {r: 1, g: 1, b: 1, a: 1}
+  offColor: {r: 0.060661756, g: 0.1538793, b: 0.375, a: 1}
   myBG: {fileID: 414205611}
 --- !u!61 &1187078045
 BoxCollider2D:
@@ -1134,7 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 0
-  id: 1
+  id: 0
   horizontalMove: 
   verticalMove: 
   actionButton: 
@@ -1380,10 +1390,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_number: 2
   characterChosen: 0
+  inGame: 0
   ready: 0
   canMove: 0
   character: {fileID: 0}
   myColor: {r: 0, g: 1, b: 0.3793106, a: 1}
+  onColor: {r: 1, g: 1, b: 1, a: 1}
+  offColor: {r: 0.05839101, g: 0.44117647, b: 0.2035856, a: 1}
   myBG: {fileID: 1054717760}
 --- !u!61 &1324686973
 BoxCollider2D:
@@ -1421,8 +1434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e206860cdee5f742815a787d5490197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: 0
-  id: 3
+  controller: 1
+  id: 0
   horizontalMove: 
   verticalMove: 
   actionButton: 
@@ -1968,6 +1981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1605324293}
   - component: {fileID: 1605324292}
+  - component: {fileID: 1605324294}
   m_Layer: 5
   m_Name: SelectorPlayerManager
   m_TagString: Untagged
@@ -2009,6 +2023,17 @@ RectTransform:
   m_AnchoredPosition: {x: 351.5, y: 197.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1605324294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1605324291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66562ec5f7698674e9146b5ea40198a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1660324985
 GameObject:
   m_ObjectHideFlags: 0

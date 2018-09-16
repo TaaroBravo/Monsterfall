@@ -42,7 +42,7 @@ public class DownAttack : IAttack
             else
                 player.myAnim.Play("HitDownAir");
 
-            Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * weaponExtends, col.transform.rotation, LayerMask.GetMask("Hitbox"));
+            Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox"));
             foreach (Collider c in cols)
             {
                 if (CheckParently(c.transform))

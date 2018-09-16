@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public event Action<List<PlayerController>> OnSpawnCharacters = delegate { };
 
+    private int _playersCount;
+
     public PlayersInfoManager infoManager;
     public List<PlayerController> myPlayers = new List<PlayerController>();
     public List<GameObject> playersObj = new List<GameObject>();
@@ -39,12 +41,14 @@ public class GameManager : MonoBehaviour
         infoManager = PlayersInfoManager.Instance;
         if (infoManager)
         {
+            _playersCount = infoManager.playersCount;
             myPlayers.Clear();
             playersObj.Clear();
             myPlayers = CallSpawnHeroes();
             foreach (var hero in myPlayers)
                 playersObj.Add(hero.gameObject);
             SetUpInfoPlayers();
+            SetUpHUD(infoManager.playersInfo);
             OnSpawnCharacters(myPlayers);
         }
         StartCoroutine(StartGame(timeToStart));
@@ -63,7 +67,7 @@ public class GameManager : MonoBehaviour
     List<PlayerController> CallSpawnHeroes()
     {
         List<PlayerController> heroes = new List<PlayerController>();
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < _playersCount; i++)
         {
             var hero = SpawnerHeroes.Instance.SpawnHero(infoManager.playersInfo[i].characterChosen, infoManager.playersInfo[i].player_number);
             hero.myLifeUI = FindObjectsOfType<PlayerHPHud>().Where(x => x.player_number == infoManager.playersInfo[i].player_number).First();
@@ -77,13 +81,18 @@ public class GameManager : MonoBehaviour
 
     void SetUpInfoPlayers()
     {
-        for (int i = 0; i < myPlayers.Count(); i++)
+        for (int i = 0; i < _playersCount; i++)
         {
             GameObject character = playersObj[infoManager.playersInfo[i].player_number];
             PlayerInput input = character.GetComponent<PlayerInput>();
             input.controller = (PlayerInput.Controller)infoManager.playersInfo[infoManager.playersInfo[i].player_number].controller;
             input.id = infoManager.playersInfo[infoManager.playersInfo[i].player_number].ID;
         }
+    }
+
+    void SetUpHUD(List<PlayerInfo> players)
+    {
+        HUDManager.Instance.SetUpHUD(players);
     }
 
     void SetCooldownHUD(CdHUDChecker cooldownHUD, int character)
