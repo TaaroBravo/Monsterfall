@@ -229,28 +229,29 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         Vector3 bottom = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f);
         Vector3 top = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f);
-        if (Physics.Raycast(bottom, bottom - Vector3.right + Vector3.up, out hit, GetComponent<Collider>().bounds.extents.x + 2))
+        if (Physics.Raycast(bottom, bottom - (Vector3.right + Vector3.up), out hit, GetComponent<Collider>().bounds.extents.x + 1, LayerMask.NameToLayer("Default")))
             return true;
-        if (Physics.Raycast(bottom, bottom + Vector3.right + Vector3.up, out hit, GetComponent<Collider>().bounds.extents.x + 2))
+        if (Physics.Raycast(bottom, bottom + (Vector3.right + Vector3.up), out hit, GetComponent<Collider>().bounds.extents.x + 1, LayerMask.NameToLayer("Default")))
             return true;
-        if (Physics.Raycast(top, top - Vector3.right + Vector3.down, out hit, GetComponent<Collider>().bounds.extents.x + 2))
+
+        if (Physics.Raycast(top, top - (Vector3.right + Vector3.down), out hit, GetComponent<Collider>().bounds.extents.x + 1, LayerMask.NameToLayer("Default")))
             return true;
-        if (Physics.Raycast(top, top + Vector3.right + Vector3.down, out hit, GetComponent<Collider>().bounds.extents.x + 2))
+        if (Physics.Raycast(top, top + (Vector3.right + Vector3.down), out hit, GetComponent<Collider>().bounds.extents.x + 1, LayerMask.NameToLayer("Default")))
             return true;
         return false;
     }
 
     private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
-        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
+    {      
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawLine(bottom, (bottom - (Vector3.right + Vector3.up)) * (GetComponent<Collider>().bounds.extents.x + 2));
+        //Gizmos.DrawLine(bottom, (bottom + (Vector3.right + Vector3.up)) * (GetComponent<Collider>().bounds.extents.x + 2));
+        //Gizmos.color = Color.blue;
+        //Gizmos.DrawLine(top, (top - (Vector3.right + Vector3.down)) * (GetComponent<Collider>().bounds.extents.x + 2));
+        //Gizmos.DrawLine(top, (top + (Vector3.right + Vector3.down)) * (GetComponent<Collider>().bounds.extents.x + 2));
 
-        Gizmos.color = Color.green;
-        Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 2);
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 2);
     }
 
     IEnumerator CoyoteTime(float timer)
