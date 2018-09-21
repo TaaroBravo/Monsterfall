@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class PlayerAvatar : MonoBehaviour {
+public class PlayerAvatar : MonoBehaviour
+{
 
     public int player_number;
     public int characterChosen;

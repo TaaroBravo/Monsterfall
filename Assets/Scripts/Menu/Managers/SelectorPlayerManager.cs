@@ -67,6 +67,7 @@ public class SelectorPlayerManager : MonoBehaviour
             return;
         else if (myAvatar.ready)
             return;
+
         _playersInGame.Remove(myAvatar);
         myAvatar.inGame = false;
         myAvatar.GetComponent<Image>().color = myAvatar.offColor;

@@ -25,7 +25,7 @@ public class PlayerInputMenu : MonoBehaviour {
         player = GetComponent<PlayerAvatar>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (id < 1)
         {
