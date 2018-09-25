@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInputMenu : MonoBehaviour {
+public class PlayerInputMenu : MonoBehaviour
+{
 
     PlayerAvatar player;
 
@@ -34,10 +35,25 @@ public class PlayerInputMenu : MonoBehaviour {
         }
 
         SetPlayerInput();
-        if(Input.GetButtonDown(actionButton))
+        if (Input.GetButtonDown(actionButton))
             player.ActionButton();
         if (Input.GetButtonDown(rejectButton))
             player.RejectButton();
+        if (controller == Controller.J)
+        {
+            if (Input.GetAxis(horizontalMove) != 0)
+                player.Move((int)MainHorizontal());
+            if (Input.GetAxis(verticalMove) != 0)
+                player.Move(-(int)MainVertical() * 3);
+        }
+        else
+        {
+            if (Input.GetButtonDown(horizontalMove))
+                player.Move((int)MainHorizontal());
+            if (Input.GetButtonDown(verticalMove))
+                player.Move(-(int)MainVertical() * 3);
+        }
+
     }
 
     public float MainHorizontal()
@@ -58,7 +74,10 @@ public class PlayerInputMenu : MonoBehaviour {
     {
         horizontalMove = controller.ToString() + "_MainHorizontal_P" + id;
         verticalMove = controller.ToString() + "_MainVertical_P" + id;
-        actionButton = controller.ToString() + "_JumpButton_P" + id;
+        if (controller == Controller.K && id == 2)
+            actionButton = controller.ToString() + "_NormalAttack_P" + id;
+        else
+            actionButton = controller.ToString() + "_JumpButton_P" + id;
         rejectButton = controller.ToString() + "_DownAttack_P" + id;
     }
 

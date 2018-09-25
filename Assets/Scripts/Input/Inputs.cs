@@ -71,7 +71,7 @@ public class Inputs : MonoBehaviour {
         actionButton_J4 =  "J_JumpButton_P4";
 
         actionButton_K1 =  "K_JumpButton_P1";
-        actionButton_K2 =  "K_JumpButton_P2";
+        actionButton_K2 =  "K_NormalAttack_P2";
         actionButton_K3 =  "K_JumpButton_P3";
 
         rejectButton_J1 = "J_DownAttack_P1";
