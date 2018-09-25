@@ -15,6 +15,8 @@ public class PlayerInputMenu : MonoBehaviour
     public string actionButton;
     public string rejectButton;
 
+    bool _cooldown;
+
     public enum Controller
     {
         J,
@@ -24,6 +26,7 @@ public class PlayerInputMenu : MonoBehaviour
     void Start()
     {
         player = GetComponent<PlayerAvatar>();
+        StartCoroutine(CoolDown());
     }
 
     private void LateUpdate()
@@ -41,10 +44,16 @@ public class PlayerInputMenu : MonoBehaviour
             player.RejectButton();
         if (controller == Controller.J)
         {
-            if (Input.GetAxis(horizontalMove) != 0)
-                player.Move((int)MainHorizontal());
-            if (Input.GetAxis(verticalMove) != 0)
-                player.Move(-(int)MainVertical() * 3);
+            if (Input.GetAxis(horizontalMove) != 0 && _cooldown)
+            {
+                player.Move((int)Input.GetAxis(horizontalMove));
+                _cooldown = false;
+            }
+            if (Input.GetAxis(verticalMove) != 0 && _cooldown)
+            {
+                player.Move(-(int)Input.GetAxis(verticalMove) * 3);
+                _cooldown = false;
+            }
         }
         else
         {
@@ -53,7 +62,16 @@ public class PlayerInputMenu : MonoBehaviour
             if (Input.GetButtonDown(verticalMove))
                 player.Move(-(int)MainVertical() * 3);
         }
+    }
 
+    IEnumerator CoolDown()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => !_cooldown);
+            yield return new WaitForSeconds(0.2f);
+            _cooldown = true;
+        }
     }
 
     public float MainHorizontal()
@@ -72,8 +90,16 @@ public class PlayerInputMenu : MonoBehaviour
 
     public void SetPlayerInput()
     {
-        horizontalMove = controller.ToString() + "_MainHorizontal_P" + id;
-        verticalMove = controller.ToString() + "_MainVertical_P" + id;
+        if (controller == Controller.J)
+        {
+            horizontalMove = "JoystickHorizontal_P" + id;
+            verticalMove = "JoystickVertical_P" + id;
+        }
+        else
+        {
+            horizontalMove = controller.ToString() + "_MainHorizontal_P" + id;
+            verticalMove = controller.ToString() + "_MainVertical_P" + id;
+        }
         if (controller == Controller.K && id == 2)
             actionButton = controller.ToString() + "_NormalAttack_P" + id;
         else
