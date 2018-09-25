@@ -6662,8 +6662,8 @@ MonoBehaviour:
   - {fileID: 469621851}
   charactersView:
   - {fileID: 692796251}
-  - {fileID: 188697321}
   - {fileID: 778843938}
+  - {fileID: 188697321}
   - {fileID: 1285562096}
 --- !u!224 &1605324293
 RectTransform:
