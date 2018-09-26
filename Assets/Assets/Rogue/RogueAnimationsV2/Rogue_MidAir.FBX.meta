@@ -1,0 +1,261 @@
+fileFormatVersion: 2
+guid: 4f4c89ab9ec2030418e59626ab0f006a
+timeCreated: 1537927434
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Base HumanLArm1
+    100002: Base HumanLArm2
+    100004: Base HumanLArmDigit11
+    100006: Base HumanLArmDigit12
+    100008: Base HumanLArmDigit13
+    100010: Base HumanLArmDigit21
+    100012: Base HumanLArmDigit22
+    100014: Base HumanLArmDigit23
+    100016: Base HumanLArmDigit31
+    100018: Base HumanLArmDigit32
+    100020: Base HumanLArmDigit33
+    100022: Base HumanLArmDigit41
+    100024: Base HumanLArmDigit42
+    100026: Base HumanLArmDigit43
+    100028: Base HumanLArmDigit51
+    100030: Base HumanLArmDigit52
+    100032: Base HumanLArmDigit53
+    100034: Base HumanLArmPalm
+    100036: Base HumanLLeg1
+    100038: Base HumanLLeg2
+    100040: Base HumanLLegAnkle
+    100042: Base HumanLLegDigit11
+    100044: Base HumanLLegDigit12
+    100046: Base HumanPalmBone001
+    100048: Base HumanPelvis003
+    100050: Base HumanPelvis004
+    100052: Base HumanPelvis005
+    100054: Base HumanRArm1
+    100056: Base HumanRArm2
+    100058: Base HumanRArmCollarbone
+    100060: Base HumanRArmDigit11
+    100062: Base HumanRArmDigit12
+    100064: Base HumanRArmDigit13
+    100066: Base HumanRArmDigit21
+    100068: Base HumanRArmDigit22
+    100070: Base HumanRArmDigit23
+    100072: Base HumanRArmDigit31
+    100074: Base HumanRArmDigit32
+    100076: Base HumanRArmDigit33
+    100078: Base HumanRArmDigit41
+    100080: Base HumanRArmDigit42
+    100082: Base HumanRArmDigit43
+    100084: Base HumanRArmDigit51
+    100086: Base HumanRArmDigit52
+    100088: Base HumanRArmDigit53
+    100090: Base HumanRArmPalm
+    100092: Base HumanRLeg1
+    100094: Base HumanRLeg2
+    100096: Base HumanRLegAnkle
+    100098: Base HumanRLegDigit11
+    100100: Base HumanRLegDigit12
+    100102: Base HumanSpine1
+    100104: Base HumanSpine1 1
+    100106: Base HumanSpine2
+    100108: Base HumanSpine2 1
+    100110: Body
+    100112: Detail001
+    100114: Hair
+    100116: Object001
+    100118: //RootNode
+    100120: Sword005
+    100122: Sword1
+    100124: SwordBone
+    100126: Tissue
+    400000: Base HumanLArm1
+    400002: Base HumanLArm2
+    400004: Base HumanLArmDigit11
+    400006: Base HumanLArmDigit12
+    400008: Base HumanLArmDigit13
+    400010: Base HumanLArmDigit21
+    400012: Base HumanLArmDigit22
+    400014: Base HumanLArmDigit23
+    400016: Base HumanLArmDigit31
+    400018: Base HumanLArmDigit32
+    400020: Base HumanLArmDigit33
+    400022: Base HumanLArmDigit41
+    400024: Base HumanLArmDigit42
+    400026: Base HumanLArmDigit43
+    400028: Base HumanLArmDigit51
+    400030: Base HumanLArmDigit52
+    400032: Base HumanLArmDigit53
+    400034: Base HumanLArmPalm
+    400036: Base HumanLLeg1
+    400038: Base HumanLLeg2
+    400040: Base HumanLLegAnkle
+    400042: Base HumanLLegDigit11
+    400044: Base HumanLLegDigit12
+    400046: Base HumanPalmBone001
+    400048: Base HumanPelvis003
+    400050: Base HumanPelvis004
+    400052: Base HumanPelvis005
+    400054: Base HumanRArm1
+    400056: Base HumanRArm2
+    400058: Base HumanRArmCollarbone
+    400060: Base HumanRArmDigit11
+    400062: Base HumanRArmDigit12
+    400064: Base HumanRArmDigit13
+    400066: Base HumanRArmDigit21
+    400068: Base HumanRArmDigit22
+    400070: Base HumanRArmDigit23
+    400072: Base HumanRArmDigit31
+    400074: Base HumanRArmDigit32
+    400076: Base HumanRArmDigit33
+    400078: Base HumanRArmDigit41
+    400080: Base HumanRArmDigit42
+    400082: Base HumanRArmDigit43
+    400084: Base HumanRArmDigit51
+    400086: Base HumanRArmDigit52
+    400088: Base HumanRArmDigit53
+    400090: Base HumanRArmPalm
+    400092: Base HumanRLeg1
+    400094: Base HumanRLeg2
+    400096: Base HumanRLegAnkle
+    400098: Base HumanRLegDigit11
+    400100: Base HumanRLegDigit12
+    400102: Base HumanSpine1
+    400104: Base HumanSpine1 1
+    400106: Base HumanSpine2
+    400108: Base HumanSpine2 1
+    400110: Body
+    400112: Detail001
+    400114: Hair
+    400116: Object001
+    400118: //RootNode
+    400120: Sword005
+    400122: Sword1
+    400124: SwordBone
+    400126: Tissue
+    2100000: 07 - Default
+    2100002: 20 - Default
+    2100004: 21 - Default
+    2100006: 08 - Default
+    4300000: Tissue
+    4300002: Sword1
+    4300004: Body
+    4300006: Detail001
+    4300008: Hair
+    4300010: Sword005
+    7400000: MidAir
+    9500000: //RootNode
+    13700000: Body
+    13700002: Detail001
+    13700004: Hair
+    13700006: Sword005
+    13700008: Sword1
+    13700010: Tissue
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: MidAir
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 2.5
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
