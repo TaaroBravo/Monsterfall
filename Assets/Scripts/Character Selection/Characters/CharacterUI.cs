@@ -19,6 +19,14 @@ public class CharacterUI : MonoBehaviour
 
     public GameObject readyLight;
 
+    public Sprite sphere;
+    public Sprite onSphere;
+    public Sprite offSphere;
+
+    public Sprite characterBar;
+    public Sprite readyBar;
+    public Sprite selectBar;
+
     float lerpValueIn;
     float lerpValueOut;
 
@@ -49,6 +57,8 @@ public class CharacterUI : MonoBehaviour
         foreach (var _char in characters)
             _char.enabled = false;
         randomCharacter.enabled = false;
+        characterBar = selectBar;
+        sphere = offSphere;
         readyLight.SetActive(false);
     }
 
@@ -81,12 +91,16 @@ public class CharacterUI : MonoBehaviour
             foreach (var _char in characters)
                 _char.enabled = false;
         }
+        sphere = offSphere;
+        characterBar = selectBar;
         readyLight.SetActive(false);
     }
 
     public void ReadyState()
     {
         readyLight.SetActive(true);
+        sphere = onSphere;
+        characterBar = readyBar;
     }
 
     public void SetCharacterIndex(int index)
