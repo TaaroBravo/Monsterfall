@@ -1473,7 +1473,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: 5235e9ee674f9f24697991fcfe72fd3a, type: 3}
+  m_Motion: {fileID: 7400000, guid: 0815829f5ca8dec48aa04211948d236b, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1499,7 +1499,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b16c8b7e023a5a84cbc88a663fff4fdf, type: 3}
+  m_Motion: {fileID: 7400002, guid: 3c291aab10010fd4c917672da36f45af, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1661,7 +1661,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: c173cb567bc4c95458a7a59f1690b0ff, type: 3}
+  m_Motion: {fileID: 7400002, guid: 3c291aab10010fd4c917672da36f45af, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1686,7 +1686,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c5b747ac895b8d94898eed9088e491fe, type: 3}
+  m_Motion: {fileID: 7400002, guid: 3c291aab10010fd4c917672da36f45af, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1843,7 +1843,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c47b80eb052b992498304cb51e81a18c, type: 3}
+  m_Motion: {fileID: 7400000, guid: 4f4c89ab9ec2030418e59626ab0f006a, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1958,7 +1958,7 @@ AnimatorStateMachine:
     m_Position: {x: 444, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102330456139222990}
-    m_Position: {x: 996, y: 36, z: 0}
+    m_Position: {x: 912, y: 72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102072370740908036}
     m_Position: {x: 756, y: 108, z: 0}
