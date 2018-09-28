@@ -19,11 +19,13 @@ public class CharacterUI : MonoBehaviour
 
     public GameObject readyLight;
 
-    public Sprite sphere;
+    public Image pedestal;
+
+    public Image sphere;
     public Sprite onSphere;
     public Sprite offSphere;
 
-    public Sprite characterBar;
+    public Image characterBar;
     public Sprite readyBar;
     public Sprite selectBar;
 
@@ -40,10 +42,14 @@ public class CharacterUI : MonoBehaviour
     private void Update()
     {
         State();
+        readyLight.transform.Rotate(0, 0, 1);
     }
 
     public void StartState()
     {
+        pedestal.gameObject.SetActive(false);
+        sphere.gameObject.SetActive(false);
+        characterBar.gameObject.SetActive(false);
         if (lerpValueIn >= 1)
         {
             lerpValueOut = 0;
@@ -57,13 +63,16 @@ public class CharacterUI : MonoBehaviour
         foreach (var _char in characters)
             _char.enabled = false;
         randomCharacter.enabled = false;
-        characterBar = selectBar;
-        sphere = offSphere;
+        characterBar.sprite = selectBar;
+        sphere.sprite = offSphere;
         readyLight.SetActive(false);
     }
 
     public void SelectingState()
     {
+        pedestal.gameObject.SetActive(true);
+        sphere.gameObject.SetActive(true);
+        characterBar.gameObject.SetActive(true);
         if (lerpValueOut >= 1)
         {
             lerpValueIn = 0;
@@ -91,16 +100,16 @@ public class CharacterUI : MonoBehaviour
             foreach (var _char in characters)
                 _char.enabled = false;
         }
-        sphere = offSphere;
-        characterBar = selectBar;
+        sphere.sprite = offSphere;
+        characterBar.sprite = selectBar;
         readyLight.SetActive(false);
     }
 
     public void ReadyState()
     {
         readyLight.SetActive(true);
-        sphere = onSphere;
-        characterBar = readyBar;
+        sphere.sprite = onSphere;
+        characterBar.sprite = readyBar;
     }
 
     public void SetCharacterIndex(int index)
