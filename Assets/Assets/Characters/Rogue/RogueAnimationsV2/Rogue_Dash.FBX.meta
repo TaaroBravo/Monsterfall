@@ -1,0 +1,365 @@
+fileFormatVersion: 2
+guid: 7f222aaa861cbd040b9230c67de22307
+timeCreated: 1538095588
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Base HumanLArm1
+    100004: Base HumanLArm1Gizmo
+    100006: Base HumanLArm2
+    100008: Base HumanLArm2Gizmo
+    100010: Base HumanLArmDigit11
+    100012: Base HumanLArmDigit11Gizmo
+    100014: Base HumanLArmDigit12
+    100016: Base HumanLArmDigit12Gizmo
+    100018: Base HumanLArmDigit13
+    100020: Base HumanLArmDigit13Gizmo
+    100022: Base HumanLArmDigit21
+    100024: Base HumanLArmDigit21Gizmo
+    100026: Base HumanLArmDigit22
+    100028: Base HumanLArmDigit22Gizmo
+    100030: Base HumanLArmDigit23
+    100032: Base HumanLArmDigit23Gizmo
+    100034: Base HumanLArmDigit31
+    100036: Base HumanLArmDigit31Gizmo
+    100038: Base HumanLArmDigit32
+    100040: Base HumanLArmDigit32Gizmo
+    100042: Base HumanLArmDigit33
+    100044: Base HumanLArmDigit33Gizmo
+    100046: Base HumanLArmDigit41
+    100048: Base HumanLArmDigit41Gizmo
+    100050: Base HumanLArmDigit42
+    100052: Base HumanLArmDigit42Gizmo
+    100054: Base HumanLArmDigit42GizmoGizmo
+    100056: Base HumanLArmDigit43
+    100058: Base HumanLArmDigit43Gizmo
+    100060: Base HumanLArmDigit51
+    100062: Base HumanLArmDigit51Gizmo
+    100064: Base HumanLArmDigit52
+    100066: Base HumanLArmDigit52Gizmo
+    100068: Base HumanLArmDigit53
+    100070: Base HumanLArmDigit53Gizmo
+    100072: Base HumanLArmPalm
+    100074: Base HumanLArmPalmGizmo
+    100076: Base HumanLLeg1
+    100078: Base HumanLLeg2
+    100080: Base HumanLLegAnkle
+    100082: Base HumanLLegAnkleGizmo
+    100084: Base HumanLLegDigit11
+    100086: Base HumanLLegDigit12
+    100088: Base HumanLLegDigit12Gizmo
+    100090: Base HumanLLegPlatform
+    100092: Base HumanLLegUpVectorNode
+    100094: Base HumanPalmBone001
+    100096: Base HumanPelvis003
+    100098: Base HumanPelvis003Gizmo
+    100100: Base HumanPelvis004
+    100102: Base HumanPelvis004Gizmo
+    100104: Base HumanPelvis005
+    100106: Base HumanPelvis005Gizmo
+    100108: Base HumanRArm1
+    100110: Base HumanRArm1Gizmo
+    100112: Base HumanRArm2
+    100114: Base HumanRArm2Gizmo
+    100116: Base HumanRArmCollarbone
+    100118: Base HumanRArmDigit11
+    100120: Base HumanRArmDigit11Gizmo
+    100122: Base HumanRArmDigit12
+    100124: Base HumanRArmDigit12Gizmo
+    100126: Base HumanRArmDigit13
+    100128: Base HumanRArmDigit13Gizmo
+    100130: Base HumanRArmDigit21
+    100132: Base HumanRArmDigit21Gizmo
+    100134: Base HumanRArmDigit22
+    100136: Base HumanRArmDigit22Gizmo
+    100138: Base HumanRArmDigit23
+    100140: Base HumanRArmDigit23Gizmo
+    100142: Base HumanRArmDigit31
+    100144: Base HumanRArmDigit31Gizmo
+    100146: Base HumanRArmDigit32
+    100148: Base HumanRArmDigit32Gizmo
+    100150: Base HumanRArmDigit33
+    100152: Base HumanRArmDigit33Gizmo
+    100154: Base HumanRArmDigit33GizmoGizmo
+    100156: Base HumanRArmDigit41
+    100158: Base HumanRArmDigit41Gizmo
+    100160: Base HumanRArmDigit42
+    100162: Base HumanRArmDigit42Gizmo
+    100164: Base HumanRArmDigit43
+    100166: Base HumanRArmDigit43Gizmo
+    100168: Base HumanRArmDigit43GizmoGizmo
+    100170: Base HumanRArmDigit51
+    100172: Base HumanRArmDigit51Gizmo
+    100174: Base HumanRArmDigit52
+    100176: Base HumanRArmDigit52Gizmo
+    100178: Base HumanRArmDigit53
+    100180: Base HumanRArmDigit53Gizmo
+    100182: Base HumanRArmDigit53GizmoGizmo
+    100184: Base HumanRArmDigit53GizmoGizmoGizmo
+    100186: Base HumanRArmPalm
+    100188: Base HumanRArmPalmGizmo
+    100190: Base HumanRLeg1
+    100192: Base HumanRLeg2
+    100194: Base HumanRLegAnkle
+    100196: Base HumanRLegAnkleGizmo
+    100198: Base HumanRLegDigit11
+    100200: Base HumanRLegDigit12
+    100202: Base HumanRLegDigit12Gizmo
+    100204: Base HumanRLegPlatform
+    100206: Base HumanRLegUpVectorNode
+    100208: Base HumanSpine1
+    100210: Base HumanSpine1 1
+    100212: Base HumanSpine2
+    100214: Base HumanSpine2 1
+    100216: Body
+    100218: Detail001
+    100220: Hair
+    100222: Object001
+    100224: Sword005
+    100226: Sword1
+    100228: SwordBone
+    100230: Tissue
+    400000: //RootNode
+    400002: Base HumanLArm1
+    400004: Base HumanLArm1Gizmo
+    400006: Base HumanLArm2
+    400008: Base HumanLArm2Gizmo
+    400010: Base HumanLArmDigit11
+    400012: Base HumanLArmDigit11Gizmo
+    400014: Base HumanLArmDigit12
+    400016: Base HumanLArmDigit12Gizmo
+    400018: Base HumanLArmDigit13
+    400020: Base HumanLArmDigit13Gizmo
+    400022: Base HumanLArmDigit21
+    400024: Base HumanLArmDigit21Gizmo
+    400026: Base HumanLArmDigit22
+    400028: Base HumanLArmDigit22Gizmo
+    400030: Base HumanLArmDigit23
+    400032: Base HumanLArmDigit23Gizmo
+    400034: Base HumanLArmDigit31
+    400036: Base HumanLArmDigit31Gizmo
+    400038: Base HumanLArmDigit32
+    400040: Base HumanLArmDigit32Gizmo
+    400042: Base HumanLArmDigit33
+    400044: Base HumanLArmDigit33Gizmo
+    400046: Base HumanLArmDigit41
+    400048: Base HumanLArmDigit41Gizmo
+    400050: Base HumanLArmDigit42
+    400052: Base HumanLArmDigit42Gizmo
+    400054: Base HumanLArmDigit42GizmoGizmo
+    400056: Base HumanLArmDigit43
+    400058: Base HumanLArmDigit43Gizmo
+    400060: Base HumanLArmDigit51
+    400062: Base HumanLArmDigit51Gizmo
+    400064: Base HumanLArmDigit52
+    400066: Base HumanLArmDigit52Gizmo
+    400068: Base HumanLArmDigit53
+    400070: Base HumanLArmDigit53Gizmo
+    400072: Base HumanLArmPalm
+    400074: Base HumanLArmPalmGizmo
+    400076: Base HumanLLeg1
+    400078: Base HumanLLeg2
+    400080: Base HumanLLegAnkle
+    400082: Base HumanLLegAnkleGizmo
+    400084: Base HumanLLegDigit11
+    400086: Base HumanLLegDigit12
+    400088: Base HumanLLegDigit12Gizmo
+    400090: Base HumanLLegPlatform
+    400092: Base HumanLLegUpVectorNode
+    400094: Base HumanPalmBone001
+    400096: Base HumanPelvis003
+    400098: Base HumanPelvis003Gizmo
+    400100: Base HumanPelvis004
+    400102: Base HumanPelvis004Gizmo
+    400104: Base HumanPelvis005
+    400106: Base HumanPelvis005Gizmo
+    400108: Base HumanRArm1
+    400110: Base HumanRArm1Gizmo
+    400112: Base HumanRArm2
+    400114: Base HumanRArm2Gizmo
+    400116: Base HumanRArmCollarbone
+    400118: Base HumanRArmDigit11
+    400120: Base HumanRArmDigit11Gizmo
+    400122: Base HumanRArmDigit12
+    400124: Base HumanRArmDigit12Gizmo
+    400126: Base HumanRArmDigit13
+    400128: Base HumanRArmDigit13Gizmo
+    400130: Base HumanRArmDigit21
+    400132: Base HumanRArmDigit21Gizmo
+    400134: Base HumanRArmDigit22
+    400136: Base HumanRArmDigit22Gizmo
+    400138: Base HumanRArmDigit23
+    400140: Base HumanRArmDigit23Gizmo
+    400142: Base HumanRArmDigit31
+    400144: Base HumanRArmDigit31Gizmo
+    400146: Base HumanRArmDigit32
+    400148: Base HumanRArmDigit32Gizmo
+    400150: Base HumanRArmDigit33
+    400152: Base HumanRArmDigit33Gizmo
+    400154: Base HumanRArmDigit33GizmoGizmo
+    400156: Base HumanRArmDigit41
+    400158: Base HumanRArmDigit41Gizmo
+    400160: Base HumanRArmDigit42
+    400162: Base HumanRArmDigit42Gizmo
+    400164: Base HumanRArmDigit43
+    400166: Base HumanRArmDigit43Gizmo
+    400168: Base HumanRArmDigit43GizmoGizmo
+    400170: Base HumanRArmDigit51
+    400172: Base HumanRArmDigit51Gizmo
+    400174: Base HumanRArmDigit52
+    400176: Base HumanRArmDigit52Gizmo
+    400178: Base HumanRArmDigit53
+    400180: Base HumanRArmDigit53Gizmo
+    400182: Base HumanRArmDigit53GizmoGizmo
+    400184: Base HumanRArmDigit53GizmoGizmoGizmo
+    400186: Base HumanRArmPalm
+    400188: Base HumanRArmPalmGizmo
+    400190: Base HumanRLeg1
+    400192: Base HumanRLeg2
+    400194: Base HumanRLegAnkle
+    400196: Base HumanRLegAnkleGizmo
+    400198: Base HumanRLegDigit11
+    400200: Base HumanRLegDigit12
+    400202: Base HumanRLegDigit12Gizmo
+    400204: Base HumanRLegPlatform
+    400206: Base HumanRLegUpVectorNode
+    400208: Base HumanSpine1
+    400210: Base HumanSpine1 1
+    400212: Base HumanSpine2
+    400214: Base HumanSpine2 1
+    400216: Body
+    400218: Detail001
+    400220: Hair
+    400222: Object001
+    400224: Sword005
+    400226: Sword1
+    400228: SwordBone
+    400230: Tissue
+    2100000: 07 - Default
+    2100002: 20 - Default
+    2100004: 21 - Default
+    2100006: 08 - Default
+    4300000: Tissue
+    4300002: Sword1
+    4300004: Body
+    4300006: Detail001
+    4300008: Hair
+    4300010: Sword005
+    7400000: Dash
+    9500000: //RootNode
+    13700000: Body
+    13700002: Detail001
+    13700004: Hair
+    13700006: Sword005
+    13700008: Sword1
+    13700010: Tissue
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Dash
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 2.5
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

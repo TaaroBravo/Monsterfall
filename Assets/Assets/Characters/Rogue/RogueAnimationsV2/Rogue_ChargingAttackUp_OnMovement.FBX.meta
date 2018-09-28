@@ -143,7 +143,7 @@ ModelImporter:
     4300006: Detail001
     4300008: Hair
     4300010: Sword005
-    7400000: Take 001
+    7400000: ChargingAttackUp_OnMovement
     9500000: //RootNode
     13700000: Body
     13700002: Detail001
@@ -179,7 +179,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: ChargingAttackUp_OnMovement
       takeName: Take 001
       firstFrame: 0
       lastFrame: 40
