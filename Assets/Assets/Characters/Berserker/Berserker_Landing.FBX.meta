@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 032b99a9f6471a640af19b2afee6904f
-timeCreated: 1537937908
+guid: 632e830fd544b354e9d440c1401561eb
+timeCreated: 1538093667
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -211,7 +211,7 @@ ModelImporter:
     400202: TorsoGizmo
     2100000: CheckerPattern
     4300000: Brawler
-    7400000: AttackUpOnMovement
+    7400000: Landing
     9500000: //RootNode
     13700000: Brawler
   externalObjects: {}
@@ -242,7 +242,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: AttackUpOnMovement
+      name: Landing
       takeName: Take 001
       firstFrame: 0
       lastFrame: 40
@@ -252,7 +252,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
