@@ -12,6 +12,7 @@ public class ForcedJump : IHability
         player = p;
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
+        _power = power;
     }
 
     public override void Update()
