@@ -96,15 +96,21 @@ public class PirateCI : Editor {
         fadeVariablesHabilities.target = EditorGUILayout.Foldout(fadeVariablesHabilities.target, "Variables de Habilidades");
         if (EditorGUILayout.BeginFadeGroup(fadeVariablesHabilities.faded))
         {
-            EditorGUILayout.LabelField("Dash:", EditorStyles.boldLabel);
-            EditorGUILayout.Space();
-            player.dashSpeed = EditorGUILayout.FloatField("Velocidad del Dash", player.dashSpeed);
-            player.dashDistance = EditorGUILayout.FloatField("Cuánta distancia recorre", player.dashDistance);
-            player.dashCoolDown = EditorGUILayout.FloatField("Cooldown del Dash", player.dashCoolDown);
-            EditorGUILayout.Space();
+            //EditorGUILayout.LabelField("Dash:", EditorStyles.boldLabel);
+            //EditorGUILayout.Space();
+            //player.dashSpeed = EditorGUILayout.FloatField("Velocidad del Dash", player.dashSpeed);
+            //player.dashDistance = EditorGUILayout.FloatField("Cuánta distancia recorre", player.dashDistance);
+            //player.dashCoolDown = EditorGUILayout.FloatField("Cooldown del Dash", player.dashCoolDown);
+            //EditorGUILayout.Space();
             EditorGUILayout.LabelField("Hability:", EditorStyles.boldLabel);
             EditorGUILayout.Space();
-            player.hookCoolDown = EditorGUILayout.FloatField("Cooldown del Hability", player.hookCoolDown);
+            EditorGUILayout.LabelField("Hook:", EditorStyles.boldLabel);
+            EditorGUILayout.Space();
+            player.hookCooldown = EditorGUILayout.FloatField("Cooldown del Hook", player.hookCooldown);
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Movement Hook:", EditorStyles.boldLabel);
+            EditorGUILayout.Space();
+            player.movementHookCooldown = EditorGUILayout.FloatField("Cooldown del Movement Hook", player.movementHookCooldown);
             EditorGUILayout.Space();
         }
         EditorGUILayout.EndFadeGroup();

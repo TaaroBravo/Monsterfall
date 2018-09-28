@@ -97,20 +97,16 @@ public class KnightCI : Editor
         fadeVariablesHabilities.target = EditorGUILayout.Foldout(fadeVariablesHabilities.target, "Variables de Habilidades");
         if (EditorGUILayout.BeginFadeGroup(fadeVariablesHabilities.faded))
         {
-            EditorGUILayout.LabelField("Dash:", EditorStyles.boldLabel);
-            EditorGUILayout.Space();
-            player.dashSpeed = EditorGUILayout.FloatField("Velocidad del Dash", player.dashSpeed);
-            player.dashDistance = EditorGUILayout.FloatField("Cuánta distancia recorre", player.dashDistance);
-            player.dashCoolDown = EditorGUILayout.FloatField("Cooldown del Dash", player.dashCoolDown);
-            EditorGUILayout.Space();
             EditorGUILayout.LabelField("Hability:", EditorStyles.boldLabel);
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Punch");
-            player.punch = (Punch)EditorGUILayout.ObjectField(player.punch, typeof(Punch), true);
+            EditorGUILayout.LabelField("Punch:");
             player.ps_Hability = (ParticleSystem)EditorGUILayout.ObjectField(player.ps_Hability, typeof(ParticleSystem), true);
             player.punchCooldown = EditorGUILayout.FloatField("Cooldown del Hability", player.punchCooldown);
             player.powerOfPunch = EditorGUILayout.FloatField("Poder del Puño", player.powerOfPunch);
-            player.activeTime = EditorGUILayout.FloatField("Tiempo activo", player.activeTime);
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Forced Jump:", EditorStyles.boldLabel);
+            player.forcedJumpForce = EditorGUILayout.FloatField("Fuerza del Forced Jump", player.forcedJumpForce);
+            player.forcedJumpCooldown = EditorGUILayout.FloatField("Cooldown del Forced Jump", player.forcedJumpCooldown);
             EditorGUILayout.Space();
         }
         EditorGUILayout.EndFadeGroup();

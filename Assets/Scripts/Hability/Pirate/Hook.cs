@@ -49,6 +49,12 @@ public class Hook : MonoBehaviour
     Vector3 playerEndPos;
     bool playerTeleported;
 
+
+    private Transform _hookPointTarget;
+    private bool _reachingPoint;
+    private bool _hookReached;
+
+
     private void Awake()
     {
         contrains = transform.parent.GetComponent<PlayerContrains>();
@@ -70,70 +76,109 @@ public class Hook : MonoBehaviour
         if (!_myPlayer)
             Destroy(gameObject);
 
-
-        if (hookGrabbed)
+        if (_reachingPoint)
         {
-            CounterHook();
-            return;
-        }
-
-        if (fired && !hooked)
-        {
-            transform.parent = null;
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + _direction, speed * Time.deltaTime);
-            _currentTime += Time.deltaTime;
-            _currentDistance = speed * _currentTime;
-            _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _myPlayer).Where(x => !x.isDead).FirstOrDefault();
-
-            if (_currentDistance >= maxDistance)
-                FailedFire();
-        }
-
-        if (returnFail)
-            ReturnHook();
-
-        if (_target)
-            HookTarget(_target);
-
-        if (hooked)
-        {
-            if (!_target)
-                ReturnHook();
-            transform.parent = _target.transform;
-            if (_warpedPos)
+            if(_hookReached)
             {
-                _target.controller.enabled = true;
-                _target.transform.position = Vector3.MoveTowards(_target.transform.position, _warpedPos.position, targetTravelSpeed * Time.deltaTime);
-                Vector3 targetPos = _target.transform.position;
-                targetPos.z = 0;
-                _target.transform.position = targetPos;
-            }
-            else if (playerTeleported)
-            {
-                _target.transform.position = Vector3.MoveTowards(_target.transform.position, playerSpawnPos, targetTravelSpeed * Time.deltaTime);
-                if ((playerSpawnPos - _target.transform.position).magnitude <= 1)
-                {
-                    playerTeleported = false;
-                    _target.transform.position = playerEndPos;
-                }
+                _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, _hookPointTarget.position, speed * Time.deltaTime);
+                if ((_hookPointTarget.position - _myPlayer.transform.position).magnitude <= 1)
+                    PlayerReached();
             }
             else
             {
-                _target.controller.enabled = false;
-                _target.transform.position = Vector3.MoveTowards(_target.transform.position, _playerPos, targetTravelSpeed * Time.deltaTime);
-                Vector3 targetPos = _target.transform.position;
-                targetPos.z = 0;
-                _target.transform.position = targetPos;
-                if ((_playerPos - _target.transform.position).magnitude <= 1)
-                    ReachedTarget(_target);
+                transform.parent = null;
+                transform.position = Vector3.MoveTowards(transform.position, _hookPointTarget.position, speed * Time.deltaTime);
+                if ((_hookPointTarget.position - transform.position).magnitude <= 1)
+                {
+                    transform.position = _hookPointTarget.position;
+                    HookReached();
+                }
             }
 
         }
+        else
+        {
+            #region Hook For Enemies
+            if (hookGrabbed)
+            {
+                CounterHook();
+                return;
+            }
+
+            if (fired && !hooked)
+            {
+                transform.parent = null;
+                transform.position = Vector3.MoveTowards(transform.position, transform.position + _direction, speed * Time.deltaTime);
+                _currentTime += Time.deltaTime;
+                _currentDistance = speed * _currentTime;
+                _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _myPlayer).Where(x => !x.isDead).FirstOrDefault();
+
+                if (_currentDistance >= maxDistance)
+                    FailedFire();
+            }
+
+            if (returnFail)
+                ReturnHook();
+
+            if (_target)
+                HookTarget(_target);
+
+            if (hooked)
+            {
+                if (!_target)
+                    ReturnHook();
+                transform.parent = _target.transform;
+                if (_warpedPos)
+                {
+                    _target.controller.enabled = true;
+                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, _warpedPos.position, targetTravelSpeed * Time.deltaTime);
+                    Vector3 targetPos = _target.transform.position;
+                    targetPos.z = 0;
+                    _target.transform.position = targetPos;
+                }
+                else if (playerTeleported)
+                {
+                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, playerSpawnPos, targetTravelSpeed * Time.deltaTime);
+                    if ((playerSpawnPos - _target.transform.position).magnitude <= 1)
+                    {
+                        playerTeleported = false;
+                        _target.transform.position = playerEndPos;
+                    }
+                }
+                else
+                {
+                    _target.controller.enabled = false;
+                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, _playerPos, targetTravelSpeed * Time.deltaTime);
+                    Vector3 targetPos = _target.transform.position;
+                    targetPos.z = 0;
+                    _target.transform.position = targetPos;
+                    if ((_playerPos - _target.transform.position).magnitude <= 1)
+                        ReachedTarget(_target);
+                }
+            }
+            #endregion
+        }
+    }
+
+    void HookReached()
+    {
+        _hookReached = true;
+        _direction = (_hookPointTarget.position - _playerPos).normalized;
+    }
+
+    void PlayerReached()
+    {
+        _hookReached = false;
+        _reachingPoint = false;
+        transform.parent = _myPlayer.transform;
+        _myPlayer.controller.enabled = true;
+        _myPlayer.moveVector = _direction * 5;
+        OnReachedTarget(_myPlayer);
     }
 
     void PlayerTeleported(Vector3 spawn, Vector3 end)
     {
-        if(fired && !playerTeleported)
+        if (fired && !playerTeleported)
         {
             playerTeleported = true;
             playerSpawnPos = spawn;
@@ -150,10 +195,20 @@ public class Hook : MonoBehaviour
         _startPosition = endPoint.localPosition;
         _playerPos = spawnPoint.transform.position;
         _playerPos.z = 0;
-        //_playerPos = endPoint.position;
         _direction = ((_playerPos + dir) - _playerPos).normalized;
         transform.up = -_direction;
         _currentTime = 0;
+        OnFireHook();
+    }
+
+    public void Fire(Transform target)
+    {
+        _reachingPoint = true;
+        _hookPointTarget = target;
+        transform.localPosition = spawnPoint.transform.localPosition;
+        _playerPos = spawnPoint.transform.position;
+        _direction = (_hookPointTarget.position - _playerPos).normalized;
+        transform.up = -_direction;
         OnFireHook();
     }
 
@@ -257,7 +312,7 @@ public class Hook : MonoBehaviour
             _myPlayer.controller.enabled = true;
             _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, _whereIWarped.position, targetTravelSpeed * Time.deltaTime);
         }
-        else if(playerTeleported)
+        else if (playerTeleported)
         {
             _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, playerSpawnPos, targetTravelSpeed * Time.deltaTime);
             if ((playerSpawnPos - _myPlayer.transform.position).magnitude <= 1)

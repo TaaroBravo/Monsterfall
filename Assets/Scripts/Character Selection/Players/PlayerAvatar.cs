@@ -16,10 +16,6 @@ public class PlayerAvatar : MonoBehaviour
     public event Action<PlayerAvatar> OnSelectedCharacter = delegate { };
     public event Action<PlayerAvatar> OnRejectedCharacter = delegate { };
 
-    public event Action<PlayerAvatar> OnDisconnectedFromGame = delegate { };
-
-    PlayerInputMenu input;
-
     public bool inGame;
     public bool ready;
     public bool canMove;
@@ -30,7 +26,6 @@ public class PlayerAvatar : MonoBehaviour
 
     private void Start()
     {
-        input = GetComponent<PlayerInputMenu>();
         myImage = GetComponent<Image>();
     }
 

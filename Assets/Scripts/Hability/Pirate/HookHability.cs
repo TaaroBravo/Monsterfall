@@ -45,7 +45,7 @@ public class HookHability : IHability
                 x = Mathf.Sign(player.transform.localScale.z);
 
             _hook.Fire(new Vector3(x, y, 0));
-            _hook.OnReachedTarget += t => t.StartStun(0.5f);
+            _hook.OnReachedTarget += t => t.SetStun(0.5f);
             player.usingHability = true;
         }
         else

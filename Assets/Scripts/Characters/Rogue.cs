@@ -5,6 +5,8 @@ using System.Linq;
 
 public class Rogue : PlayerController
 {
+    public Immobilizer immobilizer;
+    public float immobilizerCooldown;
 
     public Collider hitArea;
     public float speedOfRogueDash;
@@ -38,12 +40,19 @@ public class Rogue : PlayerController
 
     void RogueHability()
     {
+        hability["ImmobilizerTrapHability"].Hability();
+    }
+
+    void MovementHability()
+    {
         hability["RogueDashHability"].Hability();
     }
 
     void SetHabilities()
     {
-        myHability = RogueHability;
+        hability.Add(typeof(ImmobilizerTrapHability).ToString(), new ImmobilizerTrapHability(this, immobilizer, immobilizerCooldown));
         hability.Add(typeof(RogueDashHability).ToString(), new RogueDashHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), hitArea, ps_DashRogue, powerOfDash, dashingTime, speedOfRogueDash, rogueDashCooldown));
+        myHability = RogueHability;
+        movementHability = MovementHability;
     }
 }

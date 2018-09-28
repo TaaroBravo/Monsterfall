@@ -6,11 +6,8 @@ using System.Linq;
 
 public class PunchHability : IHability
 {
-
-    Punch _punch;
     ParticleSystem _hability;
     float _power;
-    float _activeTime;
 
     bool active;
 
@@ -22,14 +19,12 @@ public class PunchHability : IHability
     List<PlayerController> playersHitted = new List<PlayerController>();
 
 
-    public PunchHability(PlayerController p, CdHUDChecker _cooldownHUD, ParticleSystem hability, Punch punch, float power, float activeTime, float _timerCoolDown = 0)
+    public PunchHability(PlayerController p, CdHUDChecker _cooldownHUD, ParticleSystem hability, float power, float _timerCoolDown = 0)
     {
         player = p;
-        _punch = punch;
         _power = power;
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
-        _activeTime = activeTime;
         cooldownHUD = _cooldownHUD;
         _hability = hability;
     }

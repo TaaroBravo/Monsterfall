@@ -2251,7 +2251,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429029773352782}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -10.019105, y: 49.208736, z: -0.041747928}
+  m_LocalPosition: {x: -6.5030785, y: 49.208736, z: -0.3144797}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4738480085848560}
@@ -3275,6 +3275,7 @@ MonoBehaviour:
   delayJump: 0
   isFallingOff: 0
   fallOffSpeed: 60
+  landedPlatform: {fileID: 0}
   coyoteBool: 0
   coyoteTime: 0
   weaponExtends: 1
@@ -3325,6 +3326,9 @@ MonoBehaviour:
   PS_Fall: {fileID: 0}
   myAnim: {fileID: 0}
   dashRogue: 0
+  immobilizer: {fileID: 114561937272811586, guid: 0525e2a3b4857a640a90fa18d06bcb98,
+    type: 2}
+  immobilizerCooldown: 2
   hitArea: {fileID: 135616731609943490}
   speedOfRogueDash: 30
   powerOfDash: 20

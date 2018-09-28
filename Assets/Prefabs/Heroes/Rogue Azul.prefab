@@ -2837,7 +2837,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1752463867259124}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8.4671, y: 49.208736, z: -0.29856718}
+  m_LocalPosition: {x: 9.307266, y: 34.002518, z: -0.89204776}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4615447976121092}
@@ -3295,10 +3295,14 @@ MonoBehaviour:
   PS_Charged: {fileID: 198416005608322606}
   PS_Fall: {fileID: 0}
   myAnim: {fileID: 0}
+  dashRogue: 0
+  immobilizer: {fileID: 114561937272811586, guid: 0525e2a3b4857a640a90fa18d06bcb98,
+    type: 2}
+  immobilizerCooldown: 2
   hitArea: {fileID: 135361452986639460}
   speedOfRogueDash: 30
   powerOfDash: 20
-  dashingTime: 1.3
+  dashingTime: 0.3
   rogueDashCooldown: 2
   ps_DashRogue: {fileID: 198053326379182384}
 --- !u!114 &114625981326262882

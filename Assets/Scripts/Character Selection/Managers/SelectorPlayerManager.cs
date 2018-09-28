@@ -116,7 +116,6 @@ public class SelectorPlayerManager : MonoBehaviour
             charactersView[player.player_number].SetCharacterRandom();
             player.SelectRandomCharacter();
         }
-        Debug.Log(player.characterChosen);
     }
 
     void OnRejectedCharacter(PlayerAvatar player)

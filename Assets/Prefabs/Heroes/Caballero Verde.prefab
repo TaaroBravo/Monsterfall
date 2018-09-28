@@ -2858,7 +2858,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1744530636349812}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -10.248475, y: 49.208736, z: -0.9254861}
+  m_LocalPosition: {x: -12.377267, y: 49.208736, z: -1.7575046}
   m_LocalScale: {x: -2.043892, y: 2.04389, z: 2.043894}
   m_Children:
   - {fileID: 4740543327824704}
@@ -4628,6 +4628,7 @@ MonoBehaviour:
   delayJump: 0
   isFallingOff: 0
   fallOffSpeed: 60
+  landedPlatform: {fileID: 0}
   coyoteBool: 0
   coyoteTime: 0
   weaponExtends: 1
@@ -4678,11 +4679,12 @@ MonoBehaviour:
   PS_Fall: {fileID: 0}
   myAnim: {fileID: 0}
   dashRogue: 0
-  punch: {fileID: 114927834996578432}
+  touchingWall: 0
   powerOfPunch: 50
-  activeTime: 0.5
   punchCooldown: 3
   ps_Hability: {fileID: 198688574070610388}
+  forcedJumpForce: 15
+  forcedJumpCooldown: 3
 --- !u!114 &114619608113240988
 MonoBehaviour:
   m_ObjectHideFlags: 1

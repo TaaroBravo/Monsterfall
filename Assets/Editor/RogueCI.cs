@@ -9,7 +9,6 @@ using UnityEditor.AnimatedValues;
 public class RogueCI : Editor
 {
 
-
     AnimBool fadeVariablesMovement;
     AnimBool fadeVariablesAttack;
     AnimBool fadeVariablesHabilities;
@@ -98,13 +97,11 @@ public class RogueCI : Editor
         fadeVariablesHabilities.target = EditorGUILayout.Foldout(fadeVariablesHabilities.target, "Variables de Habilidades");
         if (EditorGUILayout.BeginFadeGroup(fadeVariablesHabilities.faded))
         {
-            EditorGUILayout.LabelField("Dash:", EditorStyles.boldLabel);
-            EditorGUILayout.Space();
-            player.dashSpeed = EditorGUILayout.FloatField("Velocidad del Dash", player.dashSpeed);
-            player.dashDistance = EditorGUILayout.FloatField("Cuánta distancia recorre", player.dashDistance);
-            player.dashCoolDown = EditorGUILayout.FloatField("Cooldown del Dash", player.dashCoolDown);
-            EditorGUILayout.Space();
             EditorGUILayout.LabelField("Hability:", EditorStyles.boldLabel);
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Immobilizer Jump");
+            player.immobilizer = (Immobilizer)EditorGUILayout.ObjectField(player.immobilizer, typeof(Immobilizer), true);
+            player.immobilizerCooldown = EditorGUILayout.FloatField("Cooldown de la habilidad", player.immobilizerCooldown);
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Rogue Dash");
             player.hitArea = (Collider)EditorGUILayout.ObjectField(player.hitArea, typeof(Collider), true);
