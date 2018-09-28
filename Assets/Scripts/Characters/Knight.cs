@@ -5,12 +5,13 @@ using System.Linq;
 
 public class Knight : PlayerController {
 
-    public Punch punch;
     public float powerOfPunch;
-    public float activeTime;
     public float punchCooldown;
 
     public ParticleSystem ps_Hability;
+
+    public float forcedJumpForce;
+    public float forcedJumpCooldown;
 
     public override void Start()
     {
@@ -28,9 +29,16 @@ public class Knight : PlayerController {
         hability["PunchHability"].Hability();
     }
 
+    void MovementHability()
+    {
+        hability["ForcedJump"].Hability();
+    }
+
     void SetHabilities()
     {
+        hability.Add(typeof(PunchHability).ToString(), new PunchHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), ps_Hability, powerOfPunch, punchCooldown));
+        hability.Add(typeof(ForcedJump).ToString(), new ForcedJump(this, forcedJumpForce, forcedJumpCooldown));
         myHability = KnightHability;
-        hability.Add(typeof(PunchHability).ToString(), new PunchHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), ps_Hability, punch, powerOfPunch, activeTime, punchCooldown));
+        movementHability = MovementHability;
     }
 }

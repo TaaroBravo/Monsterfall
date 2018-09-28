@@ -77,7 +77,7 @@ public class HorizontalMovement : IMove
             else
                 player.moveVector.x = movement * currentSpeedTimer * player.moveSpeed + player.impactVelocity.x;
         }
-        else
+        else if(!player.usingHability)
         {
             float currentX = player.moveVector.x;
             float newX = currentX - (Mathf.Sign(currentX) * Time.deltaTime * 2);

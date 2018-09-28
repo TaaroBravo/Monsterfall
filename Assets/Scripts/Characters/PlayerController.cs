@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     public bool isFallingOff;
     public float fallOffSpeed;
 
+    public Transform landedPlatform;
+
     public bool coyoteBool;
     public float coyoteTime;
     #endregion
@@ -115,8 +117,11 @@ public class PlayerController : MonoBehaviour
 
     public delegate void CallHability();
     public CallHability myHability = delegate { };
+    public CallHability movementHability = delegate { };
 
     public bool dashRogue;
+
+    public bool touchingWall;
 
     #region Dictionary
     private Dictionary<string, IMove> myMoves = new Dictionary<string, IMove>();
@@ -204,12 +209,15 @@ public class PlayerController : MonoBehaviour
     void PhysicsChecks()
     {
         if (verticalVelocity < 0 && !controller.isGrounded)
+        {
             isFalling = true;
+            landedPlatform = null;
+        }
         else
             isFalling = false;
     }
 
-    bool IsCloseToGround()
+    public bool IsCloseToGround()
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, GetComponent<Collider>().bounds.extents.y + 0.5f))
@@ -219,30 +227,40 @@ public class PlayerController : MonoBehaviour
                 delayJump = false;
                 return false;
             }
+            landedPlatform = hit.transform;
             return true;
         }
         return false;
     }
 
-    bool IsTouchingWalls()
+    public bool IsTouchingWalls()
     {
         RaycastHit hit;
         Vector3 bottom = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f);
         Vector3 top = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f);
-        if (Physics.Raycast(bottom, bottom - (Vector3.right + Vector3.up), out hit, GetComponent<Collider>().bounds.extents.x + 1, LayerMask.NameToLayer("Default")))
+        if (Physics.Raycast(bottom, (- Vector3.right + top).normalized, out hit, GetComponent<Collider>().bounds.extents.x + 2, LayerMask.NameToLayer("Default")))
             return true;
-        if (Physics.Raycast(bottom, bottom + (Vector3.right + Vector3.up), out hit, GetComponent<Collider>().bounds.extents.x + 1, LayerMask.NameToLayer("Default")))
+        if (Physics.Raycast(bottom, (Vector3.right + top).normalized, out hit, GetComponent<Collider>().bounds.extents.x + 2, LayerMask.NameToLayer("Default")))
             return true;
 
-        if (Physics.Raycast(top, top - (Vector3.right + Vector3.down), out hit, GetComponent<Collider>().bounds.extents.x + 1, LayerMask.NameToLayer("Default")))
+        if (Physics.Raycast(top, (-Vector3.right + bottom).normalized, out hit, GetComponent<Collider>().bounds.extents.x + 2, LayerMask.NameToLayer("Default")))
             return true;
-        if (Physics.Raycast(top, top + (Vector3.right + Vector3.down), out hit, GetComponent<Collider>().bounds.extents.x + 1, LayerMask.NameToLayer("Default")))
+        if (Physics.Raycast(top, (Vector3.right + bottom).normalized, out hit, GetComponent<Collider>().bounds.extents.x + 2, LayerMask.NameToLayer("Default")))
             return true;
         return false;
     }
 
     private void OnDrawGizmos()
-    {      
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
+        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
+
+        //Vector3 bottom = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f);
+        //Vector3 top = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f);
         //Gizmos.color = Color.red;
         //Gizmos.DrawLine(bottom, (bottom - (Vector3.right + Vector3.up)) * (GetComponent<Collider>().bounds.extents.x + 2));
         //Gizmos.DrawLine(bottom, (bottom + (Vector3.right + Vector3.up)) * (GetComponent<Collider>().bounds.extents.x + 2));
@@ -289,7 +307,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void StartStun(float x)
+    public void SetStun(float x)
     {
         StartCoroutine(StunCoroutine(x));
     }
@@ -324,6 +342,17 @@ public class PlayerController : MonoBehaviour
     public void WhoHitedMe(PlayerController pl)
     {
         whoHitedMe = pl;
+    }
+
+    public void ResetVelocity()
+    {
+        moveVector = Vector3.zero;
+    }
+
+    public void DisableStun()
+    {
+        stunnedByHit = false;
+        canMove = true;
     }
     #endregion
 
@@ -419,7 +448,8 @@ public class PlayerController : MonoBehaviour
     public void Dash()
     {
         if (canDash && !isFallingOff && !isDashing)
-            hability["Dash"].Hability();
+            movementHability();
+        //hability["Dash"].Hability();
     }
 
     public void FallOff()
@@ -436,10 +466,7 @@ public class PlayerController : MonoBehaviour
     public void Hability()
     {
         if (!isFallingOff && !stunnedByHit && !isDashing && !usingHability)
-        {
             myHability();
-            //hability["HookHability"].Hability();
-        }
     }
 
     void Charged()
@@ -486,12 +513,12 @@ public class PlayerController : MonoBehaviour
         if (stunnedByHit)
         {
             if (!isDead)
-                UpdateMyLife(25);
+                SetDamage(25);
         }
         else
         {
             if (!isDead)
-                UpdateMyLife(10);
+                SetDamage(10);
         }
         if (stunnedByHit && currentImpactStunTimer > 0.1f)
         {
@@ -544,7 +571,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-
         var dir = Vector3.Dot(transform.up, hit.normal);
         if (!controller.isGrounded && dir == -1)
         {
@@ -564,6 +590,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Vector3.Angle(transform.up, hit.normal) >= 90)
         {
+            touchingWall = true;
             if (stunnedByHit)
             {
                 SmoothHitRefleject();
@@ -574,6 +601,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            touchingWall = false;
+            landedPlatform = hit.transform;
             canJump = false;
             if (stunnedByHit && impactVelocity.y < 0)
             {
@@ -612,7 +641,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region UpdateLife
-    public void UpdateMyLife(float damage)
+    public void SetDamage(float damage)
     {
         myLife -= Mathf.RoundToInt(damage);
         myLifeUI.TakeDamage(Mathf.RoundToInt(damage));
@@ -656,7 +685,7 @@ public class PlayerController : MonoBehaviour
 
     private void SetHabilities()
     {
-        hability.Add(typeof(Dash).ToString(), new Dash(this, dashCoolDown));
+        //hability.Add(typeof(Dash).ToString(), new Dash(this, dashCoolDown));
         //hability.Add(typeof(HookHability).ToString(), new HookHability(this, transform.ChildrenWithComponent<Hook>().First(), 1));
     }
 

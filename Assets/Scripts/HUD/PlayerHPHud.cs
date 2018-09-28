@@ -51,7 +51,6 @@ public class PlayerHPHud : MonoBehaviour {
     }
     private void UpdateMyLifeHUD(float damage)
     {
-        var ratio = damage / maxHP;
         percentHP = currentHP / maxHP;
         percentHP *= 100;
         if (percentHP <= 0)
