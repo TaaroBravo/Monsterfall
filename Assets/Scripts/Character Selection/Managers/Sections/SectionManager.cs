@@ -7,47 +7,58 @@ public class SectionManager : MonoBehaviour {
 
     public static SectionManager Instance { get; private set; }
 
-    List<Section> sections;
+    public List<Section> sections;
+    Matrix<Section> _board;
+    List<Section> enableSections;
 
-    public List<Section> enableSections;
-    public Section[,] walkableSections;
+    public int sizeX;
+    public int sizeY;
 	
 	void Awake ()
     {
         Instance = this;
-        sections = transform.ChildrenWithComponent<Section>().Where(x => x != null).ToList();
         enableSections = sections.Where(x => x.sectionType != Section.SectionType.Empty).ToList();
-	}
+        CreateBoard();
 
-    public int MoveForSections(int index, int input)
+    }
+
+    void CreateBoard()
     {
-        if(index == 0)
+        _board = new Matrix<Section>(sizeX, sizeY);
+        int internalCount = 0;
+        for (int y = 0; y < _board.height; y++)
         {
-            if (input == 3)
-                return 2;
-            if (input == -3)
-                return enableSections.Count() - 1;
+            for (int x = 0; x < _board.width; x++)
+            {
+                _board[x, y] = sections[internalCount];
+                internalCount++;
+            }
         }
-        if (index + input == enableSections.Count())
-            return 0;
-        else if (index + input > enableSections.Count())
-            return enableSections.Count() - 1;
-        else if (index + input == -1 && input == -1)
-            return enableSections.Count() - 1;
-        else if (index + input <= -1)
-            return 0;
-        return index + input;
+    }
+
+    public Vector2 MoveForSections(Vector2 currentPos, int x, int y)
+    {
+        Vector2 newPos = currentPos;
+        if (newPos.x + x < sizeX && newPos.x + x >= 0)
+            newPos.x += x;
+        if (newPos.y + y < sizeY && newPos.y + y >= 0)
+            newPos.y += y;
+
+        if (_board[(int)newPos.x, (int)newPos.y].sectionType != Section.SectionType.Empty)
+            currentPos = newPos;
+
+        return currentPos;
     }
 	
-	public Vector3 ChangePosition(int index)
+	public Vector3 ChangePosition(Vector2 pos)
     {
-        return enableSections[index].transform.position;
+        return _board[(int)pos.x, (int)pos.y].transform.position;
     }
 
-    public int SelectCharacter(int index)
+    public int SelectCharacter(Vector2 pos)
     {
-        Section selectedSection = enableSections[index];
-        if (index == 0)
+        Section selectedSection = _board[(int)pos.x, (int)pos.y];
+        if (selectedSection.sectionType == Section.SectionType.Random)
             return 99;
         string[] myChar = selectedSection.gameObject.name.Split('-');
         int character = int.Parse(myChar[1]);

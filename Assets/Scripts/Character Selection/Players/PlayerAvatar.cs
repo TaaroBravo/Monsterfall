@@ -8,7 +8,7 @@ using IA2;
 public class PlayerAvatar : MonoBehaviour
 {
 
-    public int indexInSection;
+    public Vector2 currentPosition;
 
     public int player_number;
     public int characterChosen;
@@ -32,12 +32,12 @@ public class PlayerAvatar : MonoBehaviour
     private void Update()
     {
         if (inGame && !ready)
-            transform.position = SectionManager.Instance.ChangePosition(indexInSection);
+            transform.position = SectionManager.Instance.ChangePosition(currentPosition);
     }
 
-    public void Move(int input)
+    public void Move(Vector2 input)
     {
-        indexInSection = SectionManager.Instance.MoveForSections(indexInSection, input);
+        currentPosition = SectionManager.Instance.MoveForSections(currentPosition, (int)input.x, (int)input.y);
         SelectCharacter();
     }
 
@@ -46,6 +46,7 @@ public class PlayerAvatar : MonoBehaviour
         if (inGame && !ready)
         {
             ready = true;
+            Debug.Log(characterChosen);
             OnSelectedCharacter(this);
         }
     }
@@ -61,7 +62,7 @@ public class PlayerAvatar : MonoBehaviour
 
     void SelectCharacter()
     {
-        characterChosen = SectionManager.Instance.SelectCharacter(indexInSection);
+        characterChosen = SectionManager.Instance.SelectCharacter(currentPosition);
     }
 
     public void SelectRandomCharacter()

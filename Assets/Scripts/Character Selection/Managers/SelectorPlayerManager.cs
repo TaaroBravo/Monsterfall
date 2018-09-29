@@ -25,6 +25,8 @@ public class SelectorPlayerManager : MonoBehaviour
 
     public List<CharacterUI> charactersView = new List<CharacterUI>();
 
+    public Vector2 initialPos;
+
     private void Awake()
     {
         _instance = this;
@@ -66,7 +68,8 @@ public class SelectorPlayerManager : MonoBehaviour
         if (!newPlayer)
             return;
         newPlayer.myImage.enabled = true;
-        newPlayer.transform.position = SectionManager.Instance.ChangePosition(0);
+        newPlayer.currentPosition = initialPos;
+        newPlayer.transform.position = SectionManager.Instance.ChangePosition(initialPos);
         newPlayer.characterChosen = 99;
         _playersInGame.Add(newPlayer);
         newPlayer.player_number = _playersInGame.Count - 1;
@@ -95,9 +98,9 @@ public class SelectorPlayerManager : MonoBehaviour
         _playersInGame.Remove(myAvatar);
         myAvatar.inGame = false;
         myAvatar.myImage.enabled = false;
-        myAvatar.transform.position = SectionManager.Instance.ChangePosition(0);
+        myAvatar.transform.position = SectionManager.Instance.ChangePosition(initialPos);
         myAvatar.GetComponent<PlayerInputMenu>().id = 0;
-        myAvatar.indexInSection = 0;
+        myAvatar.currentPosition = initialPos;
         charactersView[myAvatar.player_number].SetCharacterRandom();
         charactersView[myAvatar.player_number].State = charactersView[myAvatar.player_number].StartState;
         input.DisconnecPlayer(myAvatar.GetComponent<PlayerInputMenu>());
@@ -106,7 +109,6 @@ public class SelectorPlayerManager : MonoBehaviour
     void OnChosenCharacter(PlayerAvatar player)
     {
         _playersReady.Add(player);
-        //player.player_number funca?
         charactersView[player.player_number].State = charactersView[player.player_number].ReadyState;
 
         if (player.characterChosen != 99)

@@ -46,21 +46,21 @@ public class PlayerInputMenu : MonoBehaviour
         {
             if (Input.GetAxis(horizontalMove) != 0 && _cooldown)
             {
-                player.Move((int)Input.GetAxis(horizontalMove));
+                player.Move(new Vector2(Input.GetAxis(horizontalMove) == 0 ? 0 : Input.GetAxis(horizontalMove) > 0 ? 1 : -1, 0));
                 _cooldown = false;
             }
             if (Input.GetAxis(verticalMove) != 0 && _cooldown)
             {
-                player.Move(-(int)Input.GetAxis(verticalMove) * 3);
+                player.Move(new Vector2(0, Input.GetAxis(verticalMove) == 0 ? 0 : Input.GetAxis(verticalMove) > 0 ? -1 : 1));
                 _cooldown = false;
             }
         }
         else
         {
             if (Input.GetButtonDown(horizontalMove))
-                player.Move((int)MainHorizontal());
+                player.Move(new Vector2((int)MainHorizontal(), 0));
             if (Input.GetButtonDown(verticalMove))
-                player.Move(-(int)MainVertical() * 3);
+                player.Move(new Vector2(0, -(int)MainVertical()));
         }
     }
 
@@ -69,7 +69,7 @@ public class PlayerInputMenu : MonoBehaviour
         while (true)
         {
             yield return new WaitUntil(() => !_cooldown);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
             _cooldown = true;
         }
     }
