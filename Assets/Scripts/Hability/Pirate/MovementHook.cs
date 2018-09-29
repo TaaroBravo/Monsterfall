@@ -15,7 +15,7 @@ public class MovementHook : IHability
         coolDown = _timerCoolDown;
         _hookPosition = hookPosition;
         _hook = hook;
-        _hook.OnReachedTarget += t => ResetValues();
+        _hook.OnReachedPoint += () => ResetValues();
     }
 
     public override void Update()
@@ -29,8 +29,8 @@ public class MovementHook : IHability
         {
             player.canMove = false;
             _hook.gameObject.SetActive(true);
-            _hook.Fire(player.transform);
             player.usingHability = true;
+            _hook.Fire(player.hookChosenPosition);
         }
     }
 

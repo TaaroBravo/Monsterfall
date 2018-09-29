@@ -122,6 +122,7 @@ public class PlayerController : MonoBehaviour
     public bool dashRogue;
 
     public bool touchingWall;
+    public Transform hookChosenPosition;
 
     #region Dictionary
     private Dictionary<string, IMove> myMoves = new Dictionary<string, IMove>();

@@ -4664,7 +4664,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1668997419467366}
-  m_LocalRotation: {x: 0.021576237, y: 0.7058331, z: 0.7074047, w: -0.030211613}
+  m_LocalRotation: {x: 0.021576239, y: 0.70583314, z: 0.70740473, w: -0.030211613}
   m_LocalPosition: {x: 0.12710153, y: 1.3400052, z: -0.0020432125}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children: []
@@ -4956,7 +4956,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1338637956477888}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -10.98291, y: 49.208736, z: -1.6277658}
+  m_LocalPosition: {x: 8.489467, y: 49.208736, z: -1.9377695}
   m_LocalScale: {x: 2.5, y: 2.5, z: -2.5}
   m_Children:
   - {fileID: 4939800242233048}
@@ -5255,6 +5255,7 @@ MonoBehaviour:
   delayJump: 0
   isFallingOff: 0
   fallOffSpeed: 60
+  landedPlatform: {fileID: 0}
   coyoteBool: 0
   coyoteTime: 0
   weaponExtends: 1
@@ -5304,7 +5305,12 @@ MonoBehaviour:
   PS_Charged: {fileID: 198535225975125022}
   PS_Fall: {fileID: 0}
   myAnim: {fileID: 0}
-  hookCoolDown: 1.5
+  dashRogue: 0
+  touchingWall: 0
+  hookPointsPositions: []
+  hookChosenPosition: {fileID: 0}
+  hookCooldown: 0
+  movementHookCooldown: 0
 --- !u!114 &114713614651615588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5390,6 +5396,7 @@ MonoBehaviour:
   SkillHUDs:
   - {fileID: 21300000, guid: 02ca3fb654d4abf478abb694d357c7dd, type: 3}
   - {fileID: 21300000, guid: 6ba0020016d8ae04ba8746d23aa8e30a, type: 3}
+  - {fileID: 21300000, guid: a57fc213848e3924e9a303cadf9e439d, type: 3}
   - {fileID: 21300000, guid: a57fc213848e3924e9a303cadf9e439d, type: 3}
   CDText: {fileID: 1742239653551128}
   PS_ReadySkill: {fileID: 198435148018971508}

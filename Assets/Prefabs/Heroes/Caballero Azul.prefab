@@ -3859,7 +3859,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1958205547862068}
   m_LocalRotation: {x: 0.00000005960465, y: 0.7071068, z: 0.000000029802326, w: 0.7071068}
-  m_LocalPosition: {x: -9.923701, y: 50.083767, z: -1.7596064}
+  m_LocalPosition: {x: 8.107609, y: 49.208736, z: -0.90858454}
   m_LocalScale: {x: -2.0465477, y: 2.046631, z: 2.043986}
   m_Children:
   - {fileID: 4460595171744984}
@@ -4603,6 +4603,7 @@ MonoBehaviour:
   SkillHUDs:
   - {fileID: 21300000, guid: 02ca3fb654d4abf478abb694d357c7dd, type: 3}
   - {fileID: 21300000, guid: 6ba0020016d8ae04ba8746d23aa8e30a, type: 3}
+  - {fileID: 21300000, guid: a57fc213848e3924e9a303cadf9e439d, type: 3}
   - {fileID: 21300000, guid: a57fc213848e3924e9a303cadf9e439d, type: 3}
   CDText: {fileID: 1505971034931794}
   PS_ReadySkill: {fileID: 198973911950094644}

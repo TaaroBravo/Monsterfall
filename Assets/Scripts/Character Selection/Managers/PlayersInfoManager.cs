@@ -19,14 +19,17 @@ public class PlayersInfoManager : MonoBehaviour {
     public void SetUpInfo(List<PlayerAvatar> players)
     {
         playersCount = players.Count;
-        for (int i = 0; i < players.Count; i++)
+        if(playersInfo.Count != playersCount)
         {
-            PlayerInfo info = new PlayerInfo();
-            info.player_number = players[i].player_number;
-            info.controller = (int)players[i].GetComponent<PlayerInputMenu>().controller;
-            info.ID = players[i].GetComponent<PlayerInputMenu>().id;
-            info.characterChosen = players[i].characterChosen;
-            playersInfo.Add(info);
+            for (int i = 0; i < playersCount; i++)
+            {
+                PlayerInfo info = new PlayerInfo();
+                info.player_number = players[i].player_number;
+                info.controller = (int)players[i].GetComponent<PlayerInputMenu>().controller;
+                info.ID = players[i].GetComponent<PlayerInputMenu>().id;
+                info.characterChosen = players[i].characterChosen;
+                playersInfo.Add(info);
+            }
         }
         StartCoroutine(StartGame());
     }

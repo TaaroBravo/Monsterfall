@@ -2637,7 +2637,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1403779339620966}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -7.2112007, y: 49.208736, z: -1.6373167}
+  m_LocalPosition: {x: 7.95241, y: 49.208736, z: -1.4493399}
   m_LocalScale: {x: -2.043889, y: 2.043889, z: -2.043892}
   m_Children:
   - {fileID: 4980931660117042}
@@ -4636,6 +4636,7 @@ MonoBehaviour:
   SkillHUDs:
   - {fileID: 21300000, guid: 02ca3fb654d4abf478abb694d357c7dd, type: 3}
   - {fileID: 21300000, guid: 6ba0020016d8ae04ba8746d23aa8e30a, type: 3}
+  - {fileID: 21300000, guid: a57fc213848e3924e9a303cadf9e439d, type: 3}
   - {fileID: 21300000, guid: a57fc213848e3924e9a303cadf9e439d, type: 3}
   CDText: {fileID: 1769775600832294}
   PS_ReadySkill: {fileID: 198823730778502052}
@@ -14976,7 +14977,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -885491506
+  randomSeed: -424698179
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -82824,7 +82825,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1983059178
+  randomSeed: -1063153395
   InitialModule:
     serializedVersion: 3
     enabled: 1

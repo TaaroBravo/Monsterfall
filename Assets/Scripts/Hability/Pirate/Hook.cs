@@ -13,6 +13,8 @@ public class Hook : MonoBehaviour
     public event Action OnFailedFire = delegate { };
     public event Action<Vector3, Vector3> OnTeleport = delegate { };
 
+    public event Action OnReachedPoint = delegate { };
+
     public float speed;
     public float targetTravelSpeed;
 
@@ -75,14 +77,15 @@ public class Hook : MonoBehaviour
     {
         if (!_myPlayer)
             Destroy(gameObject);
-
         if (_reachingPoint)
         {
-            if(_hookReached)
+            if (_hookReached)
             {
                 _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, _hookPointTarget.position, speed * Time.deltaTime);
                 if ((_hookPointTarget.position - _myPlayer.transform.position).magnitude <= 1)
+                {
                     PlayerReached();
+                }
             }
             else
             {
@@ -173,7 +176,7 @@ public class Hook : MonoBehaviour
         transform.parent = _myPlayer.transform;
         _myPlayer.controller.enabled = true;
         _myPlayer.moveVector = _direction * 5;
-        OnReachedTarget(_myPlayer);
+        OnReachedPoint();
     }
 
     void PlayerTeleported(Vector3 spawn, Vector3 end)
@@ -201,11 +204,12 @@ public class Hook : MonoBehaviour
         OnFireHook();
     }
 
-    public void Fire(Transform target)
+    public void Fire(Transform hookPoint)
     {
         _reachingPoint = true;
-        _hookPointTarget = target;
+        _hookPointTarget = hookPoint;
         transform.localPosition = spawnPoint.transform.localPosition;
+        transform.parent = null;
         _playerPos = spawnPoint.transform.position;
         _direction = (_hookPointTarget.position - _playerPos).normalized;
         transform.up = -_direction;

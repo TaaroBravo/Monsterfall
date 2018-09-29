@@ -33,7 +33,7 @@ public class ForcedJump : IHability
 
     IEnumerator WaitToLand()
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(0.3f);
             yield return new WaitUntil(() => player.controller.isGrounded);
@@ -62,7 +62,7 @@ public class ForcedJump : IHability
     void JumpPlayer()
     {
         player.moveVector.x = _power * Mathf.Sign(player.transform.localScale.x);
-        player.verticalVelocity = player.jumpForce;
+        player.verticalVelocity = player.jumpForce / 2;
         player.moveVector.y = player.verticalVelocity;
         player.controller.Move(player.moveVector * Time.deltaTime);
         player.myAnim.SetBool("Jumping", true);
