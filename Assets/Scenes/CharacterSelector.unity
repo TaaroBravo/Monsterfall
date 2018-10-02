@@ -1233,7 +1233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPosition: {x: 0, y: 0}
-  player_number: 0
+  player_number: 3
   characterChosen: 0
   inGame: 0
   ready: 0
@@ -3885,7 +3885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPosition: {x: 0, y: 0}
-  player_number: 0
+  player_number: 2
   characterChosen: 0
   inGame: 0
   ready: 0
@@ -5702,7 +5702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPosition: {x: 0, y: 0}
-  player_number: 0
+  player_number: 1
   characterChosen: 0
   inGame: 0
   ready: 0

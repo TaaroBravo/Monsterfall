@@ -46,7 +46,6 @@ public class PlayerAvatar : MonoBehaviour
         if (inGame && !ready)
         {
             ready = true;
-            Debug.Log(characterChosen);
             OnSelectedCharacter(this);
         }
     }

@@ -89,7 +89,7 @@ public class Inputs : MonoBehaviour {
         PlayerInputMenu player = new PlayerInputMenu();
         player.controller = (PlayerInputMenu.Controller)controller;
         player.id = ID;
-        SelectorPlayerManager.Instance.OnConnectedPlayer(player);
+        SelectorPlayerManager.Instance.OnConnectedPlayer(player, ID);
     }
 
     void DisconnectPlayer(int controller, int ID)

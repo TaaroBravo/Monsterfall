@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
             myPlayers = CallSpawnHeroes();
             foreach (var hero in myPlayers)
                 playersObj.Add(hero.gameObject);
-            SetUpInfoPlayers();
             SetUpHUD(infoManager.playersInfo);
             OnSpawnCharacters(myPlayers);
         }
@@ -58,7 +57,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(FindObjectOfType<PlayersInfoManager>())
+            if (FindObjectOfType<PlayersInfoManager>())
                 Destroy(FindObjectOfType<PlayersInfoManager>().gameObject);
             SceneManager.LoadScene(0);
         }
@@ -74,20 +73,17 @@ public class GameManager : MonoBehaviour
             hero.myLifeUI.maxHP = hero.myLife;
             hero.myLifeUI.character_chosen = infoManager.playersInfo[i].characterChosen;
             SetCooldownHUD(hero.transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), infoManager.playersInfo[i].characterChosen);
+            SetUpInfoPlayers(hero, i);
             heroes.Add(hero);
         }
         return heroes;
     }
 
-    void SetUpInfoPlayers()
+    void SetUpInfoPlayers(PlayerController hero, int i)
     {
-        for (int i = 0; i < _playersCount; i++)
-        {
-            GameObject character = playersObj[infoManager.playersInfo[i].player_number];
-            PlayerInput input = character.GetComponent<PlayerInput>();
-            input.controller = (PlayerInput.Controller)infoManager.playersInfo[infoManager.playersInfo[i].player_number].controller;
-            input.id = infoManager.playersInfo[infoManager.playersInfo[i].player_number].ID;
-        }
+        PlayerInput input = hero.GetComponent<PlayerInput>();
+        input.controller = (PlayerInput.Controller)infoManager.playersInfo[i].controller;
+        input.id = infoManager.playersInfo[i].ID;
     }
 
     void SetUpHUD(List<PlayerInfo> players)

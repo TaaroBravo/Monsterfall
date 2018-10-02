@@ -53,18 +53,18 @@ public class SelectorPlayerManager : MonoBehaviour
         for (int i = 0; i < _playersInGame.Count; i++)
         {
             if (_playersInGame[i].characterChosen != 99)
-                charactersView[i].SetCharacterIndex(_playersInGame[i].characterChosen);
+                charactersView[_playersInGame[i].player_number].SetCharacterIndex(_playersInGame[i].characterChosen);
             else
-                charactersView[i].SetCharacterRandom();
+                charactersView[_playersInGame[i].player_number].SetCharacterRandom();
         }
     }
 
-    public void OnConnectedPlayer(PlayerInputMenu player)
+    public void OnConnectedPlayer(PlayerInputMenu player, int ID)
     {
         if (_playersInGame.Count >= 4)
             return;
 
-        PlayerAvatar newPlayer = input.OnConnectedPlayer(player);
+        PlayerAvatar newPlayer = input.OnConnectedPlayer(player, ID);
         if (!newPlayer)
             return;
         newPlayer.myImage.enabled = true;
@@ -72,8 +72,8 @@ public class SelectorPlayerManager : MonoBehaviour
         newPlayer.transform.position = SectionManager.Instance.ChangePosition(initialPos);
         newPlayer.characterChosen = 99;
         _playersInGame.Add(newPlayer);
-        newPlayer.player_number = _playersInGame.Count - 1;
-        charactersView[_playersInGame.Count - 1].State = charactersView[_playersInGame.Count - 1].SelectingState;
+        charactersView[newPlayer.player_number].State = charactersView[newPlayer.player_number].SelectingState;
+        charactersView[newPlayer.player_number].SetCharacterRandom();
         StartCoroutine(FixTimeConnecting(newPlayer));
     }
 
@@ -123,7 +123,6 @@ public class SelectorPlayerManager : MonoBehaviour
     void OnRejectedCharacter(PlayerAvatar player)
     {
         charactersView[player.player_number].State = charactersView[player.player_number].SelectingState;
-        player.characterChosen = 99;
         _playersReady.Remove(player);
     }
 
