@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 7ea8dd602eeaa3b4faecbfd5d9eae757
+timeCreated: 1538504296
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _BanderaCurvaMask: {fileID: 2800000, guid: 6ad14f25729abaa4db1952daa22b3835, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
