@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Inputs : MonoBehaviour {
 
+    string startButton_J1;
+    string startButton_J2;
+    string startButton_J3;
+    string startButton_J4;
+
     string actionButton_J1;
     string actionButton_J2;
     string actionButton_J3;
@@ -29,13 +34,13 @@ public class Inputs : MonoBehaviour {
 	
 	void Update ()
     {
-        if (Input.GetButtonDown(actionButton_J1))
+        if (Input.GetButtonDown(startButton_J1))
             SetPlayerInput(0, 1);
-        if (Input.GetButtonDown(actionButton_J2))
+        if (Input.GetButtonDown(startButton_J2))
             SetPlayerInput(0, 2);
-        if (Input.GetButtonDown(actionButton_J3))
+        if (Input.GetButtonDown(startButton_J3))
             SetPlayerInput(0, 3);
-        if (Input.GetButtonDown(actionButton_J4))
+        if (Input.GetButtonDown(startButton_J4))
             SetPlayerInput(0, 4);
 
         if (Input.GetButtonDown(actionButton_K1))
@@ -65,6 +70,11 @@ public class Inputs : MonoBehaviour {
 
     void SetUpActionsButtons()
     {
+        startButton_J1 = "JoystickStart_P1";
+        startButton_J2 = "JoystickStart_P2";
+        startButton_J3 = "JoystickStart_P3";
+        startButton_J4 = "JoystickStart_P4";
+
         actionButton_J1 =  "J_JumpButton_P1";
         actionButton_J2 =  "J_JumpButton_P2";
         actionButton_J3 =  "J_JumpButton_P3";

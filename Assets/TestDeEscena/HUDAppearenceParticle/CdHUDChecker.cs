@@ -49,8 +49,10 @@ public class CdHUDChecker : MonoBehaviour {
 
     void SetTransform()
     {
-        _localScale.x = -Mathf.Sign(transform.parent.localScale.z) * Mathf.Abs(_localScale.x);
-        transform.localScale = _localScale;
+        Vector3 playerPos = transform.parent.position;
+        Vector3 dir = (Camera.main.transform.position - playerPos).normalized;
+        transform.position = playerPos + (dir * 6);
+        transform.forward = -dir;
     }
 
     public void AssignSkill(int ID)

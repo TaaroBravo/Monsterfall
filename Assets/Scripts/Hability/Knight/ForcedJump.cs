@@ -36,6 +36,7 @@ public class ForcedJump : IHability
         while (true)
         {
             yield return new WaitForSeconds(0.3f);
+            //ForceFall();
             yield return new WaitUntil(() => player.controller.isGrounded);
             ElevatePlayers();
             break;
@@ -46,7 +47,6 @@ public class ForcedJump : IHability
     {
         var targets = GameManager.Instance.myPlayers.Where(x => x != player)
                                         .Where(x => x.controller.isGrounded)
-                                        //.Where(x => x.landedPlatform == player.landedPlatform)
                                         .Where(x => (x.transform.position - player.transform.position).magnitude < 5f);
 
         foreach (var target in targets)
@@ -61,11 +61,19 @@ public class ForcedJump : IHability
 
     void JumpPlayer()
     {
-        player.moveVector.x = _power * Mathf.Sign(player.transform.localScale.x);
+        player.moveVector.x = _power * Mathf.Sign(player.transform.localScale.z) * 2;
         player.verticalVelocity = player.jumpForce / 2;
         player.moveVector.y = player.verticalVelocity;
         player.controller.Move(player.moveVector * Time.deltaTime);
         player.myAnim.SetBool("Jumping", true);
+    }
+
+    void ForceFall()
+    {
+        player.verticalVelocity = -60;
+        player.moveVector.y = player.verticalVelocity;
+        player.controller.Move(player.moveVector * Time.deltaTime);
+        player.myAnim.Play("Forced Fall");
     }
 
     void ResetValues()

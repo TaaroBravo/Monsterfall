@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class Berserk : PlayerController
 {
+    public event Action OnStompHability = delegate { };
+
     public float power;
     public float stompCooldown;
 
@@ -39,5 +42,12 @@ public class Berserk : PlayerController
         hability.Add(typeof(ForwardCharge).ToString(), new ForwardCharge(this, chargeSpeed, chargeCooldown));
         myHability = BerserkHability;
         movementHability = MovementHability;
+    }
+
+    public void BerserkStompHability()
+    {
+        //si no estoy stuneado.
+        if (!stunnedByHit)
+            OnStompHability();
     }
 }

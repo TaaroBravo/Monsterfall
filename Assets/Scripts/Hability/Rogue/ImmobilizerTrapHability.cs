@@ -29,40 +29,26 @@ public class ImmobilizerTrapHability : IHability
     {
         if (timerCoolDown < 0)
         {
+            //Hacer un spawnpoint
             startPos = player.transform.position;
-            JumpPlayer();
-            player.StartCoroutine(ShootImmobilizer(0.3f));
+            float x = player.GetComponent<PlayerInput>().MainHorizontal();
+            float y = player.GetComponent<PlayerInput>().MainVertical();
+            if (x + y == 0)
+                x = Mathf.Sign(player.transform.localScale.z);
+
+            Shoot(new Vector3(x, y, 0));
             player.usingHability = true;
             timerCoolDown = coolDown;
         }
     }
 
-    IEnumerator ShootImmobilizer(float x)
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(x);
-            Shoot(player.transform.position);
-            break;
-        }
-    }
-
-    void JumpPlayer()
-    {
-        player.verticalVelocity = player.jumpForce;
-        player.moveVector.y = player.verticalVelocity;
-        player.myAnim.SetBool("Jumping", true);
-    }
-
-    void Shoot(Vector3 finalPos)
+    void Shoot(Vector3 dirPos)
     {
         //Hacer animacion de disparo.
-        dir = (startPos - player.transform.position).normalized;
-
+        Vector3 _direction = ((startPos + dirPos) - startPos).normalized;
         Immobilizer immobilizer = ObjectPoolManager.Instance.GetObject<Immobilizer>();
-        immobilizer.transform.position = player.transform.position;
-        immobilizer.transform.up = dir;
-        immobilizer.SetShooter(player);
+        immobilizer.transform.position = startPos;
+        immobilizer.SetShooter(player, _direction);
         immobilizer.OnFailedHit += x => ResetValues(x);
         immobilizer.OnHitEnemy += (x, y) =>
         {
@@ -73,8 +59,9 @@ public class ImmobilizerTrapHability : IHability
 
     void OnHitEnemy(PlayerController enemy)
     {
-        enemy.SetStun(0.2f);
-        enemy.SetDamage(10);
+        enemy.SetStun(1f);
+        enemy.ResetVelocity();
+        enemy.SetDamage(5);
     }
 
     void ResetValues(Immobilizer immobilizer)

@@ -124,6 +124,13 @@ public class PlayerController : MonoBehaviour
     public bool touchingWall;
     public Transform hookChosenPosition;
 
+    #region Ray Borders
+    private Transform rBottomPos;
+    private Transform rTopPos;
+    private Transform[] rDownPos;
+    private Transform[] rUpPos;
+    #endregion
+
     #region Dictionary
     private Dictionary<string, IMove> myMoves = new Dictionary<string, IMove>();
     private Dictionary<string, IAttack> attacks = new Dictionary<string, IAttack>();
@@ -137,6 +144,14 @@ public class PlayerController : MonoBehaviour
         contrains = GetComponent<PlayerContrains>();
     }
 
+    void SetRayPos()
+    {
+        rBottomPos = contrains.rBottomPos;
+        rTopPos = contrains.rTopPos;
+        rDownPos = contrains.rDownPos;
+        rUpPos = contrains.rUpPos;
+    }
+
     public virtual void Start()
     {
         contrains.OnTeleportPlayer += (x, y) => OnTeleported();
@@ -145,6 +160,7 @@ public class PlayerController : MonoBehaviour
         SetAttacks();
         SetHabilities();
         StartCoroutine(CanAttack(0.25f));
+        SetRayPos();
     }
 
     public virtual void Update()
@@ -237,40 +253,24 @@ public class PlayerController : MonoBehaviour
     public bool IsTouchingWalls()
     {
         RaycastHit hit;
-        Vector3 bottom = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f);
-        Vector3 top = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f);
-        if (Physics.Raycast(bottom, (- Vector3.right + top).normalized, out hit, GetComponent<Collider>().bounds.extents.x + 2, LayerMask.NameToLayer("Default")))
-            return true;
-        if (Physics.Raycast(bottom, (Vector3.right + top).normalized, out hit, GetComponent<Collider>().bounds.extents.x + 2, LayerMask.NameToLayer("Default")))
-            return true;
-
-        if (Physics.Raycast(top, (-Vector3.right + bottom).normalized, out hit, GetComponent<Collider>().bounds.extents.x + 2, LayerMask.NameToLayer("Default")))
-            return true;
-        if (Physics.Raycast(top, (Vector3.right + bottom).normalized, out hit, GetComponent<Collider>().bounds.extents.x + 2, LayerMask.NameToLayer("Default")))
-            return true;
+        var layerMaskIgnore1 = 1 << 8;
+        var layerMaskIgnore2 = 1 << 9;
+        var layerMaskIgnore3 = 1 << 13;
+        var layerMaskIgnore4 = 1 << 18;
+        var layerMask = layerMaskIgnore1 | layerMaskIgnore2 | layerMaskIgnore3 | layerMaskIgnore4;
+        layerMask = ~layerMask;
+        if(rBottomPos) // SACAR
+        {
+            if (Physics.Raycast(rBottomPos.position, (rUpPos[0].position - rBottomPos.position).normalized, out hit, 2f, layerMask))
+                return true;
+            if (Physics.Raycast(rBottomPos.position, (rUpPos[1].position - rBottomPos.position).normalized, out hit, 2f, layerMask))
+                return true;
+            if (Physics.Raycast(rTopPos.position, (rDownPos[0].position - rTopPos.position).normalized, out hit, 2f, layerMask))
+                return true;
+            if (Physics.Raycast(rTopPos.position, (rDownPos[1].position - rTopPos.position).normalized, out hit, 2f, layerMask))
+                return true;
+        }
         return false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) - Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
-        Gizmos.DrawLine(transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f), transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f) + Vector3.right * (GetComponent<Collider>().bounds.extents.x + 2));
-
-        //Vector3 bottom = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 0.5f);
-        //Vector3 top = transform.position + (Vector3.up * GetComponent<Collider>().bounds.extents.y * 1.5f);
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawLine(bottom, (bottom - (Vector3.right + Vector3.up)) * (GetComponent<Collider>().bounds.extents.x + 2));
-        //Gizmos.DrawLine(bottom, (bottom + (Vector3.right + Vector3.up)) * (GetComponent<Collider>().bounds.extents.x + 2));
-        //Gizmos.color = Color.blue;
-        //Gizmos.DrawLine(top, (top - (Vector3.right + Vector3.down)) * (GetComponent<Collider>().bounds.extents.x + 2));
-        //Gizmos.DrawLine(top, (top + (Vector3.right + Vector3.down)) * (GetComponent<Collider>().bounds.extents.x + 2));
-
-        //Gizmos.color = Color.green;
-        //Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 2);
     }
 
     IEnumerator CoyoteTime(float timer)

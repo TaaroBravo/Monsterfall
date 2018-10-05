@@ -66,6 +66,8 @@ public class ForwardCharge : IHability
             _dir = Mathf.Sign(player.transform.localScale.z);
             player.canMove = false;
             player.usingHability = true;
+            player.myAnim.Play("Dash");
+            player.myAnim.SetBool("Dashing", true);
             player.StartCoroutine(TimeToDisable());
         }
     }
@@ -73,22 +75,25 @@ public class ForwardCharge : IHability
     void Charge()
     {
         _target.transform.SetParent(player.transform);
-        _target.transform.position = player.transform.position + (Vector3.right * Mathf.Sign(player.transform.localScale.x));
+        _target.transform.position = player.transform.position + (Vector3.right * Mathf.Sign(player.transform.localScale.z));
 
         var enemies = Physics.OverlapSphere(player.transform.position, 1f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player && x != _target).Where(x => !x.isDead);
         foreach (var _enemy in enemies)
-            _enemy.ReceiveDamage((Vector3.right * Mathf.Sign(player.transform.localScale.x) * 30));
+            _enemy.ReceiveDamage((Vector3.right * Mathf.Sign(player.transform.localScale.z) * 30));
     }
 
     void DamageTarget()
     {
-        _target.transform.SetParent(null);
+        _target.transform.parent = null;
         _target.SetStun(0.2f);
         _target.SetDamage(distance / 2);
     }
 
     void ResetValues()
     {
+        if (_target)
+            _target.transform.parent = null;
+        player.myAnim.SetBool("Dashing", false);
         _target = null;
         timerActive = 0;
         distance = 0;

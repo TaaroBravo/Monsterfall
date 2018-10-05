@@ -97,5 +97,13 @@ namespace FrameworkGoat.ObjectPool
         {
             ((ObjectPool<T>)_pools[typeof(T)]).ReturnObject(o);
         }
+
+        /// <summary>
+        /// Clean all objects of the pool
+        /// </summary>
+        public void Clean()
+        {
+            _pools.Clear();
+        }
     }
 }

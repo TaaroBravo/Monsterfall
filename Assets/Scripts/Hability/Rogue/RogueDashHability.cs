@@ -20,6 +20,8 @@ public class RogueDashHability : IHability
     Vector3 finalPos;
     Vector3 _dir;
 
+    Vector3 startPos;
+
     ParticleSystem _hability;
 
     List<PlayerController> playersHitted = new List<PlayerController>();
@@ -35,6 +37,7 @@ public class RogueDashHability : IHability
         cooldownHUD = _cooldownHUD;
         _hitArea = hitArea;
         _hability = hability;
+        startPos = player.transform.position;
     }
 
     IEnumerator IsDashingTimer(float x)
@@ -73,6 +76,8 @@ public class RogueDashHability : IHability
                 }
             }
         }
+        if (GameManager.Instance.OutOfLimits(player.transform.position))
+            player.transform.position = startPos;
     }
 
     public override void Hability()

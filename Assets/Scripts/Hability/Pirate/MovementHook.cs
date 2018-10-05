@@ -37,8 +37,8 @@ public class MovementHook : IHability
     void ResetValues()
     {
         player.canMove = true;
-        _hook.gameObject.SetActive(false);
         player.usingHability = false;
         timerCoolDown = coolDown;
+        _hook.gameObject.SetActive(false);
     }
 }

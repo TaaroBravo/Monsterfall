@@ -15,27 +15,39 @@ public class Immobilizer : MonoBehaviour
 
     public float speed;
 
+    Vector3 direction;
+
+    bool canEnter;
+
     void Update()
     {
         if (gameObject.activeSelf)
         {
+            transform.up = direction;
             transform.position += transform.up * speed * Time.deltaTime;
             _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Where(x => x.GetComponent<PlayerController>() != null).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _shooter).Where(x => !x.isDead).FirstOrDefault();
-            if (_target)
+            if (_target && canEnter)
+            {
+                canEnter = false;
                 OnHitEnemy(_target, this);
+            }
             if (GameManager.Instance.OutOfLimits(transform.position))
                 OnFailedHit(this);
         }
     }
 
-    public void SetShooter(PlayerController rogue)
+    public void SetShooter(PlayerController rogue, Vector3 dir)
     {
         _shooter = rogue;
+        direction = dir;
+        canEnter = true;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject != _shooter.gameObject)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Default"))
+        {
             OnFailedHit(this);
+        }
     }
 }

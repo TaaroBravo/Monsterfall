@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Jump : IMove
 {
-
     public Jump(PlayerController pl)
     {
         player = pl;

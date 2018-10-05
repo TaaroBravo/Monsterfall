@@ -36,7 +36,10 @@ public class HorizontalMovement : IMove
         }
         else
         {
-            player.verticalVelocity -= player.gravity * Time.deltaTime;
+            if (player.verticalVelocity >= 0)
+                player.verticalVelocity -= player.gravity * Time.deltaTime;
+            else
+                player.verticalVelocity -= player.gravity * (Time.deltaTime * 2);
             if (player.verticalVelocity < -40)
                 player.verticalVelocity = -40;
             if (!player.isDead)
@@ -77,7 +80,7 @@ public class HorizontalMovement : IMove
             else
                 player.moveVector.x = movement * currentSpeedTimer * player.moveSpeed + player.impactVelocity.x;
         }
-        else if(!player.usingHability)
+        else if (!player.usingHability)
         {
             float currentX = player.moveVector.x;
             float newX = currentX - (Mathf.Sign(currentX) * Time.deltaTime * 2);

@@ -10,6 +10,11 @@ public class PlayerContrains : MonoBehaviour {
     Transform player;
     float myContrains_Z;
 
+    public Transform rBottomPos;
+    public Transform rTopPos;
+    public Transform[] rDownPos;
+    public Transform[] rUpPos;
+
     void Start ()
     {
         player = gameObject.transform;

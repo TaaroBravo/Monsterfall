@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class Pirate : PlayerController
 {
@@ -19,17 +20,26 @@ public class Pirate : PlayerController
     public override void Update()
     {
         base.Update();
-        var points = Physics.OverlapSphere(transform.position, 10f).Where(x => x.GetComponent<HookPoints>()).Select(x => x.GetComponent<HookPoints>());
-        hookChosenPosition = ClosesToDirection(points /*,new Vector3(GetComponent<PlayerInput>().MainHorizontal(), GetComponent<PlayerInput>().MainVertical(), 0)*/);
+
+        var allPointsVisible = GameObject.FindObjectsOfType<Pirate>().Aggregate(new FList<Transform>(), (x, y) =>
+        {
+            var points = Physics.OverlapSphere(y.transform.position, 10f).Where(h => h.GetComponent<HookPoints>()).Select(h => h.GetComponent<Transform>());
+            if (points.Any())
+                return x + points;
+            return x;
+        });
+
+        hookChosenPosition = ClosesToDirection(allPointsVisible.Where(x => x.GetComponent<HookPoints>().isAvailable).Where(x => Vector3.Distance(x.position, transform.position) <= 10));
+
         if (hookChosenPosition)
-            hookChosenPosition.gameObject.SetActive(true);
+            hookChosenPosition.GetComponent<HookPoints>().isAvailable = true;
 
         foreach (var hookPoint in hookPointsPositions)
         {
-            if((hookPoint.transform.position - transform.position).magnitude <= 10)
-                hookPoint.gameObject.SetActive(true);
+            if (allPointsVisible.Contains(hookPoint))
+                hookPoint.GetComponent<HookPoints>().isAvailable = true;
             else
-                hookPoint.gameObject.SetActive(false);
+                hookPoint.GetComponent<HookPoints>().isAvailable = false;
         }
     }
 
@@ -40,25 +50,36 @@ public class Pirate : PlayerController
 
     void MovementHability()
     {
-        if(hookChosenPosition)
+        if (hookChosenPosition)
         {
             hability["MovementHook"].Hability();
         }
     }
 
-    Transform ClosesToDirection(IEnumerable<HookPoints> hookPoints/*, Vector3 input*/)
+    Transform ClosesToDirection(IEnumerable<Transform> hookPoints)
     {
-        //Vector3 dirPoint = ((transform.position + input) - transform.position).normalized * 10;
-        float distance = 10000;
         if (hookPoints.Count() == 0)
             return null;
+        float x = GetComponent<PlayerInput>().MainHorizontal();
+        float y = GetComponent<PlayerInput>().MainVertical();
+        if (x + y == 0)
+            x = Mathf.Sign(transform.localScale.z);
+
+        Vector3 direction = ((transform.position + new Vector3(x, y, 0)) - transform.position).normalized;
+        Vector3 startingPoint = transform.position;
+
+        List<Tuple<Transform, float>> listTuple = new List<Tuple<Transform, float>>();
+        float minDistance = 10000;
+
         foreach (var point in hookPoints)
         {
-            var tempDist = (point.transform.position - transform.position).magnitude;
-            if (tempDist < distance)
-                distance = tempDist;
+            Ray ray = new Ray(startingPoint, direction);
+            float distance = Vector3.Cross(ray.direction, point.position - ray.origin).magnitude;
+            if (distance < minDistance)
+                minDistance = distance;
+            listTuple.Add(Tuple.Create(point, distance));
         }
-        return hookPoints.Where(x => (x.transform.position - transform.position).magnitude == distance).Select(x => x.GetComponent<Transform>()).First();
+        return listTuple.Where(h => h.Item2 == minDistance).Select(h => h.Item1).First();
     }
 
     void SetHabilities()

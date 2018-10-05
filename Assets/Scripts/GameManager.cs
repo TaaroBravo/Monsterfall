@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using FrameworkGoat.ObjectPool;
 
 public class GameManager : MonoBehaviour
 {
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
         {
             if (FindObjectOfType<PlayersInfoManager>())
                 Destroy(FindObjectOfType<PlayersInfoManager>().gameObject);
+            ObjectPoolManager.Instance.Clean();
             SceneManager.LoadScene(0);
         }
     }
@@ -133,6 +135,19 @@ public class GameManager : MonoBehaviour
         finishedGame = true;
         foreach (var player in myPlayers)
             player.canMove = false;
+    }
+
+    IEnumerator StartNewGame()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3f);
+            if (FindObjectOfType<PlayersInfoManager>())
+                Destroy(FindObjectOfType<PlayersInfoManager>().gameObject);
+            ObjectPoolManager.Instance.Clean();
+            SceneManager.LoadScene(0);
+            break;
+        }
     }
 
 }

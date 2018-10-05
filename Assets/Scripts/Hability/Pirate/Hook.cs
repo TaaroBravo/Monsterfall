@@ -175,10 +175,17 @@ public class Hook : MonoBehaviour
         _reachingPoint = false;
         transform.parent = _myPlayer.transform;
         _myPlayer.controller.enabled = true;
-        _myPlayer.moveVector = _direction * 5;
+        ResidualVelocityOnReach();
         OnReachedPoint();
     }
 
+    void ResidualVelocityOnReach()
+    {
+        _myPlayer.moveVector.x = Mathf.Sign(_direction.x) * 5f;
+        _myPlayer.verticalVelocity = Mathf.Sign(_direction.y) * 15f;
+        _myPlayer.moveVector.y = _myPlayer.verticalVelocity;
+        _myPlayer.controller.Move(_myPlayer.moveVector * Time.deltaTime);
+    }
     void PlayerTeleported(Vector3 spawn, Vector3 end)
     {
         if (fired && !playerTeleported)

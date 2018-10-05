@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class StompHability : IHability
 {
+
+  
+
     float _power;
     Vector3 damage;
     bool active;
@@ -12,13 +16,14 @@ public class StompHability : IHability
     List<PlayerController> playersHitted = new List<PlayerController>();
     List<PlayerController> playersStunned = new List<PlayerController>();
 
-    public StompHability(PlayerController p, CdHUDChecker _cooldownHUD, float power, float _timerCoolDown = 0)
+    public StompHability(Berserk p, CdHUDChecker _cooldownHUD, float power, float _timerCoolDown = 0)
     {
         player = p;
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
         cooldownHUD = _cooldownHUD;
         _power = power;
+        p.OnStompHability += () => StompHabilityCall();
     }
 
     public override void Update()
@@ -55,6 +60,11 @@ public class StompHability : IHability
         }
     }
 
+    void StompHabilityCall()
+    {
+        active = true;
+    }
+
     IEnumerator ResetValuesTimer()
     {
         while (true)
@@ -69,7 +79,8 @@ public class StompHability : IHability
     {
         if (timerCoolDown < 0)
         {
-            active = true;
+            player.myAnim.Play("Skill");
+            //active = true;
             player.canMove = false;
             player.usingHability = true;
             player.StartCoroutine(ResetValuesTimer());
@@ -85,7 +96,6 @@ public class StompHability : IHability
         var stunned = playersHitted.Where(x => !playersStunned.Contains(x)).Where(x => (x.transform.position - player.transform.position).magnitude < 2f).FirstOrDefault();
         if (stunned)
         {
-            Debug.Log("entre");
             stunned.DisableStun();
             stunned.ResetVelocity();
             playersStunned.Add(stunned);
