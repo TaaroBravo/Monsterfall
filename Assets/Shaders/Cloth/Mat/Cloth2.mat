@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BanderaCurvaMask:
-        m_Texture: {fileID: 2800000, guid: e050aa1eb50ff024e87c0eb46dc36596, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4812b74efb5168e4bbdef91563e4e2df, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
@@ -31,8 +31,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Amplitude: 2
+    - _Amplitude: 2.5
     - _Cutoff: 0.5
-    - _Speed: 3
+    - _Speed: 5.5
     - __dirty: 0
     m_Colors: []
