@@ -730,7 +730,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4698530248976416}
   - component: {fileID: 95541633120479774}
-  m_Layer: 0
+  - component: {fileID: 114508751328335018}
+  m_Layer: 9
   m_Name: RogueWithAnimations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3406,6 +3407,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114508751328335018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1396927830893708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3725659665e153428176785a4310758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137072145410664368
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

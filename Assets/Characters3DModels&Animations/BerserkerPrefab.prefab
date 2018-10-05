@@ -40,7 +40,8 @@ GameObject:
   - component: {fileID: 114652557299460134}
   - component: {fileID: 114002394750231006}
   - component: {fileID: 114687251501945190}
-  m_Layer: 0
+  - component: {fileID: 114340263713995736}
+  m_Layer: 9
   m_Name: BerserkerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2414,8 +2415,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1028372544500256}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1.82}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: -33.35, y: 29.22, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 4827677447504212}
   - {fileID: 4593987447658714}
@@ -2664,6 +2665,23 @@ MonoBehaviour:
   CDText: {fileID: 1459097944357592}
   PS_ReadySkill: {fileID: 198184390363176620}
   onCD: 0
+--- !u!114 &114340263713995736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1028372544500256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4903becaf49f8dd408b874eaebd1c0a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  berserkerSkill: {fileID: 1117977343324068, guid: 0fee34dc6c8f25549823fad1c9a0746a,
+    type: 2}
+  berserkerFoot: {fileID: 4748870151523326}
+  berserkerDash: {fileID: 1881563740154616, guid: 6f834052a8065dc40be751bd321bfe30,
+    type: 2}
+  berserkerBack: {fileID: 4480369644758594}
 --- !u!114 &114652557299460134
 MonoBehaviour:
   m_ObjectHideFlags: 1
