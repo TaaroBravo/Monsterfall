@@ -1,41 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BerserkerParticlesManager : MonoBehaviour {
 
-    public GameObject berserkerSkill;
-    public Transform berserkerFoot;
+    public ParticleSystem p1;
+    public ParticleSystem p2;
+    public ParticleSystem p3;
+    public ParticleSystem.EmissionModule p3Em;
+    public DashFeedbackControl DashGordo;
+    //public GameObject berserkerSkill;
+    //public Transform berserkerFoot;
 
-    public GameObject berserkerDash;
-    public Transform berserkerBack;
+    //public GameObject berserkerDash;
+    //public Transform berserkerBack;
 
-    GameObject currentDashPS;
-    
-
-    public void DisplayBerserkerSkill()
+    //GameObject currentDashPS;
+    private void Start()
     {
-        Debug.Log("Skill");
-        var ps = GameObject.Instantiate(berserkerSkill,berserkerFoot.position,Quaternion.identity);
-        ps.transform.SetParent(berserkerFoot, true);
-        Destroy(ps,3);
+        p3Em = p3.emission;
     }
-
-    public void DisplayBerserkerCharge()
+    private void Update()
     {
-        Debug.Log("Charge");
-        var ps = Instantiate(berserkerDash, berserkerBack.position, Quaternion.identity);
-
-        ps.transform.SetParent(berserkerBack, true);
-        currentDashPS = ps;
+        DebugKeys();
     }
-
-    public void StopCharge()
+    public void DisplayBerserkerSkill() { p1.Play(); } 
+    public void DisplayBerserkerCharge() { p2.Play(); p3Em.rateOverDistance = 5; DashGordo.activate = true; } 
+    public void StopCharge() { p3Em.rateOverDistance = 0; }
+    public void DebugKeys()
     {
-        Debug.Log("ChargeStop");
-        Destroy(currentDashPS);
-        currentDashPS = null;
+        if (Input.GetKeyDown(KeyCode.Q)) DisplayBerserkerSkill();
+        if (Input.GetKeyDown(KeyCode.W)) DisplayBerserkerCharge();
     }
-
-
 }
