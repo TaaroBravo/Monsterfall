@@ -36,8 +36,11 @@ public class ForcedJump : IHability
         while (true)
         {
             yield return new WaitForSeconds(0.3f);
-            //ForceFall();
-            yield return new WaitUntil(() => player.controller.isGrounded);
+            if (player.IsTouchingWalls())
+                player.canMove = true;
+            yield return new WaitUntil(() => player.controller.isGrounded || player.IsTouchingWalls());
+            if (player.IsTouchingWalls())
+                player.canMove = true;
             ElevatePlayers();
             break;
         }
@@ -48,7 +51,6 @@ public class ForcedJump : IHability
         var targets = GameManager.Instance.myPlayers.Where(x => x != player)
                                         .Where(x => x.controller.isGrounded)
                                         .Where(x => (x.transform.position - player.transform.position).magnitude < 5f);
-
         foreach (var target in targets)
         {
             target.verticalVelocity = target.jumpForce;
@@ -56,6 +58,7 @@ public class ForcedJump : IHability
             target.controller.Move(target.moveVector * Time.deltaTime);
             target.SetStun(0.5f);
         }
+        player.GetComponent<KnightFeedbackController>().PlayLanding();
         ResetValues();
     }
 

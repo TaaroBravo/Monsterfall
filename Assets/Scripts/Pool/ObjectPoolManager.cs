@@ -104,6 +104,7 @@ namespace FrameworkGoat.ObjectPool
         public void Clean()
         {
             _pools.Clear();
+            _pools = new Dictionary<System.Type, AbstractObjectPool>();
         }
     }
 }

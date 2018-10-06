@@ -25,7 +25,7 @@ public class MovementHook : IHability
 
     public override void Hability()
     {
-        if (timerCoolDown < 0)
+        if (timerCoolDown < 0 && !player.usingHability)
         {
             player.canMove = false;
             _hook.gameObject.SetActive(true);

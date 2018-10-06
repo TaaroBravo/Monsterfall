@@ -2858,8 +2858,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1744530636349812}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 7.6620646, y: 49.208736, z: -0.9325904}
-  m_LocalScale: {x: -2.043892, y: 2.04389, z: 2.043894}
+  m_LocalPosition: {x: -35.190334, y: 0, z: 0.9332379}
+  m_LocalScale: {x: -2.0438929, y: 2.04389, z: -2.043895}
   m_Children:
   - {fileID: 4740543327824704}
   - {fileID: 4205889128005726}
@@ -3429,7 +3429,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1647705778519158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.14, y: -0.44, z: -0.16}
+  m_LocalPosition: {x: 1.14, y: -0.44, z: -0.52}
   m_LocalScale: {x: 1.8246247, y: 1.8246247, z: 1.8246247}
   m_Children: []
   m_Father: {fileID: 4088330885786014}
@@ -4599,6 +4599,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627e0f6157064eb49bcc799cf755ef45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rBottomPos: {fileID: 0}
+  rTopPos: {fileID: 0}
+  rDownPos: []
+  rUpPos: []
 --- !u!114 &114553111705584094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4680,6 +4684,7 @@ MonoBehaviour:
   myAnim: {fileID: 0}
   dashRogue: 0
   touchingWall: 0
+  hookChosenPosition: {fileID: 0}
   powerOfPunch: 50
   punchCooldown: 3
   ps_Hability: {fileID: 198688574070610388}
@@ -31824,7 +31829,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -71576314
+  randomSeed: -407767549
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -72781,7 +72786,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -735650072
+  randomSeed: -34880974
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -92878,7 +92883,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1154715915
+  randomSeed: 2034401288
   InitialModule:
     serializedVersion: 3
     enabled: 1

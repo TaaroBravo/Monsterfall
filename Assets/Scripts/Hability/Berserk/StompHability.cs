@@ -41,7 +41,7 @@ public class StompHability : IHability
                 if (CheckParently(c.transform))
                     continue;
                 PlayerController target = TargetScript(c.transform);
-                if (target != null && !playersHitted.Contains(target))
+                if (target != null && !playersHitted.Contains(target) && !target != player)
                 {
                     Vector3 dir = (player.transform.position - target.transform.position).normalized;
 

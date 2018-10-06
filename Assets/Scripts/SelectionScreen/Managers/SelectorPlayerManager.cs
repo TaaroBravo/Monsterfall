@@ -70,10 +70,10 @@ public class SelectorPlayerManager : MonoBehaviour
         newPlayer.myImage.enabled = true;
         newPlayer.currentPosition = initialPos;
         newPlayer.transform.position = SectionManager.Instance.ChangePosition(initialPos);
-        newPlayer.characterChosen = 99;
+        newPlayer.characterChosen = 0; //99
         _playersInGame.Add(newPlayer);
         charactersView[newPlayer.player_number].State = charactersView[newPlayer.player_number].SelectingState;
-        charactersView[newPlayer.player_number].SetCharacterRandom();
+        charactersView[newPlayer.player_number].SetCharacterIndex(0);
         StartCoroutine(FixTimeConnecting(newPlayer));
     }
 

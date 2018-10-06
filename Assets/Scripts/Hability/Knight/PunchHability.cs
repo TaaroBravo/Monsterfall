@@ -66,6 +66,7 @@ public class PunchHability : IHability
         if (timerCoolDown < 0)
         {
             _hability.Play();
+            player.myAnim.Play("GameStart");
             active = true;
             timerCoolDown = coolDown;
             player.usingHability = true;

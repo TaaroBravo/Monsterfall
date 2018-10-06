@@ -38,7 +38,7 @@ public class Berserk : PlayerController
 
     void SetHabilities()
     {
-        hability.Add(typeof(StompHability).ToString(), new StompHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), power, stompCooldown));
+        hability.Add(typeof(StompHability).ToString(), new StompHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), power, 3f));
         hability.Add(typeof(ForwardCharge).ToString(), new ForwardCharge(this, chargeSpeed, chargeCooldown));
         myHability = BerserkHability;
         movementHability = MovementHability;

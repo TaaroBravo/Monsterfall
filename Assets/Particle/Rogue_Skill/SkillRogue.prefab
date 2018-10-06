@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 33636203528528964}
   - component: {fileID: 23897553634467820}
   - component: {fileID: 95330682345179650}
+  - component: {fileID: 114658646700408480}
   m_Layer: 0
   m_Name: SkillRogue
   m_TagString: Untagged
@@ -53,8 +54,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1871602341158290}
   m_LocalRotation: {x: 4.029443e-12, y: 0.000000021855696, z: 1, w: 0.00018456575}
-  m_LocalPosition: {x: 1.94, y: -4.48, z: -4.446975}
-  m_LocalScale: {x: 0.39883614, y: 0.39883614, z: 0.39883614}
+  m_LocalPosition: {x: 6.8506885, y: 3.04, z: 12.408355}
+  m_LocalScale: {x: 0.12597568, y: 0.12597568, z: 0.12597568}
   m_Children:
   - {fileID: 4929189120057786}
   m_Father: {fileID: 0}
@@ -131,6 +132,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114658646700408480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1871602341158290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c869697e4ff31e43b1f9046d6b1fe75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 30
 --- !u!198 &198700290229533760
 ParticleSystem:
   m_ObjectHideFlags: 1

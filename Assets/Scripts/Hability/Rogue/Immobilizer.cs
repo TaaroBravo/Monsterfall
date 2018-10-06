@@ -23,8 +23,8 @@ public class Immobilizer : MonoBehaviour
     {
         if (gameObject.activeSelf)
         {
-            transform.up = direction;
-            transform.position += transform.up * speed * Time.deltaTime;
+            transform.right = direction;
+            transform.position += transform.right * speed * Time.deltaTime;
             _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Where(x => x.GetComponent<PlayerController>() != null).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _shooter).Where(x => !x.isDead).FirstOrDefault();
             if (_target && canEnter)
             {

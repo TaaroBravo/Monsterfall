@@ -53,13 +53,15 @@ public class Hook : MonoBehaviour
 
 
     private Transform _hookPointTarget;
-    private bool _reachingPoint;
+    public bool reachingPoint;
     private bool _hookReached;
 
 
     private void Awake()
     {
         contrains = transform.parent.GetComponent<PlayerContrains>();
+        if(!contrains)
+            contrains = transform.parent.parent.GetComponent<PlayerContrains>();
     }
     void Start()
     {
@@ -77,7 +79,7 @@ public class Hook : MonoBehaviour
     {
         if (!_myPlayer)
             Destroy(gameObject);
-        if (_reachingPoint)
+        if (reachingPoint)
         {
             if (_hookReached)
             {
@@ -172,7 +174,7 @@ public class Hook : MonoBehaviour
     void PlayerReached()
     {
         _hookReached = false;
-        _reachingPoint = false;
+        reachingPoint = false;
         transform.parent = _myPlayer.transform;
         _myPlayer.controller.enabled = true;
         ResidualVelocityOnReach();
@@ -213,7 +215,7 @@ public class Hook : MonoBehaviour
 
     public void Fire(Transform hookPoint)
     {
-        _reachingPoint = true;
+        reachingPoint = true;
         _hookPointTarget = hookPoint;
         transform.localPosition = spawnPoint.transform.localPosition;
         transform.parent = null;
@@ -231,6 +233,7 @@ public class Hook : MonoBehaviour
             _target = null;
             return;
         }
+        target.DisableAll();
         hooked = true;
         if (target.canMove)
             target.myAnim.Play("GetHit");

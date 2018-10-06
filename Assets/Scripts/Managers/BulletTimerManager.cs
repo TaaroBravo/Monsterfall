@@ -17,11 +17,11 @@ public class BulletTimerManager : MonoBehaviour
 
     void Update()
     {
-        var markedPlayers = allPlayers.Where(x => x != null).Where(x => x.playerMarked);
-        MarkStunnedPlayers(markedPlayers);
+        //var markedPlayers = allPlayers.Where(x => x != null).Where(x => x.playerMarked);
+        //MarkStunnedPlayers(markedPlayers);
 
-        foreach (var p in allPlayers.Where(x => x != null).Where(x => !x.playerMarked))
-            p.transform.Find("MarkedGlow").gameObject.SetActive(false);
+        //foreach (var p in allPlayers.Where(x => x != null).Where(x => !x.playerMarked))
+        //    p.transform.Find("MarkedGlow").gameObject.SetActive(false);
     }
 
     void SetPlayers(List<PlayerController> heroes)

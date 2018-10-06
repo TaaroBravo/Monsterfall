@@ -355,6 +355,14 @@ public class PlayerController : MonoBehaviour
         stunnedByHit = false;
         canMove = true;
     }
+
+    public void DisableAll()
+    {
+        isDashing = false;
+        canDash = false;
+        isFallingOff = false;
+        ResetVelocity();
+    }
     #endregion
 
     #region Attacks

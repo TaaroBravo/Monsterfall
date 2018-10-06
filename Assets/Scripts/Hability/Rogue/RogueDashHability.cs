@@ -46,6 +46,7 @@ public class RogueDashHability : IHability
         {
             active = true;
             player.isDashing = true;
+            player.myAnim.Play("Dash");
             player.myAnim.SetBool("Dashing", true);
             yield return new WaitForSeconds(x);
             player.isDashing = false;

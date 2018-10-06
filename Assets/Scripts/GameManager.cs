@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
         finishedGame = true;
         foreach (var player in myPlayers)
             player.canMove = false;
+        StartCoroutine(StartNewGame());
     }
 
     IEnumerator StartNewGame()

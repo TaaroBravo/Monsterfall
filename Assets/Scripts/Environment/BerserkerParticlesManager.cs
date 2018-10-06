@@ -30,7 +30,7 @@ public class BerserkerParticlesManager : MonoBehaviour {
     public void StopCharge() { p3Em.rateOverDistance = 0; }
     public void DebugKeys()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) DisplayBerserkerSkill();
-        if (Input.GetKeyDown(KeyCode.W)) DisplayBerserkerCharge();
+        //if (Input.GetKeyDown(KeyCode.Q)) DisplayBerserkerSkill();
+        //if (Input.GetKeyDown(KeyCode.W)) DisplayBerserkerCharge();
     }
 }

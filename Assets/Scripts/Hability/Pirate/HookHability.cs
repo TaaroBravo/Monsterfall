@@ -36,7 +36,7 @@ public class HookHability : IHability
                 grabHook.SetHookGrabbed(player);
         }
 
-        if (timerCoolDown < 0 && !grabHook)
+        if (timerCoolDown < 0 && !grabHook && !player.usingHability)
         {
             _hook.gameObject.SetActive(true);
             float x = player.GetComponent<PlayerInput>().MainHorizontal();

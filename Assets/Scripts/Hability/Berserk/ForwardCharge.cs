@@ -74,7 +74,7 @@ public class ForwardCharge : IHability
 
     void Charge()
     {
-        _target.transform.SetParent(player.transform);
+        //_target.transform.SetParent(player.transform);
         _target.transform.position = player.transform.position + (Vector3.right * Mathf.Sign(player.transform.localScale.z));
 
         var enemies = Physics.OverlapSphere(player.transform.position, 1f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player && x != _target).Where(x => !x.isDead);
@@ -93,6 +93,7 @@ public class ForwardCharge : IHability
     {
         if (_target)
             _target.transform.parent = null;
+        player.GetComponent<BerserkerParticlesManager>().StopCharge();
         player.myAnim.SetBool("Dashing", false);
         _target = null;
         timerActive = 0;

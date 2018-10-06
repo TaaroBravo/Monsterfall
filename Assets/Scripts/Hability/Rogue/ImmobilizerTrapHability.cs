@@ -30,7 +30,7 @@ public class ImmobilizerTrapHability : IHability
         if (timerCoolDown < 0)
         {
             //Hacer un spawnpoint
-            startPos = player.transform.position;
+            startPos = player.transform.position + (Vector3.up * 3);
             float x = player.GetComponent<PlayerInput>().MainHorizontal();
             float y = player.GetComponent<PlayerInput>().MainVertical();
             if (x + y == 0)
@@ -59,6 +59,7 @@ public class ImmobilizerTrapHability : IHability
 
     void OnHitEnemy(PlayerController enemy)
     {
+        enemy.myAnim.Play("Stunned");
         enemy.SetStun(1f);
         enemy.ResetVelocity();
         enemy.SetDamage(5);
