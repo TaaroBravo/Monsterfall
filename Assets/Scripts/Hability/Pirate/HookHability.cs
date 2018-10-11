@@ -27,7 +27,6 @@ public class HookHability : IHability
         _hook = hook;
         _hook.OnFailedFire += () => FailedFire();
         _hook.OnReachedTarget += t => ReachedTarget();
-        //_hook.OnTeleport += (x, y) => FireEvent(x, y);
     }
 
     public override void Update()
@@ -56,7 +55,6 @@ public class HookHability : IHability
             _hook.Fire(new Vector3(x, y, 0));
             _hook.OnReachedTarget += t => t.SetStun(0.5f);
             player.usingHability = true;
-            //EventManager.Instance.FireEvent(ChainManager.EVENT_INIT, new ChainEvent(player.transform.position, player.transform.position));
         }
         else
         {

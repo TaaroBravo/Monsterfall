@@ -18,6 +18,7 @@ public class ChainManager {
         _hook.OnInitHook += (x, y) => InitEvent();
         _hook.OnEndHook += (x, y) => DestroyLastSectionEvent();
         _hook.OnTeleport += (x, y) => TelepGoEvent(y, x);
+        _hook.OnTelepWithHookFired += () => Clean();
 
         _chainParts = new List<ChainPart>();
         _chainSections = new List<ChainSection>();
@@ -129,14 +130,12 @@ public class ChainManager {
 
     private void InitEvent()
     {
-        Debug.Log("Llegue al evento inicial");
         Clean();
         _chainSections.Add(new ChainSection(ChainSection.Type.Initial, Vector3.zero, Vector3.zero));
     }
 
     private void DestroyLastSectionEvent()
     {
-        Debug.Log("Destroy last");
         _chainSections.RemoveAt(_chainSections.Count - 1);
         if (_chainSections.Count > 0)
             _chainSections[_chainSections.Count - 1].to = Vector3.zero;
@@ -146,7 +145,6 @@ public class ChainManager {
 
     private void TelepGoEvent(Vector3 position, Vector3 from)
     {
-        Debug.Log("Paso un telep");
         _chainSections.Add(new ChainSection(ChainSection.Type.OtherPart, position, Vector3.zero));
         _chainSections[_chainSections.Count - 2].to = from;
     }

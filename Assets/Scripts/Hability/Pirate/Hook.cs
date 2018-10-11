@@ -14,6 +14,7 @@ public class Hook : MonoBehaviour
 
     public event Action<Vector3, Vector3> OnInitHook = delegate { };
     public event Action<Vector3, Vector3> OnEndHook = delegate { };
+    public event Action OnTelepWithHookFired = delegate { };
     public event Action<Vector3, Vector3> OnTeleport = delegate { };
 
     public event Action OnReachedPoint = delegate { };
@@ -362,8 +363,17 @@ public class Hook : MonoBehaviour
     {
         if(gameObject.activeSelf)
         {
-            warpPositions.Add(Tuple.Create(to, from));
-            OnTeleport(to, from);
+            if(warpPositions.Count > 0 && (fired || returnFail || hooked))
+            {
+                OnTelepWithHookFired();
+                warpPositions.Clear();
+                OnInitHook(_myPlayer.transform.position, _myPlayer.transform.position);
+            }
+            else
+            {
+                warpPositions.Add(Tuple.Create(to, from));
+                OnTeleport(to, from);
+            }
         }
     }
 
