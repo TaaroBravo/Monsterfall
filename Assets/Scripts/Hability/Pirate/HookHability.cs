@@ -6,25 +6,34 @@ using System.Linq;
 
 public class HookHability : IHability
 {
+    private ChainPart _chainPrefab;
+    private ChainManager _chainManager;
+
     Hook _hook;
     Vector3 dir;
 
     Hook grabHook;
+    Vector3 _point;
+    Vector3 _forward;
 
-    public HookHability(PlayerController p, CdHUDChecker _cooldownHUD, Hook hook, float _timerCoolDown = 0)
+    public HookHability(PlayerController p, ChainPart prefab, CdHUDChecker _cooldownHUD, Hook hook, float _timerCoolDown = 0)
     {
         player = p;
+        _chainPrefab = prefab;
+        _chainManager = new ChainManager(ChainPartFactory, hook);
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
         cooldownHUD = _cooldownHUD;
         _hook = hook;
         _hook.OnFailedFire += () => FailedFire();
         _hook.OnReachedTarget += t => ReachedTarget();
+        //_hook.OnTeleport += (x, y) => FireEvent(x, y);
     }
 
     public override void Update()
     {
         base.Update();
+        _chainManager.Update(_hook.spawnPoint.position, _hook.transform.position);
     }
 
     public override void Hability()
@@ -47,6 +56,7 @@ public class HookHability : IHability
             _hook.Fire(new Vector3(x, y, 0));
             _hook.OnReachedTarget += t => t.SetStun(0.5f);
             player.usingHability = true;
+            //EventManager.Instance.FireEvent(ChainManager.EVENT_INIT, new ChainEvent(player.transform.position, player.transform.position));
         }
         else
         {
@@ -69,6 +79,11 @@ public class HookHability : IHability
         _hook.gameObject.SetActive(false);
         timerCoolDown = coolDown;
         player.usingHability = false;
+    }
+
+    ChainPart ChainPartFactory()
+    {
+        return GameObject.Instantiate(_chainPrefab);
     }
 
 }

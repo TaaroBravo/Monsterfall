@@ -854,7 +854,7 @@ GameObject:
   - component: {fileID: 361284569}
   - component: {fileID: 361284572}
   m_Layer: 5
-  m_Name: Berserk-3
+  m_Name: Pirata-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -897,7 +897,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 44a8756d43eeaa24da48782bc84b1bd9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f513f8e7abf1374d83b7a9fb5fff365, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1467,7 +1467,7 @@ GameObject:
   - component: {fileID: 470650902}
   - component: {fileID: 470650905}
   m_Layer: 5
-  m_Name: Pirata-1
+  m_Name: Berserk-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1510,7 +1510,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1d44cebab533c334881ffc3296b2fcc7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 44a8756d43eeaa24da48782bc84b1bd9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1535,7 +1535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8118596719a8e754f86f15a7bc7082d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sectionType: 0
+  sectionType: 1
 --- !u!1 &476863707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2321,7 +2321,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0f8e06c951204184f85d41a35f5d285d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cbc47e76c3c12e4c8dd82386e7b6591, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2346,7 +2346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8118596719a8e754f86f15a7bc7082d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sectionType: 0
+  sectionType: 2
 --- !u!1 &686700502
 GameObject:
   m_ObjectHideFlags: 0
@@ -7270,7 +7270,7 @@ MonoBehaviour:
   - {fileID: 778843938}
   - {fileID: 188697321}
   - {fileID: 1285562096}
-  initialPos: {x: 0, y: 1}
+  initialPos: {x: 1, y: 0}
 --- !u!224 &1605324293
 RectTransform:
   m_ObjectHideFlags: 0

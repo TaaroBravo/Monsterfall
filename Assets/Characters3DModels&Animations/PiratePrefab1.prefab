@@ -1139,7 +1139,6 @@ GameObject:
   - component: {fileID: 114672345301526336}
   - component: {fileID: 114617805214785082}
   - component: {fileID: 114703480358264346}
-  - component: {fileID: 114514422857587238}
   m_Layer: 9
   m_Name: PiratePrefab1
   m_TagString: Untagged
@@ -5452,22 +5451,8 @@ MonoBehaviour:
   hookPointsPositions: []
   hookCooldown: 0
   movementHookCooldown: 0
---- !u!114 &114514422857587238
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1373002459572402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30486603394f9604680d29f5a9b03069, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hook: {fileID: 114993326202765618}
-  chainPrefab: {fileID: 114146282132111512, guid: 696791c489b428249a0c642756855a67,
+  chainPrefab: {fileID: 114095882481161028, guid: 696791c489b428249a0c642756855a67,
     type: 2}
-  distanceToSpawn: 2
-  contrains: {fileID: 0}
 --- !u!114 &114617805214785082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5563,6 +5548,7 @@ MonoBehaviour:
   hookGrabbed: 0
   spawnPoint: {fileID: 4381454963920698}
   endPoint: {fileID: 4394148640956932}
+  reachingPoint: 0
 --- !u!122 &122620111752963262
 Halo:
   m_ObjectHideFlags: 1

@@ -96,16 +96,11 @@ public class PirateCI : Editor {
         fadeVariablesHabilities.target = EditorGUILayout.Foldout(fadeVariablesHabilities.target, "Variables de Habilidades");
         if (EditorGUILayout.BeginFadeGroup(fadeVariablesHabilities.faded))
         {
-            //EditorGUILayout.LabelField("Dash:", EditorStyles.boldLabel);
-            //EditorGUILayout.Space();
-            //player.dashSpeed = EditorGUILayout.FloatField("Velocidad del Dash", player.dashSpeed);
-            //player.dashDistance = EditorGUILayout.FloatField("Cuánta distancia recorre", player.dashDistance);
-            //player.dashCoolDown = EditorGUILayout.FloatField("Cooldown del Dash", player.dashCoolDown);
-            //EditorGUILayout.Space();
             EditorGUILayout.LabelField("Hability:", EditorStyles.boldLabel);
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Hook:", EditorStyles.boldLabel);
             EditorGUILayout.Space();
+            player.chainPrefab = (ChainPart)EditorGUILayout.ObjectField(player.chainPrefab, typeof(ChainPart), true);
             player.hookCooldown = EditorGUILayout.FloatField("Cooldown del Hook", player.hookCooldown);
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Movement Hook:", EditorStyles.boldLabel);

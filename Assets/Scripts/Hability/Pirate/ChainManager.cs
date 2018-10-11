@@ -1,138 +1,183 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FrameworkGoat.ObjectPool;
-using System;
 
-public class ChainManager : MonoBehaviour
-{
+public class ChainManager {
 
-    public Hook hook;
-    private Transform spawnPoint;
-    public Chain chainPrefab;
-    List<Chain> allChains = new List<Chain>();
-    List<Tuple<int, Vector3, Vector3>> positions = new List<Tuple<int, Vector3, Vector3>>();
+    private Hook _hook;
 
-    public float distanceToSpawn;
+    private List<ChainPart> _chainParts;
+    private List<ChainSection> _chainSections;
 
-    bool onActive;
-    bool returned;
-
-    public PlayerContrains contrains;
-
-    private void Awake()
+	public ChainManager(Func<ChainPart> factoryMethod, Hook hook)
     {
-        contrains = GetComponent<PlayerContrains>();
+        ObjectPoolManager.Instance.AddObjectPool<ChainPart>(factoryMethod, ChainPart.Init, ChainPart.Finit, 30);
+        _hook = hook;
+        _hook.OnInitHook += (x, y) => InitEvent();
+        _hook.OnEndHook += (x, y) => DestroyLastSectionEvent();
+        _hook.OnTeleport += (x, y) => TelepGoEvent(y, x);
+
+        _chainParts = new List<ChainPart>();
+        _chainSections = new List<ChainSection>();
     }
 
-    void Start()
+    #region Update
+    public void Update(Vector3 characterPosition, Vector3 pointPosition)
     {
-        ObjectPoolManager.Instance.AddObjectPool<Chain>(InstantiateChain, Initializate, Finalizate, 100, true);
-        hook.OnFireHook += () =>
+        var currentIndex = _chainParts.Count-1;
+
+        for (int i = 0; i < _chainSections.Count; i++)
         {
-            onActive = true;
-            spawnPoint = hook.spawnPoint;
-            positions.Add(Tuple.Create(0, hook.spawnPoint.position, hook.spawnPoint.position));
-        };
-        hook.OnReturnedEnd += () => returned = true;
-        hook.OnTeleport += (x, y) => Teleported(x, y);
-        contrains.OnTeleportPlayer += (x, y) =>
-        {
-            Teleported(x, y);
-        };
+            var part = _chainSections[i];
+            var distanceMadeInThisSection = 0f;
+            var distanceToDo = GetDistanceSection(part, characterPosition, pointPosition);
+            switch (part.part)
+            {
+                case ChainSection.Type.Initial:
+                    while (distanceMadeInThisSection < distanceToDo)
+                    {
+                        if (part.to == Vector3.zero)
+                        {
+                            var direction = (characterPosition - pointPosition).normalized;
+                            var position = pointPosition + direction * distanceMadeInThisSection;
+                            currentIndex = PlacePart(position, direction, currentIndex);
+                        }
+                        else
+                        {
+                            var direction = (characterPosition- part.to).normalized;
+                            var position = part.to + direction * distanceMadeInThisSection;
+                            currentIndex = PlacePart(position, direction, currentIndex);
+                        }
+
+                        distanceMadeInThisSection += ChainPart.CHAIN_LENGTH;
+                        currentIndex--;
+                    }
+                    break;
+
+                case ChainSection.Type.OtherPart:
+                    while (distanceMadeInThisSection < distanceToDo)
+                    {
+                        if (part.to == Vector3.zero)
+                        {
+                            var direction = (part.from- pointPosition).normalized;
+                            var position = pointPosition + direction * distanceMadeInThisSection;
+                            currentIndex = PlacePart(position, direction, currentIndex);
+                        }
+                        else
+                        {
+                            var direction = (part.from- part.to).normalized;
+                            var position = part.to + direction * distanceMadeInThisSection;
+                            currentIndex = PlacePart(position, direction, currentIndex);
+                        }
+
+                        distanceMadeInThisSection += ChainPart.CHAIN_LENGTH;
+                        currentIndex--;
+                    }
+                    break;
+            }
+        }
+        
+        ClearUnnecesaryParts(currentIndex);
     }
+    #endregion
 
-    private void Update()
+    private void ClearUnnecesaryParts(int index)
     {
-        if (onActive)
+        for (int i = 0; i < index; i++)
         {
-            var distance = 0f;
-
-            if (hook.teleportedBack)
-                distance = (hook.transform.position - spawnPoint.position).magnitude;
-            else
-                distance = (hook.transform.position - positions[1].Item3).magnitude + (positions[1].Item2 - spawnPoint.position).magnitude;
-
-            var forLenght = (distance / distanceToSpawn) - 1;
-
-            for (int i = 0; i < forLenght; i++)
-            {
-                if (allChains.Count <= i + 1)
-                    allChains.Add(ObjectPoolManager.Instance.GetObject<Chain>());
-
-                var targetPos = GetPosition(i);
-                if (targetPos == 0)
-                {
-                    if (positions.Count > 1)
-                    {
-                        allChains[i].transform.up = spawnPoint.position - positions[1].Item2;
-                        allChains[i].transform.position = spawnPoint.position - (spawnPoint.position - positions[1].Item2).normalized * distanceToSpawn * (i + 1);
-                    }
-                    else
-                    {
-                        allChains[i].transform.up = spawnPoint.position - hook.transform.position;
-                        allChains[i].transform.position = hook.transform.position + (spawnPoint.position - hook.transform.position).normalized * distanceToSpawn * i;
-                    }
-                }
-                else
-                {
-                    allChains[i].transform.up = positions[targetPos].Item3 - hook.transform.position;
-                    allChains[i].transform.position = hook.transform.position + (positions[targetPos].Item3 - hook.transform.position).normalized
-                        * distanceToSpawn * (i - positions[targetPos].Item1 - 2);
-                }
-            }
-
-            for (int i = allChains.Count - 1; i > forLenght; i--)
-            {
-                ObjectPoolManager.Instance.ReturnObject<Chain>(allChains[i]);
-                allChains.RemoveAt(i);
-
-                if (i < positions[positions.Count - 1].Item1)
-                    positions.RemoveAt(positions.Count - 1);
-            }
-
-            if (returned)
-                EndChain();
+            ObjectPoolManager.Instance.ReturnObject<ChainPart>(_chainParts[i]);
+        }
+        for (int i = index - 1; i >= 0; i--)
+        {
+            _chainParts.RemoveAt(i);
         }
     }
 
-    void Initializate(Chain c)
+    private int PlacePart(Vector3 pos, Vector3 forward, int partIndex)
     {
-        c.gameObject.SetActive(true);
+        if (partIndex < 0)
+        {
+            _chainParts.Insert(0, ObjectPoolManager.Instance.GetObject<ChainPart>());
+            partIndex = 0;
+        }
+        var part = _chainParts[partIndex];
+        part.transform.position = pos;
+        part.transform.up = forward;
+        return partIndex;
     }
 
-    void Finalizate(Chain c)
+    private float GetDistanceSection(ChainSection c, Vector3 characterPosition, Vector3 pointPosition)
     {
-        c.gameObject.SetActive(false);
+        switch(c.part)
+        {
+            case ChainSection.Type.Initial:
+                if (c.to == Vector3.zero)
+                    return Vector3.Distance(characterPosition, pointPosition);
+                else
+                    return Vector3.Distance(characterPosition, c.to);
+
+            case ChainSection.Type.OtherPart:
+                if (c.to == Vector3.zero)
+                    return Vector3.Distance(c.from, pointPosition);
+                else
+                    return Vector3.Distance(c.from, c.to);
+        }
+        return 0;
     }
 
-    void EndChain()
+    private void InitEvent()
     {
-        for (int i = allChains.Count - 1; i >= 0; i--)
-            ObjectPoolManager.Instance.ReturnObject<Chain>(allChains[i]);
-
-        positions.Clear();
-        allChains.Clear();
-        onActive = false;
-        returned = false;
+        Debug.Log("Llegue al evento inicial");
+        Clean();
+        _chainSections.Add(new ChainSection(ChainSection.Type.Initial, Vector3.zero, Vector3.zero));
     }
 
-    int GetPosition(int index)
+    private void DestroyLastSectionEvent()
     {
-        var result = 0;
-        if (positions.Count > 1 && index * distanceToSpawn > Vector3.Distance(spawnPoint.position, positions[1].Item2))
-            result = 1;
-        return result;
+        Debug.Log("Destroy last");
+        _chainSections.RemoveAt(_chainSections.Count - 1);
+        if (_chainSections.Count > 0)
+            _chainSections[_chainSections.Count - 1].to = Vector3.zero;
+        else
+            Clean();
     }
 
-    void Teleported(Vector3 spawn, Vector3 end)
+    private void TelepGoEvent(Vector3 position, Vector3 from)
     {
-        if (hook.gameObject.activeSelf)
-            positions.Add(Tuple.Create(allChains.Count - 1, spawn, end));
+        Debug.Log("Paso un telep");
+        _chainSections.Add(new ChainSection(ChainSection.Type.OtherPart, position, Vector3.zero));
+        _chainSections[_chainSections.Count - 2].to = from;
     }
 
-    Chain InstantiateChain()
+    private void Clean()
     {
-        return Instantiate(chainPrefab);
+        _chainSections.Clear();
+        foreach(var item in _chainParts)
+        {
+            ObjectPoolManager.Instance.ReturnObject<ChainPart>(item);
+        }
+        _chainParts.Clear();
+    }
+}
+
+public class ChainSection
+{
+    public Type part;
+    public Vector3 from;
+    public Vector3 to;
+
+    public ChainSection(Type p, Vector3 f, Vector3 t)
+    {
+        part = p;
+        from = f;
+        to = t;
+    }
+
+    public enum Type
+    {
+        Initial,
+        OtherPart
     }
 }

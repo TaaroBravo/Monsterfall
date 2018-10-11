@@ -1075,7 +1075,6 @@ GameObject:
   - component: {fileID: 114213601819654128}
   - component: {fileID: 114465119315638100}
   - component: {fileID: 114589288484677176}
-  - component: {fileID: 114284911988598510}
   m_Layer: 9
   m_Name: PiratePrefab4
   m_TagString: Untagged
@@ -5452,6 +5451,8 @@ MonoBehaviour:
   hookPointsPositions: []
   hookCooldown: 0
   movementHookCooldown: 0
+  chainPrefab: {fileID: 114095882481161028, guid: 696791c489b428249a0c642756855a67,
+    type: 2}
 --- !u!114 &114213601819654128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5474,22 +5475,6 @@ MonoBehaviour:
   hability1Button: 
   hability2Button: 
   hability3Button: 
---- !u!114 &114284911988598510
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452686683956364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30486603394f9604680d29f5a9b03069, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hook: {fileID: 114993766871681852}
-  chainPrefab: {fileID: 114146282132111512, guid: 696791c489b428249a0c642756855a67,
-    type: 2}
-  distanceToSpawn: 2
-  contrains: {fileID: 0}
 --- !u!114 &114465119315638100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5563,6 +5548,7 @@ MonoBehaviour:
   hookGrabbed: 0
   spawnPoint: {fileID: 4173015029673328}
   endPoint: {fileID: 4490314335843538}
+  reachingPoint: 0
 --- !u!122 &122938152279183684
 Halo:
   m_ObjectHideFlags: 1

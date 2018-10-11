@@ -11,6 +11,9 @@ public class Hook : MonoBehaviour
     public event Action<PlayerController> OnHookTarget = delegate { };
     public event Action<PlayerController> OnReachedTarget = delegate { };
     public event Action OnFailedFire = delegate { };
+
+    public event Action<Vector3, Vector3> OnInitHook = delegate { };
+    public event Action<Vector3, Vector3> OnEndHook = delegate { };
     public event Action<Vector3, Vector3> OnTeleport = delegate { };
 
     public event Action OnReachedPoint = delegate { };
@@ -41,7 +44,9 @@ public class Hook : MonoBehaviour
     private PlayerController _myPlayer;
     private PlayerController _target;
     private PlayerController _playerGrabbedHook;
-    private Transform _warpedPos;
+    private List<Tuple<Vector3, Vector3>> warpPositions = new List<Tuple<Vector3, Vector3>>();
+    private Transform[] _warpedPos;
+    private int indexWarped;
     private Transform _whereIWarped;
 
     private ParticleSystem _psParry;
@@ -55,7 +60,6 @@ public class Hook : MonoBehaviour
     private Transform _hookPointTarget;
     public bool reachingPoint;
     private bool _hookReached;
-
 
     private void Awake()
     {
@@ -77,10 +81,12 @@ public class Hook : MonoBehaviour
 
     void Update()
     {
+
         if (!_myPlayer)
             Destroy(gameObject);
         if (reachingPoint)
         {
+            //Jugador no se puede mover a menos que le peguen. Y si es así, se cancela el traveling.
             if (_hookReached)
             {
                 _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, _hookPointTarget.position, speed * Time.deltaTime);
@@ -129,35 +135,32 @@ public class Hook : MonoBehaviour
                 HookTarget(_target);
 
             if (hooked)
-            {
+            {             
                 if (!_target)
                     ReturnHook();
                 transform.parent = _target.transform;
-                if (_warpedPos)
+                if (warpPositions.Count() > 0)
                 {
                     _target.controller.enabled = true;
-                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, _warpedPos.position, targetTravelSpeed * Time.deltaTime);
+                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, warpPositions[warpPositions.Count - 1].Item2, targetTravelSpeed * Time.deltaTime);
                     Vector3 targetPos = _target.transform.position;
                     targetPos.z = 0;
                     _target.transform.position = targetPos;
-                }
-                else if (playerTeleported)
-                {
-                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, playerSpawnPos, targetTravelSpeed * Time.deltaTime);
-                    if ((playerSpawnPos - _target.transform.position).magnitude <= 1)
+                    if ((_target.transform.position - warpPositions[warpPositions.Count - 1].Item2).magnitude <= 1f)
                     {
-                        playerTeleported = false;
-                        _target.transform.position = playerEndPos;
+                        _target.transform.position = warpPositions[warpPositions.Count - 1].Item1;
+                        warpPositions.Remove(warpPositions[warpPositions.Count - 1]);
+                        OnEndHook(transform.position, transform.position);
                     }
                 }
                 else
                 {
                     _target.controller.enabled = false;
-                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, _playerPos, targetTravelSpeed * Time.deltaTime);
+                    _target.transform.position = Vector3.MoveTowards(_target.transform.position, _myPlayer.transform.position, targetTravelSpeed * Time.deltaTime);
                     Vector3 targetPos = _target.transform.position;
                     targetPos.z = 0;
                     _target.transform.position = targetPos;
-                    if ((_playerPos - _target.transform.position).magnitude <= 1)
+                    if ((_myPlayer.transform.position - _target.transform.position).magnitude <= 1)
                         ReachedTarget(_target);
                 }
             }
@@ -188,15 +191,6 @@ public class Hook : MonoBehaviour
         _myPlayer.moveVector.y = _myPlayer.verticalVelocity;
         _myPlayer.controller.Move(_myPlayer.moveVector * Time.deltaTime);
     }
-    void PlayerTeleported(Vector3 spawn, Vector3 end)
-    {
-        if (fired && !playerTeleported)
-        {
-            playerTeleported = true;
-            playerSpawnPos = spawn;
-            playerEndPos = end;
-        }
-    }
 
     #region Fire Hook
     public void Fire(Vector3 dir)
@@ -211,6 +205,7 @@ public class Hook : MonoBehaviour
         transform.up = -_direction;
         _currentTime = 0;
         OnFireHook();
+        OnInitHook(_myPlayer.transform.position, _myPlayer.transform.position);
     }
 
     public void Fire(Transform hookPoint)
@@ -223,6 +218,7 @@ public class Hook : MonoBehaviour
         _direction = (_hookPointTarget.position - _playerPos).normalized;
         transform.up = -_direction;
         OnFireHook();
+        OnInitHook(_myPlayer.transform.position, _myPlayer.transform.position);
     }
 
     public void HookTarget(PlayerController target)
@@ -251,15 +247,15 @@ public class Hook : MonoBehaviour
         hookGrabbed = false;
         transform.parent = null;
         _myPlayer.controller.enabled = true;
-        if (_warpedPos)
-            transform.position = Vector3.MoveTowards(transform.position, _warpedPos.position, speed * Time.deltaTime);
-        else if (playerTeleported)
+        if (warpPositions.Count > 0)
         {
-            transform.position = Vector3.MoveTowards(transform.position, playerSpawnPos, speed * Time.deltaTime);
-            if ((playerSpawnPos - transform.position).magnitude <= 1)
+            transform.position = Vector3.MoveTowards(transform.position, warpPositions[warpPositions.Count - 1].Item2, speed * Time.deltaTime);
+            if ((transform.transform.position - warpPositions[warpPositions.Count - 1].Item2).magnitude <= 1f)
             {
-                playerTeleported = false;
-                transform.position = playerEndPos;
+                transform.transform.position = warpPositions[warpPositions.Count - 1].Item1;
+                warpPositions.Remove(warpPositions[warpPositions.Count - 1]);
+                OnEndHook(transform.position, transform.position);
+                print(warpPositions.Count());
             }
         }
         else
@@ -271,6 +267,8 @@ public class Hook : MonoBehaviour
                 transform.localPosition = _startPosition;
                 returnFail = false;
                 _warpedPos = null;
+                //EventManager.Instance.FireEvent(ChainManager.EVENT_DESTROY_LAST_SECTION, new ChainEvent(transform.position, transform.position));
+                OnEndHook(transform.position, transform.position);
                 OnReturnedEnd();
                 OnFailedFire();
                 return;
@@ -288,6 +286,8 @@ public class Hook : MonoBehaviour
 
     public void ReachedTarget(PlayerController target)
     {
+        //EventManager.Instance.FireEvent(ChainManager.EVENT_DESTROY_LAST_SECTION, new ChainEvent(transform.position, transform.position));
+        OnEndHook(transform.position, transform.position);
         OnReturnedEnd();
         OnReachedTarget(target);
         _target = null;
@@ -321,18 +321,15 @@ public class Hook : MonoBehaviour
             return;
         }
         transform.parent = _playerGrabbedHook.transform;
-        if (_warpedPos)
+        if (warpPositions.Any())
         {
             _myPlayer.controller.enabled = true;
-            _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, _whereIWarped.position, targetTravelSpeed * Time.deltaTime);
-        }
-        else if (playerTeleported)
-        {
-            _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, playerSpawnPos, targetTravelSpeed * Time.deltaTime);
-            if ((playerSpawnPos - _myPlayer.transform.position).magnitude <= 1)
+            _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, warpPositions[warpPositions.Count - 1].Item2, targetTravelSpeed * Time.deltaTime);
+            if ((_myPlayer.transform.position - warpPositions[warpPositions.Count - 1].Item2).magnitude <= 0.5f)
             {
-                playerTeleported = false;
-                _myPlayer.transform.position = playerEndPos;
+                _myPlayer.transform.position = warpPositions[warpPositions.Count - 1].Item1;
+                warpPositions.Remove(warpPositions[warpPositions.Count - 1]);
+                OnEndHook(transform.position, transform.position);
             }
         }
         else
@@ -361,36 +358,23 @@ public class Hook : MonoBehaviour
         return FindMyPlayer(trans.parent);
     }
 
+    void PlayerTeleported(Vector3 from, Vector3 to)
+    {
+        if(gameObject.activeSelf)
+        {
+            warpPositions.Add(Tuple.Create(to, from));
+            OnTeleport(to, from);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp") && canEnterTeleport)
+        if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp"))
         {
             WarpController door = other.gameObject.GetComponent<WarpController>();
-            if (!_warpedPos)
-            {
-                door.WarpHook(transform);
-                _warpedPos = door.parentWarp.zoneToReturnHook;
-                _warpedPos.position = new Vector3(_warpedPos.position.x, _warpedPos.position.y, 0);
-                _whereIWarped = door.zoneToRespawn;
-                if (!hooked && !returnFail)
-                {
-                    teleportedBack = false;
-                    OnTeleport(door.zoneToTeleportHook.position, door.parentWarp.zoneToTeleportHook.position);
-                }
-            }
-            else
-            {
-                if (hooked || returnFail)
-                {
-                    if (_target)
-                        door.WarpHook(_target.transform);
-                    door.WarpHook(transform);
-                    canEnterTeleport = false;
-                    teleportedBack = true;
-                }
-                _warpedPos = null;
-            }
-
+            door.WarpHook(transform);
+            warpPositions.Add(Tuple.Create(door.zoneToTeleportHook.position, door.parentWarp.zoneToTeleportHook.position));
+            OnTeleport(door.zoneToTeleportHook.position, door.parentWarp.zoneToTeleportHook.position);
         }
     }
 }

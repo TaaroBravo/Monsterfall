@@ -10,6 +10,8 @@ public class Pirate : PlayerController
     public float hookCooldown;
     public float movementHookCooldown;
 
+    public ChainPart chainPrefab;
+
     public override void Start()
     {
         base.Start();
@@ -84,7 +86,7 @@ public class Pirate : PlayerController
 
     void SetHabilities()
     {
-        hability.Add(typeof(HookHability).ToString(), new HookHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), transform.ChildrenWithComponent<Hook>().First(), hookCooldown));
+        hability.Add(typeof(HookHability).ToString(), new HookHability(this, chainPrefab, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), transform.ChildrenWithComponent<Hook>().First(), hookCooldown));
         hability.Add(typeof(MovementHook).ToString(), new MovementHook(this, transform.ChildrenWithComponent<Hook>().First(), hookChosenPosition, movementHookCooldown));
         myHability = PirateHability;
         movementHability = MovementHability;
