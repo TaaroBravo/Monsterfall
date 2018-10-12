@@ -259,16 +259,29 @@ public class PlayerController : MonoBehaviour
         var layerMaskIgnore4 = 1 << 18;
         var layerMask = layerMaskIgnore1 | layerMaskIgnore2 | layerMaskIgnore3 | layerMaskIgnore4;
         layerMask = ~layerMask;
-        if(rBottomPos) // SACAR
+        Debug.Log("Entre 1");
+        if(rBottomPos) 
         {
             if (Physics.Raycast(rBottomPos.position, (rUpPos[0].position - rBottomPos.position).normalized, out hit, 2f, layerMask))
+            {
+                Debug.Log("Entre 2");
                 return true;
+            }
             if (Physics.Raycast(rBottomPos.position, (rUpPos[1].position - rBottomPos.position).normalized, out hit, 2f, layerMask))
+            {
+                Debug.Log("Entre 2");
                 return true;
+            }
             if (Physics.Raycast(rTopPos.position, (rDownPos[0].position - rTopPos.position).normalized, out hit, 2f, layerMask))
+            {
+                Debug.Log("Entre 2");
                 return true;
+            }
             if (Physics.Raycast(rTopPos.position, (rDownPos[1].position - rTopPos.position).normalized, out hit, 2f, layerMask))
+            {
+                Debug.Log("Entre 2");
                 return true;
+            }
         }
         return false;
     }

@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     public Collider[] limits;
 
+    private List<Vector3> initialPos = new List<Vector3>();
+
     private void Awake()
     {
         _instance = this;
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
             OnSpawnCharacters(myPlayers);
         }
         StartCoroutine(StartGame(timeToStart));
+        StartCoroutine(OutOfLimitsPlayer());
     }
 
     private void Update()
@@ -71,6 +74,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < _playersCount; i++)
         {
             var hero = SpawnerHeroes.Instance.SpawnHero(infoManager.playersInfo[i].characterChosen, infoManager.playersInfo[i].player_number);
+            initialPos.Add(hero.transform.position);
             hero.myLifeUI = FindObjectsOfType<PlayerHPHud>().Where(x => x.player_number == infoManager.playersInfo[i].player_number).First();
             hero.myLifeUI.maxHP = hero.myLife;
             hero.myLifeUI.character_chosen = infoManager.playersInfo[i].characterChosen;
@@ -117,6 +121,26 @@ public class GameManager : MonoBehaviour
             }
             startingGame = false;
             break;
+        }
+    }
+
+    IEnumerator OutOfLimitsPlayer()
+    {
+        while (true)
+        {
+            foreach (var item in myPlayers)
+            {
+                var position = initialPos[0];
+                if (!OutOfLimits(item.transform.position))
+                    position = item.transform.position;
+                yield return new WaitForSeconds(0.1f);
+                if (OutOfLimits(item.transform.position))
+                {
+                    item.transform.position = position;
+                    item.DisableAll();
+                    item.DisableStun();
+                }
+            }
         }
     }
 

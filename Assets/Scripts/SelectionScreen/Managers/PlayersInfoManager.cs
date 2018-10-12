@@ -33,15 +33,4 @@ public class PlayersInfoManager : MonoBehaviour {
         }
         Loading.Instance.ChangeScene();
     }
-
-    //IEnumerator StartGame()
-    //{
-    //    while (true)
-    //    {
-    //        yield return new WaitForSeconds(1f);
-    //        SceneManager.LoadScene(1);
-    //        StopAllCoroutines();
-    //        break;
-    //    }
-    //}
 }

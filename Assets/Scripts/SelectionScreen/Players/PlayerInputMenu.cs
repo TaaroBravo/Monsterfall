@@ -51,7 +51,7 @@ public class PlayerInputMenu : MonoBehaviour
             }
             if (Input.GetAxis(verticalMove) != 0 && _cooldown)
             {
-                player.Move(new Vector2(0, Input.GetAxis(verticalMove) == 0 ? 0 : Input.GetAxis(verticalMove) > 0 ? -1 : 1));
+                player.Move(new Vector2(0, Input.GetAxis(verticalMove) == 0 ? 0 : Input.GetAxis(verticalMove) > 0 ? 1 : -1));
                 _cooldown = false;
             }
         }
@@ -69,7 +69,7 @@ public class PlayerInputMenu : MonoBehaviour
         while (true)
         {
             yield return new WaitUntil(() => !_cooldown);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
             _cooldown = true;
         }
     }

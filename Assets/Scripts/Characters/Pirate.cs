@@ -12,11 +12,14 @@ public class Pirate : PlayerController
 
     public ChainPart chainPrefab;
 
+    private Transform lastPoint;
+
     public override void Start()
     {
         base.Start();
         hookPointsPositions = GameObject.FindObjectsOfType<HookPoints>().Select(x => x.GetComponent<Transform>()).ToList();
         SetHabilities();
+        StartCoroutine(TimerRecalculate());
     }
 
     public override void Update()
@@ -25,13 +28,13 @@ public class Pirate : PlayerController
 
         var allPointsVisible = GameObject.FindObjectsOfType<Pirate>().Aggregate(new FList<Transform>(), (x, y) =>
         {
-            var points = Physics.OverlapSphere(y.transform.position, 10f).Where(h => h.GetComponent<HookPoints>()).Select(h => h.GetComponent<Transform>());
+            var points = Physics.OverlapSphere(y.transform.position, 13f).Where(h => h.GetComponent<HookPoints>()).Select(h => h.GetComponent<Transform>());
             if (points.Any())
                 return x + points;
             return x;
         });
 
-        hookChosenPosition = ClosesToDirection(allPointsVisible.Where(x => x.GetComponent<HookPoints>().isAvailable).Where(x => Vector3.Distance(x.position, transform.position) <= 10));
+        hookChosenPosition = ClosesToDirection(allPointsVisible.Where(x => x != lastPoint).Where(x => x.GetComponent<HookPoints>().isAvailable).Where(x => (x.transform.position - transform.position).magnitude <= 13));
 
         if (hookChosenPosition)
             hookChosenPosition.GetComponent<HookPoints>().isAvailable = true;
@@ -55,6 +58,19 @@ public class Pirate : PlayerController
         if (hookChosenPosition)
         {
             hability["MovementHook"].Hability();
+            lastPoint = hookChosenPosition;
+        }
+    }
+
+    IEnumerator TimerRecalculate()
+    {
+        while(true)
+        {
+            yield return new WaitUntil(() => lastPoint);
+            var oldPoint = lastPoint;
+            yield return new WaitForSeconds(1f);
+            if (oldPoint == lastPoint)
+                lastPoint = null;
         }
     }
 

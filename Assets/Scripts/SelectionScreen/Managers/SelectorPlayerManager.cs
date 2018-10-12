@@ -101,8 +101,9 @@ public class SelectorPlayerManager : MonoBehaviour
         myAvatar.transform.position = SectionManager.Instance.ChangePosition(initialPos);
         myAvatar.GetComponent<PlayerInputMenu>().id = 0;
         myAvatar.currentPosition = initialPos;
-        charactersView[myAvatar.player_number].SetCharacterRandom();
+        myAvatar.characterChosen = 99;
         charactersView[myAvatar.player_number].State = charactersView[myAvatar.player_number].StartState;
+        charactersView[myAvatar.player_number].SetCharacterRandom();
         input.DisconnecPlayer(myAvatar.GetComponent<PlayerInputMenu>());
     }
 

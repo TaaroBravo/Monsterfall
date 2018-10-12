@@ -93,7 +93,7 @@ public class StompHability : IHability
 
     void CheckPositions()
     {
-        var stunned = playersHitted.Where(x => !playersStunned.Contains(x)).Where(x => (x.transform.position - player.transform.position).magnitude < 2f).FirstOrDefault();
+        var stunned = playersHitted.Where(x => x != player).Where(x => !playersStunned.Contains(x)).Where(x => (x.transform.position - player.transform.position).magnitude < 2f).FirstOrDefault();
         if (stunned)
         {
             stunned.DisableStun();

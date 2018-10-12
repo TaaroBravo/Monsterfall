@@ -65,7 +65,7 @@ public class Hook : MonoBehaviour
     private void Awake()
     {
         contrains = transform.parent.GetComponent<PlayerContrains>();
-        if(!contrains)
+        if (!contrains)
             contrains = transform.parent.parent.GetComponent<PlayerContrains>();
     }
     void Start()
@@ -123,7 +123,7 @@ public class Hook : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, transform.position + _direction, speed * Time.deltaTime);
                 _currentTime += Time.deltaTime;
                 _currentDistance = speed * _currentTime;
-                _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _myPlayer).Where(x => !x.isDead).FirstOrDefault();
+                _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _myPlayer).Where(x => !x.isDead).FirstOrDefault();
 
                 if (_currentDistance >= maxDistance)
                     FailedFire();
@@ -136,7 +136,7 @@ public class Hook : MonoBehaviour
                 HookTarget(_target);
 
             if (hooked)
-            {             
+            {
                 if (!_target)
                     ReturnHook();
                 transform.parent = _target.transform;
@@ -152,6 +152,7 @@ public class Hook : MonoBehaviour
                         _target.transform.position = warpPositions[warpPositions.Count - 1].Item1;
                         warpPositions.Remove(warpPositions[warpPositions.Count - 1]);
                         OnEndHook(transform.position, transform.position);
+                        StopCoroutine(ResetAllCoroutine());
                     }
                 }
                 else
@@ -169,6 +170,39 @@ public class Hook : MonoBehaviour
         }
     }
 
+    IEnumerator ResetAllCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => gameObject.activeSelf);
+            yield return new WaitForSeconds(4f);
+            if (gameObject.activeSelf)
+                ResetAll();
+        }
+    }
+
+    void ResetAll()
+    {
+        _myPlayer.usingHability = false;
+        hooked = false;
+        returnFail = false;
+        hookGrabbed = false;
+        _hookReached = false;
+        reachingPoint = false;
+        _myPlayer.controller.enabled = true;
+        if (_target)
+        {
+            _target.canMove = true;
+            _target.controller.enabled = true;
+        }
+        _myPlayer.canMove = true;
+        transform.parent = _myPlayer.transform;
+        transform.position = Vector3.zero;
+        warpPositions.Clear();
+        OnTelepWithHookFired();
+        gameObject.SetActive(false);
+    }
+
     void HookReached()
     {
         _hookReached = true;
@@ -183,6 +217,8 @@ public class Hook : MonoBehaviour
         _myPlayer.controller.enabled = true;
         ResidualVelocityOnReach();
         OnReachedPoint();
+        OnEndHook(transform.position, transform.position);
+        StopCoroutine(ResetAllCoroutine());
     }
 
     void ResidualVelocityOnReach()
@@ -196,6 +232,7 @@ public class Hook : MonoBehaviour
     #region Fire Hook
     public void Fire(Vector3 dir)
     {
+        ResetAll();
         canEnterTeleport = true;
         fired = true;
         transform.localPosition = spawnPoint.transform.localPosition;
@@ -207,10 +244,12 @@ public class Hook : MonoBehaviour
         _currentTime = 0;
         OnFireHook();
         OnInitHook(_myPlayer.transform.position, _myPlayer.transform.position);
+        StartCoroutine(ResetAllCoroutine());
     }
 
     public void Fire(Transform hookPoint)
     {
+        ResetAll();
         reachingPoint = true;
         _hookPointTarget = hookPoint;
         transform.localPosition = spawnPoint.transform.localPosition;
@@ -220,6 +259,7 @@ public class Hook : MonoBehaviour
         transform.up = -_direction;
         OnFireHook();
         OnInitHook(_myPlayer.transform.position, _myPlayer.transform.position);
+        StartCoroutine(ResetAllCoroutine());
     }
 
     public void HookTarget(PlayerController target)
@@ -256,7 +296,7 @@ public class Hook : MonoBehaviour
                 transform.transform.position = warpPositions[warpPositions.Count - 1].Item1;
                 warpPositions.Remove(warpPositions[warpPositions.Count - 1]);
                 OnEndHook(transform.position, transform.position);
-                print(warpPositions.Count());
+                StopCoroutine(ResetAllCoroutine());
             }
         }
         else
@@ -272,6 +312,7 @@ public class Hook : MonoBehaviour
                 OnEndHook(transform.position, transform.position);
                 OnReturnedEnd();
                 OnFailedFire();
+                StopCoroutine(ResetAllCoroutine());
                 return;
             }
         }
@@ -301,6 +342,7 @@ public class Hook : MonoBehaviour
         target.transform.position = endPoint.position;
         target.myAnim.Play("Stunned");
         target.controller.enabled = true;
+        StopCoroutine(ResetAllCoroutine());
     }
     #endregion
 
@@ -331,6 +373,7 @@ public class Hook : MonoBehaviour
                 _myPlayer.transform.position = warpPositions[warpPositions.Count - 1].Item1;
                 warpPositions.Remove(warpPositions[warpPositions.Count - 1]);
                 OnEndHook(transform.position, transform.position);
+                StopCoroutine(ResetAllCoroutine());
             }
         }
         else
@@ -361,9 +404,9 @@ public class Hook : MonoBehaviour
 
     void PlayerTeleported(Vector3 from, Vector3 to)
     {
-        if(gameObject.activeSelf)
+        if (gameObject.activeSelf)
         {
-            if(warpPositions.Count > 0 && (fired || returnFail || hooked))
+            if (warpPositions.Count > 0 && (fired || returnFail || hooked))
             {
                 OnTelepWithHookFired();
                 warpPositions.Clear();

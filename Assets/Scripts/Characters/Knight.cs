@@ -22,6 +22,23 @@ public class Knight : PlayerController {
     public override void Update()
     {
         base.Update();
+        if (!canMove)
+            TimerIsTouchingWalls();
+
+    }
+
+    IEnumerator TimerIsTouchingWalls()
+    {
+        while(true)
+        {
+            var state = false;
+            if (IsTouchingWalls())
+                state = true;
+            yield return new WaitForSeconds(1f);
+            if (state && !canMove && IsTouchingWalls())
+                canMove = true;
+            break;
+        }
     }
 
     void KnightHability()

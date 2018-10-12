@@ -1139,7 +1139,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 5
+    axis: 0
     joyNum: 1
   - serializedVersion: 3
     m_Name: JoystickHorizontal_P2
@@ -1155,7 +1155,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 5
+    axis: 0
     joyNum: 2
   - serializedVersion: 3
     m_Name: JoystickHorizontal_P3
@@ -1171,7 +1171,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 5
+    axis: 0
     joyNum: 3
   - serializedVersion: 3
     m_Name: JoystickHorizontal_P4
@@ -1187,7 +1187,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 5
+    axis: 0
     joyNum: 4
   - serializedVersion: 3
     m_Name: JoystickVertical_P1
@@ -1203,7 +1203,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 6
+    axis: 1
     joyNum: 1
   - serializedVersion: 3
     m_Name: JoystickVertical_P2
@@ -1219,7 +1219,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 6
+    axis: 1
     joyNum: 2
   - serializedVersion: 3
     m_Name: JoystickVertical_P3
@@ -1235,7 +1235,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 6
+    axis: 1
     joyNum: 3
   - serializedVersion: 3
     m_Name: JoystickVertical_P4
@@ -1251,7 +1251,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 6
+    axis: 1
     joyNum: 4
   - serializedVersion: 3
     m_Name: JoystickStart_P1
