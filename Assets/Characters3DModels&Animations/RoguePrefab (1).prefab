@@ -4720,6 +4720,8 @@ MonoBehaviour:
   XAxis: 0
   p1: {fileID: 198419050659113326}
   caseN: 0
+  textshader1: {fileID: 0}
+  textshader2: {fileID: 0}
 --- !u!114 &114273638604912020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4915,7 +4917,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ae5c962fe2793fe43b135904b37aaf60, type: 2}
+  - {fileID: 2100000, guid: 915d021fe2f8521488809991cfd7bcc1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5157,7 +5159,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 95033ccea8c6bfc4ab5af4a4b24b7340, type: 2}
+  - {fileID: 2100000, guid: 6e886375760e98f459fd648db9afa264, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29028,7 +29030,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1290720349
+  randomSeed: 1991181949
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -29118,7 +29120,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 0.16365138, g: 0.11713998, b: 0.56896555, a: 1}
-      maxColor: {r: 0.88235295, g: 0.8250806, b: 0.36332178, a: 1}
+      maxColor: {r: 0.88235295, g: 0.8619496, b: 0.14273354, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

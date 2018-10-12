@@ -3220,7 +3220,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f7df6a6fc5c965d4ca8aba40572a600d, type: 2}
+  - {fileID: 2100000, guid: cef1561ec4340a34f96f8e8f922486d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13696,7 +13696,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 408153316
+  randomSeed: -2065276460
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -14610,8 +14610,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.7970886, g: 0.09245241, b: 0.83823526, a: 0}
-        key1: {r: 0.79607844, g: 0.09411765, b: 0.8392157, a: 1}
+        key0: {r: 0.09411765, g: 0.5686275, b: 0.8980392, a: 0}
+        key1: {r: 0.09411765, g: 0.5686275, b: 0.8980392, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0.058252335}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -51789,8 +51789,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.79607844, g: 0.09411765, b: 0.8392157, a: 0}
-        key1: {r: 0.79607844, g: 0.09411765, b: 0.8392157, a: 0.49019608}
+        key0: {r: 0.09234428, g: 0.5671962, b: 0.89705884, a: 0}
+        key1: {r: 0.09411765, g: 0.5686275, b: 0.8980392, a: 0.49019608}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -51818,8 +51818,8 @@ ParticleSystem:
         m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
-        key0: {r: 0.79607844, g: 0.09411765, b: 0.8392157, a: 0}
-        key1: {r: 0.79607844, g: 0.09411765, b: 0.8392157, a: 0.50980395}
+        key0: {r: 0.09411765, g: 0.5686275, b: 0.8980392, a: 0}
+        key1: {r: 0.09411765, g: 0.5686275, b: 0.8980392, a: 0.50980395}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
