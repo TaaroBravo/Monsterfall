@@ -2475,7 +2475,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1158043719605888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.94999987, y: 0.42, z: 0.020000026}
+  m_LocalPosition: {x: -0.7699997, y: 0.42, z: 0.3}
   m_LocalScale: {x: -0.52, y: 0.52, z: 0.52}
   m_Children:
   - {fileID: 4546815406036898}
@@ -3134,7 +3134,7 @@ MonoBehaviour:
   maxNoStunVelocityLimit: 50
   maxStunVelocityLimit: 70
   impactMarked: 40
-  hitParticles: {fileID: 198445827964108540}
+  hitParticles: {fileID: 198701054110538284}
   usingHability: 0
   attackColliders: {fileID: 65071187385166620}
   whoHitedMe: {fileID: 0}
@@ -3253,6 +3253,8 @@ MonoBehaviour:
   p2: {fileID: 198290383753040582}
   p3: {fileID: 198540043909951216}
   DashGordo: {fileID: 114357096124076400}
+  XAxis: 0
+  iminverted: 1
 --- !u!122 &122643660883949562
 Halo:
   m_ObjectHideFlags: 1
@@ -23618,7 +23620,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2128446973
+  randomSeed: 58117874
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -60983,7 +60985,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1676239392
+  randomSeed: -1003053634
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -94854,7 +94856,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 887389487
+  randomSeed: -443844434
   InitialModule:
     serializedVersion: 3
     enabled: 1

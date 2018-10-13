@@ -24,7 +24,7 @@ public class CdHUDChecker : MonoBehaviour {
     }
     void Update()
     {
-        DebugKeys();
+        //DebugKeys();
         SetTransform();
         if (onCD) currentCD -= Time.deltaTime;
         if (currentCD < 0)

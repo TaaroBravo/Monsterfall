@@ -7,8 +7,6 @@ using System;
 public class StompHability : IHability
 {
 
-  
-
     float _power;
     Vector3 damage;
     bool active;
@@ -41,7 +39,7 @@ public class StompHability : IHability
                 if (CheckParently(c.transform))
                     continue;
                 PlayerController target = TargetScript(c.transform);
-                if (target != null && !playersHitted.Contains(target) && !target != player)
+                if (target != null && !playersHitted.Contains(target) && target != player)
                 {
                     Vector3 dir = (player.transform.position - target.transform.position).normalized;
 
@@ -51,7 +49,9 @@ public class StompHability : IHability
                         damage.y = dir.y;
                     else
                         damage.y = dir.y;
+                    
                     playersHitted.Add(target);
+                    Debug.Log(target.gameObject.name);
                     target.ReceiveDamage(damage * _power, false);
                     player.whoIHited = target;
                 }
@@ -82,7 +82,8 @@ public class StompHability : IHability
             player.myAnim.Play("Skill");
             //active = true;
             player.canMove = false;
-            player.usingHability = true;
+            player.ResetVelocity();
+            //player.usingHability = true;
             player.StartCoroutine(ResetValuesTimer());
         }
         else

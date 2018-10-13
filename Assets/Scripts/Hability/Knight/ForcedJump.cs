@@ -28,6 +28,18 @@ public class ForcedJump : IHability
             player.canMove = false;
             JumpPlayer();
             player.StartCoroutine(WaitToLand());
+            player.StartCoroutine(ResetValuesCoroutine());
+        }
+    }
+
+    IEnumerator ResetValuesCoroutine()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(2f);
+            player.canMove = true;
+            player.usingHability = false;
+            break;
         }
     }
 

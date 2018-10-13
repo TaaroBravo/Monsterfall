@@ -471,7 +471,20 @@ public class PlayerController : MonoBehaviour
     {
         if (canDash && !isFallingOff && !isDashing)
             movementHability();
+        else if (!canDash && !isDashing)
+            canDash = true;
         //hability["Dash"].Hability();
+    }
+
+    IEnumerator DashCoolDown()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(1.5f);
+            isDashing = false;
+            canDash = true;
+            break;
+        }
     }
 
     public void FallOff()

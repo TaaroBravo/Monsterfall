@@ -48,6 +48,7 @@ public class Rogue : PlayerController
         hability["RogueDashHability"].Hability();
     }
 
+
     void SetHabilities()
     {
         hability.Add(typeof(ImmobilizerTrapHability).ToString(), new ImmobilizerTrapHability(this, immobilizer, 3f));

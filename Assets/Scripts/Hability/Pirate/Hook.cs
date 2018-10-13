@@ -177,13 +177,17 @@ public class Hook : MonoBehaviour
             yield return new WaitUntil(() => gameObject.activeSelf);
             yield return new WaitForSeconds(4f);
             if (gameObject.activeSelf)
+            {
                 ResetAll();
+                _myPlayer.usingHability = false;
+                gameObject.SetActive(false);
+            }
         }
     }
 
     void ResetAll()
     {
-        _myPlayer.usingHability = false;
+        //_myPlayer.usingHability = false;
         hooked = false;
         returnFail = false;
         hookGrabbed = false;
@@ -200,7 +204,7 @@ public class Hook : MonoBehaviour
         transform.position = Vector3.zero;
         warpPositions.Clear();
         OnTelepWithHookFired();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     void HookReached()
@@ -244,7 +248,8 @@ public class Hook : MonoBehaviour
         _currentTime = 0;
         OnFireHook();
         OnInitHook(_myPlayer.transform.position, _myPlayer.transform.position);
-        StartCoroutine(ResetAllCoroutine());
+        
+        //StartCoroutine(ResetAllCoroutine());
     }
 
     public void Fire(Transform hookPoint)
@@ -259,7 +264,7 @@ public class Hook : MonoBehaviour
         transform.up = -_direction;
         OnFireHook();
         OnInitHook(_myPlayer.transform.position, _myPlayer.transform.position);
-        StartCoroutine(ResetAllCoroutine());
+        //StartCoroutine(ResetAllCoroutine());
     }
 
     public void HookTarget(PlayerController target)
