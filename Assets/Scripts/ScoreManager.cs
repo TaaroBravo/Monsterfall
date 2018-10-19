@@ -25,21 +25,10 @@ public class ScoreManager : MonoBehaviour
         roundNumber.sprite = roundCounters[round];
     }
 
-    //void Update () {
-    //    if (Input.GetKeyDown(KeyCode.Alpha1))
-    //    {
-    //        var pl = new List<PlayerInfo>();
-    //        pl.Add(new PlayerRoundStats(3, PointsBar.Characters.Knight,2,4));
-    //        pl.Add(new PlayerRoundStats(1, PointsBar.Characters.Pirate,4,2));
-    //        pl.Add(new PlayerRoundStats(0, PointsBar.Characters.Rogue,3,1));
-    //        pl.Add(new PlayerRoundStats(2, PointsBar.Characters.Berserker, 2, 1));
-    //        LoadBars(pl);
-    //    }
-    //}
-
     public void LoadBars(List<PlayerInfo> playerInfo, Action callBack)
     {
-        playerInfo.OrderBy(x => x.newKills + x.previousKills);
+        playerInfo =   playerInfo.OrderByDescending(x => x.newKills + x.previousKills).ToList();
+
         for (int i = 0; i < playerInfo.Count; i++)
         {
             pointBars[i].SetActive(true);

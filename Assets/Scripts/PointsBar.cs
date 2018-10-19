@@ -19,10 +19,10 @@ public class PointsBar : MonoBehaviour {
 
     public enum Characters
     {
-        Pirate,
         Knight,
-        Berserker,
-        Rogue
+        Pirate,
+        Rogue,
+        Berserker
     }
 
     public Sprite[] characterSprites = new Sprite[0];
@@ -50,19 +50,3 @@ public class PointsBar : MonoBehaviour {
         characterPortrait.sprite = characterPortraitsDictionary[(Characters)plInfo.characterChosen];
     }
 }
-
-//public class PlayerRoundStats 
-//{
-//    public PlayerRoundStats(int id, PointsBar.Characters pickedchar, int prevKills, int plKills)
-//    {
-//        playerID = id;
-//        currentChar = pickedchar;
-//        playerKills = plKills;
-//        previousKills = prevKills;
-//    }
-
-//    public int playerID;
-//    public PointsBar.Characters currentChar;
-//    public int playerKills;
-//    public int previousKills;
-//}
