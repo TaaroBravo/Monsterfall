@@ -23,7 +23,7 @@ public class Knight : PlayerController {
     {
         base.Update();
         if (!canMove)
-            TimerIsTouchingWalls();
+            StartCoroutine(TimerIsTouchingWalls());
 
     }
 
@@ -37,6 +37,7 @@ public class Knight : PlayerController {
             yield return new WaitForSeconds(1f);
             if (state && !canMove && IsTouchingWalls())
                 canMove = true;
+            StopCoroutine(TimerIsTouchingWalls());
             break;
         }
     }
