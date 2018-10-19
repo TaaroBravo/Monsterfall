@@ -16,14 +16,7 @@ public class GameManager : MonoBehaviour
     public List<PlayerController> myPlayers = new List<PlayerController>();
     public List<GameObject> playersObj = new List<GameObject>();
     public GameObject youWin;
-    private static GameManager _instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
+    public static GameManager Instance { get; private set; }
 
     public bool startingGame;
     public bool finishedGame;
@@ -33,9 +26,14 @@ public class GameManager : MonoBehaviour
 
     private List<Vector3> initialPos = new List<Vector3>();
 
+    private List<int> _currentScores = new List<int>();
+
+    public GameObject finishCanvas;
+    public GameObject inGameCanvas;
+
     private void Awake()
     {
-        _instance = this;
+        Instance = this;
         Cursor.visible = false;
     }
 
@@ -52,6 +50,9 @@ public class GameManager : MonoBehaviour
                 playersObj.Add(hero.gameObject);
             SetUpHUD(infoManager.playersInfo);
             OnSpawnCharacters(myPlayers);
+            ScoreManager.Instance.SetRound(infoManager.playersInfo.First().round);
+            //ScoreManager.Instance.SetPlayers(myPlayers);
+            //ScoreManager.Instance.SetManager(infoManager);
         }
         StartCoroutine(StartGame(timeToStart));
         StartCoroutine(OutOfLimitsPlayer());
@@ -68,6 +69,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetKills(int player_number)
+    {
+        foreach (var info in infoManager.playersInfo)
+        {
+            if (info.player_number == player_number)
+                info.newKills++;
+        }
+    }
+
+    #region Start Game
     List<PlayerController> CallSpawnHeroes()
     {
         List<PlayerController> heroes = new List<PlayerController>();
@@ -90,6 +101,8 @@ public class GameManager : MonoBehaviour
         PlayerInput input = hero.GetComponent<PlayerInput>();
         input.controller = (PlayerInput.Controller)infoManager.playersInfo[i].controller;
         input.id = infoManager.playersInfo[i].ID;
+        input.player_number = infoManager.playersInfo[i].player_number;
+        _currentScores.Add(infoManager.playersInfo[i].newKills);
     }
 
     void SetUpHUD(List<PlayerInfo> players)
@@ -124,6 +137,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Checks
     IEnumerator OutOfLimitsPlayer()
     {
         while (true)
@@ -131,10 +147,10 @@ public class GameManager : MonoBehaviour
             foreach (var item in myPlayers)
             {
                 var position = initialPos[0];
-                if (!OutOfLimits(item.transform.position))
+                if (item && !OutOfLimits(item.transform.position))
                     position = item.transform.position;
                 yield return new WaitForSeconds(0.1f);
-                if (OutOfLimits(item.transform.position))
+                if (item && OutOfLimits(item.transform.position))
                 {
                     item.transform.position = position;
                     item.DisableAll();
@@ -153,13 +169,44 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
+    #endregion
+
+    #region Finish Game
 
     public void FinishGame()
     {
-        finishedGame = true;
+        finishCanvas.SetActive(true);
+        inGameCanvas.SetActive(false);
         foreach (var player in myPlayers)
             player.canMove = false;
-        StartCoroutine(StartNewGame());
+        if(!finishedGame)
+        {
+            if (infoManager.playersInfo.First().round >= 5)
+                StartCoroutine(StartNewGame());
+            else
+                StartCoroutine(StartNewRound());
+        }
+        finishedGame = true;
+    }
+
+    bool scoreFinished;
+    IEnumerator StartNewRound()
+    {
+        while (true)
+        {
+            //ScoreManager.Instance.SetScore(_currentScores, AllScoreFinished);
+            ScoreManager.Instance.LoadBars(infoManager.playersInfo, AllScoreFinished);
+            yield return new WaitUntil(() => scoreFinished == true);
+            yield return new WaitForSeconds(6f);
+            ObjectPoolManager.Instance.Clean();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            break;
+        }
+    }
+
+    void AllScoreFinished()
+    {
+        scoreFinished = true;
     }
 
     IEnumerator StartNewGame()
@@ -174,5 +221,6 @@ public class GameManager : MonoBehaviour
             break;
         }
     }
+    #endregion
 
 }

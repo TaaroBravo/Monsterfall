@@ -533,7 +533,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region ReceiveDamage
-    public void ReceiveDamage(Vector3 impact, bool marked = false)
+    public void ReceiveDamage(Vector3 impact, PlayerController killer, bool marked = false)
     {
         Vector3 impactRelax = Vector3.zero;
         Vector3 impactNormalized = new Vector3(impact.x == 0 ? 0 : Mathf.Sign(impact.x), impact.y == 0 ? 0 : Mathf.Sign(impact.y), 0);
@@ -548,12 +548,12 @@ public class PlayerController : MonoBehaviour
         if (stunnedByHit)
         {
             if (!isDead)
-                SetDamage(25);
+                SetDamage(25, killer);
         }
         else
         {
             if (!isDead)
-                SetDamage(10);
+                SetDamage(10, killer);
         }
         if (stunnedByHit && currentImpactStunTimer > 0.1f)
         {
@@ -676,17 +676,17 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region UpdateLife
-    public void SetDamage(float damage)
+    public void SetDamage(float damage, PlayerController killer)
     {
         myLife -= Mathf.RoundToInt(damage);
         myLifeUI.TakeDamage(Mathf.RoundToInt(damage));
         if (myLife <= 0 && !isDead)
         {
+            GameManager.Instance.SetKills(killer.GetComponent<PlayerInput>().player_number);
             canMove = false;
             myAnim.StopPlayback();
             myAnim.SetTrigger("Death");
             myAnim.Play("Death");
-            //StartCoroutine(Death(3f));
             Destroy(gameObject, 1.1f);
         }
     }

@@ -74,19 +74,19 @@ public class ForwardCharge : IHability
 
     void Charge()
     {
-        //_target.transform.SetParent(player.transform);
         _target.transform.position = player.transform.position + (Vector3.right * Mathf.Sign(player.transform.localScale.z));
 
         var enemies = Physics.OverlapSphere(player.transform.position, 1f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player && x != _target).Where(x => !x.isDead);
         foreach (var _enemy in enemies)
-            _enemy.ReceiveDamage((Vector3.right * Mathf.Sign(player.transform.localScale.z) * 30));
+            _enemy.ReceiveDamage((Vector3.right * Mathf.Sign(player.transform.localScale.z) * 30), player);
     }
 
     void DamageTarget()
     {
         _target.transform.parent = null;
         _target.SetStun(0.2f);
-        _target.SetDamage(distance / 2);
+        //TODO: Redondear o nerfear
+        _target.SetDamage(distance / 2, player);
     }
 
     void ResetValues()

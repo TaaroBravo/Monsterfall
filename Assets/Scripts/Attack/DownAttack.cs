@@ -51,7 +51,7 @@ public class DownAttack : IAttack
                 player.hitParticles.Play();
                 if (target != null)
                 {
-                    target.ReceiveDamage(new Vector3(0, -CalculateImpact(currentPressed), 0), currentPressed >= maxPressed);
+                    target.ReceiveDamage(new Vector3(0, -CalculateImpact(currentPressed), 0), player, currentPressed >= maxPressed);
                     ps.transform.up = -Vector3.down;
                     ps.Play();
                     player.whoIHited = target;

@@ -8,4 +8,8 @@ public class PlayerInfo {
     public int characterChosen;
     public int ID;
     public int controller;
+    public int newKills;
+    public int previousKills;
+
+    public int round;
 }

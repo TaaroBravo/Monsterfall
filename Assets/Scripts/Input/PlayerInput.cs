@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-
+    public int player_number;
     public Controller controller;
     public int id;
 

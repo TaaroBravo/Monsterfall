@@ -5,6 +5,6 @@ using System;
 
 public class Feedback : MonoBehaviour {
 
-    public ParticleSystem jumpParticle;
+    
 
 }

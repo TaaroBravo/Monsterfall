@@ -52,7 +52,7 @@ public class PunchHability : IHability
                     else
                         damage.y = dir.y;
                     playersHitted.Add(target);
-                    target.ReceiveDamage(damage * _power, false);
+                    target.ReceiveDamage(damage * _power, player);
                     player.whoIHited = target;
                 }
             }
