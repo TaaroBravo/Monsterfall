@@ -34,7 +34,7 @@ public class ForcedJump : IHability
 
     IEnumerator ResetValuesCoroutine()
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(2f);
             player.canMove = true;
@@ -63,12 +63,15 @@ public class ForcedJump : IHability
         var targets = GameManager.Instance.myPlayers.Where(x => x != player)
                                         .Where(x => x.controller.isGrounded)
                                         .Where(x => (x.transform.position - player.transform.position).magnitude < 5f);
-        foreach (var target in targets)
+        if (targets.Any())
         {
-            target.verticalVelocity = target.jumpForce;
-            target.moveVector.y = target.verticalVelocity;
-            target.controller.Move(target.moveVector * Time.deltaTime);
-            target.SetStun(0.5f);
+            foreach (var target in targets)
+            {
+                target.verticalVelocity = target.jumpForce;
+                target.moveVector.y = target.verticalVelocity;
+                target.controller.Move(target.moveVector * Time.deltaTime);
+                target.SetStun(0.5f);
+            }
         }
         player.GetComponent<KnightFeedbackController>().PlayLanding();
         ResetValues();

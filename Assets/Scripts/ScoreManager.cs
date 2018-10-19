@@ -27,10 +27,15 @@ public class ScoreManager : MonoBehaviour
 
     public void LoadBars(List<PlayerInfo> playerInfo, Action callBack)
     {
-        playerInfo =   playerInfo.OrderByDescending(x => x.newKills + x.previousKills).ToList();
+        playerInfo = playerInfo.OrderByDescending(x => x.newKills + x.previousKills).ToList();
 
         for (int i = 0; i < playerInfo.Count; i++)
         {
+            var maxKills = playerInfo[i].newKills;
+            if (maxKills >= 2)
+                CalculateMVP(playerInfo[i].player_number, playerInfo[i].characterChosen, maxKills);
+            else
+                CalculateMVP(playerInfo[i].player_number, playerInfo[i].characterChosen, 0);
             pointBars[i].SetActive(true);
             var pb = pointBars[i].GetComponent<PointsBar>();
             pb.SetCharacterSpriteAndColor(playerInfo[i]);
@@ -43,6 +48,11 @@ public class ScoreManager : MonoBehaviour
             playerInfo[i].round++;
         }
         callBack();
+    }
+
+    void CalculateMVP(int player_number, int characterChosen, int motive)
+    {
+        MVPManager.Instance.ShowStand(player_number, characterChosen, motive);
     }
 
     public void SetRound(int _round)

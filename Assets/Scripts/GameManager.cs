@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
             player.canMove = false;
         if(!finishedGame)
         {
-            if (infoManager.playersInfo.First().round >= 5)
+            if (infoManager.playersInfo.First().round >= 8)
                 StartCoroutine(StartNewGame());
             else
                 StartCoroutine(StartNewRound());
@@ -194,7 +194,6 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            //ScoreManager.Instance.SetScore(_currentScores, AllScoreFinished);
             ScoreManager.Instance.LoadBars(infoManager.playersInfo, AllScoreFinished);
             yield return new WaitUntil(() => scoreFinished == true);
             yield return new WaitForSeconds(6f);
@@ -203,6 +202,8 @@ public class GameManager : MonoBehaviour
             break;
         }
     }
+
+    //TODO: Falta hacer que cuando se termine la ronda o cuando llegue a 10 kils ganes y se reincie todo.
 
     void AllScoreFinished()
     {

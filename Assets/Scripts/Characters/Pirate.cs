@@ -17,7 +17,7 @@ public class Pirate : PlayerController
     public override void Start()
     {
         base.Start();
-        hookPointsPositions = GameObject.FindObjectsOfType<HookPoints>().Select(x => x.GetComponent<Transform>()).ToList();
+        //hookPointsPositions = GameObject.FindObjectsOfType<HookPoints>().Select(x => x.GetComponent<Transform>()).ToList();
         SetHabilities();
         StartCoroutine(TimerRecalculate());
     }
@@ -26,26 +26,26 @@ public class Pirate : PlayerController
     {
         base.Update();
 
-        var allPointsVisible = GameObject.FindObjectsOfType<Pirate>().Aggregate(new FList<Transform>(), (x, y) =>
-        {
-            var points = Physics.OverlapSphere(y.transform.position, 13f).Where(h => h.GetComponent<HookPoints>()).Select(h => h.GetComponent<Transform>());
-            if (points.Any())
-                return x + points;
-            return x;
-        });
+        //var allPointsVisible = GameObject.FindObjectsOfType<Pirate>().Aggregate(new FList<Transform>(), (x, y) =>
+        //{
+        //    var points = Physics.OverlapSphere(y.transform.position, 13f).Where(h => h.GetComponent<HookPoints>()).Select(h => h.GetComponent<Transform>());
+        //    if (points.Any())
+        //        return x + points;
+        //    return x;
+        //});
 
-        hookChosenPosition = ClosesToDirection(allPointsVisible.Where(x => x != lastPoint).Where(x => x.GetComponent<HookPoints>().isAvailable).Where(x => (x.transform.position - transform.position).magnitude <= 13));
+        //hookChosenPosition = ClosesToDirection(allPointsVisible.Where(x => x != lastPoint).Where(x => x.GetComponent<HookPoints>().isAvailable).Where(x => (x.transform.position - transform.position).magnitude <= 13));
 
-        if (hookChosenPosition)
-            hookChosenPosition.GetComponent<HookPoints>().isAvailable = true;
+        //if (hookChosenPosition)
+        //    hookChosenPosition.GetComponent<HookPoints>().isAvailable = true;
 
-        foreach (var hookPoint in hookPointsPositions)
-        {
-            if (allPointsVisible.Contains(hookPoint))
-                hookPoint.GetComponent<HookPoints>().isAvailable = true;
-            else
-                hookPoint.GetComponent<HookPoints>().isAvailable = false;
-        }
+        //foreach (var hookPoint in hookPointsPositions)
+        //{
+        //    if (allPointsVisible.Contains(hookPoint))
+        //        hookPoint.GetComponent<HookPoints>().isAvailable = true;
+        //    else
+        //        hookPoint.GetComponent<HookPoints>().isAvailable = false;
+        //}
     }
 
     void PirateHability()
