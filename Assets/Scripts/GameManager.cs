@@ -26,8 +26,6 @@ public class GameManager : MonoBehaviour
 
     private List<Vector3> initialPos = new List<Vector3>();
 
-    private List<int> _currentScores = new List<int>();
-
     public GameObject finishCanvas;
     public GameObject inGameCanvas;
 
@@ -51,8 +49,6 @@ public class GameManager : MonoBehaviour
             SetUpHUD(infoManager.playersInfo);
             OnSpawnCharacters(myPlayers);
             ScoreManager.Instance.SetRound(infoManager.playersInfo.First().round);
-            //ScoreManager.Instance.SetPlayers(myPlayers);
-            //ScoreManager.Instance.SetManager(infoManager);
         }
         StartCoroutine(StartGame(timeToStart));
         StartCoroutine(OutOfLimitsPlayer());
@@ -102,7 +98,6 @@ public class GameManager : MonoBehaviour
         input.controller = (PlayerInput.Controller)infoManager.playersInfo[i].controller;
         input.id = infoManager.playersInfo[i].ID;
         input.player_number = infoManager.playersInfo[i].player_number;
-        _currentScores.Add(infoManager.playersInfo[i].newKills);
     }
 
     void SetUpHUD(List<PlayerInfo> players)
@@ -203,7 +198,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //TODO: Falta hacer que cuando se termine la ronda o cuando llegue a 10 kils ganes y se reincie todo.
+    //TODO: Falta hacer que cuando se termine la ronda o cuando llegue a 10 kils ganes y se reinicie todo.
 
     void AllScoreFinished()
     {
