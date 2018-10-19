@@ -58,10 +58,7 @@ public class Hook : MonoBehaviour
     Vector3 playerEndPos;
     bool playerTeleported;
 
-
-    //private Transform _hookPointTarget;
     public bool reachingPoint;
-    //private bool _hookReached;
 
     private void Awake()
     {
@@ -89,10 +86,24 @@ public class Hook : MonoBehaviour
         if (reachingPoint)
         {
             _myPlayer.controller.enabled = false;
-            _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, _hookPlatform, speed * Time.deltaTime);
-            if ((_hookPlatform - _myPlayer.transform.position).magnitude <= 2)
-                PlayerReached();
-            transform.parent = null;
+            if (warpPositions.Count() > 0)
+            {
+                _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, warpPositions[warpPositions.Count - 1].Item1, targetTravelSpeed * Time.deltaTime);
+                if ((_myPlayer.transform.position - warpPositions[warpPositions.Count - 1].Item1).magnitude <= 1f)
+                {
+                    _myPlayer.transform.position = warpPositions[warpPositions.Count - 1].Item2;
+                    warpPositions.Remove(warpPositions[warpPositions.Count - 1]);
+                    OnEndHook(transform.position, transform.position);
+                    StopCoroutine(ResetAllCoroutine());
+                }
+            }
+            else
+            {
+                _myPlayer.transform.position = Vector3.MoveTowards(_myPlayer.transform.position, _hookPlatform, speed * Time.deltaTime);
+                if ((_hookPlatform - _myPlayer.transform.position).magnitude <= 2)
+                    PlayerReached();
+                transform.parent = null;
+            }
         }
         else
         {
