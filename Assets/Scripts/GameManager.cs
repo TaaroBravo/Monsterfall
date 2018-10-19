@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     private List<Vector3> initialPos = new List<Vector3>();
 
+    public GameObject victoryCanvas;
     public GameObject finishCanvas;
     public GameObject inGameCanvas;
 
@@ -229,7 +230,9 @@ public class GameManager : MonoBehaviour
         int player_color = winner.player_number;
         int character = winner.characterChosen;
 
-        finishCanvas.SetActive(true);
+        victoryCanvas.SetActive(true);
+        victoryCanvas.GetComponent<VictoryManager>().AssignValues(player_color, character);
+        finishCanvas.SetActive(false);
         inGameCanvas.SetActive(false);
         foreach (var player in myPlayers)
             player.canMove = false;
