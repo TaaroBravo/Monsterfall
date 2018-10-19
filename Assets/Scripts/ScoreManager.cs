@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour
         if (maxKills >= 2)
             CalculateMVP(playerInfo.Select(x => x.player_number).First(), playerInfo.Select(x => x.characterChosen).First(), maxKills);
         else
-            CalculateMVP(playerInfo.Select(x => x.player_number).First(), playerInfo.Select(x => x.characterChosen).First(), 0);
+            CalculateMVP(playerInfo.OrderByDescending(x => x.newKills).Select(x => x.player_number).First(), playerInfo.OrderByDescending(x => x.newKills).Select(x => x.characterChosen).First(), 1);
         for (int i = 0; i < playerInfo.Count; i++)
         {
             pointBars[i].SetActive(true);

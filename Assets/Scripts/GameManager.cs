@@ -70,7 +70,11 @@ public class GameManager : MonoBehaviour
         foreach (var info in infoManager.playersInfo)
         {
             if (info.player_number == player_number)
+            {
                 info.newKills++;
+                if(info.newKills + info.previousKills >= 10)
+                    WinTheGame();
+            }
         }
     }
 
@@ -177,7 +181,7 @@ public class GameManager : MonoBehaviour
         if(!finishedGame)
         {
             if (infoManager.playersInfo.First().round >= 8)
-                StartCoroutine(StartNewGame());
+                WinTheGame();
             else
                 StartCoroutine(StartNewRound());
         }
@@ -218,5 +222,18 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+
+    void WinTheGame()
+    {
+        var winner = infoManager.playersInfo.OrderByDescending(x => x.newKills + x.previousKills).First();
+        int player_color = winner.player_number;
+        int character = winner.characterChosen;
+
+        finishCanvas.SetActive(true);
+        inGameCanvas.SetActive(false);
+        foreach (var player in myPlayers)
+            player.canMove = false;
+        finishedGame = true;
+    }
 
 }
