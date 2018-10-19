@@ -27,6 +27,7 @@ public class HookHability : IHability
         _hook = hook;
         _hook.OnFailedFire += () => FailedFire();
         _hook.OnReachedTarget += t => ReachedTarget();
+        _hook.OnReachedPoint += () => ResetValues();
     }
 
     public override void Update()

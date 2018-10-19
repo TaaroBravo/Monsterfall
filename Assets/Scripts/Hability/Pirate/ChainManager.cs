@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using FrameworkGoat.ObjectPool;
 
-public class ChainManager {
+public class ChainManager
+{
 
     private Hook _hook;
 
     private List<ChainPart> _chainParts;
     private List<ChainSection> _chainSections;
 
-	public ChainManager(Func<ChainPart> factoryMethod, Hook hook)
+    public ChainManager(Func<ChainPart> factoryMethod, Hook hook)
     {
         ObjectPoolManager.Instance.AddObjectPool<ChainPart>(factoryMethod, ChainPart.Init, ChainPart.Finit, 30);
         _hook = hook;
@@ -27,7 +28,7 @@ public class ChainManager {
     #region Update
     public void Update(Vector3 characterPosition, Vector3 pointPosition)
     {
-        var currentIndex = _chainParts.Count-1;
+        var currentIndex = _chainParts.Count - 1;
 
         for (int i = 0; i < _chainSections.Count; i++)
         {
@@ -47,7 +48,7 @@ public class ChainManager {
                         }
                         else
                         {
-                            var direction = (characterPosition- part.to).normalized;
+                            var direction = (characterPosition - part.to).normalized;
                             var position = part.to + direction * distanceMadeInThisSection;
                             currentIndex = PlacePart(position, direction, currentIndex);
                         }
@@ -62,13 +63,13 @@ public class ChainManager {
                     {
                         if (part.to == Vector3.zero)
                         {
-                            var direction = (part.from- pointPosition).normalized;
+                            var direction = (part.from - pointPosition).normalized;
                             var position = pointPosition + direction * distanceMadeInThisSection;
                             currentIndex = PlacePart(position, direction, currentIndex);
                         }
                         else
                         {
-                            var direction = (part.from- part.to).normalized;
+                            var direction = (part.from - part.to).normalized;
                             var position = part.to + direction * distanceMadeInThisSection;
                             currentIndex = PlacePart(position, direction, currentIndex);
                         }
@@ -79,7 +80,7 @@ public class ChainManager {
                     break;
             }
         }
-        
+
         ClearUnnecesaryParts(currentIndex);
     }
     #endregion
@@ -111,7 +112,7 @@ public class ChainManager {
 
     private float GetDistanceSection(ChainSection c, Vector3 characterPosition, Vector3 pointPosition)
     {
-        switch(c.part)
+        switch (c.part)
         {
             case ChainSection.Type.Initial:
                 if (c.to == Vector3.zero)
@@ -152,7 +153,7 @@ public class ChainManager {
     private void Clean()
     {
         _chainSections.Clear();
-        foreach(var item in _chainParts)
+        foreach (var item in _chainParts)
         {
             ObjectPoolManager.Instance.ReturnObject<ChainPart>(item);
         }

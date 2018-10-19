@@ -103,10 +103,6 @@ public class PirateCI : Editor {
             player.chainPrefab = (ChainPart)EditorGUILayout.ObjectField(player.chainPrefab, typeof(ChainPart), true);
             player.hookCooldown = EditorGUILayout.FloatField("Cooldown del Hook", player.hookCooldown);
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Movement Hook:", EditorStyles.boldLabel);
-            EditorGUILayout.Space();
-            player.movementHookCooldown = EditorGUILayout.FloatField("Cooldown del Movement Hook", player.movementHookCooldown);
-            EditorGUILayout.Space();
         }
         EditorGUILayout.EndFadeGroup();
         fadeVariablesImpact.target = EditorGUILayout.Foldout(fadeVariablesImpact.target, "Variables de Impacto");

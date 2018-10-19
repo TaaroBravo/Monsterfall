@@ -6,46 +6,20 @@ using System;
 
 public class Pirate : PlayerController
 {
-    public List<Transform> hookPointsPositions;
     public float hookCooldown;
-    public float movementHookCooldown;
 
     public ChainPart chainPrefab;
-
-    private Transform lastPoint;
 
     public override void Start()
     {
         base.Start();
-        //hookPointsPositions = GameObject.FindObjectsOfType<HookPoints>().Select(x => x.GetComponent<Transform>()).ToList();
         SetHabilities();
-        StartCoroutine(TimerRecalculate());
+        //StartCoroutine(TimerRecalculate());
     }
 
     public override void Update()
     {
         base.Update();
-
-        //var allPointsVisible = GameObject.FindObjectsOfType<Pirate>().Aggregate(new FList<Transform>(), (x, y) =>
-        //{
-        //    var points = Physics.OverlapSphere(y.transform.position, 13f).Where(h => h.GetComponent<HookPoints>()).Select(h => h.GetComponent<Transform>());
-        //    if (points.Any())
-        //        return x + points;
-        //    return x;
-        //});
-
-        //hookChosenPosition = ClosesToDirection(allPointsVisible.Where(x => x != lastPoint).Where(x => x.GetComponent<HookPoints>().isAvailable).Where(x => (x.transform.position - transform.position).magnitude <= 13));
-
-        //if (hookChosenPosition)
-        //    hookChosenPosition.GetComponent<HookPoints>().isAvailable = true;
-
-        //foreach (var hookPoint in hookPointsPositions)
-        //{
-        //    if (allPointsVisible.Contains(hookPoint))
-        //        hookPoint.GetComponent<HookPoints>().isAvailable = true;
-        //    else
-        //        hookPoint.GetComponent<HookPoints>().isAvailable = false;
-        //}
     }
 
     void PirateHability()
@@ -55,56 +29,42 @@ public class Pirate : PlayerController
 
     void MovementHability()
     {
-        if (hookChosenPosition)
-        {
-            hability["MovementHook"].Hability();
-            lastPoint = hookChosenPosition;
-        }
+        
     }
 
-    IEnumerator TimerRecalculate()
-    {
-        while(true)
-        {
-            yield return new WaitUntil(() => lastPoint);
-            var oldPoint = lastPoint;
-            yield return new WaitForSeconds(1f);
-            if (oldPoint == lastPoint)
-                lastPoint = null;
-        }
-    }
-
-    Transform ClosesToDirection(IEnumerable<Transform> hookPoints)
-    {
-        if (hookPoints.Count() == 0)
-            return null;
-        float x = GetComponent<PlayerInput>().MainHorizontal();
-        float y = GetComponent<PlayerInput>().MainVertical();
-        if (x + y == 0)
-            x = Mathf.Sign(transform.localScale.z);
-
-        Vector3 direction = ((transform.position + new Vector3(x, y, 0)) - transform.position).normalized;
-        Vector3 startingPoint = transform.position;
-
-        List<Tuple<Transform, float>> listTuple = new List<Tuple<Transform, float>>();
-        float minDistance = 10000;
-
-        foreach (var point in hookPoints)
-        {
-            Ray ray = new Ray(startingPoint, direction);
-            float distance = Vector3.Cross(ray.direction, point.position - ray.origin).magnitude;
-            if (distance < minDistance)
-                minDistance = distance;
-            listTuple.Add(Tuple.Create(point, distance));
-        }
-        return listTuple.Where(h => h.Item2 == minDistance).Select(h => h.Item1).First();
-    }
 
     void SetHabilities()
     {
-        hability.Add(typeof(HookHability).ToString(), new HookHability(this, chainPrefab, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), transform.ChildrenWithComponent<Hook>().First(), hookCooldown));
-        hability.Add(typeof(MovementHook).ToString(), new MovementHook(this, transform.ChildrenWithComponent<Hook>().First(), hookChosenPosition, movementHookCooldown));
+        hability.Add(typeof(HookHability).ToString(), new HookHability(this, chainPrefab, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), transform.ChildrenWithComponent<Hook>().First(), 1.5f));
         myHability = PirateHability;
         movementHability = MovementHability;
     }
+
+    #region Maybe
+    //Transform ClosesToDirection(IEnumerable<Transform> hookPoints)
+    //{
+    //    if (hookPoints.Count() == 0)
+    //        return null;
+    //    float x = GetComponent<PlayerInput>().MainHorizontal();
+    //    float y = GetComponent<PlayerInput>().MainVertical();
+    //    if (x + y == 0)
+    //        x = Mathf.Sign(transform.localScale.z);
+
+    //    Vector3 direction = ((transform.position + new Vector3(x, y, 0)) - transform.position).normalized;
+    //    Vector3 startingPoint = transform.position;
+
+    //    List<Tuple<Transform, float>> listTuple = new List<Tuple<Transform, float>>();
+    //    float minDistance = 10000;
+
+    //    foreach (var point in hookPoints)
+    //    {
+    //        Ray ray = new Ray(startingPoint, direction);
+    //        float distance = Vector3.Cross(ray.direction, point.position - ray.origin).magnitude;
+    //        if (distance < minDistance)
+    //            minDistance = distance;
+    //        listTuple.Add(Tuple.Create(point, distance));
+    //    }
+    //    return listTuple.Where(h => h.Item2 == minDistance).Select(h => h.Item1).First();
+    //}
+    #endregion
 }

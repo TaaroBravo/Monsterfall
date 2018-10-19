@@ -37,7 +37,7 @@ public class ForwardCharge : IHability
             }
             timerActive += Time.deltaTime;
             player.moveVector.x = _dir * _speed;
-            distance = _speed * timerActive;
+            distance = Mathf.RoundToInt(_speed * timerActive / 5) * 5;
             if (_target)
                 Charge();
             else
@@ -86,7 +86,7 @@ public class ForwardCharge : IHability
         _target.transform.parent = null;
         _target.SetStun(0.2f);
         //TODO: Redondear o nerfear
-        _target.SetDamage(distance / 2, player);
+        _target.SetDamage(Mathf.RoundToInt((distance / 1.3f) / 5) * 5, player);
     }
 
     void ResetValues()

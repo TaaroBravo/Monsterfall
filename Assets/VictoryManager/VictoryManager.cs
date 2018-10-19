@@ -12,7 +12,7 @@ public class VictoryManager : MonoBehaviour {
     public List<Image> Heroes = new List<Image>();
     public Image BorderGlow1;
     public Image BorderGlow2;
-    List<Color> PlayerColors = new List<Color>();
+    public List<Color> PlayerColors = new List<Color>();
     List<Vector3> FinalPositions = new List<Vector3>();
     List<Vector3> InitialPositions = new List<Vector3>();
     List<Vector3> FinalScale = new List<Vector3>();
@@ -33,14 +33,14 @@ public class VictoryManager : MonoBehaviour {
             InitialScale.Add(Heroes[i].GetComponent<RectTransform>().localScale * 10);
         }
         var color = new Color(0, 0, 0, 0);
-        if (ColorUtility.TryParseHtmlString("#00cbff", out color)) PlayerColors.Add(color); // azul
-        if (ColorUtility.TryParseHtmlString("#ec4312", out color)) PlayerColors.Add(color); // rojo
-        if (ColorUtility.TryParseHtmlString("#96ff00", out color)) PlayerColors.Add(color); // verde
-        if (ColorUtility.TryParseHtmlString("#fff000", out color)) PlayerColors.Add(color); // amarillo
+        //if (ColorUtility.TryParseHtmlString("#00cbff", out color)) PlayerColors.Add(color); // azul
+        //if (ColorUtility.TryParseHtmlString("#ec4312", out color)) PlayerColors.Add(color); // rojo
+        //if (ColorUtility.TryParseHtmlString("#96ff00", out color)) PlayerColors.Add(color); // verde
+        //if (ColorUtility.TryParseHtmlString("#fff000", out color)) PlayerColors.Add(color); // amarillo
     }
     private void Update()
     {
-        DebugKeys();
+        //DebugKeys();
         if (startanimation)
         {
             animationtimer += Time.deltaTime;

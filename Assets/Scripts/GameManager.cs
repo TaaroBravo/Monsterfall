@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
             if (info.player_number == player_number)
             {
                 info.newKills++;
-                if(info.newKills + info.previousKills >= 10)
+                if (info.newKills + info.previousKills >= 10)
                     WinTheGame();
             }
         }
@@ -175,12 +175,12 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
-        finishCanvas.SetActive(true);
-        inGameCanvas.SetActive(false);
         foreach (var player in myPlayers)
             player.canMove = false;
-        if(!finishedGame)
+        if (!finishedGame)
         {
+            finishCanvas.SetActive(true);
+            inGameCanvas.SetActive(false);
             if (infoManager.playersInfo.First().round >= 8)
                 WinTheGame();
             else
@@ -230,10 +230,10 @@ public class GameManager : MonoBehaviour
         int player_color = winner.player_number;
         int character = winner.characterChosen;
 
-        victoryCanvas.SetActive(true);
-        victoryCanvas.GetComponent<VictoryManager>().AssignValues(player_color, character);
         finishCanvas.SetActive(false);
         inGameCanvas.SetActive(false);
+        victoryCanvas.SetActive(true);
+        victoryCanvas.GetComponent<VictoryManager>().AssignValues(player_color, character);
         foreach (var player in myPlayers)
             player.canMove = false;
         finishedGame = true;
