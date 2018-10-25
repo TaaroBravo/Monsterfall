@@ -788,7 +788,9 @@ public class PlayerController : MonoBehaviour
             myAnim.StopPlayback();
             myAnim.SetTrigger("Death");
             myAnim.Play("Death");
-            Destroy(gameObject, 1.1f);
+            this.enabled = false;
+            controller.enabled = false;
+            //Destroy(gameObject, 1.1f);
             isDead = true;
         }
     }
