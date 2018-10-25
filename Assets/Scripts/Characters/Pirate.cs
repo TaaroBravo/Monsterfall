@@ -13,8 +13,8 @@ public class Pirate : PlayerController
     public override void Start()
     {
         base.Start();
+        SetAttacks();
         SetHabilities();
-        //StartCoroutine(TimerRecalculate());
     }
 
     public override void Update()
@@ -32,6 +32,12 @@ public class Pirate : PlayerController
         
     }
 
+    private void SetAttacks()
+    {
+        attacks.Add(typeof(NormalAttack).ToString(), new NormalAttack(this, null, normalAttackCoolDown));
+        attacks.Add(typeof(UpAttack).ToString(), new UpAttack(this, null, upAttackCoolDown));
+        attacks.Add(typeof(DownAttack).ToString(), new DownAttack(this, null, downAttackCoolDown));
+    }
 
     void SetHabilities()
     {

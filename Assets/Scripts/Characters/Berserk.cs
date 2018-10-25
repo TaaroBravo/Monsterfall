@@ -8,6 +8,7 @@ public class Berserk : PlayerController
 {
     public event Action OnStompHability = delegate { };
 
+    IEffect superPunch;
     public float power;
     public float stompCooldown;
 
@@ -17,6 +18,8 @@ public class Berserk : PlayerController
     public override void Start()
     {
         base.Start();
+        superPunch = new IBerserkPunch(15);
+        SetAttacks();
         SetHabilities();
     }
 
@@ -34,6 +37,13 @@ public class Berserk : PlayerController
     void MovementHability()
     {
         hability["ForwardCharge"].Hability();
+    }
+
+    private void SetAttacks()
+    {
+        attacks.Add(typeof(NormalAttack).ToString(), new NormalAttack(this, superPunch, normalAttackCoolDown));
+        attacks.Add(typeof(UpAttack).ToString(), new UpAttack(this, superPunch, upAttackCoolDown));
+        attacks.Add(typeof(DownAttack).ToString(), new DownAttack(this, superPunch, downAttackCoolDown));
     }
 
     void SetHabilities()

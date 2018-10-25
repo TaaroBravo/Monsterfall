@@ -78,7 +78,7 @@ public class ForwardCharge : IHability
 
         var enemies = Physics.OverlapSphere(player.transform.position, 1f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player && x != _target).Where(x => !x.isDead);
         foreach (var _enemy in enemies)
-            _enemy.ReceiveDamage((Vector3.right * Mathf.Sign(player.transform.localScale.z) * 30), player);
+            _enemy.ReceiveImpact((Vector3.right * Mathf.Sign(player.transform.localScale.z) * 30), player);
     }
 
     void DamageTarget()
@@ -86,7 +86,8 @@ public class ForwardCharge : IHability
         _target.transform.parent = null;
         _target.SetStun(0.2f);
         //TODO: Redondear o nerfear
-        _target.SetDamage(Mathf.RoundToInt((distance / 1.3f) / 5) * 5, player);
+        _target.SetDamage(Mathf.RoundToInt((distance / 1.3f) / 5) * 5);
+        _target.SetLastOneWhoHittedMe(player);
     }
 
     void ResetValues()

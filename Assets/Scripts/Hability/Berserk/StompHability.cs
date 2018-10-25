@@ -52,7 +52,7 @@ public class StompHability : IHability
                     
                     playersHitted.Add(target);
                     Debug.Log(target.gameObject.name);
-                    target.ReceiveDamage(damage * _power, player);
+                    target.ReceiveImpact(damage * _power, player);
                     player.whoIHited = target;
                 }
             }

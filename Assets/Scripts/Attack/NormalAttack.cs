@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class NormalAttack : IAttack
 {
     ParticleSystem ps;
-    public NormalAttack(PlayerController pl, float _timerCoolDown = 0)
+    public NormalAttack(PlayerController pl, IEffect _effect = null, float _timerCoolDown = 0)
     {
         player = pl;
+        effect = _effect;
         timerCoolDownAttack = _timerCoolDown;
         coolDownAttack = _timerCoolDown;
         weaponExtends = player.weaponExtends;
@@ -43,7 +45,7 @@ public class NormalAttack : IAttack
             else
                 player.myAnim.Play("HitForwardAir");
 
-            Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 2, col.transform.rotation, LayerMask.GetMask("Hitbox"));
+            Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 1.5f, col.transform.rotation, LayerMask.GetMask("Hitbox"));
             foreach (Collider c in cols)
             {
                 if (CheckParently(c.transform))
@@ -52,7 +54,18 @@ public class NormalAttack : IAttack
                 player.hitParticles.Play();
                 if (target != null)
                 {
-                    target.ReceiveDamage(new Vector3(Mathf.Sign(player.transform.localScale.z) * CalculateImpact(currentPressed * 2), 0, 0), player, currentPressed >= maxPressed);
+                    if (!(player is Berserk))
+                        target.ReceiveImpact(new Vector3(Mathf.Sign(player.transform.localScale.z) * CalculateImpact(currentPressed * 2), 0, 0), player, currentPressed >= maxPressed);
+                    else
+                        target.ReceiveImpact(new Vector3(Mathf.Sign(player.transform.localScale.z) * CalculateImpact(3), 0, 0), player, false, true);
+
+                    if (!(player is Rogue) && !(player is Berserk))
+                    {
+                        target.SetDamage(10);
+                        target.ApplyEffect(effect);
+                    }
+                    else
+                        target.ApplyEffect(effect);
                     ps.transform.up = -Vector3.right * player.transform.localScale.z;
                     ps.Play();
                     target.WhoHitedMe(player);

@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Knight : PlayerController {
 
+    IEffect _fireEffect;
     public float powerOfPunch;
     public float punchCooldown;
 
@@ -16,6 +17,8 @@ public class Knight : PlayerController {
     public override void Start()
     {
         base.Start();
+        _fireEffect = new IFireEffect(5, 5f, 1f);
+        SetAttacks();
         SetHabilities();
     }
 
@@ -50,6 +53,13 @@ public class Knight : PlayerController {
     void MovementHability()
     {
         hability["ForcedJump"].Hability();
+    }
+
+    private void SetAttacks()
+    {
+        attacks.Add(typeof(NormalAttack).ToString(), new NormalAttack(this, _fireEffect, normalAttackCoolDown));
+        attacks.Add(typeof(UpAttack).ToString(), new UpAttack(this, _fireEffect, upAttackCoolDown));
+        attacks.Add(typeof(DownAttack).ToString(), new DownAttack(this, _fireEffect, downAttackCoolDown));
     }
 
     void SetHabilities()

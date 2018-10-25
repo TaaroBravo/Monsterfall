@@ -6,9 +6,10 @@ public class UpAttack : IAttack
 {
     ParticleSystem ps;
 
-    public UpAttack(PlayerController pl, float _timerCoolDown = 0)
+    public UpAttack(PlayerController pl, IEffect _effect = null, float _timerCoolDown = 0)
     {
         player = pl;
+        effect = _effect;
         timerCoolDownAttack = _timerCoolDown;
         coolDownAttack = _timerCoolDown;
         weaponExtends = player.weaponExtends;
@@ -42,7 +43,7 @@ public class UpAttack : IAttack
                 player.myAnim.Play("AttackUp");
             else
                 player.myAnim.Play("HitUpAir");
-            Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * weaponExtends, col.transform.rotation, LayerMask.GetMask("Hitbox"));
+            Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 1.5f, col.transform.rotation, LayerMask.GetMask("Hitbox"));
             foreach (Collider c in cols)
             {
                 if (CheckParently(c.transform))
@@ -51,7 +52,18 @@ public class UpAttack : IAttack
                 player.hitParticles.Play();
                 if (target != null)
                 {
-                    target.ReceiveDamage(new Vector3(0, CalculateImpact(currentPressed), 0), player, currentPressed >= maxPressed);
+                    if (!(player is Berserk))
+                        target.ReceiveImpact(new Vector3(0, CalculateImpact(currentPressed), 0), player, currentPressed >= maxPressed);
+                    else
+                        target.ReceiveImpact(new Vector3(0, CalculateImpact(currentPressed), 0), player, false, true);
+                    
+                    if (!(player is Rogue) && !(player is Berserk))
+                    {
+                        target.SetDamage(10);
+                        target.ApplyEffect(effect);
+                    }
+                    else
+                        target.ApplyEffect(effect);
                     ps.transform.up = -Vector3.up;
                     ps.Play();
                     player.whoIHited = target;

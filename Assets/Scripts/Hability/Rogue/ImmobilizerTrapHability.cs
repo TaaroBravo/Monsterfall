@@ -62,7 +62,8 @@ public class ImmobilizerTrapHability : IHability
         enemy.myAnim.Play("Stunned");
         enemy.SetStun(1f);
         enemy.ResetVelocity();
-        enemy.SetDamage(5,player);
+        enemy.SetDamage(5);
+        enemy.SetLastOneWhoHittedMe(player);
     }
 
     void ResetValues(Immobilizer immobilizer)

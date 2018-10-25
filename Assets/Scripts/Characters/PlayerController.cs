@@ -124,6 +124,10 @@ public class PlayerController : MonoBehaviour
     public bool touchingWall;
     public Transform hookChosenPosition;
 
+    public PlayerController lastOneWhoHittedMe;
+
+    Tuple<bool, Vector3> rejectWall = new Tuple<bool, Vector3>(false, Vector3.zero);
+
     #region Ray Borders
     private Transform rBottomPos;
     private Transform rTopPos;
@@ -133,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
     #region Dictionary
     private Dictionary<string, IMove> myMoves = new Dictionary<string, IMove>();
-    private Dictionary<string, IAttack> attacks = new Dictionary<string, IAttack>();
+    public Dictionary<string, IAttack> attacks = new Dictionary<string, IAttack>();
     public Dictionary<string, IHability> hability = new Dictionary<string, IHability>();
     #endregion
 
@@ -219,6 +223,8 @@ public class PlayerController : MonoBehaviour
     void PhysicsOptions()
     {
         PhysicsChecks();
+        if (rejectWall.Item1)
+            AggresiveHitReflect();
         if (controller.isGrounded)
             StartCoroutine(CoyoteTime(coyoteTime));
     }
@@ -260,7 +266,7 @@ public class PlayerController : MonoBehaviour
         var layerMask = layerMaskIgnore1 | layerMaskIgnore2 | layerMaskIgnore3 | layerMaskIgnore4;
         layerMask = ~layerMask;
         Debug.Log("Entre 1");
-        if(rBottomPos) 
+        if (rBottomPos)
         {
             if (Physics.Raycast(rBottomPos.position, (rUpPos[0].position - rBottomPos.position).normalized, out hit, 2f, layerMask))
             {
@@ -310,6 +316,25 @@ public class PlayerController : MonoBehaviour
         moveVector = Vector3.zero;
         myAnim.Play("HitOnWall");
     }
+
+    void AggresiveHitReflect()
+    {
+        impactVelocity = new Vector3(rejectWall.Item2.x * 30, 0, 0);
+        myAnim.Play("GetHitDown Bot");
+    }
+
+    IEnumerator HitReflectTime()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            rejectWall = Tuple.Create(false, Vector3.zero);
+            stunnedByHit = false;
+            impactVelocity = Vector3.zero;
+            myAnim.SetBool("Stunned", false);
+            break;
+        }
+    }
     #endregion
 
     #region Stun & Mark
@@ -344,6 +369,16 @@ public class PlayerController : MonoBehaviour
         currentImpactStunTimer += Time.deltaTime;
         if (currentImpactStunTimer > impactStunMaxTimer || (IsTouchingWalls() && impactVelocity.x != 0))
         {
+            if (rejectWall.Item1)
+                return;
+            if ((transform.position - lastOneWhoHittedMe.transform.position).magnitude < 5f)
+            {
+                Vector3 dir = (lastOneWhoHittedMe.transform.position - transform.position).normalized;
+                impactVelocity = Vector3.zero;
+                rejectWall = Tuple.Create(true, dir);
+                StartCoroutine(HitReflectTime());
+                return;
+            }
             whoHitedMe = null;
             stunnedByHit = false;
             playerMarked = false;
@@ -478,7 +513,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DashCoolDown()
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(1.5f);
             isDashing = false;
@@ -530,13 +565,83 @@ public class PlayerController : MonoBehaviour
             myAnim.SetBool("Running", false);
         }
     }
+
+    bool onFire;
+    void MoveToCancelFire(IEffect effect, float maxTime)
+    {
+        StartCoroutine(CancelFireCoroutine(effect, maxTime));
+        onFire = true;
+    }
+
+    IEnumerator CancelFireCoroutine(IEffect effect, float maxTime)
+    {
+        int counts = 0;
+        while (true)
+        {
+            float input = GetComponent<PlayerInput>().MainHorizontal();
+            yield return new WaitUntil(() => Mathf.Sign(GetComponent<PlayerInput>().MainHorizontal()) != Mathf.Sign(input));
+            counts++;
+            if (counts > 5)
+            {
+                CancelFire(effect, maxTime);
+                break;
+            }
+        }
+    }
+
+    void CancelFire(IEffect effect, float maxTime)
+    {
+        StopCoroutine(Effect(effect, maxTime));
+        onFire = false;
+    }
+
+    #endregion
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 1.5f);
+    }
+
+    #region Effects
+
+    public void ApplyEffect(IEffect _effect)
+    {
+        if (_effect != null)
+        {
+            onFire = true;
+            float maxTime = _effect.GetMaxTimer();
+            StartCoroutine(Effect(_effect, maxTime));
+            MoveToCancelFire(_effect, maxTime);
+        }
+    }
+
+    IEnumerator Effect(IEffect effect, float maxTime)
+    {
+        while (maxTime > 0 && onFire)
+        {
+            effect.Effect(this);
+            maxTime -= effect.GetDelayTimer();
+            yield return new WaitForSeconds(effect.GetDelayTimer());
+        }
+        onFire = false;
+        StopCoroutine(CancelFireCoroutine(effect, maxTime));
+    }
+
     #endregion
 
     #region ReceiveDamage
-    public void ReceiveDamage(Vector3 impact, PlayerController killer, bool marked = false)
+    public void SetLastOneWhoHittedMe(PlayerController killer)
+    {
+        lastOneWhoHittedMe = killer;
+    }
+
+    public void ReceiveImpact(Vector3 impact, PlayerController killer, bool marked = false, bool hittedByBerserk = false)
     {
         Vector3 impactRelax = Vector3.zero;
         Vector3 impactNormalized = new Vector3(impact.x == 0 ? 0 : Mathf.Sign(impact.x), impact.y == 0 ? 0 : Mathf.Sign(impact.y), 0);
+        SetLastOneWhoHittedMe(killer);
 
         if (marked)
         {
@@ -545,17 +650,7 @@ public class PlayerController : MonoBehaviour
             PS_Marked.Play();
         }
 
-        if (stunnedByHit)
-        {
-            if (!isDead)
-                SetDamage(25, killer);
-        }
-        else
-        {
-            if (!isDead)
-                SetDamage(10, killer);
-        }
-        if (stunnedByHit && currentImpactStunTimer > 0.1f)
+        if (stunnedByHit && currentImpactStunTimer > 0.25f)
         {
             if (marked)
                 impactVelocity = impactNormalized * impactMarked * 1.5f;
@@ -582,6 +677,14 @@ public class PlayerController : MonoBehaviour
             stunnedByHit = true;
             myAnim.SetBool("Stunned", true);
         }
+
+        if (hittedByBerserk)
+        {
+            impactVelocity = impact;
+            stunnedByHit = true;
+            SetImpacts();
+        }
+
         if (myLife > 0)
         {
             if (impact.x != 0)
@@ -641,19 +744,15 @@ public class PlayerController : MonoBehaviour
             canJump = false;
             if (stunnedByHit && impactVelocity.y < 0)
             {
+                Debug.Log("A");
                 impactVelocity = Vector3.zero;
                 moveVector = Vector3.zero;
-                //stunnedByHit = false;
-                //playerMarked = false;
                 myAnim.SetBool("Stunned", false);
             }
             else if (!stunnedByHit)
                 impactVelocity = Vector3.zero;
             if (isFallingOff)
-            {
-                //PS_Fall.Play();
                 isFallingOff = false;
-            }
         }
 
     }
@@ -676,18 +775,21 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region UpdateLife
-    public void SetDamage(float damage, PlayerController killer)
+    public void SetDamage(float damage)
     {
+        if (isDead)
+            return;
         myLife -= Mathf.RoundToInt(damage);
         myLifeUI.TakeDamage(Mathf.RoundToInt(damage));
         if (myLife <= 0 && !isDead)
         {
-            GameManager.Instance.SetKills(killer.GetComponent<PlayerInput>().player_number);
+            GameManager.Instance.SetKills(lastOneWhoHittedMe.GetComponent<PlayerInput>().player_number);
             canMove = false;
             myAnim.StopPlayback();
             myAnim.SetTrigger("Death");
             myAnim.Play("Death");
             Destroy(gameObject, 1.1f);
+            isDead = true;
         }
     }
 
@@ -712,9 +814,9 @@ public class PlayerController : MonoBehaviour
 
     private void SetAttacks()
     {
-        attacks.Add(typeof(NormalAttack).ToString(), new NormalAttack(this, normalAttackCoolDown));
-        attacks.Add(typeof(UpAttack).ToString(), new UpAttack(this, upAttackCoolDown));
-        attacks.Add(typeof(DownAttack).ToString(), new DownAttack(this, downAttackCoolDown));
+        //attacks.Add(typeof(NormalAttack).ToString(), new NormalAttack(this, normalAttackCoolDown));
+        //attacks.Add(typeof(UpAttack).ToString(), new UpAttack(this, upAttackCoolDown));
+        //attacks.Add(typeof(DownAttack).ToString(), new DownAttack(this, downAttackCoolDown));
         StartCoroutine(CanAttack(0.25f));
     }
 

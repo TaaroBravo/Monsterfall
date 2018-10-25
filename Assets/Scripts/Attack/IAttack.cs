@@ -5,6 +5,7 @@ using UnityEngine;
 abstract public class IAttack
 {
     public PlayerController player;
+    public IEffect effect;
     public float timerCoolDownAttack;
     public float coolDownAttack;
     public float weaponExtends;

@@ -15,12 +15,16 @@ public class Rogue : PlayerController
     public float rogueDashCooldown;
 
     public ParticleSystem ps_DashRogue;
+    IEffect markEffect;
+
 
     bool enter;
 
     public override void Start()
     {
         base.Start();
+        markEffect = new IRogueMark(5, 4);
+        SetAttacks();
         SetHabilities();
         enter = true;
     }
@@ -48,6 +52,12 @@ public class Rogue : PlayerController
         hability["RogueDashHability"].Hability();
     }
 
+    private void SetAttacks()
+    {
+        attacks.Add(typeof(NormalAttack).ToString(), new NormalAttack(this, markEffect, normalAttackCoolDown));
+        attacks.Add(typeof(UpAttack).ToString(), new UpAttack(this, markEffect, upAttackCoolDown));
+        attacks.Add(typeof(DownAttack).ToString(), new DownAttack(this, markEffect, downAttackCoolDown));
+    }
 
     void SetHabilities()
     {

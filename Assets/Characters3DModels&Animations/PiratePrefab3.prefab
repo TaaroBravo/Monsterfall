@@ -5358,8 +5358,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.99999964, y: 1.6388156, z: 2.8}
-  m_Center: {x: -2.578649e-16, y: -0.0037314983, z: 0.13744476}
+  m_Size: {x: 0.99999964, y: 1.6388158, z: 5.448547}
+  m_Center: {x: 2.4310532e-14, y: -0.0037315164, z: 1.4617189}
 --- !u!95 &95858873528155530
 Animator:
   serializedVersion: 3
@@ -5531,7 +5531,7 @@ MonoBehaviour:
   impactMarked: 40
   hitParticles: {fileID: 198878411125015970}
   usingHability: 0
-  attackColliders: {fileID: 65233363304248048}
+  attackColliders: {fileID: 65328478658625468}
   whoHitedMe: {fileID: 0}
   whoIHited: {fileID: 0}
   isDead: 0
@@ -5549,9 +5549,8 @@ MonoBehaviour:
   dashRogue: 0
   touchingWall: 0
   hookChosenPosition: {fileID: 0}
-  hookPointsPositions: []
+  lastOneWhoHittedMe: {fileID: 0}
   hookCooldown: 0
-  movementHookCooldown: 0
   chainPrefab: {fileID: 114095882481161028, guid: 696791c489b428249a0c642756855a67,
     type: 2}
 --- !u!114 &114726237483600416
@@ -5585,6 +5584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f537ec2ede0d5d4588bc13dc1b25b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_number: 0
   controller: 0
   id: 3
   horizontalMove: 
