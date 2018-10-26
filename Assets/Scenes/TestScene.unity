@@ -221,6 +221,18 @@ Prefab:
       propertyPath: m_Name
       value: Caballero Violet
       objectReference: {fileID: 0}
+    - target: {fileID: 198347366330779186, guid: 76b08385cafc29a47a7a8199f1b7209c,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198787617436777762, guid: 76b08385cafc29a47a7a8199f1b7209c,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
   m_IsPrefabParent: 0
@@ -277,6 +289,18 @@ Prefab:
       propertyPath: m_Name
       value: Caballero Yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 198099626309129902, guid: ede7703d40353e8418deb2d45f70747c,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198348902120608724, guid: ede7703d40353e8418deb2d45f70747c,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ede7703d40353e8418deb2d45f70747c, type: 2}
   m_IsPrefabParent: 0
@@ -447,6 +471,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 198010249343028046, guid: 04cc4e21583e41f42b5e047ed8128771,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198622104812045858, guid: 04cc4e21583e41f42b5e047ed8128771,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04cc4e21583e41f42b5e047ed8128771, type: 2}
   m_IsPrefabParent: 0
@@ -489,6 +525,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 198491028254608504, guid: fd056a071d3c1214a930b98808cbe431,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198278251456271160, guid: fd056a071d3c1214a930b98808cbe431,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd056a071d3c1214a930b98808cbe431, type: 2}
   m_IsPrefabParent: 0
@@ -536,6 +584,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 198032309564704930, guid: f5380917b63adba40bb20dad3d630266,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198386697971856474, guid: f5380917b63adba40bb20dad3d630266,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5380917b63adba40bb20dad3d630266, type: 2}
   m_IsPrefabParent: 0
@@ -578,6 +638,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 198259166818873366, guid: d899930633774e0458beb286029e7f05,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198826701210191368, guid: d899930633774e0458beb286029e7f05,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d899930633774e0458beb286029e7f05, type: 2}
   m_IsPrefabParent: 0
@@ -625,6 +697,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198667883027898348, guid: b151e669a8b956740879ae70aaf0ee5d,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198332157591764268, guid: b151e669a8b956740879ae70aaf0ee5d,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b151e669a8b956740879ae70aaf0ee5d, type: 2}
   m_IsPrefabParent: 0
@@ -699,6 +783,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 198986900594830262, guid: a8b93057d69100e4f8e1fde83039f7fe,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198355423596027108, guid: a8b93057d69100e4f8e1fde83039f7fe,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8b93057d69100e4f8e1fde83039f7fe, type: 2}
   m_IsPrefabParent: 0
@@ -745,6 +841,18 @@ Prefab:
       propertyPath: m_Name
       value: Caballero Orange
       objectReference: {fileID: 0}
+    - target: {fileID: 198618450965059216, guid: 07d39eaf907cf9c49b5e70e48b651529,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198942668303316988, guid: 07d39eaf907cf9c49b5e70e48b651529,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
   m_IsPrefabParent: 0
@@ -797,6 +905,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 198298303212043490, guid: e011f2ca7a4b95d4f867b4826a3ddd07,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198695769640571330, guid: e011f2ca7a4b95d4f867b4826a3ddd07,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e011f2ca7a4b95d4f867b4826a3ddd07, type: 2}
   m_IsPrefabParent: 0
@@ -886,6 +1006,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 198537013112431446, guid: 543b56a18c6b56d4c802825809ad74b5,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198613462129157194, guid: 543b56a18c6b56d4c802825809ad74b5,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 543b56a18c6b56d4c802825809ad74b5, type: 2}
   m_IsPrefabParent: 0
@@ -1014,6 +1146,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198015399171871668, guid: 6275f25a7c5f7404196fa9a978e9f82f,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198069486085638014, guid: 6275f25a7c5f7404196fa9a978e9f82f,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6275f25a7c5f7404196fa9a978e9f82f, type: 2}
   m_IsPrefabParent: 0
@@ -1056,6 +1200,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 198331688274243748, guid: b18bd5506624c9e4d97c354c44f63833,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198147624912308864, guid: b18bd5506624c9e4d97c354c44f63833,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b18bd5506624c9e4d97c354c44f63833, type: 2}
   m_IsPrefabParent: 0
@@ -1102,6 +1258,18 @@ Prefab:
       propertyPath: m_Name
       value: Caballero Cyan
       objectReference: {fileID: 0}
+    - target: {fileID: 198339475534368172, guid: 5ad9a501079de7b4aa552c9136061ba4,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198502818171417074, guid: 5ad9a501079de7b4aa552c9136061ba4,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ad9a501079de7b4aa552c9136061ba4, type: 2}
   m_IsPrefabParent: 0
@@ -1149,6 +1317,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198912422624211222, guid: 8191afeb60a86cb48b9c9a89378348cc,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198913464648362148, guid: 8191afeb60a86cb48b9c9a89378348cc,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8191afeb60a86cb48b9c9a89378348cc, type: 2}
   m_IsPrefabParent: 0
@@ -1196,6 +1376,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 198138827471845772, guid: 1f4cbb2da8a91a749ba7d03ad4d31f97,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198407858586376856, guid: 1f4cbb2da8a91a749ba7d03ad4d31f97,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f4cbb2da8a91a749ba7d03ad4d31f97, type: 2}
   m_IsPrefabParent: 0

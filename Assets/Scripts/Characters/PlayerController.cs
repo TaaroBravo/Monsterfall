@@ -112,6 +112,8 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem PS_Marked;
     public ParticleSystem PS_Charged;
     public ParticleSystem PS_Fall;
+    public ParticleSystem PS_LitOnFire;
+    public ParticleSystem PS_LitOnFire2;
 
     public Animator myAnim;
 

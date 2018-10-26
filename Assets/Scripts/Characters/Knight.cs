@@ -17,7 +17,7 @@ public class Knight : PlayerController {
     public override void Start()
     {
         base.Start();
-        _fireEffect = new IFireEffect(1, 5f, 0.2f);
+        _fireEffect = new IFireEffect(1, 4f, 0.4f);
         SetAttacks();
         SetHabilities();
     }
