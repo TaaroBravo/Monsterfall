@@ -281,6 +281,21 @@ namespace AmplifyShaderEditor
 			}
 		}
 
+		public static void UpdateSFandRefreshWindows( AmplifyShaderFunction function )
+		{
+			for( int i = 0; i < AllOpenedWindows.Count; i++ )
+			{
+				AllOpenedWindows[ i ].LateRefreshAvailableNodes();
+				if( AllOpenedWindows[ i ].IsShaderFunctionWindow )
+				{
+					if( AllOpenedWindows[ i ].OpenedShaderFunction == function )
+					{
+						AllOpenedWindows[ i ].UpdateTabTitle();
+					}
+				}
+			}
+		}
+
 		public static void UpdateIO()
 		{
 			int windowCount = AllOpenedWindows.Count;

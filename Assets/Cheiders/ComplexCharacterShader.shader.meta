@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 60c9fd8db6aaaaa4994ff649b99093e9
+timeCreated: 1540490495
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _CNDefault_Normal: {fileID: 2800000, guid: 3fb6a90a87fc56444a92cf094b566a70, type: 3}
+  - _Splatmap: {fileID: 2800000, guid: b77317bcae135a345baebe2f9a8ff3c0, type: 3}
+  - _Albedo: {fileID: 2800000, guid: 275cc477033bbda428fb9bbf8c6eb7d5, type: 3}
+  - _CNDefault_Emission: {fileID: 2800000, guid: e88e603603ad2fb4d8eb358246467fc3,
+      type: 3}
+  - _CNv2Default_MetallicSmoothness: {fileID: 2800000, guid: 4a845a1848957cf4f8fbc7ba322fb3cd,
+      type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

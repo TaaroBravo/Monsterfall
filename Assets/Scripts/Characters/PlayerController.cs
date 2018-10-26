@@ -790,7 +790,7 @@ public class PlayerController : MonoBehaviour
             myAnim.Play("Death");
             this.enabled = false;
             controller.enabled = false;
-            //Destroy(gameObject, 1.1f);
+            Destroy(gameObject, 1.1f); // estaba en 1.1f
             isDead = true;
         }
     }
