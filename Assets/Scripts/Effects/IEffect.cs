@@ -6,6 +6,8 @@ public interface IEffect {
 
     void Effect(PlayerController player);
 
+    void DisableEffect(PlayerController player);
+
     float GetMaxTimer();
 
     float GetDelayTimer();

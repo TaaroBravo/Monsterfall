@@ -592,6 +592,7 @@ public class PlayerController : MonoBehaviour
     void CancelFire(IEffect effect, float maxTime)
     {
         StopCoroutine(Effect(effect, maxTime));
+        effect.DisableEffect(this);
         onFire = false;
     }
 
@@ -626,6 +627,7 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(effect.GetDelayTimer());
         }
         onFire = false;
+        effect.DisableEffect(this);
         StopCoroutine(CancelFireCoroutine(effect, maxTime));
     }
 

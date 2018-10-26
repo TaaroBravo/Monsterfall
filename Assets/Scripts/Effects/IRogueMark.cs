@@ -30,6 +30,11 @@ public class IRogueMark : IEffect
         }
     }
 
+    public void DisableEffect(PlayerController player)
+    {
+        throw new System.NotImplementedException();
+    }
+
     void SetDamage()
     {
         target.SetDamage(damage * countOfMarks);

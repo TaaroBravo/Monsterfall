@@ -16,6 +16,11 @@ public class IBerserkPunch : IEffect
         player.SetDamage(damage);
     }
 
+    public void DisableEffect(PlayerController player)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public float GetDelayTimer()
     {
         return 1;

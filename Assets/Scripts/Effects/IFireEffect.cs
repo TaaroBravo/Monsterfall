@@ -20,6 +20,11 @@ public class IFireEffect : IEffect
         player.SetDamage(dmg);
     }
 
+    public void DisableEffect(PlayerController player)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public float GetMaxTimer()
     {
         return maxTime;
@@ -29,4 +34,5 @@ public class IFireEffect : IEffect
     {
         return delayTime;
     }
+
 }
