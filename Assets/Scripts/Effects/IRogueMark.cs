@@ -17,7 +17,7 @@ public class IRogueMark : IEffect
 
     public void Effect(PlayerController player)
     {
-        if(target == player)
+        if (target == player)
         {
             countOfMarks++;
             SetDamage();
@@ -25,6 +25,8 @@ public class IRogueMark : IEffect
         else
         {
             countOfMarks = 1;
+            if (target)
+                target.GetComponent<RogueSkillCall>().ResetFeedback();
             target = player;
             SetDamage();
         }
@@ -32,12 +34,13 @@ public class IRogueMark : IEffect
 
     public void DisableEffect(PlayerController player)
     {
-        throw new System.NotImplementedException();
+
     }
 
     void SetDamage()
     {
         target.SetDamage(damage * countOfMarks);
+        target.GetComponent<RogueSkillCall>().PassState(countOfMarks - 1);
     }
 
     public float GetDelayTimer()
@@ -47,6 +50,6 @@ public class IRogueMark : IEffect
 
     public float GetMaxTimer()
     {
-        return 1000;  
+        return 1000;
     }
 }

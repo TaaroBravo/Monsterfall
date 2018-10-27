@@ -27,9 +27,9 @@ public class IFireEffect : IEffect
 
     public void DisableEffect(PlayerController player)
     {
+        player.onFire = false;
         player.GetComponent<FireParticle>().fire1.Stop();
         player.GetComponent<FireParticle>().fire2.Stop();
-        throw new System.NotImplementedException();
     }
 
     public float GetMaxTimer()

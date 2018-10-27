@@ -568,7 +568,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    bool onFire;
+    public bool onFire;
     void MoveToCancelFire(IEffect effect, float maxTime)
     {
         StartCoroutine(CancelFireCoroutine(effect, maxTime));
@@ -613,24 +613,30 @@ public class PlayerController : MonoBehaviour
     {
         if (_effect != null)
         {
-            onFire = true;
             float maxTime = _effect.GetMaxTimer();
+            if (_effect is IFireEffect)
+            {
+                onFire = true;
+                MoveToCancelFire(_effect, maxTime);
+            }
             StartCoroutine(Effect(_effect, maxTime));
-            MoveToCancelFire(_effect, maxTime);
         }
     }
 
     IEnumerator Effect(IEffect effect, float maxTime)
     {
-        while (maxTime > 0 && onFire)
+        while (maxTime > 0)
         {
+            if (effect is IFireEffect && onFire)
+                break;
             effect.Effect(this);
             maxTime -= effect.GetDelayTimer();
             yield return new WaitForSeconds(effect.GetDelayTimer());
         }
-        onFire = false;
+
         effect.DisableEffect(this);
-        StopCoroutine(CancelFireCoroutine(effect, maxTime));
+        if (effect is IFireEffect)
+            StopCoroutine(CancelFireCoroutine(effect, maxTime));
     }
 
     #endregion
