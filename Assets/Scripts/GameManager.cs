@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
                 playersObj.Add(hero.gameObject);
             SetUpHUD(infoManager.playersInfo);
             OnSpawnCharacters(myPlayers);
+            CreatorRays.Instance.SetPlayers(myPlayers.ToArray());
             ScoreManager.Instance.SetRound(infoManager.playersInfo.First().round);
         }
         StartCoroutine(StartGame(timeToStart));

@@ -373,14 +373,15 @@ public class PlayerController : MonoBehaviour
         {
             if (rejectWall.Item1)
                 return;
-            if ((transform.position - lastOneWhoHittedMe.transform.position).magnitude < 5f)
-            {
-                Vector3 dir = (lastOneWhoHittedMe.transform.position - transform.position).normalized;
-                impactVelocity = Vector3.zero;
-                rejectWall = Tuple.Create(true, dir);
-                StartCoroutine(HitReflectTime());
-                return;
-            }
+            if (lastOneWhoHittedMe != null)
+                if ((transform.position - lastOneWhoHittedMe.transform.position).magnitude < 5f)
+                {
+                    Vector3 dir = (lastOneWhoHittedMe.transform.position - transform.position).normalized;
+                    impactVelocity = Vector3.zero;
+                    rejectWall = Tuple.Create(true, dir);
+                    StartCoroutine(HitReflectTime());
+                    return;
+                }
             whoHitedMe = null;
             stunnedByHit = false;
             playerMarked = false;
@@ -600,13 +601,6 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 1.5f);
-    }
-
     #region Effects
 
     public void ApplyEffect(IEffect _effect)
@@ -627,7 +621,7 @@ public class PlayerController : MonoBehaviour
     {
         while (maxTime > 0)
         {
-            if (effect is IFireEffect && !onFire)
+            if (effect is IFireEffect && onFire)
                 break;
             effect.Effect(this);
             maxTime -= effect.GetDelayTimer();
@@ -642,6 +636,27 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region ReceiveDamage
+    bool invulnerableRays;
+    public void HitByRay(Vector3 dir)
+    {
+        if (!invulnerableRays)
+        {
+            ReceiveImpact(dir * 50, null);
+            StartCoroutine(InvulnerableToRays());
+        }
+    }
+
+    IEnumerator InvulnerableToRays()
+    {
+        while (true)
+        {
+            invulnerableRays = true;
+            yield return new WaitForSeconds(3f);
+            invulnerableRays = false;
+            break;
+        }
+    }
+
     public void SetLastOneWhoHittedMe(PlayerController killer)
     {
         lastOneWhoHittedMe = killer;
@@ -755,6 +770,7 @@ public class PlayerController : MonoBehaviour
             if (stunnedByHit && impactVelocity.y < 0)
             {
                 Debug.Log("A");
+                stunnedByHit = false;
                 impactVelocity = Vector3.zero;
                 moveVector = Vector3.zero;
                 myAnim.SetBool("Stunned", false);

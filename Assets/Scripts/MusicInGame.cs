@@ -19,14 +19,14 @@ public class MusicInGame : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Level")
         {
-            source.volume = 0.03f;
+            source.volume = 0.4f;
             source.clip = inGame;
             if (!source.isPlaying)
                 source.Play();
         }
         else
         {
-            source.volume = 0.1f;
+            source.volume = 0.4f;
             source.clip = inSelection;
             if (!source.isPlaying)
                 source.Play();
