@@ -627,7 +627,7 @@ public class PlayerController : MonoBehaviour
     {
         while (maxTime > 0)
         {
-            if (effect is IFireEffect && onFire)
+            if (effect is IFireEffect && !onFire)
                 break;
             effect.Effect(this);
             maxTime -= effect.GetDelayTimer();
