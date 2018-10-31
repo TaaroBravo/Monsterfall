@@ -23,7 +23,7 @@ public class Rogue : PlayerController
     public override void Start()
     {
         base.Start();
-        markEffect = new IRogueMark(5, 4);
+        markEffect = new IRogueMark(this, 7, 8);
         SetAttacks();
         SetHabilities();
         enter = true;

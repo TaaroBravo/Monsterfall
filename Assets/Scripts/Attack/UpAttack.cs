@@ -59,7 +59,7 @@ public class UpAttack : IAttack
                     
                     if (!(player is Rogue) && !(player is Berserk))
                     {
-                        target.SetDamage(10);
+                        target.SetDamage(10 * player.buffedPower);
                         target.ApplyEffect(effect);
                     }
                     else
