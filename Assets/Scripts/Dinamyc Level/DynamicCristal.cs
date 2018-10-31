@@ -85,6 +85,5 @@ public class DynamicCristal : MonoBehaviour
     void HitPlayer(PlayerController player, Vector3 dir)
     {
         player.HitByRay(dir);
-        //Llamar a una funcion del PlayerController que stunee y haga todo lo que dice el doc.
     }
 }

@@ -60,7 +60,7 @@ public class DownAttack : IAttack
 
                     if (!(player is Rogue) && !(player is Berserk))
                     {
-                        target.SetDamage(10);
+                        target.SetDamage(10 * player.buffedPower);
                         target.ApplyEffect(effect);
                     }
                     else

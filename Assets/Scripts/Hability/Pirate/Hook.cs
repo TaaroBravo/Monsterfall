@@ -256,6 +256,7 @@ public class Hook : MonoBehaviour
             return;
         }
         target.DisableAll();
+        target.canMove = false;
         hooked = true;
         if (target.canMove)
             target.myAnim.Play("GetHit");
@@ -322,6 +323,7 @@ public class Hook : MonoBehaviour
         playerTeleported = false;
         transform.parent = _myPlayer.transform;
         transform.localPosition = _startPosition;
+        target.canMove = true;
         target.transform.position = endPoint.position;
         target.myAnim.Play("Stunned");
         target.controller.enabled = true;

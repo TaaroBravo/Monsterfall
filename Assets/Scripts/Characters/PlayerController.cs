@@ -130,6 +130,8 @@ public class PlayerController : MonoBehaviour
 
     Tuple<bool, Vector3> rejectWall = new Tuple<bool, Vector3>(false, Vector3.zero);
 
+    public float buffedPower = 1;
+
     #region Ray Borders
     private Transform rBottomPos;
     private Transform rTopPos;
@@ -412,6 +414,7 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
         canDash = false;
         isFallingOff = false;
+        usingHability = false;
         ResetVelocity();
     }
     #endregion
@@ -641,7 +644,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!invulnerableRays)
         {
-            ReceiveImpact(dir * 50, null);
+            if (stunnedByHit)
+                ReceiveImpact(dir * 50, lastOneWhoHittedMe);
+            else
+                ReceiveImpact(dir * 50, null);
+            SetDamage(15);
             StartCoroutine(InvulnerableToRays());
         }
     }
@@ -651,8 +658,12 @@ public class PlayerController : MonoBehaviour
         while (true)
         {
             invulnerableRays = true;
+            buffedPower = 1.5f;
+            GetComponent<BuffedPlayer>().halo.SetActive(true);
             yield return new WaitForSeconds(3f);
+            GetComponent<BuffedPlayer>().halo.SetActive(false);
             invulnerableRays = false;
+            buffedPower = 1;
             break;
         }
     }

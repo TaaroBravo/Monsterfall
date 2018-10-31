@@ -61,7 +61,7 @@ public class NormalAttack : IAttack
 
                     if (!(player is Rogue) && !(player is Berserk))
                     {
-                        target.SetDamage(10);
+                        target.SetDamage(10 * player.buffedPower);
                         target.ApplyEffect(effect);
                     }
                     else

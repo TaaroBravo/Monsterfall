@@ -61,6 +61,7 @@ public class ForwardCharge : IHability
     {
         if (timerCoolDown < 0)
         {
+            ResetValues();
             timerActive = 0;
             distance = 0;
             _dir = Mathf.Sign(player.transform.localScale.z);
@@ -85,7 +86,6 @@ public class ForwardCharge : IHability
     {
         _target.transform.parent = null;
         _target.SetStun(0.2f);
-        //TODO: Redondear o nerfear
         _target.SetDamage(Mathf.RoundToInt((distance / 1.3f) / 5) * 5);
         _target.SetLastOneWhoHittedMe(player);
     }

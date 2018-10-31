@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class IBerserkPunch : IEffect
 {
+    Berserk _player;
     int damage;
 
-    public IBerserkPunch(int damage)
+    public IBerserkPunch(Berserk player, int damage)
     {
+        _player = player;
         this.damage = damage;
     }
 
     public void Effect(PlayerController player)
     {
-        player.SetDamage(damage);
+        player.SetDamage(damage * _player.buffedPower);
     }
 
     public void DisableEffect(PlayerController player)
