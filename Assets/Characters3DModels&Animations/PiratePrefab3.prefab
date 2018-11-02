@@ -2843,6 +2843,7 @@ GameObject:
   - component: {fileID: 114950089551383416}
   - component: {fileID: 114890598847258706}
   - component: {fileID: 114660920612270102}
+  - component: {fileID: 114936919247751410}
   m_Layer: 9
   m_Name: PiratePrefab3
   m_TagString: Untagged
@@ -6419,6 +6420,7 @@ MonoBehaviour:
   touchingWall: 0
   hookChosenPosition: {fileID: 0}
   lastOneWhoHittedMe: {fileID: 0}
+  buffedPower: 1
   onFire: 0
   hookCooldown: 0
   chainPrefab: {fileID: 114095882481161028, guid: 696791c489b428249a0c642756855a67,
@@ -6494,6 +6496,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 0}
+--- !u!114 &114936919247751410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1923958816616880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabbec5259ad2954e980c5d5d54e3ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  halo: {fileID: 1793427645097116}
 --- !u!114 &114950089551383416
 MonoBehaviour:
   m_ObjectHideFlags: 1

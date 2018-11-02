@@ -869,6 +869,7 @@ GameObject:
   - component: {fileID: 114620204938149256}
   - component: {fileID: 114682677106125440}
   - component: {fileID: 114216255690300394}
+  - component: {fileID: 114102312683941676}
   m_Layer: 9
   m_Name: CaballeroPrefab4
   m_TagString: Player
@@ -5596,7 +5597,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1684246600618138}
-  m_LocalRotation: {x: -0.026188478, y: 0.5410858, z: -0.33479682, w: -0.7710069}
+  m_LocalRotation: {x: -0.026188476, y: 0.5410858, z: -0.33479682, w: -0.7710068}
   m_LocalPosition: {x: -0.14654045, y: -0.09503471, z: 0.035689354}
   m_LocalScale: {x: -0.43137428, y: 0.43083507, z: -0.43081814}
   m_Children:
@@ -5921,6 +5922,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a517cac079b6ee45bd31e3cf00d5a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114102312683941676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1290402735160424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabbec5259ad2954e980c5d5d54e3ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  halo: {fileID: 1919321203165614}
 --- !u!114 &114216255690300394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6122,6 +6135,7 @@ MonoBehaviour:
   touchingWall: 0
   hookChosenPosition: {fileID: 0}
   lastOneWhoHittedMe: {fileID: 0}
+  buffedPower: 1
   onFire: 0
   powerOfPunch: 50
   punchCooldown: 3

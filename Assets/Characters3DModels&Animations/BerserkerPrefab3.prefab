@@ -1824,6 +1824,7 @@ GameObject:
   - component: {fileID: 114958120899301260}
   - component: {fileID: 114772119986860960}
   - component: {fileID: 114026927126810478}
+  - component: {fileID: 114697493637438464}
   m_Layer: 9
   m_Name: BerserkerPrefab3
   m_TagString: Untagged
@@ -4099,6 +4100,18 @@ MonoBehaviour:
   - {fileID: 212565664827267170}
   playermarker: {fileID: 212323907932180350}
   invertedflip: 1
+--- !u!114 &114697493637438464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962531468532890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabbec5259ad2954e980c5d5d54e3ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  halo: {fileID: 1584984349868200}
 --- !u!114 &114713903482693890
 MonoBehaviour:
   m_ObjectHideFlags: 1

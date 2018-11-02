@@ -8,6 +8,7 @@ public class CreatorRays : MonoBehaviour
 {
     public static CreatorRays Instance { get; private set; }
 
+    public GameObject cristal;
 
     public Material material;
     public Transform[] rays;
@@ -52,6 +53,7 @@ public class CreatorRays : MonoBehaviour
         MoveRays();
         if (activeMode)
         {
+            cristal.SetActive(true);
             var activeRays = rays.Take(countOfRays);
             
             foreach (var ray in activeRays)
@@ -60,8 +62,11 @@ public class CreatorRays : MonoBehaviour
                 Destroy(ray);
         }
         else
+        {
+            cristal.SetActive(false);
             foreach (var cristalRay in GameObject.FindGameObjectsWithTag("CristalRay"))
                 Destroy(cristalRay);
+        }
 
         #region Inputs
         if (Input.GetKeyDown(KeyCode.Backspace))
@@ -137,7 +142,8 @@ public class CreatorRays : MonoBehaviour
         var layerMaskIgnore2 = 1 << 9;
         var layerMaskIgnore3 = 1 << 13;
         var layerMaskIgnore4 = 1 << 18;
-        var layerMask = layerMaskIgnore1 | layerMaskIgnore2 | layerMaskIgnore3 | layerMaskIgnore4;
+        var layerMaskIgnore5 = 1 << 20;
+        var layerMask = layerMaskIgnore1 | layerMaskIgnore2 | layerMaskIgnore3 | layerMaskIgnore4 | layerMaskIgnore5;
         layerMask = ~layerMask;
         #endregion
 

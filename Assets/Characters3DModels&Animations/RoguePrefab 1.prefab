@@ -1272,6 +1272,7 @@ GameObject:
   - component: {fileID: 114631582852123130}
   - component: {fileID: 114116064937029768}
   - component: {fileID: 114344920713072148}
+  - component: {fileID: 114028069177919038}
   m_Layer: 9
   m_Name: RoguePrefab 1
   m_TagString: Untagged
@@ -2614,7 +2615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4122841190300138}
   - component: {fileID: 135394548486843790}
-  m_Layer: 9
+  m_Layer: 20
   m_Name: DashArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5426,6 +5427,18 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114028069177919038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409004732808454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabbec5259ad2954e980c5d5d54e3ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  halo: {fileID: 1148343852191122}
 --- !u!114 &114075233567754706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5716,6 +5729,7 @@ MonoBehaviour:
   touchingWall: 0
   hookChosenPosition: {fileID: 0}
   lastOneWhoHittedMe: {fileID: 0}
+  buffedPower: 1
   onFire: 0
   immobilizer: {fileID: 114658646700408480, guid: b0bf54c9a5a46d2488f9535eed9539bf,
     type: 2}

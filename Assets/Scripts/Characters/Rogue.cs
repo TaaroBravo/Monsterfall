@@ -17,7 +17,6 @@ public class Rogue : PlayerController
     public ParticleSystem ps_DashRogue;
     IEffect markEffect;
 
-
     bool enter;
 
     public override void Start()

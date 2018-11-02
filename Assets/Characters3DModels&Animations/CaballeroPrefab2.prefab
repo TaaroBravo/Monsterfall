@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 114461237129037106}
   - component: {fileID: 114565102247901884}
   - component: {fileID: 114692943788351552}
+  - component: {fileID: 114801412163575108}
   m_Layer: 9
   m_Name: CaballeroPrefab2
   m_TagString: Player
@@ -6097,6 +6098,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2adaa4cd37863d84684621d14acafd95, type: 3}
   - {fileID: 21300000, guid: 0b8ef2ee8b49ca944b6cb367deb1759f, type: 3}
   RogueSkillParticle: {fileID: 198653938574822470}
+--- !u!114 &114801412163575108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021383369193140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabbec5259ad2954e980c5d5d54e3ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  halo: {fileID: 1232112911543406}
 --- !u!114 &114925708670365268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6193,6 +6206,7 @@ MonoBehaviour:
   touchingWall: 0
   hookChosenPosition: {fileID: 0}
   lastOneWhoHittedMe: {fileID: 0}
+  buffedPower: 1
   onFire: 0
   powerOfPunch: 50
   punchCooldown: 3

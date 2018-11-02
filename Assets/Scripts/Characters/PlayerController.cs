@@ -624,7 +624,7 @@ public class PlayerController : MonoBehaviour
     {
         while (maxTime > 0)
         {
-            if (effect is IFireEffect && onFire)
+            if (effect is IFireEffect && !onFire)
                 break;
             effect.Effect(this);
             maxTime -= effect.GetDelayTimer();
@@ -820,7 +820,8 @@ public class PlayerController : MonoBehaviour
         myLifeUI.TakeDamage(Mathf.RoundToInt(damage));
         if (myLife <= 0 && !isDead)
         {
-            GameManager.Instance.SetKills(lastOneWhoHittedMe.GetComponent<PlayerInput>().player_number);
+            if (lastOneWhoHittedMe)
+                GameManager.Instance.SetKills(lastOneWhoHittedMe.GetComponent<PlayerInput>().player_number);
             canMove = false;
             myAnim.StopPlayback();
             myAnim.SetTrigger("Death");

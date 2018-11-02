@@ -78,7 +78,8 @@ public class DynamicCristal : MonoBehaviour
         var layerMaskIgnore2 = 1 << 17;
         var layerMaskIgnore3 = 1 << 13;
         var layerMaskIgnore4 = 1 << 19;
-        layerMask = layerMaskIgnore1 | layerMaskIgnore2 | layerMaskIgnore3 | layerMaskIgnore4;
+        var layerMaskIgnore5 = 1 << 20;
+        layerMask = layerMaskIgnore1 | layerMaskIgnore2 | layerMaskIgnore3 | layerMaskIgnore4 | layerMaskIgnore5;
         layerMask = ~layerMask;
     }
 

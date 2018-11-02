@@ -8,6 +8,7 @@ public class Pirate : PlayerController
 {
     public float hookCooldown;
 
+    public ParticleSystem shootFire;
     public ChainPart chainPrefab;
 
     public override void Start()
@@ -29,7 +30,7 @@ public class Pirate : PlayerController
 
     void MovementHability()
     {
-        
+        hability["ShootDashHability"].Hability();
     }
 
     private void SetAttacks()
@@ -42,6 +43,7 @@ public class Pirate : PlayerController
     void SetHabilities()
     {
         hability.Add(typeof(HookHability).ToString(), new HookHability(this, chainPrefab, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), transform.ChildrenWithComponent<Hook>().First(), 1.5f));
+        hability.Add(typeof(ShootDashHability).ToString(), new ShootDashHability(this, attackColliders, shootFire, 50, .25f, 3f));
         myHability = PirateHability;
         movementHability = MovementHability;
     }
