@@ -53,6 +53,7 @@ public class DownAttack : IAttack
                 player.hitParticles.Play();
                 if (target != null)
                 {
+                    if (player.GetComponent<BerserkerParticlesManager>()) player.GetComponent<BerserkerParticlesManager>().PlayAttackParticle();
                     if (!(player is Berserk))
                         target.ReceiveImpact(new Vector3(0, -CalculateImpact(currentPressed), 0), player, currentPressed >= maxPressed);
                     else

@@ -54,6 +54,7 @@ public class NormalAttack : IAttack
                 player.hitParticles.Play();
                 if (target != null)
                 {
+                    if (player.GetComponent<BerserkerParticlesManager>()) player.GetComponent<BerserkerParticlesManager>().PlayAttackParticle();
                     if (!(player is Berserk))
                         target.ReceiveImpact(new Vector3(Mathf.Sign(player.transform.localScale.z) * CalculateImpact(currentPressed * 2), 0, 0), player, currentPressed >= maxPressed);
                     else
