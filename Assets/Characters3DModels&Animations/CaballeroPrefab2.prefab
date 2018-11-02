@@ -6287,6 +6287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p1: {fileID: 198624170457475152}
+  fireEstela: {fileID: 198176864261910962}
 --- !u!122 &122757629484917228
 Halo:
   m_ObjectHideFlags: 1
@@ -40299,7 +40300,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 237185357
+  randomSeed: 1190532886
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -57095,7 +57096,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 639024371
+  randomSeed: -19733579
   InitialModule:
     serializedVersion: 3
     enabled: 1

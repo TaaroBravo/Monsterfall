@@ -6275,6 +6275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p1: {fileID: 198949459801119380}
+  fireEstela: {fileID: 198272967103869560}
 --- !u!114 &114985819541772222
 MonoBehaviour:
   m_ObjectHideFlags: 1
