@@ -17,7 +17,15 @@ public class RogueSkill : MonoBehaviour
 
     void Update()
     {
-        //DebugKeys();
+        SetTransform();
+    }
+
+    void SetTransform()
+    {
+        Vector3 playerPos = new Vector3(transform.parent.position.x, transform.parent.position.y + transform.parent.GetComponent<Collider>().bounds.extents.y, transform.parent.position.z);
+        Vector3 dir = (Camera.main.transform.position - playerPos).normalized;
+        transform.position = playerPos + (dir * 6);
+        transform.forward = -dir;
     }
 
     //void DebugKeys()

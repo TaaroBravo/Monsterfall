@@ -8,6 +8,7 @@ public class IRogueMark : IEffect
     PlayerController target;
     int maxOfMarks;
     int countOfMarks;
+    int damageMultiply;
     int damage;
 
     public IRogueMark(Rogue player, int damage, int maxOfMarks)
@@ -21,14 +22,18 @@ public class IRogueMark : IEffect
     {
         if (target == player)
         {
-            countOfMarks += 2;
-            if (countOfMarks >= maxOfMarks)
-                countOfMarks = maxOfMarks;
+            countOfMarks++;
+            if(countOfMarks >= 4)
+            {
+                countOfMarks = 4;
+                damageMultiply = maxOfMarks;
+            }
             SetDamage();
         }
         else
         {
-            countOfMarks = 0;
+            damageMultiply = 0;
+            countOfMarks = 1;
             if (target)
                 target.GetComponent<RogueSkillCall>().ResetFeedback();
             target = player;
@@ -43,7 +48,7 @@ public class IRogueMark : IEffect
 
     void SetDamage()
     {
-        target.SetDamage((damage + countOfMarks) * _player.buffedPower);
+        target.SetDamage((damage + damageMultiply) * _player.buffedPower);
         target.GetComponent<RogueSkillCall>().PassState(countOfMarks - 1);
     }
 

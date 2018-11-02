@@ -51,6 +51,7 @@ public class ForcedJump : IHability
             if (player.IsTouchingWalls())
                 player.canMove = true;
             yield return new WaitUntil(() => player.controller.isGrounded || player.IsTouchingWalls());
+            player.GetComponent<KnightFeedbackController>().fireEstela.Stop();
             if (player.IsTouchingWalls())
                 player.canMove = true;
             ElevatePlayers();
@@ -79,6 +80,7 @@ public class ForcedJump : IHability
 
     void JumpPlayer()
     {
+        player.GetComponent<KnightFeedbackController>().fireEstela.Play();
         player.moveVector.x = _power * Mathf.Sign(player.transform.localScale.z) * 2;
         player.verticalVelocity = player.jumpForce / 2;
         player.moveVector.y = player.verticalVelocity;

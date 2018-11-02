@@ -14,6 +14,7 @@ public class Pirate : PlayerController
     public override void Start()
     {
         base.Start();
+        shootFire = GetComponent<PirateFeedbacks>().shootFire;
         SetAttacks();
         SetHabilities();
     }

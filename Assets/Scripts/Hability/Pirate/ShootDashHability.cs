@@ -49,8 +49,7 @@ public class ShootDashHability : IHability
 
     void Shoot()
     {
-        //Activar particulas
-        //shootFire.Play();
+        shootFire.Play();
         Collider[] cols = Physics.OverlapBox(shootRange.bounds.center, shootRange.bounds.extents * 1.5f, shootRange.transform.rotation, LayerMask.GetMask("Hitbox"));
         foreach (Collider c in cols)
         {
