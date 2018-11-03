@@ -227,13 +227,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 198348902120608724, guid: ede7703d40353e8418deb2d45f70747c,
+    - target: {fileID: 198099626309129902, guid: ede7703d40353e8418deb2d45f70747c,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198099626309129902, guid: ede7703d40353e8418deb2d45f70747c,
+    - target: {fileID: 198348902120608724, guid: ede7703d40353e8418deb2d45f70747c,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -824,13 +824,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198942668303316988, guid: 07d39eaf907cf9c49b5e70e48b651529,
+    - target: {fileID: 198618450965059216, guid: 07d39eaf907cf9c49b5e70e48b651529,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198618450965059216, guid: 07d39eaf907cf9c49b5e70e48b651529,
+    - target: {fileID: 198942668303316988, guid: 07d39eaf907cf9c49b5e70e48b651529,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -1079,13 +1079,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 198647409018543152, guid: 76b08385cafc29a47a7a8199f1b7209c,
+    - target: {fileID: 198238634427167416, guid: 76b08385cafc29a47a7a8199f1b7209c,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198238634427167416, guid: 76b08385cafc29a47a7a8199f1b7209c,
+    - target: {fileID: 198647409018543152, guid: 76b08385cafc29a47a7a8199f1b7209c,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -1469,13 +1469,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 198502818171417074, guid: 5ad9a501079de7b4aa552c9136061ba4,
+    - target: {fileID: 198339475534368172, guid: 5ad9a501079de7b4aa552c9136061ba4,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198339475534368172, guid: 5ad9a501079de7b4aa552c9136061ba4,
+    - target: {fileID: 198502818171417074, guid: 5ad9a501079de7b4aa552c9136061ba4,
         type: 2}
       propertyPath: LightsModule.light
       value: 

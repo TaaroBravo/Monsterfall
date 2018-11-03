@@ -17,6 +17,8 @@ public class WarpController : MonoBehaviour {
         pl.transform.position = parentWarp.zoneToRespawn.position;
         OnTeleportPlayer();
         StartCoroutine(StopParticles(pl));
+        if (pl.GetComponent<PlayerController>() && pl.GetComponent<PlayerController>() is Knight)
+            StartCoroutine(StopParticlesKnight(pl));
     }
 
     IEnumerator StopParticles(Transform pl)
@@ -30,7 +32,19 @@ public class WarpController : MonoBehaviour {
             pl.GetComponent<ParticlePuños>().puñoizquierdo.gameObject.SetActive(true);
             break;
         }
+    }
 
+    IEnumerator StopParticlesKnight(Transform pl)
+    {
+        while (true)
+        {
+            pl.GetComponent<KnightFeedbackController>().punchFire1.gameObject.SetActive(false);
+            pl.GetComponent<KnightFeedbackController>().punchFire2.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.25f);
+            pl.GetComponent<KnightFeedbackController>().punchFire1.gameObject.SetActive(true);
+            pl.GetComponent<KnightFeedbackController>().punchFire2.gameObject.SetActive(true);
+            break;
+        }
     }
 
     public void WarpHook(Transform hook)
