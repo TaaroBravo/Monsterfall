@@ -17,7 +17,7 @@ public class DownAttack : IAttack
         influenceOfMovement = player.influenceOfMovementDown;
         currentPressed = 1;
         maxPressed = 2.5f;
-        minImpact = 30;
+        minImpact = 15; //estaba en 30
     }
 
     public override void Update()

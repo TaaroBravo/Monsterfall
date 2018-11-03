@@ -1,8 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class Inputs : MonoBehaviour {
+
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
+    PlayerIndex[] playerIndices;
 
     string startButton_J1;
     string startButton_J2;
@@ -29,19 +36,22 @@ public class Inputs : MonoBehaviour {
 
     void Start ()
     {
+        playerIndices = new PlayerIndex[4];
         SetUpActionsButtons();
     }
 	
 	void Update ()
     {
+        GetGamepadInputs();
+
         if (Input.GetButtonDown(startButton_J1))
-            SetPlayerInput(0, 1);
+            SetPlayerInput(0, (int)playerIndices[0] + 1);
         if (Input.GetButtonDown(startButton_J2))
-            SetPlayerInput(0, 2);
+            SetPlayerInput(0, (int)playerIndices[1] + 1);
         if (Input.GetButtonDown(startButton_J3))
-            SetPlayerInput(0, 3);
+            SetPlayerInput(0, (int)playerIndices[2] + 1);
         if (Input.GetButtonDown(startButton_J4))
-            SetPlayerInput(0, 4);
+            SetPlayerInput(0, (int)playerIndices[3] + 1);
 
         if (Input.GetButtonDown(actionButton_K1))
             SetPlayerInput(1, 1);
@@ -52,13 +62,13 @@ public class Inputs : MonoBehaviour {
 
 
         if (Input.GetButtonDown(rejectButton_J1))
-            DisconnectPlayer(0, 1);
+            DisconnectPlayer(0, (int)playerIndices[0] + 1);
         if (Input.GetButtonDown(rejectButton_J2))
-            DisconnectPlayer(0, 2);
+            DisconnectPlayer(0, (int)playerIndices[1] + 1);
         if (Input.GetButtonDown(rejectButton_J3))
-            DisconnectPlayer(0, 3);
+            DisconnectPlayer(0, (int)playerIndices[2] + 1);
         if (Input.GetButtonDown(rejectButton_J4))
-            DisconnectPlayer(0, 4);
+            DisconnectPlayer(0, (int)playerIndices[3] + 1);
 
         if (Input.GetButtonDown(rejectButton_K1))
             DisconnectPlayer(1, 1);
@@ -108,5 +118,27 @@ public class Inputs : MonoBehaviour {
         player.controller = (PlayerInputMenu.Controller)controller;
         player.id = ID;
         SelectorPlayerManager.Instance.OnDisconnectedPlayer(player);
+    }
+
+    void GetGamepadInputs()
+    {
+        if (!playerIndexSet || !prevState.IsConnected)
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                PlayerIndex testPlayerIndex = (PlayerIndex)i;
+                GamePadState testState = GamePad.GetState(testPlayerIndex);
+                if (testState.IsConnected)
+                {
+                    Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+                    playerIndex = testPlayerIndex;
+                    playerIndices[i] = testPlayerIndex;
+                    playerIndexSet = true;
+                }
+            }
+        }
+
+        prevState = state;
+        state = GamePad.GetState(playerIndex);
     }
 }

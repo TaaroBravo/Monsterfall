@@ -19,7 +19,7 @@ public class NormalAttack : IAttack
         chargedEffect = player.chargedEffect;
         currentPressed = 1;
         maxPressed = 2.5f;
-        minImpact = 30;
+        minImpact = 15;
     }
 
     public override void Update()
