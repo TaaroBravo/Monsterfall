@@ -23,7 +23,6 @@ public class HorizontalMovement : IMove
     public override void Update()
     {
         base.Update();
-
         if (player.controller.isGrounded)
         {
             player.verticalVelocity = -player.gravity * Time.deltaTime;
@@ -46,6 +45,8 @@ public class HorizontalMovement : IMove
                 player.myAnim.SetBool("Grounded", false);
         }
 
+        if (GameManager.Instance.startingGame || GameManager.Instance.finishedGame)
+            return;
         movement = player.GetComponent<PlayerInput>().MainHorizontal();
         if (movement != 0)
         {
@@ -90,7 +91,7 @@ public class HorizontalMovement : IMove
                 player.moveVector.x = newX;
         }
 
-        if (GameManager.Instance.finishedGame)
+        if (GameManager.Instance.startingGame || GameManager.Instance.finishedGame)
             player.moveVector.x = 0;
         if (!player.stunnedByHit)
             player.moveVector.y = player.verticalVelocity;

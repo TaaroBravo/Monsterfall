@@ -18,6 +18,11 @@ public class ForcedJump : IHability
     public override void Update()
     {
         base.Update();
+        if (player.hittedChargeBerserk)
+        {
+            ForceReset();
+            player.hittedChargeBerserk = false;
+        }
     }
 
     public override void Hability()
@@ -101,5 +106,14 @@ public class ForcedJump : IHability
         timerCoolDown = coolDown;
         player.canMove = true;
         player.usingHability = false;
+    }
+
+    void ForceReset()
+    {
+        timerCoolDown = coolDown;
+        player.canMove = true;
+        player.usingHability = false;
+        player.StopCoroutine(WaitToLand());
+        player.StopCoroutine(ResetValuesCoroutine());
     }
 }

@@ -58,7 +58,13 @@ public class ShootDashHability : IHability
             PlayerController target = TargetScript(c.transform);
             if (target != null)
             {
-                target.ReceiveImpact(new Vector3(Mathf.Sign(player.transform.localScale.z) * 50, 0, 0), player, false);
+                if(target is Berserk)
+                {
+                    target.SetStun(0.3f);
+                    target.DisableAll();
+                }
+                else
+                    target.ReceiveImpact(new Vector3(Mathf.Sign(player.transform.localScale.z) * 50, 0, 0), player, false);
                 target.SetDamage(10);
                 target.WhoHitedMe(player);
                 player.whoIHited = target;

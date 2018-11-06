@@ -34,7 +34,7 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         SetPlayerInput();
-        if (player && player.canMove)
+        if (player && player.canMove && !GameManager.Instance.startingGame && !GameManager.Instance.finishedGame)
         {
             if (Input.GetButtonDown(jumpButton))
                 player.Jump();

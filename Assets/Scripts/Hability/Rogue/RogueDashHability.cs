@@ -77,8 +77,11 @@ public class RogueDashHability : IHability
                 }
             }
         }
-        if (GameManager.Instance.OutOfLimits(player.transform.position))
-            player.transform.position = startPos;
+        if ((finalPos - player.transform.position).magnitude < 3f)
+        {
+            player.transform.position = finalPos;
+            ResetValues();
+        }
     }
 
     public override void Hability()
@@ -89,13 +92,23 @@ public class RogueDashHability : IHability
             float y = player.GetComponent<PlayerInput>().MainVertical();
             if (x + y == 0)
                 x = Mathf.Sign(player.transform.localScale.z);
+            float distance = _speed * _activeTime;
             _dir = new Vector3(x, y, 0);
-            finalPos = CalculateFinalPos(_dir);
-            if (GameManager.Instance.OutOfLimits(finalPos))
-                return;
+            finalPos = CalculateFinalPos(_dir, distance);
+
+            RaycastHit hit;
+            if (Physics.Raycast(player.transform.position, _dir, out hit, 30))
+            {
+                Debug.Log(hit.collider.name);
+                if (hit.collider.gameObject.tag == "Borders" && (hit.point - player.transform.position).magnitude < 6f)
+                {
+                    GameManager.Instance.RegisterLastPos(player, hit.point);
+                    finalPos = hit.point;
+                }
+            }
+
             damage = _dir;
             _hability.Play();
-            //player.canMove = false;
             player.controller.enabled = false;
             player.StartCoroutine(IsDashingTimer(_activeTime));
             timerCoolDown = coolDown;
@@ -107,16 +120,17 @@ public class RogueDashHability : IHability
         }
     }
 
-    Vector3 CalculateFinalPos(Vector3 dir)
+    Vector3 CalculateFinalPos(Vector3 dir, float distance)
     {
-        Vector3 finalPos = Vector3.zero;
-        float distance = _speed * _activeTime * 2;
         finalPos = player.transform.position + (dir * distance);
         return finalPos;
     }
 
     void ResetValues()
     {
+        finalPos = Vector3.zero;
+        player.moveVector.x = 0;
+        player.StopCoroutine(IsDashingTimer(_activeTime));
         player.canMove = true;
         player.myAnim.SetBool("Dashing", false);
         player.controller.enabled = true;

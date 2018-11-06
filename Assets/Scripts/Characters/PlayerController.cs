@@ -122,6 +122,7 @@ public class PlayerController : MonoBehaviour
     public CallHability movementHability = delegate { };
 
     public bool dashRogue;
+    public bool hittedChargeBerserk;
 
     public bool touchingWall;
     public Transform hookChosenPosition;
@@ -360,6 +361,7 @@ public class PlayerController : MonoBehaviour
         while (true)
         {
             canMove = false;
+            myAnim.Play("Stunned");
             myAnim.SetBool("Stunned", true);
             yield return new WaitForSeconds(x);
             canMove = true;
@@ -807,6 +809,28 @@ public class PlayerController : MonoBehaviour
         {
             canJump = false;
             coyoteBool = false;
+        }
+    }
+
+    //private void OnParticleTrigger()
+    //{
+    //    Debug.Log("ENTRE BIEN");
+    //    if (gameObject.GetComponent<Knight>())
+    //        return;
+    //    StartCoroutine(BurnEstela());
+    //}
+
+    public IEnumerator BurnEstela()
+    {
+        while(true)
+        {
+            SetDamage(1);
+            GetComponent<FireParticle>().fire1.Play();
+            GetComponent<FireParticle>().fire2.Play();
+            yield return new WaitForSeconds(0.2f);
+            GetComponent<FireParticle>().fire1.Stop();
+            GetComponent<FireParticle>().fire2.Stop();
+            break;
         }
     }
     #endregion

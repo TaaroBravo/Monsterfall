@@ -25,15 +25,24 @@ public class GameManager : MonoBehaviour
     public Collider[] limits;
 
     private List<Vector3> initialPos = new List<Vector3>();
+    private List<Vector3> lastPos = new List<Vector3>();
 
     public GameObject victoryCanvas;
     public GameObject finishCanvas;
     public GameObject inGameCanvas;
 
+    public Vector3 cube;
+
     private void Awake()
     {
         Instance = this;
         Cursor.visible = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(cube, Vector3.one);
     }
 
     private void Start()
@@ -52,6 +61,7 @@ public class GameManager : MonoBehaviour
             CreatorRays.Instance.SetPlayers(myPlayers.ToArray());
             ScoreManager.Instance.SetRound(infoManager.playersInfo.First().round);
         }
+        lastPos = initialPos;
         StartCoroutine(StartGame(timeToStart));
         StartCoroutine(OutOfLimitsPlayer());
     }
@@ -145,17 +155,17 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            foreach (var item in myPlayers)
+            for (int i = 0; i < myPlayers.Count; i++)
             {
-                var position = initialPos[0];
-                if (item && !OutOfLimits(item.transform.position))
-                    position = item.transform.position;
+                var position = lastPos[i];
+                if (myPlayers[i] && !OutOfLimits(myPlayers[i].transform.position))
+                    position = myPlayers[i].transform.position;
                 yield return new WaitForSeconds(0.1f);
-                if (item && OutOfLimits(item.transform.position))
+                if (myPlayers[i] && OutOfLimits(myPlayers[i].transform.position))
                 {
-                    item.transform.position = position;
-                    item.DisableAll();
-                    item.DisableStun();
+                    myPlayers[i].transform.position = position;
+                    myPlayers[i].DisableAll();
+                    myPlayers[i].DisableStun();
                 }
             }
         }
@@ -169,6 +179,15 @@ public class GameManager : MonoBehaviour
                 return true;
         }
         return false;
+    }
+
+    public void RegisterLastPos(PlayerController player, Vector3 pos)
+    {
+        for (int i = 0; i < myPlayers.Count; i++)
+        {
+            if (myPlayers[i] == player)
+                lastPos[i] = pos;
+        }
     }
     #endregion
 

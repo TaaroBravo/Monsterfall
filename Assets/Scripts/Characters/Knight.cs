@@ -45,6 +45,12 @@ public class Knight : PlayerController {
         }
     }
 
+    public void DisableDashHability()
+    {
+        DisableAll();
+
+    }
+
     void KnightHability()
     {
         hability["PunchHability"].Hability();

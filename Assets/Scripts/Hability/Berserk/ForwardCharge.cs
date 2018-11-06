@@ -43,6 +43,11 @@ public class ForwardCharge : IHability
             else
                 _target = Physics.OverlapSphere(player.transform.position, 1f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player).Where(x => !x.isDead).FirstOrDefault();
         }
+        else if(!player.canMove)
+        {
+            player.myAnim.Play("Stunned");
+            ResetValues();
+        }
     }
 
     IEnumerator TimeToDisable()
@@ -75,8 +80,8 @@ public class ForwardCharge : IHability
 
     void Charge()
     {
+        _target.hittedChargeBerserk = true;
         _target.transform.position = player.transform.position + (Vector3.right * Mathf.Sign(player.transform.localScale.z));
-
         var enemies = Physics.OverlapSphere(player.transform.position, 1f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player && x != _target).Where(x => !x.isDead);
         foreach (var _enemy in enemies)
             _enemy.ReceiveImpact((Vector3.right * Mathf.Sign(player.transform.localScale.z) * 30), player);
@@ -85,6 +90,7 @@ public class ForwardCharge : IHability
     void DamageTarget()
     {
         _target.transform.parent = null;
+        _target.hittedChargeBerserk = false;
         _target.SetStun(0.2f);
         _target.SetDamage(Mathf.RoundToInt((distance / 1.3f) / 5) * 5);
         _target.SetLastOneWhoHittedMe(player);
@@ -93,7 +99,10 @@ public class ForwardCharge : IHability
     void ResetValues()
     {
         if (_target)
+        {
             _target.transform.parent = null;
+            _target.hittedChargeBerserk = false;
+        }
         player.GetComponent<BerserkerParticlesManager>().StopCharge();
         player.myAnim.SetBool("Dashing", false);
         _target = null;

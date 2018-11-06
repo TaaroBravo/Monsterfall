@@ -14,6 +14,7 @@ public class Berserk : PlayerController
 
     public float chargeSpeed;
     public float chargeCooldown;
+    public bool recovery;
 
     public override void Start()
     {
@@ -37,6 +38,11 @@ public class Berserk : PlayerController
     void MovementHability()
     {
         hability["ForwardCharge"].Hability();
+    }
+
+    public void HabilityRecovery()
+    {
+        recovery = true;
     }
 
     private void SetAttacks()
