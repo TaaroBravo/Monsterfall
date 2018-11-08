@@ -8,6 +8,7 @@ TagManager:
   - Destroyable
   - CristalRay
   - Borders
+  - ParticleCollider
   layers:
   - Default
   - TransparentFX

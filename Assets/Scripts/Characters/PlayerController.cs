@@ -270,29 +270,16 @@ public class PlayerController : MonoBehaviour
         var layerMaskIgnore4 = 1 << 18;
         var layerMask = layerMaskIgnore1 | layerMaskIgnore2 | layerMaskIgnore3 | layerMaskIgnore4;
         layerMask = ~layerMask;
-        Debug.Log("Entre 1");
         if (rBottomPos)
         {
-            if (Physics.Raycast(rBottomPos.position, (rUpPos[0].position - rBottomPos.position).normalized, out hit, 2f, layerMask))
-            {
-                Debug.Log("Entre 2");
+            if (Physics.Raycast(rBottomPos.position, (rUpPos[0].position - rBottomPos.position).normalized, out hit, 1.25f, layerMask))
                 return true;
-            }
-            if (Physics.Raycast(rBottomPos.position, (rUpPos[1].position - rBottomPos.position).normalized, out hit, 2f, layerMask))
-            {
-                Debug.Log("Entre 2");
+            if (Physics.Raycast(rBottomPos.position, (rUpPos[1].position - rBottomPos.position).normalized, out hit, 1.25f, layerMask))
                 return true;
-            }
-            if (Physics.Raycast(rTopPos.position, (rDownPos[0].position - rTopPos.position).normalized, out hit, 2f, layerMask))
-            {
-                Debug.Log("Entre 2");
+            if (Physics.Raycast(rTopPos.position, (rDownPos[0].position - rTopPos.position).normalized, out hit, 1.25f, layerMask))
                 return true;
-            }
-            if (Physics.Raycast(rTopPos.position, (rDownPos[1].position - rTopPos.position).normalized, out hit, 2f, layerMask))
-            {
-                Debug.Log("Entre 2");
+            if (Physics.Raycast(rTopPos.position, (rDownPos[1].position - rTopPos.position).normalized, out hit, 1.25f, layerMask))
                 return true;
-            }
         }
         return false;
     }
@@ -798,6 +785,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.layer == LayerMask.NameToLayer("PowerUp"))
         {
             chargedEffect = other.GetComponent<IPowerUp>().PowerUp();
@@ -811,25 +799,28 @@ public class PlayerController : MonoBehaviour
             coyoteBool = false;
         }
     }
-
-    //private void OnParticleTrigger()
-    //{
-    //    Debug.Log("ENTRE BIEN");
-    //    if (gameObject.GetComponent<Knight>())
-    //        return;
-    //    StartCoroutine(BurnEstela());
-    //}
+    bool onFireWithParticle;
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "ParticleCollider")
+        {
+            if (!gameObject.GetComponent<Knight>() && !onFireWithParticle)
+                StartCoroutine(BurnEstela());
+        }
+    }
 
     public IEnumerator BurnEstela()
     {
-        while(true)
+        while (true)
         {
             SetDamage(1);
+            onFireWithParticle = true;
             GetComponent<FireParticle>().fire1.Play();
             GetComponent<FireParticle>().fire2.Play();
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
             GetComponent<FireParticle>().fire1.Stop();
             GetComponent<FireParticle>().fire2.Stop();
+            onFireWithParticle = false;
             break;
         }
     }
@@ -852,7 +843,7 @@ public class PlayerController : MonoBehaviour
             myAnim.Play("Death");
             this.enabled = false;
             controller.enabled = false;
-            Destroy(gameObject, 1.1f); // estaba en 1.1f
+            Destroy(gameObject, 1.1f);
             isDead = true;
         }
     }

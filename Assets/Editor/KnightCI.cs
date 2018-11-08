@@ -144,6 +144,8 @@ public class KnightCI : Editor
             EditorGUILayout.LabelField("Ataques:", EditorStyles.boldLabel);
             player.attackColliders = (Collider)EditorGUILayout.ObjectField(player.attackColliders, typeof(Collider), true);
             EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Collider de Particulas");
+            player.particleSphereCollider = (Collider)EditorGUILayout.ObjectField(player.particleSphereCollider, typeof(Collider), true);
             EditorGUILayout.LabelField("Particulas:", EditorStyles.boldLabel);
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Jump");

@@ -41,13 +41,13 @@ public class PlayerInput : MonoBehaviour
             if (Input.GetButtonDown(hability1Button))
                 player.Dash();
             if (Input.GetButtonDown(hability2Button))
-                player.FallOff();
-            if (Input.GetButtonDown(hability3Button))
                 player.Hability();
+            if (Input.GetButtonDown(hability3Button))
+                player.FallOff();
             if (controller == Controller.J)
             {
                 if (Mathf.Round(Input.GetAxisRaw(hability3Button)) < 0)
-                    player.Hability();
+                    player.FallOff();
             }
             if (Input.GetButtonDown(normalAttack))
                 player.AttackNormal("Pressed");

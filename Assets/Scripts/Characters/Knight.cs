@@ -14,6 +14,10 @@ public class Knight : PlayerController {
     public float forcedJumpForce;
     public float forcedJumpCooldown;
 
+    public bool forcedJumping;
+
+    public Collider particleSphereCollider;
+
     public override void Start()
     {
         base.Start();
@@ -27,7 +31,29 @@ public class Knight : PlayerController {
         base.Update();
         if (!canMove)
             StartCoroutine(TimerIsTouchingWalls());
+    }
 
+    public void CallJumpHabilityCoroutine()
+    {
+        StartCoroutine(IsForcedJumping());
+    }
+
+    IEnumerator IsForcedJumping()
+    {
+        while(forcedJumping)
+        {
+            yield return new WaitForSeconds(0.1f);
+            CreateNewCollider();
+        }
+    }
+
+    void CreateNewCollider()
+    {
+        Collider tempCol = Instantiate(particleSphereCollider);
+        tempCol.transform.position = new Vector3(transform.position.x, transform.position.y + GetComponent<Collider>().bounds.extents.y + transform.position.z);
+        tempCol.isTrigger = true;
+        //tempCol.tag = "ParticleCollider";
+        Destroy(tempCol.gameObject, 2f);
     }
 
     IEnumerator TimerIsTouchingWalls()
@@ -48,7 +74,6 @@ public class Knight : PlayerController {
     public void DisableDashHability()
     {
         DisableAll();
-
     }
 
     void KnightHability()

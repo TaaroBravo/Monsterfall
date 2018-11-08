@@ -34,6 +34,7 @@ public class ForcedJump : IHability
             JumpPlayer();
             player.StartCoroutine(WaitToLand());
             player.StartCoroutine(ResetValuesCoroutine());
+            ((Knight)player).CallJumpHabilityCoroutine();
         }
     }
 
@@ -52,14 +53,17 @@ public class ForcedJump : IHability
     {
         while (true)
         {
+            ((Knight)player).forcedJumping = true;
             yield return new WaitForSeconds(0.3f);
             if (player.IsTouchingWalls())
                 player.canMove = true;
-            yield return new WaitUntil(() => player.controller.isGrounded || player.IsTouchingWalls());
+            yield return new WaitUntil(() => player.controller.isGrounded /*|| player.IsTouchingWalls()*/);
             player.GetComponent<KnightFeedbackController>().fireEstela.Stop();
+            //player.GetComponent<KnightFeedbackController>().fireEstela.gameObject.SetActive(false);
             if (player.IsTouchingWalls())
                 player.canMove = true;
             ElevatePlayers();
+            ((Knight)player).forcedJumping = false;
             break;
         }
     }
@@ -85,6 +89,7 @@ public class ForcedJump : IHability
 
     void JumpPlayer()
     {
+        player.GetComponent<KnightFeedbackController>().fireEstela.gameObject.SetActive(true);
         player.GetComponent<KnightFeedbackController>().fireEstela.Play();
         player.moveVector.x = _power * Mathf.Sign(player.transform.localScale.z) * 2;
         player.verticalVelocity = player.jumpForce / 2;
@@ -106,6 +111,7 @@ public class ForcedJump : IHability
         timerCoolDown = coolDown;
         player.canMove = true;
         player.usingHability = false;
+        ((Knight)player).forcedJumping = false;
     }
 
     void ForceReset()
@@ -113,6 +119,7 @@ public class ForcedJump : IHability
         timerCoolDown = coolDown;
         player.canMove = true;
         player.usingHability = false;
+        ((Knight)player).forcedJumping = false;
         player.StopCoroutine(WaitToLand());
         player.StopCoroutine(ResetValuesCoroutine());
     }
