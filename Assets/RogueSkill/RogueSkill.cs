@@ -43,20 +43,8 @@ public class RogueSkill : MonoBehaviour
         transform.forward = -dir;
     }
 
-    //void DebugKeys()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Q) && test <= 3)
-    //    {
-    //        PassState(test);
-    //        test++;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.W)) ResetFeedback();
-    //}
-
     public void PassState(int state, int ID, Action callBack)
     {
-        Debug.Log(colors[ID]);
-        Debug.Log(myColor);
         if (colors[ID] != myColor)
         {
             myColor = colors[ID];
@@ -71,6 +59,5 @@ public class RogueSkill : MonoBehaviour
     public void ResetFeedback()
     {
         RogueSkillSprite.color = new Color(1, 1, 1, 0);
-        //test = 0;
     }
 }

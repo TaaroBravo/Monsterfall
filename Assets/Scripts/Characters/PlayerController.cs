@@ -890,4 +890,10 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 1.5f);
+    }
+
 }

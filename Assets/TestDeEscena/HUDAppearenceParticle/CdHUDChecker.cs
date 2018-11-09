@@ -24,7 +24,6 @@ public class CdHUDChecker : MonoBehaviour {
     }
     void Update()
     {
-        //DebugKeys();
         SetTransform();
         if (onCD) currentCD -= Time.deltaTime;
         if (currentCD < 0)
@@ -49,7 +48,7 @@ public class CdHUDChecker : MonoBehaviour {
 
     void SetTransform()
     {
-        Vector3 playerPos = transform.parent.position;
+        Vector3 playerPos = new Vector3(transform.parent.position.x, transform.parent.position.y + 0.5f, transform.parent.position.z);
         Vector3 dir = (Camera.main.transform.position - playerPos).normalized;
         transform.position = playerPos + (dir * 6);
         transform.forward = -dir;

@@ -47,7 +47,6 @@ public class IRogueMark : IEffect
 
     void DisableMark()
     {
-        Debug.Log("Disable");
         countOfMarks = 0;
         damageMultiply = 0;
     }

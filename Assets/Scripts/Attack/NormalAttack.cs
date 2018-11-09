@@ -45,6 +45,10 @@ public class NormalAttack : IAttack
             else
                 player.myAnim.Play("HitForwardAir");
 
+            //foreach (var item in Physics.OverlapBox(col.bounds.center, col.bounds.extents * 1.5f))
+            //{
+            //    Debug.Log(item.name);
+            //}
             Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 1.5f, col.transform.rotation, LayerMask.GetMask("Hitbox"));
             foreach (Collider c in cols)
             {

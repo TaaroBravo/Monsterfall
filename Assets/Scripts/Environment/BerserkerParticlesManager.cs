@@ -40,7 +40,6 @@ public class BerserkerParticlesManager : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(dashCDtimer);
         if (!candash) dashCDtimer += Time.deltaTime; // solucion temporal
         if (dashCDtimer >= 3f)
         {

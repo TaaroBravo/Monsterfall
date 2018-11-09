@@ -27,7 +27,7 @@ public class ForcedJump : IHability
 
     public override void Hability()
     {
-        if (timerCoolDown < 0)
+        if (timerCoolDown < 0 && !player.usingHability)
         {
             player.usingHability = true;
             player.canMove = false;

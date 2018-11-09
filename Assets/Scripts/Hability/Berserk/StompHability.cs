@@ -77,7 +77,7 @@ public class StompHability : IHability
 
     public override void Hability()
     {
-        if (timerCoolDown < 0)
+        if (timerCoolDown < 0 && player.canMove)
         {
             player.myAnim.Play("Skill");
             //active = true;
@@ -109,6 +109,7 @@ public class StompHability : IHability
         damage = Vector3.zero;
         player.canMove = true;
         player.usingHability = false;
+        player.StopCoroutine(ResetValuesTimer());
         active = false;
         playersHitted.Clear();
         playersStunned.Clear();
