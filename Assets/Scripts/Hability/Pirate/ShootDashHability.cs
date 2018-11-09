@@ -50,6 +50,7 @@ public class ShootDashHability : IHability
     void Shoot()
     {
         shootFire.Play();
+        player.myAnim.Play("ShootHability");
         Collider[] cols = Physics.OverlapBox(shootRange.bounds.center, shootRange.bounds.extents * 1.5f, shootRange.transform.rotation, LayerMask.GetMask("Hitbox"));
         foreach (Collider c in cols)
         {
@@ -77,8 +78,10 @@ public class ShootDashHability : IHability
         while (true)
         {
             player.isDashing = true;
+            player.myAnim.SetBool("Dashing", true);
             yield return new WaitForSeconds(x);
             player.isDashing = false;
+            player.myAnim.SetBool("Dashing", false);
             ResetValues();
             break;
         }
@@ -89,6 +92,7 @@ public class ShootDashHability : IHability
         timerCoolDown = coolDown;
         player.canMove = true;
         player.usingHability = false;
+        player.myAnim.SetBool("Dashing", false);
     }
 
     #region Extra Calculation

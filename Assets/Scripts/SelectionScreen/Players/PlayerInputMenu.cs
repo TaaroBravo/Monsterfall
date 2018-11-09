@@ -26,7 +26,8 @@ public class PlayerInputMenu : MonoBehaviour
     void Start()
     {
         player = GetComponent<PlayerAvatar>();
-        StartCoroutine(CoolDown());
+        //StartCoroutine(CoolDown());
+        _cooldown = true;
     }
 
     private void LateUpdate()
@@ -47,12 +48,12 @@ public class PlayerInputMenu : MonoBehaviour
             if (Input.GetAxis(horizontalMove) != 0 && _cooldown)
             {
                 player.Move(new Vector2(Input.GetAxis(horizontalMove) == 0 ? 0 : Input.GetAxis(horizontalMove) > 0 ? 1 : -1, 0));
-                _cooldown = false;
+                StartCoroutine(CoolDown());
             }
             if (Input.GetAxis(verticalMove) != 0 && _cooldown)
             {
                 player.Move(new Vector2(0, Input.GetAxis(verticalMove) == 0 ? 0 : Input.GetAxis(verticalMove) > 0 ? 1 : -1));
-                _cooldown = false;
+                StartCoroutine(CoolDown());
             }
         }
         else
@@ -68,9 +69,11 @@ public class PlayerInputMenu : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitUntil(() => !_cooldown);
+            //yield return new WaitUntil(() => !_cooldown);
+            _cooldown = false;
             yield return new WaitForSeconds(0.2f);
             _cooldown = true;
+            break;
         }
     }
 

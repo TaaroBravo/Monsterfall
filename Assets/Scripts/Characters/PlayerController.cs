@@ -785,7 +785,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
         if (other.gameObject.layer == LayerMask.NameToLayer("PowerUp"))
         {
             chargedEffect = other.GetComponent<IPowerUp>().PowerUp();

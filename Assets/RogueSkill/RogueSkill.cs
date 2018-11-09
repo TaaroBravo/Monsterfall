@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class RogueSkill : MonoBehaviour
 {
@@ -10,9 +11,23 @@ public class RogueSkill : MonoBehaviour
     public ParticleSystem RogueSkillParticle;
     int test;
 
+
+
+    Color[] colors = new Color[]
+    {
+        Color.blue,
+        Color.red,
+        Color.green,
+        Color.yellow
+    };
+
+    Color myColor;
+
+    Action callBackDisable = delegate { };
+
     private void Start()
     {
-        test = 0;
+
     }
 
     void Update()
@@ -37,9 +52,18 @@ public class RogueSkill : MonoBehaviour
     //    }
     //    if (Input.GetKeyDown(KeyCode.W)) ResetFeedback();
     //}
-    public void PassState(int state)
+
+    public void PassState(int state, int ID, Action callBack)
     {
-        RogueSkillSprite.color = new Color(1, 1, 1, 1);
+        Debug.Log(colors[ID]);
+        Debug.Log(myColor);
+        if (colors[ID] != myColor)
+        {
+            myColor = colors[ID];
+            callBackDisable();
+        }
+        callBackDisable = callBack;
+        RogueSkillSprite.color = myColor;
         RogueSkillSprite.sprite = SkillStates[state];
         RogueSkillParticle.Play();
     }

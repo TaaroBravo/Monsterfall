@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class IRogueMark : IEffect
 {
@@ -11,11 +12,14 @@ public class IRogueMark : IEffect
     int damageMultiply;
     int damage;
 
+    Action Disable;
+
     public IRogueMark(Rogue player, int damage, int maxOfMarks)
     {
         this.maxOfMarks = maxOfMarks;
         this.damage = damage;
         _player = player;
+        Disable = DisableMark;
     }
 
     public void Effect(PlayerController player)
@@ -41,6 +45,13 @@ public class IRogueMark : IEffect
         }
     }
 
+    void DisableMark()
+    {
+        Debug.Log("Disable");
+        countOfMarks = 0;
+        damageMultiply = 0;
+    }
+
     public void DisableEffect(PlayerController player)
     {
 
@@ -49,7 +60,7 @@ public class IRogueMark : IEffect
     void SetDamage()
     {
         target.SetDamage((damage + damageMultiply) * _player.buffedPower);
-        target.GetComponent<RogueSkillCall>().PassState(countOfMarks - 1);
+        target.GetComponent<RogueSkillCall>().PassState(countOfMarks - 1, _player.GetComponent<PlayerInput>().player_number, Disable);
     }
 
     public float GetDelayTimer()

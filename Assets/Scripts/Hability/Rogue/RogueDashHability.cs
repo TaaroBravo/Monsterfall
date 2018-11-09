@@ -72,6 +72,7 @@ public class RogueDashHability : IHability
                 if (target != null && !playersHitted.Contains(target))
                 {
                     playersHitted.Add(target);
+                    target.SetDamage(10);
                     target.ReceiveImpact(damage * _power, player);
                     player.whoIHited = target;
                 }
