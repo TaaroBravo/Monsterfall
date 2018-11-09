@@ -4042,7 +4042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 0
   activate: 0
-  sarasa: {fileID: 2100000, guid: 0a75a45ed388b7a44bd1b27954b2503d, type: 2}
+  sarasa: {fileID: 2100000, guid: d8529b3a51f93dc4cb7048991117c747, type: 2}
   ps: {fileID: 198290383753040582}
 --- !u!114 &114375431134454296
 MonoBehaviour:
@@ -24572,7 +24572,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1873858697
+  randomSeed: 833780130
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -124691,7 +124691,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0a75a45ed388b7a44bd1b27954b2503d, type: 2}
+  - {fileID: 2100000, guid: d8529b3a51f93dc4cb7048991117c747, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
