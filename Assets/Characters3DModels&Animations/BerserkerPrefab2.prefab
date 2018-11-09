@@ -1498,7 +1498,7 @@ GameObject:
   - component: {fileID: 114419986941399606}
   m_Layer: 9
   m_Name: BerserkerPrefab2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2916,7 +2916,7 @@ Transform:
   m_GameObject: {fileID: 1576453182081666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 1.32, z: -0.34}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 4145264447378786}
   m_Father: {fileID: 4308234084628862}
@@ -4014,6 +4014,7 @@ MonoBehaviour:
   PS_LitOnFire2: {fileID: 0}
   myAnim: {fileID: 0}
   dashRogue: 0
+  hittedChargeBerserk: 0
   touchingWall: 0
   hookChosenPosition: {fileID: 0}
   lastOneWhoHittedMe: {fileID: 0}
@@ -4023,6 +4024,7 @@ MonoBehaviour:
   stompCooldown: 3
   chargeSpeed: 40
   chargeCooldown: 3
+  recovery: 0
 --- !u!114 &114199893272548350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -34798,7 +34800,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1582187992655116}
   serializedVersion: 5
-  lengthInSec: 1.2
+  lengthInSec: 5
   simulationSpeed: 2
   stopAction: 0
   looping: 0
@@ -34851,14 +34853,14 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1110892763
+  randomSeed: -1705188869
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.2
+      scalar: 6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -35247,7 +35249,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 2
+    maxNumParticles: 15
     size3D: 0
     rotation3D: 1
     gravityModifier:
@@ -35411,7 +35413,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 4
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -51848,7 +51850,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1894688128
+  randomSeed: -1781848499
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -58577,9 +58579,9 @@ ParticleSystem:
   lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -58627,7 +58629,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1498614313
+  randomSeed: 1129820485
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -82362,7 +82364,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1895547
+  randomSeed: 936762355
   InitialModule:
     serializedVersion: 3
     enabled: 1

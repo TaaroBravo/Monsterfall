@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class BerserkerParticlesManager : MonoBehaviour {
+public class BerserkerParticlesManager : MonoBehaviour
+{
     /// feedback de golpe normal
     public ParticleSystem golpenormal;
     public ParticleSystem golpenormal1;
@@ -16,17 +17,21 @@ public class BerserkerParticlesManager : MonoBehaviour {
     public ParticleSystem p1;
     public ParticleSystem p2;
     public ParticleSystem p3;
+    ParticleSystem.EmissionModule p2Em;
     ParticleSystem.EmissionModule p3Em;
     public DashFeedbackControl DashGordo;
     public float XAxis;
     ParticleSystem.MainModule p2main;
     ParticleSystem.ShapeModule p2shape;
     public bool iminverted;
+    float dashCDtimer; // solucion temporal
+    bool candash; // solucion temporal
 
     private void Start()
     {
         p2main = p2.main;
         p2shape = p2.shape;
+        p2Em = p2.emission;
         p3Em = p3.emission;
         GP_main1 = golpenormal1.main;
         GP_shape1 = golpenormal1.shape;
@@ -35,6 +40,14 @@ public class BerserkerParticlesManager : MonoBehaviour {
     }
     private void Update()
     {
+        Debug.Log(dashCDtimer);
+        if (!candash) dashCDtimer += Time.deltaTime; // solucion temporal
+        if (dashCDtimer >= 3f)
+        {
+            candash = true; // solucion temporal
+            dashCDtimer = 0;
+        }
+        if (dashCDtimer >= 1.2f) p2Em.rateOverDistance = 0f; // solucion temporal
         /// feedback de golpe normal
         if (!iminverted)
         {
@@ -105,9 +118,23 @@ public class BerserkerParticlesManager : MonoBehaviour {
         //DebugKeys();
     }
     public void PlayAttackParticle() { golpenormal.Play(); }
-    public void DisplayBerserkerSkill() { p1.Play(); } 
-    public void DisplayBerserkerCharge() { p2.Play(); p3Em.rateOverDistance = 5; DashGordo.activate = true; } 
-    public void StopCharge() { p3Em.rateOverDistance = 0; }
+    public void DisplayBerserkerSkill() { p1.Play(); }
+    public void DisplayBerserkerCharge() // solucion temporal
+    {
+        if (candash)
+        {
+            Debug.Log("imactivating"); // esto se activa de 2 a 3 veces
+            p2.Play();
+            p2Em.rateOverDistance = 0.025f;
+            //p3Em.rateOverDistance = 5;
+            DashGordo.activate = true;
+            DashGordo.timer = 0;
+            DashGordo.sarasa.SetFloat("_Speed", 0);
+            candash = false;
+        }
+
+    }
+    public void StopCharge() { p2Em.rateOverDistance = 0; }
     public void DebugKeys()
     {
         //if (Input.GetKeyDown(KeyCode.Q)) DisplayBerserkerSkill();
