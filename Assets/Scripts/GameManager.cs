@@ -234,7 +234,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(6f);
             if (FindObjectOfType<PlayersInfoManager>())
                 Destroy(FindObjectOfType<PlayersInfoManager>().gameObject);
             ObjectPoolManager.Instance.Clean();
@@ -247,16 +247,17 @@ public class GameManager : MonoBehaviour
     void WinTheGame()
     {
         var winner = infoManager.playersInfo.OrderByDescending(x => x.newKills + x.previousKills).First();
-        int player_color = winner.player_number;
-        int character = winner.characterChosen;
+        int winner_color = winner.player_number;
+        int winner_character = winner.characterChosen;
 
         finishCanvas.SetActive(false);
         inGameCanvas.SetActive(false);
         victoryCanvas.SetActive(true);
-        victoryCanvas.GetComponent<VictoryManager>().AssignValues(player_color, character);
+        victoryCanvas.GetComponent<VictoryManager>().AssignValues(winner_color, winner_character);
         foreach (var player in myPlayers)
             player.canMove = false;
         finishedGame = true;
+        StartCoroutine(StartNewGame());
     }
 
 }

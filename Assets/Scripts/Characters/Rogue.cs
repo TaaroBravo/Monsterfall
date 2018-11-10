@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.Linq;
 
 public class Rogue : PlayerController
@@ -16,6 +17,7 @@ public class Rogue : PlayerController
 
     public ParticleSystem ps_DashRogue;
     IEffect markEffect;
+    public bool onMark;
 
     bool enter;
 
@@ -38,6 +40,29 @@ public class Rogue : PlayerController
         {
             enter = false;
             transform.Rotate(0, -90, 0);
+        }
+    }
+
+    public void CooldownMark(Action<PlayerController> callback)
+    {
+        if (!onMark)
+            StartCoroutine(CooldownMarkCoroutine(callback));
+        else
+        {
+            StopCoroutine(CooldownMarkCoroutine(callback));
+            StartCoroutine(CooldownMarkCoroutine(callback));
+        }
+    }
+
+    IEnumerator CooldownMarkCoroutine(Action<PlayerController> callback)
+    {
+        while (true)
+        {
+            onMark = true;
+            yield return new WaitForSeconds(10f);
+            callback(this);
+            onMark = false;
+            break;
         }
     }
 

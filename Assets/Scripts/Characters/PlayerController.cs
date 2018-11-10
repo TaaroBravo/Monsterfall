@@ -803,7 +803,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "ParticleCollider")
         {
-            if (!gameObject.GetComponent<Knight>() && !onFireWithParticle)
+            if (!gameObject.GetComponent<Knight>() && !onFireWithParticle && !onFire)
                 StartCoroutine(BurnEstela());
         }
     }
@@ -893,7 +893,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 1.5f);
+        Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 2f);
     }
 
 }

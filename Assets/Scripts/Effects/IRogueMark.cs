@@ -33,6 +33,7 @@ public class IRogueMark : IEffect
                 damageMultiply = maxOfMarks;
             }
             SetDamage();
+            _player.CooldownMark(DisableEffect);
         }
         else
         {
@@ -42,18 +43,23 @@ public class IRogueMark : IEffect
                 target.GetComponent<RogueSkillCall>().ResetFeedback();
             target = player;
             SetDamage();
+            _player.CooldownMark(DisableEffect);
         }
     }
 
     void DisableMark()
     {
         countOfMarks = 0;
-        damageMultiply = 0;
+        damageMultiply = 1;
+        target = null;
     }
 
     public void DisableEffect(PlayerController player)
     {
-
+        countOfMarks = 0;
+        damageMultiply = 1;
+        target.GetComponent<RogueSkillCall>().ResetFeedback();
+        target = null;
     }
 
     void SetDamage()

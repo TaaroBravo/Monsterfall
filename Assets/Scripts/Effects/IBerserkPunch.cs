@@ -20,7 +20,7 @@ public class IBerserkPunch : IEffect
 
     public void DisableEffect(PlayerController player)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public float GetDelayTimer()
