@@ -40,9 +40,13 @@ public class WarpController : MonoBehaviour {
         {
             pl.GetComponent<KnightFeedbackController>().punchFire1.gameObject.SetActive(false);
             pl.GetComponent<KnightFeedbackController>().punchFire2.gameObject.SetActive(false);
+            pl.GetComponent<KnightFeedbackController>().childFireEstela.gameObject.SetActive(false);
+            pl.GetComponent<KnightFeedbackController>().fireEstela.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.25f);
             pl.GetComponent<KnightFeedbackController>().punchFire1.gameObject.SetActive(true);
             pl.GetComponent<KnightFeedbackController>().punchFire2.gameObject.SetActive(true);
+            pl.GetComponent<KnightFeedbackController>().childFireEstela.gameObject.SetActive(true);
+            pl.GetComponent<KnightFeedbackController>().fireEstela.gameObject.SetActive(true);
             break;
         }
     }

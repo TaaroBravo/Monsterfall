@@ -51,7 +51,7 @@ public class ShootDashHability : IHability
     {
         shootFire.Play();
         player.myAnim.Play("ShootHability");
-        Collider[] cols = Physics.OverlapBox(shootRange.bounds.center, shootRange.bounds.extents * 1.5f, shootRange.transform.rotation, LayerMask.GetMask("Hitbox"));
+        Collider[] cols = Physics.OverlapBox(shootRange.bounds.center, shootRange.bounds.extents * 2f, shootRange.transform.rotation, LayerMask.GetMask("Hitbox"));
         foreach (Collider c in cols)
         {
             if (CheckParently(c.transform))

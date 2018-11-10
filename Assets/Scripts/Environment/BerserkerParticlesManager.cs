@@ -133,7 +133,7 @@ public class BerserkerParticlesManager : MonoBehaviour
         }
 
     }
-    public void StopCharge() { p2Em.rateOverDistance = 0; }
+    public void StopCharge() {/* p2Em.rateOverDistance = 0; */}
     public void DebugKeys()
     {
         //if (Input.GetKeyDown(KeyCode.Q)) DisplayBerserkerSkill();
