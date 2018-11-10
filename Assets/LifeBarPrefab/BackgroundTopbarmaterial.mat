@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: BarreraSonidoGordo3
-  m_Shader: {fileID: 4800000, guid: f9b12018b806d6a49bf72e1210eac4f9, type: 3}
-  m_ShaderKeywords: 
+  m_Name: BackgroundTopbarmaterial
+  m_Shader: {fileID: 4800000, guid: 68b8f087c4683564bbb38dea1d383d2b, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -18,15 +18,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: a582296f0e27cbe48b625d25f4018f80, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _texcoord:
+    - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Speed: 0
-    - __dirty: 0
-    m_Colors: []
+    - _Glossiness: 0.5
+    - _Metallic: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
