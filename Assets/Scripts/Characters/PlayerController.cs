@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
     public bool hitCharged;
 
     public PlayerHPHud myLifeUI;
+    public LifebarController lifeHUD;
 
     public ParticleSystem PS_Stunned;
     public ParticleSystem PS_Marked;
@@ -151,6 +152,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         myAnim = GetComponent<Animator>();
         contrains = GetComponent<PlayerContrains>();
+        lifeHUD = transform.ChildrenWithComponent<LifebarController>().Where(x => x != null).First();
     }
 
     void SetRayPos()
@@ -831,7 +833,8 @@ public class PlayerController : MonoBehaviour
         if (isDead)
             return;
         myLife -= Mathf.RoundToInt(damage);
-        myLifeUI.TakeDamage(Mathf.RoundToInt(damage));
+        //myLifeUI.TakeDamage(Mathf.RoundToInt(damage));
+        lifeHUD.ReduceLife(Mathf.RoundToInt(damage));
         if (myLife <= 0 && !isDead)
         {
             if (lastOneWhoHittedMe)

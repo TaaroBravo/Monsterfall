@@ -56,11 +56,12 @@ public class HookHability : IHability
             _hook.Fire(new Vector3(x, y, 0));
             _hook.OnReachedTarget += t => t.SetStun(0.5f);
             player.usingHability = true;
+            player.lifeHUD.ActivateSkillCD();
         }
-        else
-        {
-            cooldownHUD.UseSkill(coolDown);
-        }
+        //else
+        //{
+        //    cooldownHUD.UseSkill(coolDown);
+        //}
     }
 
     public void ReachedTarget()

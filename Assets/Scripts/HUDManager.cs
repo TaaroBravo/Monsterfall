@@ -15,10 +15,10 @@ public class HUDManager : MonoBehaviour {
 
     public void SetUpHUD(List<PlayerInfo> players)
     {
-        for (int i = 0; i < HUD_lifes.Count; i++)
-            HUD_lifes[i].SetActive(false);
+        //for (int i = 0; i < HUD_lifes.Count; i++)
+        //    HUD_lifes[i].SetActive(false);
 
-        for (int i = 0; i < players.Count; i++)
-            HUD_lifes[players[i].player_number].SetActive(true);
+        //for (int i = 0; i < players.Count; i++)
+        //    HUD_lifes[players[i].player_number].SetActive(true);
     }
 }

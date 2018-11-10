@@ -114,11 +114,12 @@ public class RogueDashHability : IHability
             player.StartCoroutine(IsDashingTimer(_activeTime));
             timerCoolDown = coolDown;
             player.usingHability = true;
+            player.lifeHUD.ActivateDashCD();
         }
-        else
-        {
-            cooldownHUD.UseSkill(coolDown);
-        }
+        //else
+        //{
+        //    cooldownHUD.UseSkill(coolDown);
+        //}
     }
 
     Vector3 CalculateFinalPos(Vector3 dir, float distance)

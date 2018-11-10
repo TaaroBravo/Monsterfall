@@ -85,11 +85,12 @@ public class StompHability : IHability
             player.ResetVelocity();
             //player.usingHability = true;
             player.StartCoroutine(ResetValuesTimer());
+            player.lifeHUD.ActivateSkillCD();
         }
-        else
-        {
-            cooldownHUD.UseSkill(coolDown);
-        }
+        //else
+        //{
+        //    cooldownHUD.UseSkill(coolDown);
+        //}
     }
 
     void CheckPositions()

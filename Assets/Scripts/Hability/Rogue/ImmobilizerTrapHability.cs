@@ -39,6 +39,7 @@ public class ImmobilizerTrapHability : IHability
             Shoot(new Vector3(x, y, 0));
             player.usingHability = true;
             timerCoolDown = coolDown;
+            player.lifeHUD.ActivateSkillCD();
         }
     }
 

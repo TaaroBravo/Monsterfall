@@ -98,9 +98,9 @@ public class GameManager : MonoBehaviour
         {
             var hero = SpawnerHeroes.Instance.SpawnHero(infoManager.playersInfo[i].characterChosen, infoManager.playersInfo[i].player_number);
             initialPos.Add(hero.transform.position);
-            hero.myLifeUI = FindObjectsOfType<PlayerHPHud>().Where(x => x.player_number == infoManager.playersInfo[i].player_number).First();
-            hero.myLifeUI.maxHP = hero.myLife;
-            hero.myLifeUI.character_chosen = infoManager.playersInfo[i].characterChosen;
+            //hero.myLifeUI = FindObjectsOfType<PlayerHPHud>().Where(x => x.player_number == infoManager.playersInfo[i].player_number).First();
+            //hero.myLifeUI.maxHP = hero.myLife;
+            //hero.myLifeUI.character_chosen = infoManager.playersInfo[i].characterChosen;
             SetCooldownHUD(hero.transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), infoManager.playersInfo[i].characterChosen);
             SetUpInfoPlayers(hero, i);
             heroes.Add(hero);

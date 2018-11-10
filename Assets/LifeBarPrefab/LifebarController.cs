@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LifebarController : MonoBehaviour {
+public class LifebarController : MonoBehaviour
+{
 
     public PlayerInput myplayerinput;
     float _SkillCD;
@@ -44,7 +45,7 @@ public class LifebarController : MonoBehaviour {
     void Update()
     {
         XAxis = myplayerinput.MainHorizontal();
-
+        Debug.Log("A");
         //if (myplayerinput.MainHorizontal() != 0) XAxis = myplayerinput.MainHorizontal();
         if (!iminverted)
         {
@@ -56,12 +57,12 @@ public class LifebarController : MonoBehaviour {
             if (XAxis >= 0) GetComponent<RectTransform>().rotation = new Quaternion(0, -90, 0, 0);
             else if (XAxis < 0) GetComponent<RectTransform>().rotation = new Quaternion(0, 90, 0, 0);
         }
-    Debugkeys();
+        //Debugkeys();
         if (_totalLife > 0)
         {
             LifeBar.fillAmount = _currentLife / _totalLife;
             LifeBar.color = new Color(FinalLifeColor.r, FinalLifeColor.g, FinalLifeColor.b, 1f - (_currentLife / _totalLife) / 4);
-        } 
+        }
         if (SkillOnCD)
         {
             SkillCDBar.color = new Color(FinalSkillColor.r, FinalSkillColor.g, FinalSkillColor.b, 0.6f);

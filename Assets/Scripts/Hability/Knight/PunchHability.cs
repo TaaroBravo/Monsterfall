@@ -71,11 +71,12 @@ public class PunchHability : IHability
             player.myAnim.Play("GameStart");
             active = true;
             timerCoolDown = coolDown;
+            player.lifeHUD.ActivateSkillCD();
         }
-        else
-        {
-            cooldownHUD.UseSkill(coolDown);
-        }
+        //else
+        //{
+        //    cooldownHUD.UseSkill(coolDown);
+        //}
     }
 
     void ResetValues()

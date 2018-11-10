@@ -75,6 +75,7 @@ public class ForwardCharge : IHability
             player.myAnim.Play("Dash");
             player.myAnim.SetBool("Dashing", true);
             player.StartCoroutine(TimeToDisable());
+            player.lifeHUD.ActivateDashCD();
         }
     }
 

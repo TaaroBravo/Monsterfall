@@ -22,6 +22,7 @@ public class Knight : PlayerController {
     {
         base.Start();
         _fireEffect = new IFireEffect(1, 4f, 0.4f);
+        lifeHUD.Set(punchCooldown, forcedJumpCooldown, myLife);
         SetAttacks();
         SetHabilities();
     }

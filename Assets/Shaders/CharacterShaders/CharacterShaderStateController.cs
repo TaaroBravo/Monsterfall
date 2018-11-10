@@ -33,7 +33,7 @@ public class CharacterShaderStateController : MonoBehaviour {
         else if (!overheadappear)
         {
             overheadappear = true;
-            myoverhead.Initialize(0);
+            //myoverhead.Initialize(0);
         }
         if (myplayer.myLife <= 0)
         {

@@ -35,6 +35,7 @@ public class ForcedJump : IHability
             player.StartCoroutine(WaitToLand());
             player.StartCoroutine(ResetValuesCoroutine());
             ((Knight)player).CallJumpHabilityCoroutine();
+            player.lifeHUD.ActivateDashCD();
         }
     }
 

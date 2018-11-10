@@ -25,6 +25,7 @@ public class Rogue : PlayerController
     {
         base.Start();
         markEffect = new IRogueMark(this, 7, 8);
+        lifeHUD.Set(3, rogueDashCooldown, myLife);
         SetAttacks();
         SetHabilities();
         enter = true;
@@ -85,7 +86,7 @@ public class Rogue : PlayerController
 
     void SetHabilities()
     {
-        hability.Add(typeof(ImmobilizerTrapHability).ToString(), new ImmobilizerTrapHability(this, immobilizer, 3f));
+        hability.Add(typeof(ImmobilizerTrapHability).ToString(), new ImmobilizerTrapHability(this, immobilizer, 6f));
         hability.Add(typeof(RogueDashHability).ToString(), new RogueDashHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), hitArea, ps_DashRogue, powerOfDash, dashingTime, speedOfRogueDash, rogueDashCooldown));
         myHability = RogueHability;
         movementHability = MovementHability;

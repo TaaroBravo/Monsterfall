@@ -32,6 +32,7 @@ public class ShootDashHability : IHability
         {
             ShootDash();
             player.usingHability = true;
+            player.lifeHUD.ActivateDashCD();
         }
     }
 

@@ -14,6 +14,7 @@ public class Pirate : PlayerController
     public override void Start()
     {
         base.Start();
+        lifeHUD.Set(1.5f, 3, myLife);
         shootFire = GetComponent<PirateFeedbacks>().shootFire;
         SetAttacks();
         SetHabilities();
