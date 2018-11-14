@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
     public Animator myAnim;
 
-    public delegate void CallHability();
+    public delegate void CallHability(string state);
     public CallHability myHability = delegate { };
     public CallHability movementHability = delegate { };
 
@@ -502,7 +502,7 @@ public class PlayerController : MonoBehaviour
     public void Dash()
     {
         if (canDash && !isFallingOff && !isDashing)
-            movementHability();
+            movementHability("");
         else if (!canDash && !isDashing)
             canDash = true;
         //hability["Dash"].Hability();
@@ -530,10 +530,10 @@ public class PlayerController : MonoBehaviour
         isFallingOff = false;
     }
 
-    public void Hability()
+    public void Hability(string state)
     {
-        if (!isFallingOff && !stunnedByHit && !isDashing && !usingHability)
-            myHability();
+        if (!isFallingOff && !stunnedByHit && !isDashing /*&& !usingHability*/)
+            myHability(state);
     }
 
     void Charged()
@@ -771,7 +771,6 @@ public class PlayerController : MonoBehaviour
             canJump = false;
             if (stunnedByHit && impactVelocity.y < 0)
             {
-                Debug.Log("A");
                 stunnedByHit = false;
                 impactVelocity = Vector3.zero;
                 moveVector = Vector3.zero;

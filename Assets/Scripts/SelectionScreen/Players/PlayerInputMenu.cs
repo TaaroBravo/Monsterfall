@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class PlayerInputMenu : MonoBehaviour
 {
 
     PlayerAvatar player;
-
+    public PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
     public Controller controller;
     public int id;
 
@@ -32,37 +35,60 @@ public class PlayerInputMenu : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (id < 1)
-        {
-            CleanInputs();
-            return;
-        }
-
+        //if (id < 1)
+        //{
+        //    CleanInputs();
+        //    return;
+        //}
+        playerIndex = (PlayerIndex)id - 1;
         SetPlayerInput();
-        if (Input.GetButtonDown(actionButton))
-            player.ActionButton();
-        if (Input.GetButtonDown(rejectButton))
-            player.RejectButton();
         if (controller == Controller.J)
         {
-            if (Input.GetAxis(horizontalMove) != 0 && _cooldown)
+            prevState = state;
+            state = GamePad.GetState(playerIndex);
+            if (state.ThumbSticks.Left.X != 0 && _cooldown)
             {
-                player.Move(new Vector2(Input.GetAxis(horizontalMove) == 0 ? 0 : Input.GetAxis(horizontalMove) > 0 ? 1 : -1, 0));
+                player.Move(new Vector2(state.ThumbSticks.Left.X == 0 ? 0 : state.ThumbSticks.Left.X > 0 ? 1 : -1, 0));
                 StartCoroutine(CoolDown());
             }
-            if (Input.GetAxis(verticalMove) != 0 && _cooldown)
+
+            if (state.ThumbSticks.Left.Y != 0 && _cooldown)
             {
-                player.Move(new Vector2(0, Input.GetAxis(verticalMove) == 0 ? 0 : Input.GetAxis(verticalMove) > 0 ? 1 : -1));
+                player.Move(new Vector2(0, state.ThumbSticks.Left.Y == 0 ? 0 : state.ThumbSticks.Left.Y > 0 ? -1 : 1));
                 StartCoroutine(CoolDown());
             }
+
+            if (prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed)
+                player.RejectButton();
+
+            if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
+                player.ActionButton();
+
         }
-        else
-        {
-            if (Input.GetButtonDown(horizontalMove))
-                player.Move(new Vector2((int)MainHorizontal(), 0));
-            if (Input.GetButtonDown(verticalMove))
-                player.Move(new Vector2(0, -(int)MainVertical()));
-        }
+        //if (Input.GetButtonDown(actionButton))
+        //    player.ActionButton();
+        //if (Input.GetButtonDown(rejectButton))
+        //    player.RejectButton();
+        //if (controller == Controller.J)
+        //{
+        //    if (Input.GetAxis(horizontalMove) != 0 && _cooldown)
+        //    {
+        //        player.Move(new Vector2(Input.GetAxis(horizontalMove) == 0 ? 0 : Input.GetAxis(horizontalMove) > 0 ? 1 : -1, 0));
+        //        StartCoroutine(CoolDown());
+        //    }
+        //    if (Input.GetAxis(verticalMove) != 0 && _cooldown)
+        //    {
+        //        player.Move(new Vector2(0, Input.GetAxis(verticalMove) == 0 ? 0 : Input.GetAxis(verticalMove) > 0 ? 1 : -1));
+        //        StartCoroutine(CoolDown());
+        //    }
+        //}
+        //else
+        //{
+        //    if (Input.GetButtonDown(horizontalMove))
+        //        player.Move(new Vector2((int)MainHorizontal(), 0));
+        //    if (Input.GetButtonDown(verticalMove))
+        //        player.Move(new Vector2(0, -(int)MainVertical()));
+        //}
     }
 
     IEnumerator CoolDown()

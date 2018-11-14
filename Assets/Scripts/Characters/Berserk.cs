@@ -30,13 +30,22 @@ public class Berserk : PlayerController
         base.Update();
     }
 
-    void BerserkHability()
+    void BerserkHability(string state)
     {
         if (controller.isGrounded)
-            hability["StompHability"].Hability();
+        {
+            if(state == "Realese")
+            {
+                hability["StompHability"].Release();
+            }
+            else
+            {
+                hability["StompHability"].Hability();
+            }
+        }
     }
 
-    void MovementHability()
+    void MovementHability(string state)
     {
         hability["ForwardCharge"].Hability();
     }

@@ -140,6 +140,11 @@ public class RogueDashHability : IHability
         playersHitted.Clear();
     }
 
+    public override void Release()
+    {
+
+    }
+
     #region Extra Calculation
     public bool CheckParently(Transform t)
     {

@@ -67,12 +67,19 @@ public class Rogue : PlayerController
         }
     }
 
-    void RogueHability()
+    void RogueHability(string state)
     {
-        hability["ImmobilizerTrapHability"].Hability();
+        if (state == "Realese")
+        {
+            hability["ImmobilizerTrapHability"].Release();
+        }
+        else
+        {
+            hability["ImmobilizerTrapHability"].Hability();
+        }
     }
 
-    void MovementHability()
+    void MovementHability(string state)
     {
         hability["RogueDashHability"].Hability();
     }

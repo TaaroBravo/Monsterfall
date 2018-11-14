@@ -18,7 +18,7 @@ public class UpAttack : IAttack
         influenceOfMovement = player.influenceOfMovementUp;
         currentPressed = 1;
         maxPressed = 2.5f;
-        minImpact = 15;
+        minImpact = 17;
     }
 
     public override void Update()
@@ -43,12 +43,17 @@ public class UpAttack : IAttack
                 player.myAnim.Play("AttackUp");
             else
                 player.myAnim.Play("HitUpAir");
-            Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 2, col.transform.rotation, LayerMask.GetMask("Hitbox"));
+            Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 2);
+            //Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 2, col.transform.rotation, LayerMask.GetMask("Hitbox"));
             foreach (Collider c in cols)
             {
+                if (c.transform.gameObject.layer == LayerMask.GetMask("Hitbox"))
+                    continue;
                 if (CheckParently(c.transform))
                     continue;
                 PlayerController target = TargetScript(c.transform);
+                if (target == player)
+                    continue;
                 player.hitParticles.Play();
                 if (target != null)
                 {

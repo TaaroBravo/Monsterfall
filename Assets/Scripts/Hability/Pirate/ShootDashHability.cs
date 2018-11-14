@@ -96,6 +96,11 @@ public class ShootDashHability : IHability
         player.myAnim.SetBool("Dashing", false);
     }
 
+    public override void Release()
+    {
+
+    }
+
     #region Extra Calculation
     public bool CheckParently(Transform t)
     {

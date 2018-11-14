@@ -8,8 +8,10 @@ abstract public class IHability {
     public CdHUDChecker cooldownHUD;
     public float timerCoolDown;
     public float coolDown;
+    public bool isPressing;
 
     public abstract void Hability();
+    public abstract void Release();
 
     public virtual void Update()
     {

@@ -124,4 +124,9 @@ public class ForcedJump : IHability
         player.StopCoroutine(WaitToLand());
         player.StopCoroutine(ResetValuesCoroutine());
     }
+
+    public override void Release()
+    {
+
+    }
 }

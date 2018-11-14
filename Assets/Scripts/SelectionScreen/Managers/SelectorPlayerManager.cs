@@ -61,6 +61,8 @@ public class SelectorPlayerManager : MonoBehaviour
 
     public void OnConnectedPlayer(PlayerInputMenu player, int ID)
     {
+        if (CheckID(ID))
+            return;
         if (_playersInGame.Count >= 4)
             return;
 
@@ -130,5 +132,15 @@ public class SelectorPlayerManager : MonoBehaviour
     void SetUpInfo()
     {
         GameObject.FindObjectOfType<PlayersInfoManager>().SetUpInfo(_playersReady);
+    }
+
+    bool CheckID(int ID)
+    {
+        foreach (var player in _playersInGame)
+        {
+            if (player.GetComponent<PlayerInputMenu>().id == ID)
+                return true;
+        }
+        return false;
     }
 }

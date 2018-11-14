@@ -16,11 +16,11 @@ public class InputManager
     public PlayerAvatar OnConnectedPlayer(PlayerInputMenu player, int ID)
     {
         PlayerAvatar returnedPlayer = playerInputs[ID - 1].GetComponent<PlayerAvatar>();
-        if (CheckIfPlayerExists(player))
-            return null;
-        if (CheckIfInputExists(ID))
-            returnedPlayer = SwitchPlayersInputs(returnedPlayer, player);
-        else
+        //if (CheckIfPlayerExists(player))
+        //    return null;
+        //if (CheckIfInputExists(ID))
+        //    returnedPlayer = SwitchPlayersInputs(returnedPlayer, player);
+        //else
             SetPlayerInput(returnedPlayer, player);
         playersInGame.Add(returnedPlayer.GetComponent<PlayerInputMenu>());
         return returnedPlayer;

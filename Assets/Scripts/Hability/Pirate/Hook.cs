@@ -10,6 +10,7 @@ public class Hook : MonoBehaviour
     public event Action OnReturnedEnd = delegate { };
     public event Action<PlayerController> OnHookTarget = delegate { };
     public event Action<PlayerController> OnReachedTarget = delegate { };
+    public event Action OnReturning = delegate { };
     public event Action OnFailedFire = delegate { };
 
     public event Action<Vector3, Vector3> OnInitHook = delegate { };
@@ -59,6 +60,7 @@ public class Hook : MonoBehaviour
     bool playerTeleported;
 
     public bool reachingPoint;
+    public bool secondStateActive;
 
     private void Awake()
     {
@@ -83,7 +85,33 @@ public class Hook : MonoBehaviour
         if (!_myPlayer)
             Destroy(gameObject);
 
-        if (reachingPoint)
+        if (!gameObject.activeSelf)
+            ResetAll();
+        if (secondStateActive)
+        {
+            //X - Falta comprobar que cuando este cerca de bordes frene y vuelva
+            //X - Que cuando esté muy cerca se vuelva directo
+            //- Que no deje personas encrustadas
+            //X - Que un target también sea el que agarre si está girando.
+            transform.parent = null;
+            if(Vector3.Distance(transform.position, _myPlayer.transform.position) < 3f || CloseToLimits())
+            {
+                ReturnHookSecondState();
+                return;
+            }
+            transform.RotateAround(_myPlayer.transform.position, Vector3.forward, 180 * Time.deltaTime * -Mathf.Sign(_direction.x));
+            var targets = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _myPlayer).Where(x => !x.isDead);
+            foreach (var t in targets)
+            {
+                if (t != _target)
+                    t.ReceiveImpact(Vector3.right * 30 * -Mathf.Sign(_direction.x), _myPlayer);
+            }
+            if (_target)
+                _target.transform.position = transform.position;
+            else
+                _target = targets.FirstOrDefault();
+        }
+        else if (reachingPoint)
         {
             _myPlayer.controller.enabled = false;
             if (warpPositions.Count() > 0)
@@ -127,7 +155,7 @@ public class Hook : MonoBehaviour
                     hooked = false;
                     return;
                 }
-                if (Physics.OverlapSphere(transform.position, 1f, 1 << 19).Any())
+                if (Physics.OverlapSphere(transform.position, 1f, 1 << 19).Any() && !_target)
                     _hookPlatform = transform.position;
                 if (_currentDistance >= maxDistance)
                     FailedFire();
@@ -140,16 +168,18 @@ public class Hook : MonoBehaviour
                 reachingPoint = true;
             else if (_target && Vector3.Distance(_myPlayer.transform.position, _target.transform.position) > 3f)
                 HookTarget(_target);
-
             if (hooked)
             {
+                if (!_target)
+                {
+                    ReturnHook();
+                    return;
+                }
                 if (Vector3.Distance(_target.transform.position, _myPlayer.transform.position) > 15)
                 {
                     ReturnHook();
                     return;
                 }
-                if (!_target)
-                    ReturnHook();
                 transform.parent = _target.transform;
                 if (warpPositions.Count() > 0)
                 {
@@ -203,6 +233,7 @@ public class Hook : MonoBehaviour
         returnFail = false;
         hookGrabbed = false;
         fired = false;
+        secondStateActive = false;
         _myPlayer.controller.enabled = true;
         if (_target)
         {
@@ -255,6 +286,7 @@ public class Hook : MonoBehaviour
             _target = null;
             return;
         }
+        OnReturning();
         target.DisableAll();
         target.canMove = false;
         hooked = true;
@@ -269,6 +301,7 @@ public class Hook : MonoBehaviour
 
     public void ReturnHook()
     {
+        OnReturning();
         fired = false;
         hooked = false;
         hookGrabbed = false;
@@ -297,10 +330,22 @@ public class Hook : MonoBehaviour
                 OnEndHook(transform.position, transform.position);
                 OnReturnedEnd();
                 OnFailedFire();
+                ResetAll();
                 StopCoroutine(ResetAllCoroutine());
                 return;
             }
         }
+    }
+
+    public void ReturnHookSecondState()
+    {
+        secondStateActive = false;
+        hooked = true;
+    }
+
+    public void ActiveSecondState()
+    {
+        secondStateActive = true;
     }
 
     public void FailedFire()
@@ -316,6 +361,7 @@ public class Hook : MonoBehaviour
         OnEndHook(transform.position, transform.position);
         OnReturnedEnd();
         OnReachedTarget(target);
+        ResetAll();
         _target = null;
         _warpedPos = null;
         hooked = false;
@@ -327,7 +373,6 @@ public class Hook : MonoBehaviour
         target.transform.position = endPoint.position;
         target.myAnim.Play("Stunned");
         target.controller.enabled = true;
-        ResetAll();
         StopCoroutine(ResetAllCoroutine());
     }
     #endregion
@@ -404,6 +449,16 @@ public class Hook : MonoBehaviour
                 OnTeleport(to, from);
             }
         }
+    }
+
+    bool CloseToLimits()
+    {
+        foreach (var limit in GameManager.Instance.limits)
+        {
+            if (Vector3.Distance(transform.position, limit.ClosestPoint(transform.position)) < 3f)
+                return true;
+        }
+        return false;
     }
 
     private void OnTriggerEnter(Collider other)

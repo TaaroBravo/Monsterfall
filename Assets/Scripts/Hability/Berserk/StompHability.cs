@@ -117,6 +117,11 @@ public class StompHability : IHability
         timerCoolDown = coolDown;
     }
 
+    public override void Release()
+    {
+
+    }
+
     #region Extra Calculation
     public bool CheckParently(Transform t)
     {

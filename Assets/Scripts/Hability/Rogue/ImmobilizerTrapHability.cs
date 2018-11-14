@@ -93,4 +93,9 @@ public class ImmobilizerTrapHability : IHability
     {
         c.gameObject.SetActive(false);
     }
+
+    public override void Release()
+    {
+
+    }
 }

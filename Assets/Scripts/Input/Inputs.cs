@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
+using System.Linq;
 
-public class Inputs : MonoBehaviour {
+public class Inputs : MonoBehaviour
+{
 
     bool playerIndexSet = false;
     PlayerIndex playerIndex;
@@ -34,48 +36,71 @@ public class Inputs : MonoBehaviour {
     string rejectButton_K2;
     string rejectButton_K3;
 
-    void Start ()
+    void Start()
     {
         playerIndices = new PlayerIndex[4];
+        GetGamepadInputs();
         SetUpActionsButtons();
     }
-	
-	void Update ()
+
+    void Update()
     {
         GetGamepadInputs();
+        //if (Input.GetButtonDown(startButton_J1))
+        //    SetPlayerInput(0, ((int)playerIndices[0]) + 1);
+        //if (Input.GetButtonDown(startButton_J2))
+        //    SetPlayerInput(0, ((int)playerIndices[1]) + 1);
+        //if (Input.GetButtonDown(startButton_J3))
+        //    SetPlayerInput(0, ((int)playerIndices[2]) + 1);
+        //if (Input.GetButtonDown(startButton_J4))
+        //    SetPlayerInput(0, ((int)playerIndices[3]) + 1);
+        //if (Input.GetKeyDown(startButton_J1))
+        //        SetPlayerInput(0, ((int)playerIndices[0]) + 1);
+        //for (int i = 0; i < playersConnected.Count; i++)
+        //{
+        //    if (Input.GetKeyDown("JoystickStart_P" + (((int)playerIndices[i]) + 1)))
+        //        SetPlayerInput(0, ((int)playerIndices[i]) + 1);
+        //}
+        //if (Input.GetKeyDown(startButton_J1))
+        //    SetPlayerInput(0, ((int)playerIndices[0]) + 1);
+        //if (Input.GetKeyDown(startButton_J2))
+        //    SetPlayerInput(0, ((int)playerIndices[1]) + 1);
+        //if (Input.GetKeyDown(startButton_J3))
+        //    SetPlayerInput(0, ((int)playerIndices[2]) + 1);
+        //if (Input.GetKeyDown(startButton_J4))
+        //    SetPlayerInput(0, ((int)playerIndices[3]) + 1);
 
-        if (Input.GetButtonDown(startButton_J1))
-            SetPlayerInput(0, (int)playerIndices[0] + 1);
-        if (Input.GetButtonDown(startButton_J2))
-            SetPlayerInput(0, (int)playerIndices[1] + 1);
-        if (Input.GetButtonDown(startButton_J3))
-            SetPlayerInput(0, (int)playerIndices[2] + 1);
-        if (Input.GetButtonDown(startButton_J4))
-            SetPlayerInput(0, (int)playerIndices[3] + 1);
-
-        if (Input.GetButtonDown(actionButton_K1))
-            SetPlayerInput(1, 1);
-        if (Input.GetButtonDown(actionButton_K2))
-            SetPlayerInput(1, 2);
-        if (Input.GetButtonDown(actionButton_K3))
-            SetPlayerInput(1, 3);
+        //if (Input.GetButtonDown(actionButton_K1))
+        //    SetPlayerInput(1, 1);
+        //if (Input.GetButtonDown(actionButton_K2))
+        //    SetPlayerInput(1, 2);
+        //if (Input.GetButtonDown(actionButton_K3))
+        //    SetPlayerInput(1, 3);
 
 
-        if (Input.GetButtonDown(rejectButton_J1))
-            DisconnectPlayer(0, (int)playerIndices[0] + 1);
-        if (Input.GetButtonDown(rejectButton_J2))
-            DisconnectPlayer(0, (int)playerIndices[1] + 1);
-        if (Input.GetButtonDown(rejectButton_J3))
-            DisconnectPlayer(0, (int)playerIndices[2] + 1);
-        if (Input.GetButtonDown(rejectButton_J4))
-            DisconnectPlayer(0, (int)playerIndices[3] + 1);
+        //if (Input.GetButtonDown(rejectButton_J1))
+        //    DisconnectPlayer(0, ((int)playerIndices[0]) + 1);
+        //if (Input.GetButtonDown(rejectButton_J2))
+        //    DisconnectPlayer(0, ((int)playerIndices[1]) + 1);
+        //if (Input.GetButtonDown(rejectButton_J3))
+        //    DisconnectPlayer(0, ((int)playerIndices[2]) + 1);
+        //if (Input.GetButtonDown(rejectButton_J4))
+        //    DisconnectPlayer(0, ((int)playerIndices[3]) + 1);
+        //if (Input.GetKeyDown("J_DownAttack_P" + (((int)playerIndices[0]) + 1)) && playersOrder.Count > 0)
+        //    SetPlayerInput(0, ((int)playerIndices[0]) + 1);
+        //if (Input.GetKeyDown("J_DownAttack_P" + (((int)playerIndices[1]) + 1)) && playersOrder.Count > 1)
+        //    SetPlayerInput(0, ((int)playerIndices[1]) + 1);
+        //if (Input.GetKeyDown("J_DownAttack_P" + (((int)playerIndices[2]) + 1)) && playersOrder.Count > 2)
+        //    SetPlayerInput(0, ((int)playerIndices[2]) + 1);
+        //if (Input.GetKeyDown("J_DownAttack_P" + (((int)playerIndices[3]) + 1)) && playersOrder.Count > 3)
+        //    SetPlayerInput(0, ((int)playerIndices[3]) + 1);
 
-        if (Input.GetButtonDown(rejectButton_K1))
-            DisconnectPlayer(1, 1);
-        if (Input.GetButtonDown(rejectButton_K2))
-            DisconnectPlayer(1, 2);
-        if (Input.GetButtonDown(rejectButton_K3))
-            DisconnectPlayer(1, 3);
+        //if (Input.GetButtonDown(rejectButton_K1))
+        //    DisconnectPlayer(1, 1);
+        //if (Input.GetButtonDown(rejectButton_K2))
+        //    DisconnectPlayer(1, 2);
+        //if (Input.GetButtonDown(rejectButton_K3))
+        //    DisconnectPlayer(1, 3);
     }
 
     void SetUpActionsButtons()
@@ -85,14 +110,14 @@ public class Inputs : MonoBehaviour {
         startButton_J3 = "JoystickStart_P3";
         startButton_J4 = "JoystickStart_P4";
 
-        actionButton_J1 =  "J_JumpButton_P1";
-        actionButton_J2 =  "J_JumpButton_P2";
-        actionButton_J3 =  "J_JumpButton_P3";
-        actionButton_J4 =  "J_JumpButton_P4";
+        actionButton_J1 = "J_JumpButton_P1";
+        actionButton_J2 = "J_JumpButton_P2";
+        actionButton_J3 = "J_JumpButton_P3";
+        actionButton_J4 = "J_JumpButton_P4";
 
-        actionButton_K1 =  "K_JumpButton_P1";
-        actionButton_K2 =  "K_NormalAttack_P2";
-        actionButton_K3 =  "K_JumpButton_P3";
+        actionButton_K1 = "K_JumpButton_P1";
+        actionButton_K2 = "K_NormalAttack_P2";
+        actionButton_K3 = "K_JumpButton_P3";
 
         rejectButton_J1 = "J_DownAttack_P1";
         rejectButton_J2 = "J_DownAttack_P2";
@@ -102,6 +127,8 @@ public class Inputs : MonoBehaviour {
         rejectButton_K1 = "K_DownAttack_P1";
         rejectButton_K2 = "K_DownAttack_P2";
         rejectButton_K3 = "K_DownAttack_P3";
+
+        //playersOrder = playerIndices.OrderBy(x => (int)x).ToList();
     }
 
     void SetPlayerInput(int controller, int ID)
@@ -130,7 +157,7 @@ public class Inputs : MonoBehaviour {
                 GamePadState testState = GamePad.GetState(testPlayerIndex);
                 if (testState.IsConnected)
                 {
-                    Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+                    //Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
                     playerIndex = testPlayerIndex;
                     playerIndices[i] = testPlayerIndex;
                     playerIndexSet = true;
@@ -138,7 +165,19 @@ public class Inputs : MonoBehaviour {
             }
         }
 
-        prevState = state;
-        state = GamePad.GetState(playerIndex);
+        foreach (var item in playerIndices)
+        {
+            prevState = state;
+            state = GamePad.GetState(item);
+            if (prevState.Buttons.Start == ButtonState.Released && state.Buttons.Start == ButtonState.Pressed)
+            {
+                SetPlayerInput(0, ((int)item) + 1);
+            }
+
+            if (prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed)
+            {
+                DisconnectPlayer(0, ((int)item) + 1);
+            }
+        }
     }
 }

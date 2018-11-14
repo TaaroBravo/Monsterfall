@@ -45,7 +45,6 @@ public class LifebarController : MonoBehaviour
     void Update()
     {
         XAxis = myplayerinput.MainHorizontal();
-        Debug.Log("A");
         //if (myplayerinput.MainHorizontal() != 0) XAxis = myplayerinput.MainHorizontal();
         if (!iminverted)
         {

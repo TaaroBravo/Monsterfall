@@ -51,4 +51,9 @@ public class Dash : IHability {
             player.myAnim.SetBool("Dashing", true);
         }
     }
+
+    public override void Release()
+    {
+
+    }
 }

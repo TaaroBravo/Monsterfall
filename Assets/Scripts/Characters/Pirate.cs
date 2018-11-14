@@ -25,12 +25,19 @@ public class Pirate : PlayerController
         base.Update();
     }
 
-    void PirateHability()
+    void PirateHability(string state)
     {
-        hability["HookHability"].Hability();
+        if (state == "Realese")
+        {
+            hability["HookHability"].Release();
+        }
+        else
+        {
+            hability["HookHability"].Hability();
+        }
     }
 
-    void MovementHability()
+    void MovementHability(string state)
     {
         hability["ShootDashHability"].Hability();
     }

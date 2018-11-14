@@ -127,4 +127,9 @@ public class BearAttackHability : IHability
         player.canMove = true;
         player.usingHability = false;
     }
+
+    public override void Release()
+    {
+
+    }
 }

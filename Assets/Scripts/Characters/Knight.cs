@@ -77,12 +77,19 @@ public class Knight : PlayerController {
         DisableAll();
     }
 
-    void KnightHability()
+    void KnightHability(string state)
     {
-        hability["PunchHability"].Hability();
+        if (state == "Realese")
+        {
+            hability["PunchHability"].Release();
+        }
+        else
+        {
+            hability["PunchHability"].Hability();
+        } 
     }
 
-    void MovementHability()
+    void MovementHability(string state)
     {
         hability["ForcedJump"].Hability();
     }
