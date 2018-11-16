@@ -7248,7 +7248,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138819411546408}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 22.2, y: 0, z: 7}
+  m_LocalPosition: {x: -8.73, y: 0, z: 6.29}
   m_LocalScale: {x: 2.817611, y: 2.81761, z: -2.817611}
   m_Children:
   - {fileID: 4788306764444832}
@@ -8255,22 +8255,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myplayer: {fileID: 114567794761508490}
   myshader: {fileID: 2100000, guid: 19e14c933995292489a7b35105451515, type: 2}
-  myoverhead: {fileID: 114414073361761708}
-  overheaditems:
-  - {fileID: 212237248900645302}
-  - {fileID: 212768586071157390}
-  - {fileID: 212198433514775904}
-  - {fileID: 212868607146077356}
-  - {fileID: 212411478967889244}
-  - {fileID: 212500565289735196}
-  - {fileID: 212556235103713764}
-  - {fileID: 212489311393124662}
-  - {fileID: 212044856218028046}
-  - {fileID: 212174172848683504}
-  - {fileID: 212568239388079938}
-  - {fileID: 212416609910194064}
-  - {fileID: 212456941663992792}
-  - {fileID: 212757043456243228}
   playermarker: {fileID: 212966710191060516}
   invertedflip: 0
 --- !u!114 &114365598982452742
@@ -8636,7 +8620,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 60db1f8c2f3557945ae3f8662ef8ba70, type: 3}
+  - {fileID: 2100000, guid: 19e14c933995292489a7b35105451515, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22358,7 +22342,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2017068567
+  randomSeed: 1252357621
   InitialModule:
     serializedVersion: 3
     enabled: 1
