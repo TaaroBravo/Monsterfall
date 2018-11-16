@@ -98,6 +98,5 @@ public class HorizontalMovement : IMove
         else
             player.moveVector.y = 0;
         player.moveVector.z = 0;
-        Debug.Log(player.moveVector.x);
     }
 }

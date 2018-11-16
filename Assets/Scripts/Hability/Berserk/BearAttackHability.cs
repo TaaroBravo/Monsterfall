@@ -35,10 +35,10 @@ public class BearAttackHability : IHability
     public override void Update()
     {
         base.Update();
-        if (berserkPlayer.recovery)
+        if (!berserkPlayer.chargeAttack && berserkPlayer.recovery)
             ResetValues();
 
-        if (player.usingHability && !failed)
+        if (player.usingHability && !failed && !berserkPlayer.chargeAttack)
         {
             JumpAttack();
             if (_target && !hasTarget)
@@ -140,6 +140,7 @@ public class BearAttackHability : IHability
             _target.SetStun(1.5f);
             yield return new WaitForSeconds(1.5f);
             ResetValues();
+            break;
         }
     }
 

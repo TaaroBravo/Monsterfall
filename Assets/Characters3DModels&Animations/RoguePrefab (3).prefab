@@ -5380,8 +5380,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.99999964, y: 1.6388156, z: 2.8}
-  m_Center: {x: -2.578649e-16, y: 0.96, z: 0.72}
+  m_Size: {x: 0.9999939, y: 1.6388158, z: 1.6351074}
+  m_Center: {x: 1.6026075e-16, y: 0.96, z: 0.13755076}
 --- !u!65 &65200151925132034
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5645,6 +5645,7 @@ MonoBehaviour:
   isCharged: 0
   hitCharged: 0
   myLifeUI: {fileID: 0}
+  lifeHUD: {fileID: 0}
   PS_Stunned: {fileID: 0}
   PS_Marked: {fileID: 198842810484335500}
   PS_Charged: {fileID: 198535044042815500}
@@ -5668,6 +5669,7 @@ MonoBehaviour:
   dashingTime: 0.3
   rogueDashCooldown: 2
   ps_DashRogue: {fileID: 198036603301718120}
+  onMark: 0
 --- !u!114 &114183241929103250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5884,22 +5886,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myplayer: {fileID: 114150335070170254}
   myshader: {fileID: 2100000, guid: 880f60e0fff25b74ca4bce67bd988f47, type: 2}
-  myoverhead: {fileID: 114231065253537532}
-  overheaditems:
-  - {fileID: 212159119576938990}
-  - {fileID: 212378548820824700}
-  - {fileID: 212429440887019658}
-  - {fileID: 212993196788827442}
-  - {fileID: 212324608366780380}
-  - {fileID: 212302670281807858}
-  - {fileID: 212689578405726248}
-  - {fileID: 212912507729966014}
-  - {fileID: 212759859449172708}
-  - {fileID: 212433532708515988}
-  - {fileID: 212350928915753114}
-  - {fileID: 212670359174426192}
-  - {fileID: 212397126838586970}
-  - {fileID: 212855533947069216}
   playermarker: {fileID: 212451401299207464}
   invertedflip: 0
 --- !u!114 &114782689036386750
@@ -5953,6 +5939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_number: 0
+  playerIndex: 0
   controller: 0
   id: 1
   horizontalMove: 

@@ -51,19 +51,19 @@ public class PlayerInput : MonoBehaviour
                 if (prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed)
                     player.AttackDown("Pressed");
 
-                if (prevState.Buttons.B == ButtonState.Pressed && state.Buttons.B == ButtonState.Released)
+                else if (prevState.Buttons.B == ButtonState.Pressed && state.Buttons.B == ButtonState.Released)
                     player.AttackDown("Realese");
 
                 if (prevState.Buttons.X == ButtonState.Released && state.Buttons.X == ButtonState.Pressed)
                     player.AttackNormal("Pressed");
 
-                if (prevState.Buttons.X == ButtonState.Pressed && state.Buttons.X == ButtonState.Released)
+                else if (prevState.Buttons.X == ButtonState.Pressed && state.Buttons.X == ButtonState.Released)
                     player.AttackNormal("Realese");
 
                 if (prevState.Buttons.Y == ButtonState.Released && state.Buttons.Y == ButtonState.Pressed)
                     player.AttackUp("Pressed");
 
-                if (prevState.Buttons.Y == ButtonState.Pressed && state.Buttons.Y == ButtonState.Released)
+                else if (prevState.Buttons.Y == ButtonState.Pressed && state.Buttons.Y == ButtonState.Released)
                     player.AttackUp("Realese");
 
                 if (prevState.Buttons.LeftShoulder == ButtonState.Released && state.Buttons.LeftShoulder == ButtonState.Pressed)

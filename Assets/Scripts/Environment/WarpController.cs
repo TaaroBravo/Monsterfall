@@ -40,13 +40,15 @@ public class WarpController : MonoBehaviour {
         {
             pl.GetComponent<KnightFeedbackController>().punchFire1.gameObject.SetActive(false);
             pl.GetComponent<KnightFeedbackController>().punchFire2.gameObject.SetActive(false);
-            pl.GetComponent<KnightFeedbackController>().childFireEstela.gameObject.SetActive(false);
-            pl.GetComponent<KnightFeedbackController>().fireEstela.gameObject.SetActive(false);
+            //pl.GetComponent<KnightFeedbackController>().childFireEstela.gameObject.SetActive(false);
+            pl.GetComponent<KnightFeedbackController>().childFireEstela.Stop();
+            //pl.GetComponent<KnightFeedbackController>().fireEstela.gameObject.SetActive(false);
+            pl.GetComponent<KnightFeedbackController>().fireEstela.Stop();
             yield return new WaitForSeconds(0.25f);
-            pl.GetComponent<KnightFeedbackController>().punchFire1.gameObject.SetActive(true);
-            pl.GetComponent<KnightFeedbackController>().punchFire2.gameObject.SetActive(true);
-            pl.GetComponent<KnightFeedbackController>().childFireEstela.gameObject.SetActive(true);
-            pl.GetComponent<KnightFeedbackController>().fireEstela.gameObject.SetActive(true);
+            pl.GetComponent<KnightFeedbackController>().punchFire1.Play();
+            pl.GetComponent<KnightFeedbackController>().punchFire2.Play();
+            //pl.GetComponent<KnightFeedbackController>().childFireEstela.gameObject.SetActive(true);
+            //pl.GetComponent<KnightFeedbackController>().fireEstela.gameObject.SetActive(true);
             break;
         }
     }

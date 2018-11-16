@@ -14,19 +14,22 @@ public class ForwardCharge : IHability
     float distance;
     float timerActive;
 
+    Berserk berserkPlayer;
+
     public ForwardCharge(PlayerController p, float speed, float _timerCoolDown = 0)
     {
         player = p;
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
         _speed = speed;
+        berserkPlayer = (Berserk)p;
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (player.usingHability)
+        if (player.usingHability && berserkPlayer.chargeAttack)
         {
             if (player.IsTouchingWalls())
             {
@@ -43,7 +46,7 @@ public class ForwardCharge : IHability
             else
                 _target = Physics.OverlapSphere(player.transform.position, 1f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player).Where(x => !x.isDead).FirstOrDefault();
         }
-        else if(!player.canMove)
+        else if(!player.canMove && berserkPlayer.chargeAttack)
         {
             player.myAnim.Play("Stunned");
             ResetValues();
@@ -71,6 +74,7 @@ public class ForwardCharge : IHability
             distance = 0;
             _dir = Mathf.Sign(player.transform.localScale.z);
             player.canMove = false;
+            berserkPlayer.chargeAttack = true;
             player.usingHability = true;
             player.myAnim.Play("Dash");
             player.myAnim.SetBool("Dashing", true);
@@ -112,6 +116,7 @@ public class ForwardCharge : IHability
         timerCoolDown = coolDown;
         player.canMove = true;
         player.usingHability = false;
+        berserkPlayer.chargeAttack = false;
     }
 
     public override void Release()

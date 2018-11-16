@@ -52,7 +52,11 @@ public class Counting : MonoBehaviour {
     }
     void Update()
     {
-        _imgUno.sprite = SM_Round.round >= 9 ? numbers[SM_Round.round - 1] : numbers[numbers.Count-1]; // Update de sprite de numero 16_11_18
+        if (SM_Round.round >= 8)
+            _imgUno.sprite = numbers[numbers.Count - 1];
+        else
+            _imgUno.sprite = numbers[SM_Round.round];
+        //_imgUno.sprite = SM_Round.round >= 9 ? numbers[SM_Round.round - 1] : numbers[numbers.Count-1]; // Update de sprite de numero 16_11_18
         _timer += Time.deltaTime;
         crystal.transform.localScale = _timer <= 2.8f ? 
             Vector3.Lerp(Vector3.zero, _cristalscale, (_timer - 0.6f) / 0.2f) :

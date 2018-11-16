@@ -44,6 +44,7 @@ public class UpAttack : IAttack
             else
                 player.myAnim.Play("HitUpAir");
             Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 2);
+            List<PlayerController> hitPlayers = new List<PlayerController>();
             //Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 2, col.transform.rotation, LayerMask.GetMask("Hitbox"));
             foreach (Collider c in cols)
             {
@@ -55,8 +56,9 @@ public class UpAttack : IAttack
                 if (target == player)
                     continue;
                 player.hitParticles.Play();
-                if (target != null)
+                if (target != null && !hitPlayers.Contains(target))
                 {
+                    hitPlayers.Add(target);
                     if (player.GetComponent<BerserkerParticlesManager>()) player.GetComponent<BerserkerParticlesManager>().PlayAttackParticle();
                     if (!(player is Berserk))
                         target.ReceiveImpact(new Vector3(0, CalculateImpact(currentPressed), 0), player, currentPressed >= maxPressed);

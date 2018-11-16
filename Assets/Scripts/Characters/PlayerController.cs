@@ -270,7 +270,8 @@ public class PlayerController : MonoBehaviour
         var layerMaskIgnore2 = 1 << 9;
         var layerMaskIgnore3 = 1 << 13;
         var layerMaskIgnore4 = 1 << 18;
-        var layerMask = layerMaskIgnore1 | layerMaskIgnore2 | layerMaskIgnore3 | layerMaskIgnore4;
+        var layerMaskIgnore5 = 1 << 20;
+        var layerMask = layerMaskIgnore1 | layerMaskIgnore2 | layerMaskIgnore3 | layerMaskIgnore4 | layerMaskIgnore5;
         layerMask = ~layerMask;
         if (rBottomPos)
         {
@@ -429,7 +430,7 @@ public class PlayerController : MonoBehaviour
                 attacks["NormalAttack"].Attack(attackColliders);
                 PS_Charged.Stop();
                 PS_Charged.gameObject.SetActive(false);
-                StartCoroutine(CanAttack(0.1f));
+                StartCoroutine(CanAttack(0.25f));
             }
             else
             {
@@ -449,7 +450,7 @@ public class PlayerController : MonoBehaviour
                 attacks["DownAttack"].Attack(attackColliders);
                 PS_Charged.Stop();
                 PS_Charged.gameObject.SetActive(false);
-                StartCoroutine(CanAttack(0.1f));
+                StartCoroutine(CanAttack(0.25f));
             }
             else
             {
@@ -469,7 +470,7 @@ public class PlayerController : MonoBehaviour
                 attacks["UpAttack"].Attack(attackColliders);
                 PS_Charged.Stop();
                 PS_Charged.gameObject.SetActive(false);
-                StartCoroutine(CanAttack(0.1f));
+                StartCoroutine(CanAttack(0.25f));
             }
             else
             {
