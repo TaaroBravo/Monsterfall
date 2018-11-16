@@ -19,8 +19,8 @@ public class Berserk : PlayerController
     public override void Start()
     {
         base.Start();
-        superPunch = new IBerserkPunch(this, 45);
-        lifeHUD.Set(3, chargeCooldown, myLife);
+        superPunch = new IBerserkPunch(this, 12);
+        lifeHUD.Set(8, chargeCooldown, myLife);
         SetAttacks();
         SetHabilities();
     }
@@ -34,13 +34,13 @@ public class Berserk : PlayerController
     {
         if (controller.isGrounded)
         {
-            if(state == "Realese")
+            if (state == "Realese")
             {
-                hability["StompHability"].Release();
+                hability["BearAttackHability"].Release();
             }
             else
             {
-                hability["StompHability"].Hability();
+                hability["BearAttackHability"].Hability();
             }
         }
     }
@@ -64,7 +64,7 @@ public class Berserk : PlayerController
 
     void SetHabilities()
     {
-        hability.Add(typeof(StompHability).ToString(), new StompHability(this, transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), power, 3f));
+        hability.Add(typeof(BearAttackHability).ToString(), new BearAttackHability(this, 30, 5, 3f, 5f));
         hability.Add(typeof(ForwardCharge).ToString(), new ForwardCharge(this, chargeSpeed, chargeCooldown));
         myHability = BerserkHability;
         movementHability = MovementHability;
@@ -73,7 +73,7 @@ public class Berserk : PlayerController
     public void BerserkStompHability()
     {
         //si no estoy stuneado.
-        if (!stunnedByHit)
-            OnStompHability();
+        //if (!stunnedByHit)
+        //    OnStompHability();
     }
 }
