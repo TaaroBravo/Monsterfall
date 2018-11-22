@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public PlayersInfoManager infoManager;
     public List<PlayerController> myPlayers = new List<PlayerController>();
+    public List<PlayerController> alivePlayers = new List<PlayerController>();
     public List<GameObject> playersObj = new List<GameObject>();
     public GameObject youWin;
     public static GameManager Instance { get; private set; }
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject finishCanvas;
     public GameObject inGameCanvas;
 
+    public Transform crown;
     public Vector3 cube;
 
     private void Awake()
@@ -61,6 +63,9 @@ public class GameManager : MonoBehaviour
             CreatorRays.Instance.SetPlayers(myPlayers.ToArray());
             ScoreManager.Instance.SetRound(infoManager.playersInfo.First().round);
         }
+        alivePlayers = myPlayers;
+        foreach (var item in myPlayers)
+            item.OnDestroyCharacter += x => LoseCharacter(x);
         lastPos = initialPos;
         StartCoroutine(StartGame(timeToStart));
         StartCoroutine(OutOfLimitsPlayer());
@@ -75,6 +80,18 @@ public class GameManager : MonoBehaviour
             ObjectPoolManager.Instance.Clean();
             SceneManager.LoadScene(0);
         }
+
+        if (infoManager.playersInfo.First().round > 0)
+        {
+            PlayerInfo firstPlayer = new PlayerInfo();
+            var numberOfKills = infoManager.playersInfo.Where(x => myPlayers[x.ID - 1]).Select(x => x.newKills + x.previousKills);
+            foreach (var info in infoManager.playersInfo.Where(x => myPlayers[x.ID - 1]).OrderByDescending(x => x.newKills + x.previousKills))
+            {
+                if (info.newKills + info.previousKills == numberOfKills.OrderByDescending(z => z).First())
+                    firstPlayer = info;
+            }
+            crown.position = alivePlayers[firstPlayer.ID - 1].transform.position + (Vector3.up * 7);
+        }
     }
 
     public void SetKills(int player_number)
@@ -82,12 +99,13 @@ public class GameManager : MonoBehaviour
         foreach (var info in infoManager.playersInfo)
         {
             if (info.player_number == player_number)
-            {
                 info.newKills++;
-                if (info.newKills + info.previousKills >= 10)
-                    WinTheGame();
-            }
         }
+    }
+
+    public void LoseCharacter(PlayerController p)
+    {
+        alivePlayers.Remove(p);
     }
 
     #region Start Game
@@ -195,8 +213,26 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
-        foreach (var player in myPlayers)
+        foreach (var player in alivePlayers)
+        {
             player.canMove = false;
+            if (player)
+            {
+                foreach (var info in infoManager.playersInfo)
+                {
+                    if (player.GetComponent<PlayerInput>().id == info.ID)
+                    {
+                        if (info.newKills + info.previousKills >= 10)
+                        {
+                            if (alivePlayers.Contains(player))
+                                WinTheGame();
+                            else
+                                info.newKills = 0;
+                        }
+                    }
+                }
+            }
+        }
         if (!finishedGame)
         {
             finishCanvas.SetActive(true);
@@ -259,5 +295,22 @@ public class GameManager : MonoBehaviour
         finishedGame = true;
         StartCoroutine(StartNewGame());
     }
+
+    public Vector3 ClosesPlayer(Vector3 pos)
+    {
+        Vector3 closes = Vector3.zero;
+        float distance = 100000;
+        foreach (var player in alivePlayers)
+        {
+            if ((player.transform.position - pos).magnitude < distance)
+            {
+                closes = player.transform.position;
+                distance = (player.transform.position - pos).magnitude;
+            }
+        }
+        return closes;
+    }
+
+
 
 }

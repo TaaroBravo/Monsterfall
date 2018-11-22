@@ -6,6 +6,8 @@ using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
+    public event Action<PlayerController> OnDestroyCharacter = delegate { };
+
     public float myLife;
     public CharacterController controller;
     public PlayerContrains contrains;
@@ -839,6 +841,7 @@ public class PlayerController : MonoBehaviour
         {
             if (lastOneWhoHittedMe)
                 GameManager.Instance.SetKills(lastOneWhoHittedMe.GetComponent<PlayerInput>().player_number);
+            OnDestroyCharacter(this);
             canMove = false;
             myAnim.StopPlayback();
             myAnim.SetTrigger("Death");
@@ -858,6 +861,7 @@ public class PlayerController : MonoBehaviour
             isDead = true;
         }
     }
+
 
     #endregion
 
@@ -893,10 +897,10 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 2f);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 2f);
+    //}
 
 }

@@ -24,8 +24,8 @@ public class Rogue : PlayerController
     public override void Start()
     {
         base.Start();
-        markEffect = new IRogueMark(this, 7, 8);
-        lifeHUD.Set(3, rogueDashCooldown, myLife);
+        markEffect = new IRogueMark(this, 10, 8);
+        lifeHUD.Set(3, rogueDashCooldown/2, myLife);
         SetAttacks();
         SetHabilities();
         enter = true;

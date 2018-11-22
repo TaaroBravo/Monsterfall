@@ -100,7 +100,6 @@ public class RogueDashHability : IHability
             RaycastHit hit;
             if (Physics.Raycast(player.transform.position, _dir, out hit, 30))
             {
-                Debug.Log(hit.collider.name);
                 if (hit.collider.gameObject.tag == "Borders" && (hit.point - player.transform.position).magnitude < 6f)
                 {
                     GameManager.Instance.RegisterLastPos(player, hit.point);
@@ -116,10 +115,6 @@ public class RogueDashHability : IHability
             player.usingHability = true;
             player.lifeHUD.ActivateDashCD();
         }
-        //else
-        //{
-        //    cooldownHUD.UseSkill(coolDown);
-        //}
     }
 
     Vector3 CalculateFinalPos(Vector3 dir, float distance)

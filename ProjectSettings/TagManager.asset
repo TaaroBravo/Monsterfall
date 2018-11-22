@@ -9,6 +9,7 @@ TagManager:
   - CristalRay
   - Borders
   - ParticleCollider
+  - PositionsElf
   layers:
   - Default
   - TransparentFX

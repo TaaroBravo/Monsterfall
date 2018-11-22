@@ -17,7 +17,7 @@ public class ImmobilizerTrapHability : IHability
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
         _bulletPrefab = _immobilizer;
-        ObjectPoolManager.Instance.AddObjectPool<Immobilizer>(InstantiateBullet, Initializate, Finalizate, 5, false);
+        ObjectPoolManager.Instance.AddObjectPool<Immobilizer>(InstantiateBullet, Initializate, Finalizate, 5, true);
     }
 
     public override void Update()

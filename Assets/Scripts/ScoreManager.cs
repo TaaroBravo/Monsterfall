@@ -28,7 +28,6 @@ public class ScoreManager : MonoBehaviour
     public void LoadBars(List<PlayerInfo> playerInfo, Action callBack)
     {
         playerInfo = playerInfo.OrderByDescending(x => x.newKills + x.previousKills).ToList();
-
         var maxKills = playerInfo.Select(x => x.newKills).First();
         if (maxKills >= 2)
             CalculateMVP(playerInfo.Select(x => x.player_number).First(), playerInfo.Select(x => x.characterChosen).First(), maxKills);

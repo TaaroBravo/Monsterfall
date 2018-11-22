@@ -107,8 +107,8 @@ public class BearAttackHability : IHability
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.8f);
-            //yield return new WaitUntil(() => player.controller.isGrounded);
+            yield return new WaitForSeconds(0.7f);
+            yield return new WaitUntil(() => player.controller.isGrounded);
             player.ResetVelocity();
             if (!_target)
                 FailAttack();

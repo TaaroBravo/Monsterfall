@@ -58,8 +58,11 @@ public class IRogueMark : IEffect
     {
         countOfMarks = 0;
         damageMultiply = 1;
-        target.GetComponent<RogueSkillCall>().ResetFeedback();
-        target = null;
+        if(target)
+        {
+            target.GetComponent<RogueSkillCall>().ResetFeedback();
+            target = null;
+        }
     }
 
     void SetDamage()

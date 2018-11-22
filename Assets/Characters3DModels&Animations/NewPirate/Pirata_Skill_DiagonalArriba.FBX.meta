@@ -1,0 +1,446 @@
+fileFormatVersion: 2
+guid: eed0c54528fbac64ba86f06ff3720f98
+timeCreated: 1542681842
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: AnchorBone
+    100002: CATRig1Bone001
+    100004: CATRig1Bone001Bone001
+    100006: CATRig1Bone001Bone001Bone001
+    100008: CATRig1Bone001Bone001Bone001Bone001
+    100010: CATRig1Bone001Bone001Bone001Bone001Bone001
+    100012: CATRig1Bone001Bone001Bone001Bone001Bone001Gizmo
+    100014: CATRig1Bone001Bone001Bone001Bone001Gizmo
+    100016: CATRig1Bone001Bone001Bone001Gizmo
+    100018: CATRig1Bone001Bone001Gizmo
+    100020: CATRig1Bone001Gizmo
+    100022: CATRigHub001
+    100024: CATRigHub001Gizmo
+    100026: CATRigHub002
+    100028: CATRigHub002Gizmo
+    100030: CATRigHub003
+    100032: CATRigHub003Gizmo
+    100034: CATRigLArm1
+    100036: CATRigLArm1Gizmo
+    100038: CATRigLArm2
+    100040: CATRigLArm2Gizmo
+    100042: CATRigLArmCollarbone
+    100044: CATRigLArmDigit11
+    100046: CATRigLArmDigit11Gizmo
+    100048: CATRigLArmDigit12
+    100050: CATRigLArmDigit12Gizmo
+    100052: CATRigLArmDigit13
+    100054: CATRigLArmDigit13Gizmo
+    100056: CATRigLArmDigit21
+    100058: CATRigLArmDigit21Gizmo
+    100060: CATRigLArmDigit22
+    100062: CATRigLArmDigit22Gizmo
+    100064: CATRigLArmDigit23
+    100066: CATRigLArmDigit23Gizmo
+    100068: CATRigLArmDigit31
+    100070: CATRigLArmDigit31Gizmo
+    100072: CATRigLArmDigit32
+    100074: CATRigLArmDigit32Gizmo
+    100076: CATRigLArmDigit32Gizmo 1
+    100078: CATRigLArmDigit33
+    100080: CATRigLArmDigit33Gizmo
+    100082: CATRigLArmDigit41
+    100084: CATRigLArmDigit41Gizmo
+    100086: CATRigLArmDigit42
+    100088: CATRigLArmDigit42Gizmo
+    100090: CATRigLArmDigit43
+    100092: CATRigLArmDigit43Gizmo
+    100094: CATRigLArmDigit51
+    100096: CATRigLArmDigit51Gizmo
+    100098: CATRigLArmDigit52
+    100100: CATRigLArmDigit52Gizmo
+    100102: CATRigLArmDigit53
+    100104: CATRigLArmDigit53Gizmo
+    100106: CATRigLArmPalm
+    100108: CATRigLArmPalmGizmo
+    100110: CATRigLLeg1
+    100112: CATRigLLeg2
+    100114: CATRigLLegAnkle
+    100116: CATRigLLegAnkleGizmo
+    100118: CATRigLLegDigit11
+    100120: CATRigLLegDigit11Gizmo
+    100122: CATRigLLegDigit12
+    100124: CATRigLLegPlatform
+    100126: CATRigLLegUpVectorNode
+    100128: CATRigRArm1
+    100130: CATRigRArm1Gizmo
+    100132: CATRigRArm2
+    100134: CATRigRArm2Gizmo
+    100136: CATRigRArmCollarbone
+    100138: CATRigRArmDigit11
+    100140: CATRigRArmDigit11Gizmo
+    100142: CATRigRArmDigit12
+    100144: CATRigRArmDigit12Gizmo
+    100146: CATRigRArmDigit13
+    100148: CATRigRArmDigit13Gizmo
+    100150: CATRigRArmDigit21
+    100152: CATRigRArmDigit21Gizmo
+    100154: CATRigRArmDigit22
+    100156: CATRigRArmDigit22Gizmo
+    100158: CATRigRArmDigit23
+    100160: CATRigRArmDigit23Gizmo
+    100162: CATRigRArmDigit31
+    100164: CATRigRArmDigit31Gizmo
+    100166: CATRigRArmDigit32
+    100168: CATRigRArmDigit32Gizmo
+    100170: CATRigRArmDigit33
+    100172: CATRigRArmDigit33Gizmo
+    100174: CATRigRArmDigit41
+    100176: CATRigRArmDigit41Gizmo
+    100178: CATRigRArmDigit42
+    100180: CATRigRArmDigit42Gizmo
+    100182: CATRigRArmDigit43
+    100184: CATRigRArmDigit43Gizmo
+    100186: CATRigRArmDigit51
+    100188: CATRigRArmDigit51Gizmo
+    100190: CATRigRArmDigit52
+    100192: CATRigRArmDigit52Gizmo
+    100194: CATRigRArmDigit53
+    100196: CATRigRArmDigit53Gizmo
+    100198: CATRigRArmPalm
+    100200: CATRigRArmPalmGizmo
+    100202: CATRigRLeg1
+    100204: CATRigRLeg2
+    100206: CATRigRLegAnkle
+    100208: CATRigRLegAnkleGizmo
+    100210: CATRigRLegDigit11
+    100212: CATRigRLegDigit11Gizmo
+    100214: CATRigRLegDigit12
+    100216: CATRigRLegPlatform
+    100218: CATRigRLegUpVectorNode
+    100220: CATRigSpine
+    100222: CATRigSpine1
+    100224: CATRigSpine2
+    100226: CATRigTail1
+    100228: CATRigTail1 1
+    100230: CATRigTail1 2
+    100232: CATRigTail1 3
+    100234: CATRigTail1 4
+    100236: CATRigTail1 5
+    100238: CATRigTail1 6
+    100240: CATRigTail1 7
+    100242: CATRigTail1Gizmo
+    100244: CATRigTail1Gizmo 1
+    100246: CATRigTail1Gizmo 2
+    100248: CATRigTail1Gizmo 3
+    100250: CATRigTail1Gizmo 4
+    100252: CATRigTail1Gizmo 5
+    100254: CATRigTail1Gizmo 6
+    100256: CATRigTail1Gizmo 7
+    100258: CATRigTail2
+    100260: CATRigTail2 1
+    100262: CATRigTail2 2
+    100264: CATRigTail2 3
+    100266: CATRigTail2 4
+    100268: CATRigTail2 5
+    100270: CATRigTail2 6
+    100272: CATRigTail2 7
+    100274: CATRigTail2Gizmo
+    100276: CATRigTail2Gizmo 1
+    100278: CATRigTail2Gizmo 2
+    100280: CATRigTail2Gizmo 3
+    100282: CATRigTail2Gizmo 4
+    100284: CATRigTail2Gizmo 5
+    100286: CATRigTail2Gizmo 6
+    100288: CATRigTail2Gizmo 7
+    100290: CATRigTail3
+    100292: CATRigTail3 1
+    100294: CATRigTail3 2
+    100296: CATRigTail3 3
+    100298: CATRigTail3 4
+    100300: CATRigTail3 5
+    100302: CATRigTail3 6
+    100304: CATRigTail3 7
+    100306: CATRigTail3Gizmo
+    100308: CATRigTail3Gizmo 1
+    100310: CATRigTail3Gizmo 2
+    100312: CATRigTail3Gizmo 3
+    100314: CATRigTail3Gizmo 4
+    100316: CATRigTail3Gizmo 5
+    100318: CATRigTail3Gizmo 6
+    100320: CATRigTail3Gizmo 7
+    100322: CATRigTail3Gizmo 8
+    100324: CATRigTail4
+    100326: CATRigTail4 1
+    100328: CATRigTail4 2
+    100330: CATRigTail4Gizmo
+    100332: CATRigTail4Gizmo 1
+    100334: CATRigTail4Gizmo 2
+    100336: CATRigTail5
+    100338: CATRigTail5 1
+    100340: CATRigTail5Gizmo
+    100342: CATRigTail5Gizmo 1
+    100344: Character001
+    100346: Gun
+    100348: GunGizmo
+    100350: //RootNode
+    100352: Pirate
+    400000: AnchorBone
+    400002: CATRig1Bone001
+    400004: CATRig1Bone001Bone001
+    400006: CATRig1Bone001Bone001Bone001
+    400008: CATRig1Bone001Bone001Bone001Bone001
+    400010: CATRig1Bone001Bone001Bone001Bone001Bone001
+    400012: CATRig1Bone001Bone001Bone001Bone001Bone001Gizmo
+    400014: CATRig1Bone001Bone001Bone001Bone001Gizmo
+    400016: CATRig1Bone001Bone001Bone001Gizmo
+    400018: CATRig1Bone001Bone001Gizmo
+    400020: CATRig1Bone001Gizmo
+    400022: CATRigHub001
+    400024: CATRigHub001Gizmo
+    400026: CATRigHub002
+    400028: CATRigHub002Gizmo
+    400030: CATRigHub003
+    400032: CATRigHub003Gizmo
+    400034: CATRigLArm1
+    400036: CATRigLArm1Gizmo
+    400038: CATRigLArm2
+    400040: CATRigLArm2Gizmo
+    400042: CATRigLArmCollarbone
+    400044: CATRigLArmDigit11
+    400046: CATRigLArmDigit11Gizmo
+    400048: CATRigLArmDigit12
+    400050: CATRigLArmDigit12Gizmo
+    400052: CATRigLArmDigit13
+    400054: CATRigLArmDigit13Gizmo
+    400056: CATRigLArmDigit21
+    400058: CATRigLArmDigit21Gizmo
+    400060: CATRigLArmDigit22
+    400062: CATRigLArmDigit22Gizmo
+    400064: CATRigLArmDigit23
+    400066: CATRigLArmDigit23Gizmo
+    400068: CATRigLArmDigit31
+    400070: CATRigLArmDigit31Gizmo
+    400072: CATRigLArmDigit32
+    400074: CATRigLArmDigit32Gizmo
+    400076: CATRigLArmDigit32Gizmo 1
+    400078: CATRigLArmDigit33
+    400080: CATRigLArmDigit33Gizmo
+    400082: CATRigLArmDigit41
+    400084: CATRigLArmDigit41Gizmo
+    400086: CATRigLArmDigit42
+    400088: CATRigLArmDigit42Gizmo
+    400090: CATRigLArmDigit43
+    400092: CATRigLArmDigit43Gizmo
+    400094: CATRigLArmDigit51
+    400096: CATRigLArmDigit51Gizmo
+    400098: CATRigLArmDigit52
+    400100: CATRigLArmDigit52Gizmo
+    400102: CATRigLArmDigit53
+    400104: CATRigLArmDigit53Gizmo
+    400106: CATRigLArmPalm
+    400108: CATRigLArmPalmGizmo
+    400110: CATRigLLeg1
+    400112: CATRigLLeg2
+    400114: CATRigLLegAnkle
+    400116: CATRigLLegAnkleGizmo
+    400118: CATRigLLegDigit11
+    400120: CATRigLLegDigit11Gizmo
+    400122: CATRigLLegDigit12
+    400124: CATRigLLegPlatform
+    400126: CATRigLLegUpVectorNode
+    400128: CATRigRArm1
+    400130: CATRigRArm1Gizmo
+    400132: CATRigRArm2
+    400134: CATRigRArm2Gizmo
+    400136: CATRigRArmCollarbone
+    400138: CATRigRArmDigit11
+    400140: CATRigRArmDigit11Gizmo
+    400142: CATRigRArmDigit12
+    400144: CATRigRArmDigit12Gizmo
+    400146: CATRigRArmDigit13
+    400148: CATRigRArmDigit13Gizmo
+    400150: CATRigRArmDigit21
+    400152: CATRigRArmDigit21Gizmo
+    400154: CATRigRArmDigit22
+    400156: CATRigRArmDigit22Gizmo
+    400158: CATRigRArmDigit23
+    400160: CATRigRArmDigit23Gizmo
+    400162: CATRigRArmDigit31
+    400164: CATRigRArmDigit31Gizmo
+    400166: CATRigRArmDigit32
+    400168: CATRigRArmDigit32Gizmo
+    400170: CATRigRArmDigit33
+    400172: CATRigRArmDigit33Gizmo
+    400174: CATRigRArmDigit41
+    400176: CATRigRArmDigit41Gizmo
+    400178: CATRigRArmDigit42
+    400180: CATRigRArmDigit42Gizmo
+    400182: CATRigRArmDigit43
+    400184: CATRigRArmDigit43Gizmo
+    400186: CATRigRArmDigit51
+    400188: CATRigRArmDigit51Gizmo
+    400190: CATRigRArmDigit52
+    400192: CATRigRArmDigit52Gizmo
+    400194: CATRigRArmDigit53
+    400196: CATRigRArmDigit53Gizmo
+    400198: CATRigRArmPalm
+    400200: CATRigRArmPalmGizmo
+    400202: CATRigRLeg1
+    400204: CATRigRLeg2
+    400206: CATRigRLegAnkle
+    400208: CATRigRLegAnkleGizmo
+    400210: CATRigRLegDigit11
+    400212: CATRigRLegDigit11Gizmo
+    400214: CATRigRLegDigit12
+    400216: CATRigRLegPlatform
+    400218: CATRigRLegUpVectorNode
+    400220: CATRigSpine
+    400222: CATRigSpine1
+    400224: CATRigSpine2
+    400226: CATRigTail1
+    400228: CATRigTail1 1
+    400230: CATRigTail1 2
+    400232: CATRigTail1 3
+    400234: CATRigTail1 4
+    400236: CATRigTail1 5
+    400238: CATRigTail1 6
+    400240: CATRigTail1 7
+    400242: CATRigTail1Gizmo
+    400244: CATRigTail1Gizmo 1
+    400246: CATRigTail1Gizmo 2
+    400248: CATRigTail1Gizmo 3
+    400250: CATRigTail1Gizmo 4
+    400252: CATRigTail1Gizmo 5
+    400254: CATRigTail1Gizmo 6
+    400256: CATRigTail1Gizmo 7
+    400258: CATRigTail2
+    400260: CATRigTail2 1
+    400262: CATRigTail2 2
+    400264: CATRigTail2 3
+    400266: CATRigTail2 4
+    400268: CATRigTail2 5
+    400270: CATRigTail2 6
+    400272: CATRigTail2 7
+    400274: CATRigTail2Gizmo
+    400276: CATRigTail2Gizmo 1
+    400278: CATRigTail2Gizmo 2
+    400280: CATRigTail2Gizmo 3
+    400282: CATRigTail2Gizmo 4
+    400284: CATRigTail2Gizmo 5
+    400286: CATRigTail2Gizmo 6
+    400288: CATRigTail2Gizmo 7
+    400290: CATRigTail3
+    400292: CATRigTail3 1
+    400294: CATRigTail3 2
+    400296: CATRigTail3 3
+    400298: CATRigTail3 4
+    400300: CATRigTail3 5
+    400302: CATRigTail3 6
+    400304: CATRigTail3 7
+    400306: CATRigTail3Gizmo
+    400308: CATRigTail3Gizmo 1
+    400310: CATRigTail3Gizmo 2
+    400312: CATRigTail3Gizmo 3
+    400314: CATRigTail3Gizmo 4
+    400316: CATRigTail3Gizmo 5
+    400318: CATRigTail3Gizmo 6
+    400320: CATRigTail3Gizmo 7
+    400322: CATRigTail3Gizmo 8
+    400324: CATRigTail4
+    400326: CATRigTail4 1
+    400328: CATRigTail4 2
+    400330: CATRigTail4Gizmo
+    400332: CATRigTail4Gizmo 1
+    400334: CATRigTail4Gizmo 2
+    400336: CATRigTail5
+    400338: CATRigTail5 1
+    400340: CATRigTail5Gizmo
+    400342: CATRigTail5Gizmo 1
+    400344: Character001
+    400346: Gun
+    400348: GunGizmo
+    400350: //RootNode
+    400352: Pirate
+    2100000: 21 - Default
+    4300000: Pirate
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Pirate
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
