@@ -18,7 +18,7 @@ MonoBehaviour:
   webGL_Mobile: 0
   renderPath: 2
   lightingMode: 2
-  bakedResolution: 10
+  bakedResolution: 128
   lightSettings: 3
   colorSpace: 0
   skyBox: {fileID: 2100000, guid: 5d58357e4c0915541aa843bef78aa32d, type: 2}
