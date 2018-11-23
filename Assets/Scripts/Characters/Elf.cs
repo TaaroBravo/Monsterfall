@@ -21,7 +21,7 @@ public class Elf : PlayerController {
     public override void Start()
     {
         base.Start();
-        lifeHUD.Set(6, 3, myLife);
+        lifeHUD.Set(10, 3, myLife);
         markEffect = new IElfMark(this, AddTarget);
         OnDisableEffect += x => DisableEffect(x);
         randomPositions = GameObject.FindGameObjectsWithTag("PositionsElf").Select(x => x.transform).ToArray();
@@ -58,7 +58,7 @@ public class Elf : PlayerController {
         }
     }
 
-    void AddTarget(PlayerController p)
+    public void AddTarget(PlayerController p)
     {
         if (!targets.Contains(p))
         {
@@ -88,9 +88,11 @@ public class Elf : PlayerController {
         }
     }
 
-    void DisableEffect(PlayerController player)
+    public void DisableEffect(PlayerController player)
     {
         targets.Remove(player);
+        if (targets.Count == 0)
+            CleanTargets();
     }
 
     private void SetAttacks()
@@ -102,7 +104,7 @@ public class Elf : PlayerController {
 
     void SetHabilities()
     {
-        hability.Add(typeof(MissileHability).ToString(), new MissileHability(this, missilePrefab, 6f));
+        hability.Add(typeof(MissileHability).ToString(), new MissileHability(this, missilePrefab, 10f));
         hability.Add(typeof(TeleportHability).ToString(), new TeleportHability(this, missileTeleportPrefab, 3f));
         myHability = ElfHability;
         movementHability = MovementHability;

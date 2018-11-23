@@ -16,14 +16,14 @@ public class MissileTeleport : MonoBehaviour {
 
     void Start()
     {
-        speed = 4;
+        speed = 12;
     }
 
     void Update()
     {
-        transform.position = _dir * speed * Time.deltaTime;
+        transform.position += _dir * speed * Time.deltaTime;
 
-        if (Physics.OverlapSphere(transform.position, 3f, 1 << 19).Any())
+        if (Physics.OverlapSphere(transform.position, 3f, 1 << 17).Any())
             DestroyedMissile();
 
         var _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Where(x => x.GetComponent<PlayerController>() != null).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player).Where(x => !x.isDead).FirstOrDefault();
@@ -48,6 +48,7 @@ public class MissileTeleport : MonoBehaviour {
 
     public void DestroyedMissile()
     {
+        Debug.Log("Destruir");
         ResetValues();
         ExploteFeedback();
         OnDestroyMissile(this);

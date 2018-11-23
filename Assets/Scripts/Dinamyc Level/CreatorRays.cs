@@ -21,6 +21,11 @@ public class CreatorRays : MonoBehaviour
     bool activeMode;
     int countOfRays = 1;
 
+    Vector3 minScale;
+    public Vector3 maxScale;
+    public float speed = 2f;
+    public float duration = 5f;
+
     private void Awake()
     {
         Instance = this;
@@ -41,6 +46,10 @@ public class CreatorRays : MonoBehaviour
             7,8,0,
             8,9,0
         };
+        minScale = cristal.transform.localScale;
+        maxScale = minScale + (Vector3.one / 4);
+        StartCoroutine(StartCoroutine());
+        StartCoroutine(WaitToSuddenDeath());
     }
 
     public void SetPlayers(PlayerController[] _players)
@@ -55,7 +64,7 @@ public class CreatorRays : MonoBehaviour
         {
             cristal.SetActive(true);
             var activeRays = rays.Take(countOfRays);
-            
+
             foreach (var ray in activeRays)
                 CalculatePoints(ray);
             foreach (var ray in GameObject.FindGameObjectsWithTag("CristalRay").Skip(countOfRays))
@@ -84,6 +93,38 @@ public class CreatorRays : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
             countOfRays = 4;
         #endregion
+    }
+
+    IEnumerator StartCoroutine()
+    {
+        while (true)
+        {
+            yield return RepeatLerp(minScale, maxScale, duration);
+            yield return RepeatLerp(maxScale, minScale, duration);
+        }
+    }
+
+    public IEnumerator RepeatLerp(Vector3 a, Vector3 b, float time)
+    {
+        float i = 0f;
+        float rate = (1f / time) * speed;
+        while (i < 1)
+        {
+            i += Time.deltaTime * rate;
+            cristal.transform.localScale = Vector3.Lerp(a, b, i);
+            yield return null;
+        }
+    }
+
+    IEnumerator WaitToSuddenDeath()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(60f);
+            activeMode = true;
+            countOfRays = 2;
+            break;
+        }
     }
 
     void CreateRaysObject(List<Tuple<float, float>> positions, Transform reference)

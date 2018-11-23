@@ -16,6 +16,8 @@ public class TeleportHability : IHability
     bool activeTimer;
     bool missileMoving;
 
+    bool usingHability;
+
     public TeleportHability(PlayerController p, MissileTeleport missilePrefab, float _timerCoolDown = 0)
     {
         player = p;
@@ -23,14 +25,19 @@ public class TeleportHability : IHability
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
         _missilePrefab = missilePrefab;
-        ObjectPoolManager.Instance.AddObjectPool<MissileTeleport>(InstantiateBullet, Initializate, Finalizate, 50, false);
+        maxTimer = 1;
+        ObjectPoolManager.Instance.AddObjectPool<MissileTeleport>(InstantiateBullet, Initializate, Finalizate, 6, false);
     }
 
     public override void Update()
     {
         base.Update();
         if (activeTimer)
+        {
             maxTimer += Time.deltaTime;
+            if (maxTimer > 3)
+                maxTimer = 3;
+        }
         else if (missileMoving)
         {
             if (currentTimer < maxTimer)
@@ -79,7 +86,7 @@ public class TeleportHability : IHability
 
     public override void Release()
     {
-        if (timerCoolDown < 0)
+        if (timerCoolDown < 0 && !_currentMissile)
         {
             player.usingHability = true; //Quizas remplazar esto por una de dash
             FeedbackPlay();
@@ -93,7 +100,9 @@ public class TeleportHability : IHability
 
     void ResetValues()
     {
+        _currentMissile = null;
         player.usingHability = false;
+        maxTimer = 1;
         currentTimer = 0;
     }
 
@@ -109,6 +118,7 @@ public class TeleportHability : IHability
         Teleport();
         m.OnDestroyMissile -= x => ReturnBullet(x);
         m.OnHitPlayer -= x => HitPlayer(x);
+        ResetValues();
         ObjectPoolManager.Instance.ReturnObject<MissileTeleport>(m);
     }
 
@@ -132,11 +142,14 @@ public class TeleportHability : IHability
     {
         float x = player.GetComponent<PlayerInput>().MainHorizontal();
         float y = player.GetComponent<PlayerInput>().MainVertical();
-        if (x + y == 0)
-            x = Mathf.Sign(player.transform.localScale.z);
         int newX = (int)Mathf.Sign(x) * (int)Mathf.Abs(x);
         int newY = (int)Mathf.Sign(y) * (int)Mathf.Abs(y);
+        if (x + y == 0)
+        {
+            newX = (int)Mathf.Sign(player.transform.localScale.z);
+            newY = 0;
+        }
         return new Vector3(newX, newY);
-        
+
     }
 }

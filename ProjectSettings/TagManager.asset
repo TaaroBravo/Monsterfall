@@ -10,6 +10,7 @@ TagManager:
   - Borders
   - ParticleCollider
   - PositionsElf
+  - Limit
   layers:
   - Default
   - TransparentFX

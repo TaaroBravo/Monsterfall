@@ -22,6 +22,7 @@ public class IElfMark : IEffect
     public void Effect(PlayerController player)
     {
         SetMark(player);
+        AddPlayer(player);
     }
 
     public void CleanTargets()
@@ -45,6 +46,7 @@ public class IElfMark : IEffect
     {
         if (!targets.Contains(player))
             targets.Add(player);
+        _player.AddTarget(player);
     }
 
     void SetMark(PlayerController player)
@@ -55,7 +57,7 @@ public class IElfMark : IEffect
 
     public float GetDelayTimer()
     {
-        return 1000;
+        return 1;
     }
 
     public float GetMaxTimer()

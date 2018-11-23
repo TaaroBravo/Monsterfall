@@ -501,14 +501,18 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Habilities
-
-    public void Dash()
+    int internCount = 0;
+    public void Dash(string state)
     {
+        if(internCount == 0)
+        {
+            internCount = 1;
+            return;
+        }
         if (canDash && !isFallingOff && !isDashing)
-            movementHability("");
+            movementHability(state);
         else if (!canDash && !isDashing)
             canDash = true;
-        //hability["Dash"].Hability();
     }
 
     IEnumerator DashCoolDown()

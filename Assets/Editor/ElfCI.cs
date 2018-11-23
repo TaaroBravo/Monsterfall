@@ -101,7 +101,7 @@ public class ElfCI : Editor
             EditorGUILayout.LabelField("Missile Prefab:");
             player.missilePrefab = (Missile)EditorGUILayout.ObjectField(player.missilePrefab, typeof(Missile), true);
             EditorGUILayout.LabelField("Missile Teleport Prefab:");
-            player.missileTeleportPrefab = (MissileTeleport)EditorGUILayout.ObjectField(player.missilePrefab, typeof(MissileTeleport), true);
+            player.missileTeleportPrefab = (MissileTeleport)EditorGUILayout.ObjectField(player.missileTeleportPrefab, typeof(MissileTeleport), true);
             EditorGUILayout.Space();
         }
         EditorGUILayout.EndFadeGroup();

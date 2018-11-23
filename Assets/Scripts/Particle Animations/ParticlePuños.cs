@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ParticlePuños : MonoBehaviour {
+public class ParticlePuños : MonoBehaviour
+{
 
     PlayerController yo;
     public ParticleSystem puñoderecho;
@@ -15,9 +16,9 @@ public class ParticlePuños : MonoBehaviour {
     bool PrenderPuñoDerecho;
     bool PrenderPuñoIzquierdo;
     float TimerDeActivacion;
-    
-	// Use this for initialization
-	void Start ()
+
+    // Use this for initialization
+    void Start()
     {
         yo = GetComponent<PlayerController>();
         puñoder = puñoderecho.emission;
@@ -26,8 +27,8 @@ public class ParticlePuños : MonoBehaviour {
     }
     void Update()
     {
-        if (PrenderPuñoDerecho) ParticulasPuñoDerecho();
-        if (PrenderPuñoIzquierdo) ParticulasPuñoIzquierdo();
+        if (PrenderPuñoDerecho && puñoderecho) ParticulasPuñoDerecho();
+        if (PrenderPuñoIzquierdo && puñoizquierdo) ParticulasPuñoIzquierdo();
     }
     public void PuñoAActivar(string golpe)
     {
@@ -67,7 +68,10 @@ public class ParticlePuños : MonoBehaviour {
     void ResetEmission()
     {
         TimerDeActivacion = 0;
-        puñoder.rateOverDistance = 0;
-        puñoizq.rateOverDistance = 0;
+        if (puñoderecho)
+        {
+            puñoder.rateOverDistance = 0;
+            puñoizq.rateOverDistance = 0;
+        }
     }
 }

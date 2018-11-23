@@ -67,7 +67,10 @@ public class PlayerInput : MonoBehaviour
                     player.AttackUp("Realese");
 
                 if (prevState.Buttons.LeftShoulder == ButtonState.Released && state.Buttons.LeftShoulder == ButtonState.Pressed)
-                    player.Dash();
+                    player.Dash("Pressed");
+
+                if (prevState.Buttons.LeftShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Released)
+                    player.Dash("Realese");
 
                 if (prevState.Buttons.RightShoulder == ButtonState.Released && state.Buttons.RightShoulder == ButtonState.Pressed)
                     player.Hability("Pressed");

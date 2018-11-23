@@ -4,7 +4,8 @@ using UnityEngine;
 using System;
 using System.Linq;
 
-public class Missile : MonoBehaviour {
+public class Missile : MonoBehaviour
+{
 
     PlayerController player;
     PlayerController _target;
@@ -16,19 +17,23 @@ public class Missile : MonoBehaviour {
 
     Transform _objetive;
 
-	void Start ()
+    void Start()
     {
-        speed = 1;
+        speed = 4;
         StartCoroutine(TimeToDestroy());
-	}
-	
-	void Update ()
+    }
+
+    void Update()
     {
-        transform.position = _dir * speed * Time.deltaTime;
-        speed += Time.deltaTime * 3;
-        if ((_objetive.position - transform.position).magnitude < 2f)
-            Explote();
-	}
+        transform.position += _dir * speed * Time.deltaTime;
+        speed += Time.deltaTime * 9;
+        if (_objetive)
+        {
+            _dir = (_objetive.position - transform.position).normalized;
+            if ((_objetive.position - transform.position).magnitude < 3f)
+                Explote();
+        }
+    }
 
     public void SetDir(PlayerController p, Vector3 dir)
     {
@@ -45,26 +50,32 @@ public class Missile : MonoBehaviour {
 
     void ResetValues()
     {
-        speed = 1;
+        speed = 4;
         _objetive = null;
     }
 
     void Explote()
     {
-        foreach (var enemy in Physics.OverlapSphere(player.transform.position, 7f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player).Where(x => !x.isDead))
+        var layerMask1 = 1 << 8;
+        var layerMask2 = 1 << 9;
+        var layerMask = layerMask1 | layerMask2;
+        foreach (var enemy in Physics.OverlapSphere(transform.position, 5, layerMask).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player).Where(x => !x.isDead))
         {
-            enemy.ReceiveImpact((Vector3.right * Mathf.Sign((enemy.transform.position - transform.position).x) * 30), player);
-            enemy.SetLastOneWhoHittedMe(player);
-            OnHitPlayer(enemy);
+            if(!enemy.stunnedByHit)
+            {
+                enemy.ReceiveImpact((Vector3.right * Mathf.Sign((enemy.transform.position - transform.position).x) * 30), player);
+                enemy.SetLastOneWhoHittedMe(player);
+                OnHitPlayer(enemy);
+            }
         }
         DestroyedMissile();
     }
 
     IEnumerator TimeToDestroy()
     {
-        while(true)
+        while (true)
         {
-            yield return new WaitForSeconds(6f);
+            yield return new WaitForSeconds(15f);
             DestroyedMissile();
             break;
         }
@@ -72,13 +83,24 @@ public class Missile : MonoBehaviour {
 
     public void DestroyedMissile()
     {
-        ResetValues();
-        ExploteFeedback();
-        OnDestroyMissile(this);
+        StartCoroutine(EndMissile());
     }
-    
+
+    IEnumerator EndMissile()
+    {
+        while (true)
+        {
+
+            ExploteFeedback();
+            yield return new WaitForSeconds(2f);
+            ResetValues();
+            OnDestroyMissile(this);
+            break;
+        }
+    }
+
     void ExploteFeedback()
     {
-        //Todo el feedback
+        //Falta Explotar
     }
 }

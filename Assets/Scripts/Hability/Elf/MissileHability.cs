@@ -16,6 +16,7 @@ public class MissileHability : IHability
     float currentTimer;
     float maxTimer;
     bool activeTimer;
+    bool usingHability;
 
     public MissileHability(PlayerController p, Missile missilePrefab, float power, float _timerCoolDown = 0)
     {
@@ -26,14 +27,14 @@ public class MissileHability : IHability
         coolDown = _timerCoolDown;
         _randomPositions = _elfPlayer.randomPositions;
         _missilePrefab = missilePrefab;
-        maxTimer = 3f;
+        maxTimer = 5f;
         ObjectPoolManager.Instance.AddObjectPool<Missile>(InstantiateBullet, Initializate, Finalizate, 50, false);
     }
 
     public override void Update()
     {
         base.Update();
-        if (currentTimer < maxTimer)
+        if (currentTimer < maxTimer && usingHability)
             currentTimer += Time.deltaTime;
         else if (activeTimer)
         {
@@ -45,13 +46,13 @@ public class MissileHability : IHability
                     if (i < 2)
                     {
                         Transform objetive = _elfPlayer.targets[0].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x, objetive.position.y + 20f, objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 60 + UnityEngine.Random.Range(0, 10f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[0]);
                     }
                     else
                     {
                         Transform objetive = _randomPositions[CalculateCoef()]; //Random cerca del objetivo con rulete
-                        Vector3 spawnPoint = new Vector3(objetive.position.x, objetive.position.y + 20f, objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 60 + UnityEngine.Random.Range(0, 10f), objetive.position.z);
                         Shoot(spawnPoint, objetive);
                     }
                 }
@@ -60,19 +61,19 @@ public class MissileHability : IHability
                     if (i < 2)
                     {
                         Transform objetive = _elfPlayer.targets[0].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x, objetive.position.y + 20f, objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 60 + UnityEngine.Random.Range(0, 10f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[0]);
                     }
                     else if (i < 4)
                     {
                         Transform objetive = _elfPlayer.targets[1].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x, objetive.position.y + 20f, objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 60 + UnityEngine.Random.Range(0, 10f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[1]);
                     }
                     else
                     {
                         Transform objetive = _randomPositions[CalculateCoef()];  //Random cerca del objetivo con rulete
-                        Vector3 spawnPoint = new Vector3(objetive.position.x, objetive.position.y + 20f, objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 60 + UnityEngine.Random.Range(0, 10f), objetive.position.z);
                         Shoot(spawnPoint, objetive);
                     }
                 }
@@ -81,26 +82,26 @@ public class MissileHability : IHability
                     if (i < 2)
                     {
                         Transform objetive = _elfPlayer.targets[0].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x, objetive.position.y + 20f, objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 60 + UnityEngine.Random.Range(0, 10f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[0]);
                     }
                     else if (i < 4)
                     {
                         Transform objetive = _elfPlayer.targets[1].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x, objetive.position.y + 20f, objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 60 + UnityEngine.Random.Range(0, 10f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[1]);
                     }
                     else
                     {
                         Transform objetive = _elfPlayer.targets[2].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x, objetive.position.y + 20f, objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 60 + UnityEngine.Random.Range(0, 10f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[2]);
                     }
                 }
                 else
                 {
                     Transform objetive = _randomPositions[CalculateCoef()];
-                    Vector3 spawnPoint = new Vector3(objetive.position.x, objetive.position.y + 20f, objetive.position.z);
+                    Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 60 + UnityEngine.Random.Range(0, 10f), objetive.position.z);
                     Shoot(spawnPoint, objetive);
                 }
                 #endregion
@@ -112,8 +113,9 @@ public class MissileHability : IHability
 
     public override void Hability()
     {
-        if (timerCoolDown < 0)
+        if (timerCoolDown < 0 && !usingHability)
         {
+            usingHability = true;
             player.usingHability = true;
             FeedbackPlay();
             Shoot(player.transform.position, Vector3.up);
@@ -142,13 +144,15 @@ public class MissileHability : IHability
 
     void HitPlayer(PlayerController p)
     {
+        if (p.stunnedByHit)
+            return;
         if (_elfPlayer.targets.Contains(p))
         {
-            p.SetDamage(20);
-            _elfPlayer.CleanTargets();
+            p.SetDamage(30);
+            _elfPlayer.DisableEffect(p);
         }
         else
-            p.SetDamage(5);
+            p.SetDamage(8);
     }
 
     public override void Release()
@@ -158,6 +162,7 @@ public class MissileHability : IHability
 
     void ResetValues()
     {
+        usingHability = false;
         player.usingHability = false;
         currentTimer = 0;
     }
@@ -200,41 +205,36 @@ public class MissileHability : IHability
         foreach (var place in _randomPositions)
         {
             float distance = (GameManager.Instance.ClosesPlayer(place.position) - place.position).magnitude;
-            totalCoef.Add(100 - distance);
+            //if (distance < 10)
+            //    totalCoef.Add((100 * 3) - distance);
+            //else
+                totalCoef.Add(50 - distance);
         }
         return RouletteWheelSelection(totalCoef);
     }
 
     int RouletteWheelSelection(List<float> values)
     {
-        float sumatoria = 0;
+        float sum = 0;
 
-        //calculo la sumatoria de todas los coeficientes iniciales:
-        sumatoria = values.Sum();
+        sum = values.Sum();
 
         List<float> coefList = new List<float>();
 
-        //calculo la lista de coeficiente calculados para el roullette:
-        foreach (var item in values)
+        foreach (var coef in values)
         {
-            coefList.Add(item / sumatoria);
-            Debug.Log("Percent: " + item / sumatoria);
+            coefList.Add(coef / sum);
         }
 
-        //calculo valor random:
-        System.Random rnd = new System.Random();
-        int rndPercent = rnd.Next(100);
-        float r = rndPercent / 100f;
+        int random = UnityEngine.Random.Range(0, 10);
+        float selectedNumber = random / 10f;
 
-
-        //corro el algoritmo de seleccion de ruleta
         float sumCoef = 0;
         for (int i = 0; i < values.Count; i++)
         {
-            //sumo los deltas a la variable sumcoef para saber en que slot cayo el valor random:
             sumCoef += coefList[i];
 
-            if (sumCoef > r)
+            if (sumCoef > selectedNumber)
                 return i;
         }
 
