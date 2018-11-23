@@ -35,7 +35,6 @@ public class DynamicCristal : MonoBehaviour
         foreach (var player in players)
         {
             //Vector3 playerDirDown = (player.transform.position - cristal.position).normalized;
-            Debug.Log(player.name);
             Vector3 playerPosUp = new Vector3(player.transform.position.x, player.transform.position.y + player.GetComponent<Collider>().bounds.extents.y * 2, player.transform.position.z);
             Vector3 playerDirUp = (playerPosUp - cristal.position).normalized;
 

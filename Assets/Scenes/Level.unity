@@ -9431,6 +9431,7 @@ MonoBehaviour:
   - {fileID: 497903027}
   - {fileID: 1594964971}
   - {fileID: 127345606}
+  - {fileID: 0}
   BorderGlow1: {fileID: 1547342790}
   BorderGlow2: {fileID: 1944462098}
   PlayerColors:
@@ -10234,6 +10235,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: adbf1e461bac0fa4d8977d0f8cfe3782, type: 3}
   - {fileID: 21300000, guid: 17b730d40cbee30418cdf2e70434b7e3, type: 3}
   - {fileID: 21300000, guid: f73af070a2283d149838af72f881a45f, type: 3}
+  - {fileID: 21300000, guid: 4e1c295e7e4ebb44fa9cda7829443801, type: 3}
   - {fileID: 21300000, guid: 4e1c295e7e4ebb44fa9cda7829443801, type: 3}
 --- !u!114 &164065144
 MonoBehaviour:
@@ -11954,6 +11956,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8cb3dc75d6352bc429ed09c4b25a2ac9, type: 3}
   - {fileID: 21300000, guid: a0e3e83d620dfe947bc32235f9ffdcd4, type: 3}
   - {fileID: 21300000, guid: cab8f6f4a4e37d943a89e457454ce502, type: 3}
+  - {fileID: 21300000, guid: 04c99701a8563a048bbc585bd336a570, type: 3}
   - {fileID: 21300000, guid: 04c99701a8563a048bbc585bd336a570, type: 3}
 --- !u!114 &221686326
 MonoBehaviour:
@@ -35471,6 +35474,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1740517595}
     m_Modifications:
+    - target: {fileID: 114970391458180328, guid: e2adf9d42ad18174b9c1755e8c5b7109,
+        type: 2}
+      propertyPath: Heroes.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 224985970182784420, guid: e2adf9d42ad18174b9c1755e8c5b7109,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -35741,6 +35749,11 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: -88
       objectReference: {fileID: 0}
+    - target: {fileID: 114970391458180328, guid: e2adf9d42ad18174b9c1755e8c5b7109,
+        type: 2}
+      propertyPath: Heroes.Array.data[4]
+      value: 
+      objectReference: {fileID: 727404959}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2adf9d42ad18174b9c1755e8c5b7109, type: 2}
   m_IsPrefabParent: 0
@@ -35749,6 +35762,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224985970182784420, guid: e2adf9d42ad18174b9c1755e8c5b7109,
     type: 2}
   m_PrefabInternal: {fileID: 727404957}
+--- !u!114 &727404959 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114156686370625244, guid: e2adf9d42ad18174b9c1755e8c5b7109,
+    type: 2}
+  m_PrefabInternal: {fileID: 727404957}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &727548882
 GameObject:
   m_ObjectHideFlags: 0
@@ -59711,6 +59730,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dc4f2092fa093714cb57a52d4e5f7f35, type: 3}
   - {fileID: 21300000, guid: d569edd6cead8d94d94eb077a81c14ec, type: 3}
   - {fileID: 21300000, guid: 2cf0339651842a045bbbc3dab1ff9eff, type: 3}
+  - {fileID: 21300000, guid: 2cf0339651842a045bbbc3dab1ff9eff, type: 3}
 --- !u!114 &1186342788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82497,6 +82517,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d442a5fccc5896c4c9e572025eb1fabc, type: 3}
   - {fileID: 21300000, guid: c45881b19ae2f2f4faf717fa1ccdffaa, type: 3}
   - {fileID: 21300000, guid: 3c714e1c2e428e544b3c208021bf13ea, type: 3}
+  - {fileID: 21300000, guid: 31abcc7b8779f154894cb544693ccb53, type: 3}
   - {fileID: 21300000, guid: 31abcc7b8779f154894cb544693ccb53, type: 3}
 --- !u!114 &1496699031
 MonoBehaviour:

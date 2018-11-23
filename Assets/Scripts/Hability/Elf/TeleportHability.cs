@@ -108,8 +108,8 @@ public class TeleportHability : IHability
 
     void FeedbackPlay()
     {
-        //Particulas de disparo .Play()
-        //Animación de disparo
+        player.GetComponent<FeedbackElf>().shootDashFire.Play();
+        player.myAnim.Play("Dash");
     }
 
     #region Pool

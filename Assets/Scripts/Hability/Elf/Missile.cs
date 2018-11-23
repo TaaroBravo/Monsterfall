@@ -12,6 +12,8 @@ public class Missile : MonoBehaviour
     public event Action<Missile> OnDestroyMissile = delegate { };
     public event Action<PlayerController> OnHitPlayer = delegate { };
 
+    public ParticleSystem explotion;
+
     Vector3 _dir;
     float speed;
 
@@ -30,7 +32,7 @@ public class Missile : MonoBehaviour
         if (_objetive)
         {
             _dir = (_objetive.position - transform.position).normalized;
-            if ((_objetive.position - transform.position).magnitude < 3f)
+            if ((_objetive.position - transform.position).magnitude < 5f || Physics.OverlapSphere(transform.position, 5, 1<<9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x.transform == _objetive).Any())
                 Explote();
         }
     }
@@ -90,7 +92,6 @@ public class Missile : MonoBehaviour
     {
         while (true)
         {
-
             ExploteFeedback();
             yield return new WaitForSeconds(2f);
             ResetValues();
@@ -101,6 +102,6 @@ public class Missile : MonoBehaviour
 
     void ExploteFeedback()
     {
-        //Falta Explotar
+        explotion.Play();
     }
 }

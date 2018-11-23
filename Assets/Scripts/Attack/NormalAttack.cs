@@ -39,7 +39,8 @@ public class NormalAttack : IAttack
         if (timerCoolDownAttack < 0)
         {
             ps = player.PS_Impact;
-            player.myAnim.SetBool("ReleaseAForward", true);
+            player.myAnim.SetBool("RealeaseAForward", true);
+            player.myAnim.SetTrigger("ReleaseAForward");
             if (player.myAnim.GetBool("Grounded"))
                 player.myAnim.Play("AttackForward");
             else
