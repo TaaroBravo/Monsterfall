@@ -84,13 +84,16 @@ public class GameManager : MonoBehaviour
         if (infoManager.playersInfo.First().round > 0)
         {
             PlayerInfo firstPlayer = new PlayerInfo();
-            var numberOfKills = infoManager.playersInfo.Where(x => myPlayers[x.ID - 1]).Select(x => x.newKills + x.previousKills);
-            foreach (var info in infoManager.playersInfo.Where(x => myPlayers[x.ID - 1]).OrderByDescending(x => x.newKills + x.previousKills))
+            var numberOfKills = infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null).Select(x => x.newKills + x.previousKills);
+            foreach (var info in infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null))
             {
                 if (info.newKills + info.previousKills == numberOfKills.OrderByDescending(z => z).First())
                     firstPlayer = info;
             }
-            crown.position = alivePlayers[firstPlayer.ID - 1].transform.position + (Vector3.up * 7);
+            if (myPlayers[firstPlayer.ID - 1] != null)
+                crown.position = myPlayers[firstPlayer.ID - 1].transform.position + (Vector3.up * 7);
+            else
+                crown.position = Vector3.zero;
         }
     }
 

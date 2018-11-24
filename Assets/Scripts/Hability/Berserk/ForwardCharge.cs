@@ -85,11 +85,24 @@ public class ForwardCharge : IHability
 
     void Charge()
     {
-        _target.hittedChargeBerserk = true;
-        _target.transform.position = player.transform.position + (Vector3.right * Mathf.Sign(player.transform.localScale.z));
-        var enemies = Physics.OverlapSphere(player.transform.position, 1f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player && x != _target).Where(x => !x.isDead);
-        foreach (var _enemy in enemies)
-            _enemy.ReceiveImpact((Vector3.right * Mathf.Sign(player.transform.localScale.z) * 30), player);
+        if(_target is Berserk && ((Berserk)_target).chargeAttack)
+        {
+            berserkPlayer.chargeAttack = false;
+            ((Berserk)_target).chargeAttack = false;
+            var dirPlayer = Mathf.Sign(player.transform.localScale.z);
+            var dirTarget = Mathf.Sign(_target.transform.localScale.z);
+            _target.ReceiveImpact(Vector3.right * dirPlayer * 50, player);
+            player.ReceiveImpact(Vector3.right * dirTarget * 50, _target);
+            ResetValues();
+        }
+        else
+        {
+            _target.hittedChargeBerserk = true;
+            _target.transform.position = player.transform.position + (Vector3.right * Mathf.Sign(player.transform.localScale.z));
+            var enemies = Physics.OverlapSphere(player.transform.position, 1f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player && x != _target).Where(x => !x.isDead);
+            foreach (var _enemy in enemies)
+                _enemy.ReceiveImpact((Vector3.right * Mathf.Sign(player.transform.localScale.z) * 30), player);
+        }
     }
 
     void DamageTarget()

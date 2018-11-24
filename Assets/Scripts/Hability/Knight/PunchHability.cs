@@ -53,7 +53,7 @@ public class PunchHability : IHability
                         damage.y = dir.y;
                     playersHitted.Add(target);
                     target.ReceiveImpact(damage * _power, player);
-                    target.SetDamage(15);
+                    target.SetDamage(11); // rico nerf
                     player.whoIHited = target;
                 }
             }

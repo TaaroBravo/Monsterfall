@@ -118,7 +118,7 @@ public class MissileHability : IHability
             usingHability = true;
             player.usingHability = true;
             FeedbackPlay();
-            Shoot(player.transform.position, Vector3.up);
+            Shoot(player.transform.position + new Vector3(0, player.GetComponent<Collider>().bounds.extents.y, 0), Vector3.up);
             timerCoolDown = coolDown;
             activeTimer = true;
             player.lifeHUD.ActivateSkillCD();

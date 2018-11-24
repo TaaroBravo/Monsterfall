@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class IFireEffect : IEffect
 {
-    public int dmg;
+    public float dmg;
     public float maxTime;
     public float delayTime;
 
-    public IFireEffect(int dmg, float maxTime, float delayTime)
+    public IFireEffect(float dmg, float maxTime, float delayTime)
     {
         this.dmg = dmg;
         this.maxTime = maxTime;

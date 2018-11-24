@@ -90,7 +90,7 @@ public class TeleportHability : IHability
         {
             player.usingHability = true; //Quizas remplazar esto por una de dash
             FeedbackPlay();
-            Shoot(player.transform.position, CalculateDirection());
+            Shoot(player.transform.position + new Vector3(0, player.GetComponent<Collider>().bounds.extents.y, 0), CalculateDirection());
             timerCoolDown = coolDown;
             activeTimer = false;
             missileMoving = true;

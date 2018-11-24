@@ -20,7 +20,7 @@ public class Berserk : PlayerController
     public override void Start()
     {
         base.Start();
-        superPunch = new IBerserkPunch(this, 30);
+        superPunch = new IBerserkPunch(this, 15);
         lifeHUD.Set(8, chargeCooldown * 2, myLife);
         SetAttacks();
         SetHabilities();
@@ -65,7 +65,7 @@ public class Berserk : PlayerController
 
     void SetHabilities()
     {
-        hability.Add(typeof(BearAttackHability).ToString(), new BearAttackHability(this, 15, 2, 2.5f, 5f));
+        hability.Add(typeof(BearAttackHability).ToString(), new BearAttackHability(this, 15, 5f, 0.9f, 5f));
         hability.Add(typeof(ForwardCharge).ToString(), new ForwardCharge(this, chargeSpeed, chargeCooldown));
         myHability = BerserkHability;
         movementHability = MovementHability;
