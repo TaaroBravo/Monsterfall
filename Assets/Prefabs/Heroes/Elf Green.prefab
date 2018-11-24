@@ -995,6 +995,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1330315794959068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4612801980679498}
+  m_Layer: 9
+  m_Name: SpawnPointMissile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1339077199669892
 GameObject:
   m_ObjectHideFlags: 1
@@ -3131,6 +3146,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1939995967546126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4679435851977148}
+  m_Layer: 9
+  m_Name: SpawnPointDash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1946877083613520
 GameObject:
   m_ObjectHideFlags: 1
@@ -5086,6 +5116,19 @@ Transform:
   m_Father: {fileID: 4351492726454648}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!4 &4612801980679498
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330315794959068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4906832424806218}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4613695815312962
 Transform:
   m_ObjectHideFlags: 1
@@ -5280,6 +5323,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4985868324555020}
   m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4679435851977148
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1939995967546126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4906832424806218}
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4681490039373762
 Transform:
@@ -5916,6 +5972,8 @@ Transform:
   - {fileID: 4604268806488598}
   - {fileID: 4613695815312962}
   - {fileID: 4781374611960752}
+  - {fileID: 4679435851977148}
+  - {fileID: 4612801980679498}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -6206,8 +6264,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.99999964, y: 2.1568794, z: 3.7483377}
-  m_Center: {x: -7.202999e-16, y: 0.2552989, z: 0.6116144}
+  m_Size: {x: 0.99999964, y: 1.301505, z: 1.988479}
+  m_Center: {x: -1.4415188e-16, y: 0.16424803, z: -0.26831576}
 --- !u!65 &65296029467355352
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -6723,6 +6781,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8d1c2783e79b243bb278a7a315078d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPointDash: {fileID: 4679435851977148}
+  spawnPointHability: {fileID: 4612801980679498}
   shootFire: {fileID: 198448138159969516}
   shootDashFire: {fileID: 198857617012607930}
 --- !u!114 &114564495889973780
@@ -54705,7 +54765,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1257000690
+  randomSeed: -1812212048
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -81875,7 +81935,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -22202910
+  randomSeed: -1339284549
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -95550,7 +95610,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -764465847
+  randomSeed: -1322725203
   InitialModule:
     serializedVersion: 3
     enabled: 1

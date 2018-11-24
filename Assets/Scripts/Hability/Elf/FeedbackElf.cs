@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FeedbackElf : MonoBehaviour {
 
+    public Transform spawnPointDash;
+    public Transform spawnPointHability;
     public ParticleSystem shootFire;
     public ParticleSystem shootDashFire;
 

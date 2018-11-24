@@ -504,7 +504,7 @@ public class PlayerController : MonoBehaviour
     int internCount = 0;
     public void Dash(string state)
     {
-        if(internCount == 0)
+        if (internCount == 0)
         {
             internCount = 1;
             return;
@@ -642,10 +642,21 @@ public class PlayerController : MonoBehaviour
     {
         if (!invulnerableRays)
         {
-            if (stunnedByHit)
-                ReceiveImpact(dir * 50, lastOneWhoHittedMe);
+            if (controller.isGrounded || IsCloseToGround())
+            {
+                dir = new Vector3(Mathf.Sign(dir.x), 0);
+                if (stunnedByHit)
+                    ReceiveImpact(dir * 50, lastOneWhoHittedMe);
+                else
+                    ReceiveImpact(dir * 50, null);
+            }
             else
-                ReceiveImpact(dir * 50, null);
+            {
+                if (stunnedByHit)
+                    ReceiveImpact(dir * 50, lastOneWhoHittedMe);
+                else
+                    ReceiveImpact(dir * 50, null);
+            }
             SetDamage(15);
             StartCoroutine(InvulnerableToRays());
         }

@@ -23,6 +23,7 @@ public class HorizontalMovement : IMove
     public override void Update()
     {
         base.Update();
+        player.myAnim.SetFloat("VerticalVelocity", player.verticalVelocity);
         if (player.controller.isGrounded)
         {
             player.verticalVelocity = -player.gravity * Time.deltaTime;

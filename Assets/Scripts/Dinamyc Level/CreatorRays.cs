@@ -21,8 +21,8 @@ public class CreatorRays : MonoBehaviour
     bool activeMode;
     int countOfRays = 1;
 
-    Vector3 minScale;
-    public Vector3 maxScale;
+    Vector3 lowPos;
+    public Vector3 highPos;
     public float speed = 2f;
     public float duration = 5f;
 
@@ -46,8 +46,8 @@ public class CreatorRays : MonoBehaviour
             7,8,0,
             8,9,0
         };
-        minScale = cristal.transform.localScale;
-        maxScale = minScale + (Vector3.one / 4);
+        lowPos = cristal.transform.position - new Vector3(0, 0.25f, 0);
+        highPos = lowPos + new Vector3(0, 0.5f, 0);
         StartCoroutine(StartCoroutine());
         StartCoroutine(WaitToSuddenDeath());
     }
@@ -99,8 +99,8 @@ public class CreatorRays : MonoBehaviour
     {
         while (true)
         {
-            yield return RepeatLerp(minScale, maxScale, duration);
-            yield return RepeatLerp(maxScale, minScale, duration);
+            yield return RepeatLerp(lowPos, highPos, duration);
+            yield return RepeatLerp(highPos, lowPos, duration);
         }
     }
 
@@ -111,7 +111,7 @@ public class CreatorRays : MonoBehaviour
         while (i < 1)
         {
             i += Time.deltaTime * rate;
-            cristal.transform.localScale = Vector3.Lerp(a, b, i);
+            cristal.transform.position = Vector3.Lerp(a, b, i);
             yield return null;
         }
     }

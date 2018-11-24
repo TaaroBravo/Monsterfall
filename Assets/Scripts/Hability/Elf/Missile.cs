@@ -32,7 +32,7 @@ public class Missile : MonoBehaviour
         if (_objetive)
         {
             _dir = (_objetive.position - transform.position).normalized;
-            if ((_objetive.position - transform.position).magnitude < 5f || Physics.OverlapSphere(transform.position, 5, 1<<9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x.transform == _objetive).Any())
+            if ((_objetive.position - transform.position).magnitude < 5f || Physics.OverlapSphere(transform.position, 5, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x.transform == _objetive).Any())
                 Explote();
         }
     }
@@ -63,11 +63,11 @@ public class Missile : MonoBehaviour
         var layerMask = layerMask1 | layerMask2;
         foreach (var enemy in Physics.OverlapSphere(transform.position, 5, layerMask).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player).Where(x => !x.isDead))
         {
-            if(!enemy.stunnedByHit)
+            if (!enemy.stunnedByHit)
             {
+                OnHitPlayer(enemy);
                 enemy.ReceiveImpact((Vector3.right * Mathf.Sign((enemy.transform.position - transform.position).x) * 30), player);
                 enemy.SetLastOneWhoHittedMe(player);
-                OnHitPlayer(enemy);
             }
         }
         DestroyedMissile();
@@ -102,6 +102,10 @@ public class Missile : MonoBehaviour
 
     void ExploteFeedback()
     {
-        explotion.Play();
+        if (!explotion.isPlaying)
+        {
+            transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+            explotion.Play();
+        }
     }
 }

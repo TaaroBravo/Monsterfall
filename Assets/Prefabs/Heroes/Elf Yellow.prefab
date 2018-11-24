@@ -350,6 +350,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1147441406218708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4457221782896698}
+  m_Layer: 9
+  m_Name: SpawnPointMissile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1154304123264820
 GameObject:
   m_ObjectHideFlags: 1
@@ -2406,6 +2421,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1802243169030762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4364080033324848}
+  m_Layer: 9
+  m_Name: SpawnPointDash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1807695927362640
 GameObject:
   m_ObjectHideFlags: 0
@@ -3944,6 +3974,8 @@ Transform:
   - {fileID: 4682523183993100}
   - {fileID: 4199775895627996}
   - {fileID: 4520872351159064}
+  - {fileID: 4364080033324848}
+  - {fileID: 4457221782896698}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -4297,6 +4329,19 @@ Transform:
   m_Father: {fileID: 4993659075870548}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!4 &4364080033324848
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802243169030762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4242054251955062}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4365100339120198
 Transform:
   m_ObjectHideFlags: 1
@@ -4484,6 +4529,19 @@ Transform:
   - {fileID: 4212963775809380}
   m_Father: {fileID: 4180812051657204}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4457221782896698
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147441406218708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4242054251955062}
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4459131213008856
 Transform:
@@ -6218,8 +6276,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.99999964, y: 2.1568794, z: 3.7483377}
-  m_Center: {x: -7.202999e-16, y: 0.2552989, z: 0.6116144}
+  m_Size: {x: 0.99999964, y: 1.301505, z: 1.988479}
+  m_Center: {x: -1.4415188e-16, y: 0.16424803, z: -0.26831576}
 --- !u!95 &95131727675473842
 Animator:
   serializedVersion: 3
@@ -6657,6 +6715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8d1c2783e79b243bb278a7a315078d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPointDash: {fileID: 4364080033324848}
+  spawnPointHability: {fileID: 4457221782896698}
   shootFire: {fileID: 198354774830569108}
   shootDashFire: {fileID: 198756934535419452}
 --- !u!114 &114558513348372976

@@ -34,22 +34,12 @@ public class DynamicCristal : MonoBehaviour
 
         foreach (var player in players)
         {
-            //Vector3 playerDirDown = (player.transform.position - cristal.position).normalized;
             Vector3 playerPosUp = new Vector3(player.transform.position.x, player.transform.position.y + player.GetComponent<Collider>().bounds.extents.y * 2, player.transform.position.z);
             Vector3 playerDirUp = (playerPosUp - cristal.position).normalized;
 
             Vector3 playerPosMiddle = new Vector3(player.transform.position.x, player.transform.position.y + player.GetComponent<Collider>().bounds.extents.y, player.transform.position.z);
             Vector3 playerDirMiddle = (playerPosMiddle - cristal.position).normalized;
 
-            //if (Vector3.Angle(middleVector, playerDirDown) <= Vector3.Angle(leftVector, rightVector))
-            //{
-            //    RaycastHit info;
-            //    if (Physics.Raycast(cristal.position, playerDirDown, out info, 1000, layerMask))
-            //    {
-            //        if (info.collider.gameObject.layer == 8)
-            //            HitPlayer(player, playerDirDown);
-            //    }
-            //}
             if (Vector3.Angle(middleVector, playerDirUp) <= Vector3.Angle(leftVector, rightVector))
             {
                 RaycastHit info;
