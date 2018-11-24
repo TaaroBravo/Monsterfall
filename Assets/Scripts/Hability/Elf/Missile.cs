@@ -18,6 +18,7 @@ public class Missile : MonoBehaviour
     float speed;
 
     Transform _objetive;
+    bool exploted;
 
     void Start()
     {
@@ -29,11 +30,14 @@ public class Missile : MonoBehaviour
     {
         transform.position += _dir * speed * Time.deltaTime;
         speed += Time.deltaTime * 9;
-        if (_objetive)
+        if (_objetive && !exploted)
         {
             _dir = (_objetive.position - transform.position).normalized;
             if ((_objetive.position - transform.position).magnitude < 5f || Physics.OverlapSphere(transform.position, 5, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x.transform == _objetive).Any())
+            {
+                exploted = true;
                 Explote();
+            }
         }
     }
 
@@ -54,6 +58,8 @@ public class Missile : MonoBehaviour
     {
         speed = 4;
         _objetive = null;
+        _target = null;
+        exploted = false;
     }
 
     void Explote()
@@ -61,10 +67,12 @@ public class Missile : MonoBehaviour
         var layerMask1 = 1 << 8;
         var layerMask2 = 1 << 9;
         var layerMask = layerMask1 | layerMask2;
+        List<PlayerController> playersHitted = new List<PlayerController>();
         foreach (var enemy in Physics.OverlapSphere(transform.position, 5, layerMask).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player).Where(x => !x.isDead))
         {
-            if (!enemy.stunnedByHit)
+            if (!enemy.stunnedByHit && !playersHitted.Contains(enemy))
             {
+                playersHitted.Add(enemy);
                 OnHitPlayer(enemy);
                 enemy.ReceiveImpact((Vector3.right * Mathf.Sign((enemy.transform.position - transform.position).x) * 30), player);
                 enemy.SetLastOneWhoHittedMe(player);
@@ -85,6 +93,7 @@ public class Missile : MonoBehaviour
 
     public void DestroyedMissile()
     {
+        exploted = true;
         StartCoroutine(EndMissile());
     }
 

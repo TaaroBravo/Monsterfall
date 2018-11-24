@@ -21,6 +21,7 @@ public class BearAttackHability : IHability
     Berserk berserkPlayer;
 
     bool usingHability;
+    bool isGrounded;
 
     public BearAttackHability(Berserk _player, float power, float damage, float activeTime, float _cooldown)
     {
@@ -42,7 +43,8 @@ public class BearAttackHability : IHability
 
         if (player.usingHability && !failed && !berserkPlayer.chargeAttack && usingHability)
         {
-            JumpAttack();
+            if (!isGrounded)
+                JumpAttack();
             if (_target && !hasTarget)
             {
                 _target.canMove = false;
@@ -111,7 +113,7 @@ public class BearAttackHability : IHability
         while (true)
         {
             yield return new WaitForSeconds(0.7f);
-            yield return new WaitUntil(() => player.controller.isGrounded);
+            yield return new WaitUntil(() => player.controller.isGrounded/* || player.IsCloseToGround()*/);
             player.ResetVelocity();
             if (!_target)
                 FailAttack();
@@ -124,8 +126,10 @@ public class BearAttackHability : IHability
         while (timerActive > 0)
         {
             player.myAnim.Play("SkillAttack");
-            yield return new WaitUntil(() => player.controller.isGrounded);
+            yield return new WaitUntil(() => player.controller.isGrounded /*|| player.IsCloseToGround() || player.verticalVelocity > -0.6 && player.verticalVelocity < 0*/);
             yield return new WaitForSeconds(0.3f);
+            player.ResetVelocity();
+            isGrounded = true;
             AttackTarget();
             timerActive -= 0.3f;
         }
@@ -178,6 +182,7 @@ public class BearAttackHability : IHability
         player.canMove = true;
         player.usingHability = false;
         usingHability = false;
+        isGrounded = false;
     }
 
     public override void Release()

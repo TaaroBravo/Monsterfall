@@ -60,7 +60,6 @@ public class BerserkerParticlesManager : MonoBehaviour
             }
             else if (XAxis < 0) // frente
             {
-                Debug.Log("caso 2");
                 //GP_main1.startRotationY = 0f;
                 //GP_main2.startRotationY = 0f;
                 GP_shape1.rotation = new Vector3(0, -90, 0);

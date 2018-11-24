@@ -4,7 +4,8 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class Elf : PlayerController {
+public class Elf : PlayerController
+{
 
     public event Action<PlayerController> OnDisableEffect = delegate { };
     public event Action OnCleanTargets = delegate { };
@@ -23,7 +24,7 @@ public class Elf : PlayerController {
         base.Start();
         lifeHUD.Set(14, 3, myLife);
         markEffect = new IElfMark(this, AddTarget);
-        OnDisableEffect += x => DisableEffect(x);
+        OnDisableEffect += x => DisablePlayerEffect(x);
         randomPositions = GameObject.FindGameObjectsWithTag("PositionsElf").Select(x => x.transform).ToArray();
         SetAttacks();
         SetHabilities();
@@ -80,7 +81,7 @@ public class Elf : PlayerController {
 
     IEnumerator RealeseMark(PlayerController p)
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(6f);
             OnDisableEffect(p);
@@ -88,11 +89,18 @@ public class Elf : PlayerController {
         }
     }
 
-    public void DisableEffect(PlayerController player)
+    public void DisablePlayerEffect(PlayerController player)
     {
-        targets.Remove(player);
+        if (targets.Contains(player))
+            targets.Remove(player);
         if (targets.Count == 0)
             CleanTargets();
+    }
+
+    public void DisableEffect(PlayerController player)
+    {
+        OnDisableEffect(player);
+        CleanTargets();
     }
 
     private void SetAttacks()

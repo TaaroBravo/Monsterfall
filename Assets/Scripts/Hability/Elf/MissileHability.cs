@@ -181,8 +181,6 @@ public class MissileHability : IHability
     {
         player.GetComponent<FeedbackElf>().shootFire.Play();
         player.myAnim.Play("ShootHability");
-        //Particulas de disparo .Play()
-        //Animación de disparo
     }
 
     #region Pool

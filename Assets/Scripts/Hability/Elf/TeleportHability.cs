@@ -25,20 +25,20 @@ public class TeleportHability : IHability
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
         _missilePrefab = missilePrefab;
-        maxTimer = 1;
+        maxTimer = 1.7f;
         ObjectPoolManager.Instance.AddObjectPool<MissileTeleport>(InstantiateBullet, Initializate, Finalizate, 6, false);
     }
 
     public override void Update()
     {
         base.Update();
-        if (activeTimer)
-        {
-            maxTimer += Time.deltaTime;
-            if (maxTimer > 3)
-                maxTimer = 3;
-        }
-        else if (missileMoving)
+        //if (activeTimer)
+        //{
+        //    maxTimer += Time.deltaTime;
+        //    if (maxTimer > 3)
+        //        maxTimer = 3;
+        //}
+        /*else */if (missileMoving)
         {
             if (currentTimer < maxTimer)
                 currentTimer += Time.deltaTime;
@@ -53,6 +53,16 @@ public class TeleportHability : IHability
     public override void Hability()
     {
         activeTimer = true;
+        if (timerCoolDown < 0 && !_currentMissile)
+        {
+            player.usingHability = true; //Quizas remplazar esto por una de dash
+            FeedbackPlay();
+            Shoot(player.GetComponent<FeedbackElf>().spawnPointDash.position, CalculateDirection());
+            timerCoolDown = coolDown;
+            activeTimer = false;
+            missileMoving = true;
+            player.lifeHUD.ActivateDashCD();
+        }
     }
 
     void Shoot(Vector3 spawnPoint, Vector3 dir)
@@ -86,16 +96,16 @@ public class TeleportHability : IHability
 
     public override void Release()
     {
-        if (timerCoolDown < 0 && !_currentMissile)
-        {
-            player.usingHability = true; //Quizas remplazar esto por una de dash
-            FeedbackPlay();
-            Shoot(player.GetComponent<FeedbackElf>().spawnPointDash.position, CalculateDirection());
-            timerCoolDown = coolDown;
-            activeTimer = false;
-            missileMoving = true;
-            player.lifeHUD.ActivateDashCD();
-        }
+        //if (timerCoolDown < 0 && !_currentMissile)
+        //{
+        //    player.usingHability = true; //Quizas remplazar esto por una de dash
+        //    FeedbackPlay();
+        //    Shoot(player.GetComponent<FeedbackElf>().spawnPointDash.position, CalculateDirection());
+        //    timerCoolDown = coolDown;
+        //    activeTimer = false;
+        //    missileMoving = true;
+        //    player.lifeHUD.ActivateDashCD();
+        //}
     }
 
     void ResetValues()
