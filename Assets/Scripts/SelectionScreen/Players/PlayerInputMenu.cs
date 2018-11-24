@@ -65,10 +65,10 @@ public class PlayerInputMenu : MonoBehaviour
                 player.ActionButton();
 
         }
-        //if (Input.GetButtonDown(actionButton))
-        //    player.ActionButton();
-        //if (Input.GetButtonDown(rejectButton))
-        //    player.RejectButton();
+        if (Input.GetButtonDown(actionButton))
+            player.ActionButton();
+        if (Input.GetButtonDown(rejectButton))
+            player.RejectButton();
         //if (controller == Controller.J)
         //{
         //    if (Input.GetAxis(horizontalMove) != 0 && _cooldown)
@@ -84,10 +84,10 @@ public class PlayerInputMenu : MonoBehaviour
         //}
         //else
         //{
-        //    if (Input.GetButtonDown(horizontalMove))
-        //        player.Move(new Vector2((int)MainHorizontal(), 0));
-        //    if (Input.GetButtonDown(verticalMove))
-        //        player.Move(new Vector2(0, -(int)MainVertical()));
+        if (Input.GetButtonDown(horizontalMove))
+            player.Move(new Vector2((int)MainHorizontal(), 0));
+        if (Input.GetButtonDown(verticalMove))
+            player.Move(new Vector2(0, -(int)MainVertical()));
         //}
     }
 
