@@ -126,10 +126,13 @@ public class MissileHability : IHability
 
     IEnumerator FeedbackCantMove()
     {
-        while(true)
+        while (true)
         {
             player.canMove = false;
-            yield return new WaitForSeconds(1f);
+            if (player.controller.isGrounded)
+                yield return new WaitForSeconds(1f);
+            else
+                yield return new WaitUntil(() => player.controller.isGrounded);
             player.canMove = true;
             break;
         }
@@ -218,7 +221,7 @@ public class MissileHability : IHability
             //if (distance < 10)
             //    totalCoef.Add((100 * 3) - distance);
             //else
-                totalCoef.Add(50 - distance);
+            totalCoef.Add(50 - distance);
         }
         return RouletteWheelSelection(totalCoef);
     }

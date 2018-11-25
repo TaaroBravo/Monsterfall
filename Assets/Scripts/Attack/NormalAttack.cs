@@ -81,17 +81,18 @@ public class NormalAttack : IAttack
                     player.myAnim.SetBool("ReleaseAForward", false);
                 }
             }
-            isPressing = false;
-            currentPressed = 1;
-            timerCoolDownAttack = coolDownAttack;
-            player.PS_Charged.Stop();
         }
+        isPressing = false;
+        currentPressed = 1;
+        timerCoolDownAttack = coolDownAttack;
+        player.PS_Charged.Stop();
     }
 
     public override void Pressed()
     {
         player.myAnim.SetBool("ReleaseAForward", false);
-        player.myAnim.Play("ChargingAForward");
+        if (!isPressing)
+            player.myAnim.Play("ChargingAForward");
         isPressing = true;
     }
 }

@@ -6838,10 +6838,10 @@ MonoBehaviour:
   coyoteBool: 0
   coyoteTime: 0
   weaponExtends: 1
-  impactVelocityNormal: 0.5
-  defaultAttackNormal: 1
-  normalAttackCoolDown: 20
-  influenceOfMovementNormal: 0.25
+  impactVelocityNormal: 20
+  defaultAttackNormal: 0.5
+  normalAttackCoolDown: 0.25
+  influenceOfMovementNormal: 1
   impactVelocityUp: 2
   defaultAttackUp: 7.5
   upAttackCoolDown: 0.25

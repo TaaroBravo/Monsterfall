@@ -667,9 +667,9 @@ public class PlayerController : MonoBehaviour
         while (true)
         {
             invulnerableRays = true;
-            buffedPower = 1.5f;
+            buffedPower = 2f;
             GetComponent<BuffedPlayer>().halo.SetActive(true);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(10f);
             GetComponent<BuffedPlayer>().halo.SetActive(false);
             invulnerableRays = false;
             buffedPower = 1;

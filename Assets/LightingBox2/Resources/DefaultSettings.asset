@@ -17,9 +17,9 @@ MonoBehaviour:
     type: 2}
   webGL_Mobile: 0
   renderPath: 2
-  lightingMode: 1
-  bakedResolution: 10
-  lightSettings: 2
+  lightingMode: 2
+  bakedResolution: 128
+  lightSettings: 3
   colorSpace: 0
   skyBox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   ambientLight: 1
@@ -124,7 +124,7 @@ MonoBehaviour:
   ST_SSR_Enabled: 0
   ambientState: 0
   sunState: 0
-  lightSettingsState: 0
+  lightSettingsState: 1
   cameraState: 1
   profileState: 1
   buildState: 0

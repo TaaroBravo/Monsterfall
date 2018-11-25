@@ -19,21 +19,40 @@ public class Missile : MonoBehaviour
 
     Transform _objetive;
     bool exploted;
+    bool inScreen;
 
     void Start()
     {
         speed = 4;
         StartCoroutine(TimeToDestroy());
+        StartCoroutine(OutOfLimitsTimer());
     }
 
     void Update()
     {
+        if (!GameManager.Instance.OutOfLimits(transform.position))
+            inScreen = true;
         transform.position += _dir * speed * Time.deltaTime;
         speed += Time.deltaTime * 9;
         if (_objetive && !exploted)
         {
-            _dir = (_objetive.position - transform.position).normalized;
-            if ((_objetive.position - transform.position).magnitude < 5f || Physics.OverlapSphere(transform.position, 5, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x.transform == _objetive).Any())
+            Vector3 newPos = (_objetive.position - transform.position).normalized;
+            _dir = Vector3.Lerp(_dir, newPos, Time.deltaTime);
+            //_dir = (_objetive.position - transform.position).normalized;
+            if ((_objetive.position - transform.position).magnitude < 3f || Physics.OverlapSphere(transform.position, 3, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x.transform == _objetive).Any())
+            {
+                exploted = true;
+                Explote();
+            }
+        }
+    }
+
+    IEnumerator OutOfLimitsTimer()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => inScreen);
+            if (!exploted && GameManager.Instance.OutOfLimits(transform.position))
             {
                 exploted = true;
                 Explote();
@@ -60,6 +79,7 @@ public class Missile : MonoBehaviour
         _objetive = null;
         _target = null;
         exploted = false;
+        inScreen = false;
     }
 
     void Explote()

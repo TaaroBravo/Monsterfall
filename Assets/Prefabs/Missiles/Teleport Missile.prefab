@@ -20,7 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4392817171475648}
   - component: {fileID: 114675754052890764}
-  m_Layer: 0
+  - component: {fileID: 65339009239259912}
+  - component: {fileID: 54800612488053374}
+  m_Layer: 13
   m_Name: Teleport Missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +40,7 @@ GameObject:
   - component: {fileID: 33218303223151306}
   - component: {fileID: 136832896377515120}
   - component: {fileID: 23974892864649724}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +57,7 @@ GameObject:
   - component: {fileID: 4605954489917804}
   - component: {fileID: 198185290922270162}
   - component: {fileID: 199940279593554752}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ProyectilTail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +74,7 @@ GameObject:
   - component: {fileID: 4399617575304290}
   - component: {fileID: 198725453813123886}
   - component: {fileID: 199668175820813956}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: DruidProyectil_PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +91,7 @@ GameObject:
   - component: {fileID: 4291653508046186}
   - component: {fileID: 198520341118881612}
   - component: {fileID: 199351436896282800}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Hojitas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,6 +208,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155218256141830}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54800612488053374
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1104641416061700}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65339009239259912
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1104641416061700}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114675754052890764
 MonoBehaviour:
   m_ObjectHideFlags: 1
