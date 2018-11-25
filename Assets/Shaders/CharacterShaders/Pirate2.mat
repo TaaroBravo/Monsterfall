@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 1e6d21a493bb4ac49b1fbf88194e30b2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9bf819b4e10858a478b70248e9837d38, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlbedoMap:
@@ -35,7 +35,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CNv2Default_MetallicSmoothness:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3b383548823fb2e4bb6717b1d63452c6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -47,7 +47,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Splatmap:
-        m_Texture: {fileID: 2800000, guid: c07c51151c9600045bb148f705baabb4, type: 3}
+        m_Texture: {fileID: 2800000, guid: af5ab63a69b074347be0e4c17fb9dc1b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
