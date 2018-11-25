@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 4befbf09ca81de74ca092d4e7c344f00
-timeCreated: 1542928525
+guid: 057a134a396d371448c46a8fcee2e95d
+timeCreated: 1543112830
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -283,7 +283,7 @@ ModelImporter:
     400274: //RootNode
     2100000: 03 - Default
     4300000: Elf_Body
-    7400000: HitForwardAir
+    7400000: Skill
     9500000: //RootNode
     13700000: Elf_Body
   externalObjects: {}
@@ -314,10 +314,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: HitForwardAir
+      name: Skill
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 14
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

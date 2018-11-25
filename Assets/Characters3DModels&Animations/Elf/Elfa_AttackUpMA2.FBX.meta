@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9b3d37806d04e3b4bbd565e033e4e2c8
-timeCreated: 1542928529
+guid: 07a1f8931156ff14fbfb6488314266fc
+timeCreated: 1543112849
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -283,7 +283,7 @@ ModelImporter:
     400274: //RootNode
     2100000: 03 - Default
     4300000: Elf_Body
-    7400000: HitUpAir
+    7400000: AttackUpMa
     9500000: //RootNode
     13700000: Elf_Body
   externalObjects: {}
@@ -314,10 +314,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: HitUpAir
+      name: AttackUpMa
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 13
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

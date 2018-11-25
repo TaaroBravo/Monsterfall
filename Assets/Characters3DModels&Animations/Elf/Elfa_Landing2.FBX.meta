@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f869b533a66af684b84786a6b24c2e15
-timeCreated: 1542928534
+guid: ed45b5e097dd2744998bd732ca99e525
+timeCreated: 1543112859
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -283,7 +283,7 @@ ModelImporter:
     400274: //RootNode
     2100000: 03 - Default
     4300000: Elf_Body
-    7400000: Landed
+    7400000: Landing
     9500000: //RootNode
     13700000: Elf_Body
   externalObjects: {}
@@ -314,7 +314,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Landed
+      name: Landing
       takeName: Take 001
       firstFrame: 0
       lastFrame: 14

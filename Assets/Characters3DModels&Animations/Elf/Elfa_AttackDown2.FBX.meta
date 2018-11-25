@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1bc219efee378dc4197fec4508f894ff
-timeCreated: 1542928523
+guid: 7faa73ddaa3b87c4ca93a8f7f1a489ee
+timeCreated: 1543112855
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -318,7 +318,7 @@ ModelImporter:
       name: AttackDown
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 13
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

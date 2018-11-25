@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: fef0bf37abadc744e86f65b9b6fd0643
-timeCreated: 1542928535
+guid: e618c15d37c4f3242be8425e252dbd79
+timeCreated: 1543112857
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -317,7 +317,7 @@ ModelImporter:
       name: MidAir
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 37
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

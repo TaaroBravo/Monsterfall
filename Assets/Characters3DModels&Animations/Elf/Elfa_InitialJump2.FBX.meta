@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c6e46b60aac96c24783f95fddf1ad904
-timeCreated: 1542928532
+guid: 30c4ce605f0aec644b325410c39133e1
+timeCreated: 1543112853
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -317,7 +317,7 @@ ModelImporter:
       name: Jump
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 10
+      lastFrame: 13
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
