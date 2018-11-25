@@ -19,7 +19,7 @@ public class BerserkerParticlesManager : MonoBehaviour
     public ParticleSystem p3;
     ParticleSystem.EmissionModule p2Em;
     ParticleSystem.EmissionModule p3Em;
-    public DashFeedbackControl DashGordo;
+    //public DashFeedbackControl DashGordo;
     public float XAxis;
     ParticleSystem.MainModule p2main;
     ParticleSystem.ShapeModule p2shape;
@@ -87,7 +87,7 @@ public class BerserkerParticlesManager : MonoBehaviour
         }
         /// </>
         XAxis = GetComponent<PlayerInput>().MainHorizontal();
-        if (!iminverted)
+        if (!iminverted) // esto quizas lo tenga k cambiar
         {
             if (XAxis > 0)
             {
@@ -119,20 +119,20 @@ public class BerserkerParticlesManager : MonoBehaviour
     public void DisplayBerserkerSkill() { p1.Play(); }
     public void DisplayBerserkerCharge() // solucion temporal
     {
-        if (candash)
-        {
-            Debug.Log("imactivating"); // esto se activa de 2 a 3 veces
-            p2.Play();
-            p2Em.rateOverDistance = 0.025f;
-            //p3Em.rateOverDistance = 5;
-            DashGordo.activate = true;
-            DashGordo.timer = 0;
-            DashGordo.sarasa.SetFloat("_Speed", 0);
-            candash = false;
-        }
-
+        p2.Play();
+        //if (candash)
+        //{
+        //    Debug.Log("imactivating"); // esto se activa de 2 a 3 veces
+        //    p2.Play();
+        //    p2Em.rateOverDistance = 0.025f;
+        //    //p3Em.rateOverDistance = 5;
+        //    DashGordo.activate = true;
+        //    DashGordo.timer = 0;
+        //    DashGordo.sarasa.SetFloat("_Speed", 0);
+        //    candash = false;
+        //}
     }
-    public void StopCharge() {/* p2Em.rateOverDistance = 0; */}
+    public void StopCharge() { p2.Stop(); }
     public void DebugKeys()
     {
         //if (Input.GetKeyDown(KeyCode.Q)) DisplayBerserkerSkill();
