@@ -38,14 +38,17 @@ public class TeleportHability : IHability
         //    if (maxTimer > 3)
         //        maxTimer = 3;
         //}
-        /*else */if (missileMoving)
+        /*else */
+        if (missileMoving)
         {
             if (currentTimer < maxTimer)
                 currentTimer += Time.deltaTime;
             else
             {
-                ReturnBullet(_currentMissile);
+                if (_currentMissile)
+                    ReturnBullet(_currentMissile);
                 missileMoving = false;
+                ResetValues();
             }
         }
     }
@@ -91,7 +94,8 @@ public class TeleportHability : IHability
 
     void Teleport()
     {
-        player.transform.position = _currentMissile.transform.position;
+        if (_currentMissile)
+            player.transform.position = _currentMissile.transform.position - new Vector3(0, player.GetComponent<Collider>().bounds.extents.y, 0);
     }
 
     public override void Release()
@@ -162,4 +166,6 @@ public class TeleportHability : IHability
         return new Vector3(newX, newY);
 
     }
+
+
 }

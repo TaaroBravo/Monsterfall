@@ -15,7 +15,7 @@ public class IBerserkPunch : IEffect
 
     public void Effect(PlayerController player)
     {
-        player.SetDamage(damage/* * _player.buffedPower*/);
+        player.SetDamage(damage * _player.buffedPower);
     }
 
     public void DisableEffect(PlayerController player)

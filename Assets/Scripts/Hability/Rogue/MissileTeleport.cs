@@ -23,7 +23,7 @@ public class MissileTeleport : MonoBehaviour {
     {
         transform.position += _dir * speed * Time.deltaTime;
 
-        if (Physics.OverlapSphere(transform.position, 3f, 1 << 17).Any())
+        if (Physics.OverlapSphere(transform.position, 3f, 1 << 17).Any() || Physics.OverlapSphere(transform.position, 3f, 1 << 19).Where(x => x.tag == "Limit").Any())
             DestroyedMissile();
 
         var _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Where(x => x.GetComponent<PlayerController>() != null).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player).Where(x => !x.isDead).FirstOrDefault();
@@ -48,7 +48,6 @@ public class MissileTeleport : MonoBehaviour {
 
     public void DestroyedMissile()
     {
-        Debug.Log("Destruir");
         ResetValues();
         ExploteFeedback();
         OnDestroyMissile(this);
@@ -57,5 +56,26 @@ public class MissileTeleport : MonoBehaviour {
     void ExploteFeedback()
     {
         //Todo el feedback
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp"))
+        {
+            WarpController door = other.gameObject.GetComponent<WarpController>();
+            door.WarpHook(transform);
+            StartCoroutine(OffParticles());
+        }
+    }
+
+    IEnumerator OffParticles()
+    {
+        while(true)
+        {
+            transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+            yield return new WaitForSeconds(0.1f);
+            transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+            break;
+        }
     }
 }

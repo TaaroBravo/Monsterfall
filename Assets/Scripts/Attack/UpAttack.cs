@@ -45,7 +45,6 @@ public class UpAttack : IAttack
                 player.myAnim.Play("HitUpAir");
             Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 2);
             List<PlayerController> hitPlayers = new List<PlayerController>();
-            //Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 2, col.transform.rotation, LayerMask.GetMask("Hitbox"));
             foreach (Collider c in cols)
             {
                 if (c.transform.gameObject.layer == LayerMask.GetMask("Hitbox"))
