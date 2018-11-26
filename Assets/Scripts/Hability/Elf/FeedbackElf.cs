@@ -31,22 +31,22 @@ public class FeedbackElf : MonoBehaviour
         {
             if (XAxis > 0)
             {
-                DashShootShape.rotation = new Vector3(0, 0, 0);
+                DashShootShape.rotation = new Vector3(180, 0, 0);
             }
             else if (XAxis < 0)
             {
-                DashShootShape.rotation = new Vector3(180, 0, 0);
+                DashShootShape.rotation = new Vector3(0, 0, 0);
             }
         }
         else
         {
             if (XAxis > 0)
             {
-                DashShootShape.rotation = new Vector3(180, 0, 0);
+                DashShootShape.rotation = new Vector3(0, 0, 0);
             }
             else if (XAxis < 0)
             {
-                DashShootShape.rotation = new Vector3(0, 0, 0);
+                DashShootShape.rotation = new Vector3(180, 0, 0);
             }
         }
     }

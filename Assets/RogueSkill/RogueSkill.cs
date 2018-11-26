@@ -10,16 +10,15 @@ public class RogueSkill : MonoBehaviour
     public List<Sprite> SkillStates = new List<Sprite>();
     public ParticleSystem RogueSkillParticle;
     int test;
+    List<Color> PColors = new List<Color>();
 
-
-
-    Color[] colors = new Color[]
-    {
-        Color.blue,
-        Color.red,
-        Color.green,
-        Color.yellow
-    };
+    //Color[] colors = new Color[]
+    //{
+    //    Color.blue,
+    //    Color.red,
+    //    Color.green,
+    //    Color.yellow
+    //};
 
     Color myColor;
 
@@ -27,7 +26,11 @@ public class RogueSkill : MonoBehaviour
 
     private void Start()
     {
-
+        Color outcolor;
+        if (ColorUtility.TryParseHtmlString("#1996E1FF", out outcolor)) PColors.Add(outcolor); // blue - 0
+        if (ColorUtility.TryParseHtmlString("#E51B1BFF", out outcolor)) PColors.Add(outcolor); // red - 1
+        if (ColorUtility.TryParseHtmlString("#5CD025FF", out outcolor)) PColors.Add(outcolor); // green - 2
+        if (ColorUtility.TryParseHtmlString("#FBEB11FF", out outcolor)) PColors.Add(outcolor); // yellow - 3
     }
 
     void Update()
@@ -45,9 +48,9 @@ public class RogueSkill : MonoBehaviour
 
     public void PassState(int state, int ID, Action callBack)
     {
-        if (colors[ID] != myColor)
+        if (PColors[ID] != myColor)
         {
-            myColor = colors[ID];
+            myColor = PColors[ID];
             callBackDisable();
         }
         callBackDisable = callBack;
