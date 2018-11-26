@@ -265,9 +265,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.2656494
-  m_TransitionOffset: 0
-  m_ExitTime: 0.000000006918731
+  m_TransitionDuration: 0.14562413
+  m_TransitionOffset: 0.0452138
+  m_ExitTime: 0.00665023
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -412,9 +412,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 1.2255087
-  m_TransitionOffset: 0
-  m_ExitTime: 0.22733487
+  m_TransitionDuration: 0.41552722
+  m_TransitionOffset: 0.038672946
+  m_ExitTime: 0.21307255
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -775,9 +775,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.4172559
-  m_TransitionOffset: 0.26112482
-  m_ExitTime: 0.743202
+  m_TransitionDuration: 0.28949693
+  m_TransitionOffset: 0.17472559
+  m_ExitTime: 0.55279624
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1261,7 +1261,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Jump
-  m_Speed: 1
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101543746300328366}
@@ -1287,7 +1287,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MidAir
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101146848426048556}
@@ -1417,7 +1417,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackForward
-  m_Speed: 2.5
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101757459798953560}
@@ -1443,7 +1443,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ShootHability
-  m_Speed: 1
+  m_Speed: 4
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101601572676672558}
@@ -1494,7 +1494,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Dash
-  m_Speed: 0.5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101570575789816298}
@@ -1521,7 +1521,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackUp
-  m_Speed: 2.5
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101367865213142654}
@@ -1762,7 +1762,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackDown
-  m_Speed: 2.5
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101743705594951878}
@@ -1775,7 +1775,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1bc219efee378dc4197fec4508f894ff, type: 3}
+  m_Motion: {fileID: 7400000, guid: 7faa73ddaa3b87c4ca93a8f7f1a489ee, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1828,7 +1828,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: 1bc219efee378dc4197fec4508f894ff, type: 3}
+  m_Motion: {fileID: 7400002, guid: 7faa73ddaa3b87c4ca93a8f7f1a489ee, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1960,7 +1960,7 @@ AnimatorStateMachine:
     m_Position: {x: 840, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102821881736962676}
-    m_Position: {x: 552, y: 96, z: 0}
+    m_Position: {x: 564, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102833993586856746}
     m_Position: {x: 36, y: -24, z: 0}

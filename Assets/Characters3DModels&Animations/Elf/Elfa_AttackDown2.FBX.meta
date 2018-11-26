@@ -283,7 +283,7 @@ ModelImporter:
     400274: //RootNode
     2100000: 03 - Default
     4300000: Elf_Body
-    7400000: AttackDown
+    7400000: AttackDownElf2
     7400002: ChargingADown
     9500000: //RootNode
     13700000: Elf_Body
@@ -315,7 +315,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: AttackDown
+      name: AttackDownElf2
       takeName: Take 001
       firstFrame: 0
       lastFrame: 13

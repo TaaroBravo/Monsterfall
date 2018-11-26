@@ -23,7 +23,7 @@ public class Missile : MonoBehaviour
 
     void Start()
     {
-        speed = 4;
+        speed = 30;
         StartCoroutine(TimeToDestroy());
         StartCoroutine(OutOfLimitsTimer());
     }
@@ -33,7 +33,7 @@ public class Missile : MonoBehaviour
         if (!GameManager.Instance.OutOfLimits(transform.position))
             inScreen = true;
         transform.position += _dir * speed * Time.deltaTime;
-        speed += Time.deltaTime * 9;
+        speed += Time.deltaTime * 40;
         if (_objetive && !exploted)
         {
             Vector3 newPos = (_objetive.position - transform.position).normalized;

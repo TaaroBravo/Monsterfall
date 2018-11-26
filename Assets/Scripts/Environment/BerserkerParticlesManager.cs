@@ -105,12 +105,12 @@ public class BerserkerParticlesManager : MonoBehaviour
             if (XAxis > 0)
             {
                 p2main.startRotationY = 0f;
-                p2shape.rotation = new Vector3(0, 180, 0);
+                p2shape.rotation = new Vector3(0, 0, 0);
             }
             else if (XAxis < 0)
             {
                 p2main.startRotationY = 3.2f;
-                p2shape.rotation = new Vector3(0, 0, 0);
+                p2shape.rotation = new Vector3(0, 180, 0);
             }
         }
         //DebugKeys();

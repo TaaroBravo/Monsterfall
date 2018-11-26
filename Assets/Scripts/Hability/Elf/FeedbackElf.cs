@@ -19,7 +19,7 @@ public class FeedbackElf : MonoBehaviour
 
     public void Start()
     {
-        DashShootShape = shootFire.shape;
+        DashShootShape = shootDashFire.shape;
         DashTrailEmission = DashTrail.emission;
     }
     private void Update()
@@ -42,17 +42,17 @@ public class FeedbackElf : MonoBehaviour
         {
             if (XAxis > 0)
             {
-                DashShootShape.rotation = new Vector3(0, 0, 0);
+                DashShootShape.rotation = new Vector3(180, 0, 0);
             }
             else if (XAxis < 0)
             {
-                DashShootShape.rotation = new Vector3(180, 0, 0);
+                DashShootShape.rotation = new Vector3(0, 0, 0);
             }
         }
     }
     private void DebugKeys()
     {
-        if (Input.GetKeyDown(KeyCode.O)) StartTeleportFeedback();
+        if (Input.GetKeyDown(KeyCode.L)) StartTeleportFeedback();
         if (Input.GetKeyDown(KeyCode.P)) FinishTeleportFeedback();
     }
     public void StartTeleportFeedback()
