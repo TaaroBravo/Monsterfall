@@ -83,8 +83,8 @@ public class Elf : PlayerController
     {
         while (true)
         {
-            yield return new WaitForSeconds(6f);
-            OnDisableEffect(p);
+            yield return new WaitForSeconds(14f);
+            //OnDisableEffect(p);
             break;
         }
     }

@@ -37,8 +37,7 @@ public class IElfMark : IEffect
     public void DisableEffect(PlayerController player)
     {
         //Apagar particula de enemigo:
-        //targets.GetComponent<RogueSkillCall>().ResetFeedback();
-
+        player.GetComponent<GeneralFeedback>().FinishElfMark();
         targets.Remove(player);
     }
 
@@ -52,16 +51,17 @@ public class IElfMark : IEffect
     void SetMark(PlayerController player)
     {
         //Encender particula en el enemigo:
-        //target.GetComponent<RogueSkillCall>().PassState(countOfMarks - 1, _player.GetComponent<PlayerInput>().player_number, Disable);
+        int ID = _player.GetComponent<PlayerInput>().player_number;
+        player.GetComponent<GeneralFeedback>().StartElfMark(ID);
     }
 
     public float GetDelayTimer()
     {
-        return 1000;
+        return 10000;
     }
 
     public float GetMaxTimer()
     {
-        return 1000;
+        return 1000000;
     }
 }

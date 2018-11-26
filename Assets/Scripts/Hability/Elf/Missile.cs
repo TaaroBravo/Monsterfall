@@ -23,7 +23,7 @@ public class Missile : MonoBehaviour
 
     void Start()
     {
-        speed = 30;
+        speed = 10;
         StartCoroutine(TimeToDestroy());
         StartCoroutine(OutOfLimitsTimer());
     }
@@ -33,13 +33,13 @@ public class Missile : MonoBehaviour
         if (!GameManager.Instance.OutOfLimits(transform.position))
             inScreen = true;
         transform.position += _dir * speed * Time.deltaTime;
-        speed += Time.deltaTime * 40;
+        speed += Time.deltaTime * 20;
         if (_objetive && !exploted)
         {
             Vector3 newPos = (_objetive.position - transform.position).normalized;
             _dir = Vector3.Lerp(_dir, newPos, Time.deltaTime);
             //_dir = (_objetive.position - transform.position).normalized;
-            if ((_objetive.position - transform.position).magnitude < 3f || Physics.OverlapSphere(transform.position, 3, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x.transform == _objetive).Any())
+            if ((_objetive.position - transform.position).magnitude < 5f || Physics.OverlapSphere(transform.position, 5, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x.transform == _objetive).Any())
             {
                 exploted = true;
                 Explote();
@@ -51,6 +51,7 @@ public class Missile : MonoBehaviour
     {
         while (true)
         {
+            yield return new WaitForSeconds(5f);
             yield return new WaitUntil(() => inScreen);
             if (!exploted && GameManager.Instance.OutOfLimits(transform.position))
             {
@@ -75,7 +76,7 @@ public class Missile : MonoBehaviour
 
     void ResetValues()
     {
-        speed = 4;
+        speed = 10;
         _objetive = null;
         _target = null;
         exploted = false;
@@ -88,7 +89,7 @@ public class Missile : MonoBehaviour
         var layerMask2 = 1 << 9;
         var layerMask = layerMask1 | layerMask2;
         List<PlayerController> playersHitted = new List<PlayerController>();
-        foreach (var enemy in Physics.OverlapSphere(transform.position, 5, layerMask).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player).Where(x => !x.isDead))
+        foreach (var enemy in Physics.OverlapSphere(transform.position, 5, layerMask).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => !playersHitted.Contains(x)).Where(x => x != player).Where(x => !x.isDead))
         {
             if (!enemy.stunnedByHit && !playersHitted.Contains(enemy))
             {
@@ -96,6 +97,7 @@ public class Missile : MonoBehaviour
                 OnHitPlayer(enemy);
                 enemy.ReceiveImpact((Vector3.right * Mathf.Sign((enemy.transform.position - transform.position).x) * 30), player);
                 enemy.SetLastOneWhoHittedMe(player);
+                DestroyedMissile();
             }
         }
         DestroyedMissile();

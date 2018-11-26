@@ -51,6 +51,10 @@ public class ForwardCharge : IHability
             player.myAnim.Play("Stunned");
             ResetValues();
         }
+        else
+        {
+            player.GetComponent<BerserkerParticlesManager>().StopCharge();
+        }
     }
 
     IEnumerator TimeToDisable()

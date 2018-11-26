@@ -628,7 +628,6 @@ public class PlayerController : MonoBehaviour
             maxTime -= effect.GetDelayTimer();
             yield return new WaitForSeconds(effect.GetDelayTimer());
         }
-
         effect.DisableEffect(this);
         if (effect is IFireEffect)
             StopCoroutine(CancelFireCoroutine(effect, maxTime));
@@ -668,9 +667,9 @@ public class PlayerController : MonoBehaviour
         {
             invulnerableRays = true;
             buffedPower = 2f;
-            GetComponent<BuffedPlayer>().halo.SetActive(true);
+            GetComponent<GeneralFeedback>().StartCristalBuff();
             yield return new WaitForSeconds(10f);
-            GetComponent<BuffedPlayer>().halo.SetActive(false);
+            GetComponent<GeneralFeedback>().FinishCristalBuff();
             invulnerableRays = false;
             buffedPower = 1;
             break;

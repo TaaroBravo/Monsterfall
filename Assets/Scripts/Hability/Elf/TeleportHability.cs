@@ -95,7 +95,23 @@ public class TeleportHability : IHability
     void Teleport()
     {
         if (_currentMissile)
-            player.transform.position = _currentMissile.transform.position - new Vector3(0, player.GetComponent<Collider>().bounds.extents.y, 0);
+        {
+            player.StartCoroutine(FeedbackTeleport());
+            //player.transform.position = _currentMissile.transform.position - new Vector3(0, player.GetComponent<Collider>().bounds.extents.y, 0);
+        }
+    }
+
+    IEnumerator FeedbackTeleport()
+    {
+        while (true)
+        {
+            MissileTeleport m = _currentMissile;
+            player.GetComponent<FeedbackElf>().StartTeleportFeedback();
+            yield return new WaitForSeconds(0.01f);
+            player.GetComponent<FeedbackElf>().FinishTeleportFeedback();
+            player.transform.position = m.transform.position - new Vector3(0, player.GetComponent<Collider>().bounds.extents.y, 0);
+            break;
+        }
     }
 
     public override void Release()
