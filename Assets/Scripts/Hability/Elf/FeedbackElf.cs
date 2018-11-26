@@ -24,7 +24,7 @@ public class FeedbackElf : MonoBehaviour
     }
     private void Update()
     {
-        DebugKeys();
+        //DebugKeys();
         XAxis = GetComponent<PlayerInput>().MainHorizontal();
         DashTrailEmission.rateOverDistance = teleporting ? 10 : 0; // trail del teleport
         if (!iminverted) // esto quizas lo tenga k cambiar
@@ -50,11 +50,11 @@ public class FeedbackElf : MonoBehaviour
             }
         }
     }
-    private void DebugKeys()
-    {
-        if (Input.GetKeyDown(KeyCode.L)) StartTeleportFeedback();
-        if (Input.GetKeyDown(KeyCode.P)) FinishTeleportFeedback();
-    }
+    //private void DebugKeys()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.M)) StartTeleportFeedback();
+    //    if (Input.GetKeyDown(KeyCode.P)) FinishTeleportFeedback();
+    //}
     public void StartTeleportFeedback()
     {
         teleporting = true;
