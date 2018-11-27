@@ -74,6 +74,7 @@ public class TeleportHability : IHability
         MissileTeleport missile = ObjectPoolManager.Instance.GetObject<MissileTeleport>();
         missile.transform.position = spawnPoint;
         missile.SetDir(player, dir);
+        missile.ChangeColor(_elfPlayer.GetComponent<PlayerInput>().player_number);
         missile.OnDestroyMissile += x => ReturnBullet(x);
         missile.OnHitPlayer += x => HitPlayer(x);
         _currentMissile = missile;

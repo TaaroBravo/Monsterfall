@@ -78,4 +78,9 @@ public class MissileTeleport : MonoBehaviour {
             break;
         }
     }
+
+    public void ChangeColor(int ID)
+    {
+
+    }
 }

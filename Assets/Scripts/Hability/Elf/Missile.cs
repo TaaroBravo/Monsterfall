@@ -139,4 +139,9 @@ public class Missile : MonoBehaviour
             explotion.Play();
         }
     }
+
+    public void ChangeColor(int ID)
+    {
+
+    }
 }

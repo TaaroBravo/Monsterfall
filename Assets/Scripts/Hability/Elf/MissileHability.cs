@@ -143,6 +143,7 @@ public class MissileHability : IHability
         Missile missile = ObjectPoolManager.Instance.GetObject<Missile>();
         missile.transform.position = spawnPoint;
         missile.SetDir(player, dir);
+        missile.ChangeColor(_elfPlayer.GetComponent<PlayerInput>().player_number);
         missile.OnDestroyMissile += x => ReturnBullet(x);
     }
 
