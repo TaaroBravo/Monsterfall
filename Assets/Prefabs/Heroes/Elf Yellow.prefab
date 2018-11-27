@@ -6999,6 +6999,7 @@ MonoBehaviour:
   CristalBuff: {fileID: 198297515025185844}
   CristalBuff2: {fileID: 198415632179377608}
   iminverted: 0
+  reposition: 0
 --- !u!114 &114657606432817650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112675,7 +112676,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1510431846
+  randomSeed: -2012391983
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -114350,7 +114351,7 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
-    enabled: 1
+    enabled: 0
     multiplier: 1
   ClampVelocityModule:
     enabled: 0

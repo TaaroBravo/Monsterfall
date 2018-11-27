@@ -28,33 +28,10 @@ public class GeneralFeedback : MonoBehaviour {
     }
     private void Update()
     {
-        XAxis = GetComponent<PlayerInput>().MainHorizontal();
-        if (!iminverted)
-        {
-            if (XAxis > 0)
-            {
-                CristalBuffShape.rotation = new Vector3(0, 180, 0);
-                CristalBuffShape2.rotation = new Vector3(0, 180, 0);
-            }
-            else if (XAxis < 0)
-            {
-                CristalBuffShape.rotation = new Vector3(0, 0, 0);
-                CristalBuffShape2.rotation = new Vector3(0, 0, 0);
-            }
-        }
-        else
-        {
-            if (XAxis > 0)
-            {
-                CristalBuffShape.rotation = new Vector3(0, 0, 0);
-                CristalBuffShape2.rotation = new Vector3(0, 0, 0);
-            }
-            else if (XAxis < 0)
-            {
-                CristalBuffShape.rotation = new Vector3(0, 180, 0);
-                CristalBuffShape2.rotation = new Vector3(0, 180, 0);
-            }
-        }
+        //XAxis = GetComponent<PlayerInput>().MainHorizontal();
+        CristalBuff.gameObject.transform.eulerAngles = new Vector3(270, 180, 0);
+        if (!iminverted) ElfMark.gameObject.transform.eulerAngles = new Vector3(270, 180, 0);
+        else ElfMark.gameObject.transform.eulerAngles = new Vector3(90, 0, 0);
     }
     public void StartElfMark(int ID)
     {

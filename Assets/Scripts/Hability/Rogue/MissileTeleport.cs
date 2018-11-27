@@ -81,6 +81,7 @@ public class MissileTeleport : MonoBehaviour {
 
     public void ChangeColor(int ID)
     {
-
+        Debug.Log(ID);
+        GetComponent<ElfTeleportMissileFeedback>().ChangeColor(ID);
     }
 }
