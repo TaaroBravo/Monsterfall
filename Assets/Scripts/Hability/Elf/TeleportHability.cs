@@ -86,11 +86,17 @@ public class TeleportHability : IHability
             foreach (var target in _elfPlayer.targets)
             {
                 if (target == p)
+                {
+                    p.SetLastOneWhoHittedMe(_elfPlayer);
                     p.SetDamage(10);
+                }
             }
         }
         else
+        {
+            p.SetLastOneWhoHittedMe(_elfPlayer);
             p.SetDamage(5);
+        }
     }
 
     void Teleport()

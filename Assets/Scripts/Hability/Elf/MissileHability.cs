@@ -161,11 +161,15 @@ public class MissileHability : IHability
             return;
         if (_elfPlayer.targets.Contains(p))
         {
+            p.SetLastOneWhoHittedMe(_elfPlayer);
             p.SetDamage(15);
             _elfPlayer.DisableEffect(p);
         }
         else
+        {
+            p.SetLastOneWhoHittedMe(_elfPlayer);
             p.SetDamage(8);
+        }
     }
 
     public override void Release()
