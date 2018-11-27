@@ -39,18 +39,18 @@ public class TeleportHability : IHability
         //        maxTimer = 3;
         //}
         /*else */
-        if (missileMoving)
-        {
-            if (currentTimer < maxTimer)
-                currentTimer += Time.deltaTime;
-            else
-            {
-                if (_currentMissile)
-                    ReturnBullet(_currentMissile);
-                missileMoving = false;
-                ResetValues();
-            }
-        }
+        //if (missileMoving)
+        //{
+        //    if (currentTimer < maxTimer)
+        //        currentTimer += Time.deltaTime;
+        //    else
+        //    {
+        //        if (_currentMissile)
+        //            ReturnBullet(_currentMissile);
+        //        missileMoving = false;
+        //        ResetValues();
+        //    }
+        //}
     }
 
     public override void Hability()
@@ -64,6 +64,7 @@ public class TeleportHability : IHability
             timerCoolDown = coolDown;
             activeTimer = false;
             missileMoving = true;
+            player.StartCoroutine(TimeToTeleport());
             player.lifeHUD.ActivateDashCD();
         }
     }
@@ -100,6 +101,17 @@ public class TeleportHability : IHability
             //player.transform.position = _currentMissile.transform.position - new Vector3(0, player.GetComponent<Collider>().bounds.extents.y, 0);
         }
     }
+
+    IEnumerator TimeToTeleport()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+            ReturnBullet(_currentMissile);
+            break;
+        }
+    }
+
 
     IEnumerator FeedbackTeleport()
     {

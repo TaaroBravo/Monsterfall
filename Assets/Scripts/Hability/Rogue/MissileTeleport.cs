@@ -42,7 +42,7 @@ public class MissileTeleport : MonoBehaviour {
 
     void ResetValues()
     {
-        speed = 4;
+        speed = 12;
         _targets.Clear();
     }
 
@@ -72,9 +72,9 @@ public class MissileTeleport : MonoBehaviour {
     {
         while(true)
         {
-            transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+            transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
             yield return new WaitForSeconds(0.1f);
-            transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+            transform.GetChild(1).GetComponent<ParticleSystem>().Play();
             break;
         }
     }

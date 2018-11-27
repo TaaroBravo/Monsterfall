@@ -68,10 +68,7 @@ public class ParticlePuños : MonoBehaviour
     void ResetEmission()
     {
         TimerDeActivacion = 0;
-        if (puñoderecho)
-        {
-            puñoder.rateOverDistance = 0;
-            puñoizq.rateOverDistance = 0;
-        }
+        puñoder.rateOverDistance = 0;
+        puñoizq.rateOverDistance = 0;
     }
 }

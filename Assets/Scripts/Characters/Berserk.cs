@@ -21,7 +21,7 @@ public class Berserk : PlayerController
     {
         base.Start();
         superPunch = new IBerserkPunch(this, 15);
-        lifeHUD.Set(8, chargeCooldown * 2, myLife);
+        lifeHUD.Set(8, chargeCooldown * 1.5f, myLife);
         SetAttacks();
         SetHabilities();
     }

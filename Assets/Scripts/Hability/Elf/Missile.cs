@@ -51,8 +51,8 @@ public class Missile : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f);
             yield return new WaitUntil(() => inScreen);
+            yield return new WaitForSeconds(1f);
             if (!exploted && GameManager.Instance.OutOfLimits(transform.position))
             {
                 exploted = true;
