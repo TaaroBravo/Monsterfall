@@ -569,7 +569,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1109165276679166
 GameObject:
   m_ObjectHideFlags: 1
@@ -8321,6 +8321,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ElfMark: {fileID: 198385740599474788}
   CristalBuff: {fileID: 198820740990664120}
+  CristalBuff2: {fileID: 198830387069640942}
+  iminverted: 0
 --- !u!114 &114365598982452742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -46063,7 +46065,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1476534968
+  randomSeed: -166016471
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -47957,7 +47959,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.8
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
