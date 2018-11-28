@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1bbd86e2a605d9e48af0e2a6a10e4588
-timeCreated: 1543112852
+guid: 00b7f81601e0cd943a4b2ac1433c3c08
+timeCreated: 1543383834
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -283,7 +283,7 @@ ModelImporter:
     400274: //RootNode
     2100000: 03 - Default
     4300000: Elf_Body
-    7400000: AttackForwardMA
+    7400000: AttackUpMA
     9500000: //RootNode
     13700000: Elf_Body
   externalObjects: {}
@@ -314,10 +314,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: AttackForwardMA
+      name: AttackUpMA
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 15
+      lastFrame: 16
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

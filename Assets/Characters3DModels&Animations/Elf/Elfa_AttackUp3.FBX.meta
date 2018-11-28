@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 0e0053383dc44e14abf27c7c653b49aa
-timeCreated: 1543112850
+guid: 7ce4e274553330040a2c40e7731384c2
+timeCreated: 1543383838
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -318,7 +318,7 @@ ModelImporter:
       name: AttackUp
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 17
+      lastFrame: 16
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
