@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: b4cbd8939f1cd514cbe7470c170520c2
+timeCreated: 1543484605
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _balltexttest: {fileID: 2800000, guid: b7672c74ebaeffb41b886ad3f12012b9, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

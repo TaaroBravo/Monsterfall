@@ -11,6 +11,8 @@ public class GeneralFeedback : MonoBehaviour {
     public ParticleSystem CristalBuff2;
     public ParticleSystem.ShapeModule CristalBuffShape;
     public ParticleSystem.ShapeModule CristalBuffShape2;
+    public ParticleSystem Lightning;
+    public Material LightningMat;
     float XAxis;
     public bool iminverted;
     public bool reposition;
@@ -41,4 +43,10 @@ public class GeneralFeedback : MonoBehaviour {
     public void FinishElfMark() { ElfMark.Stop(); }
     public void StartCristalBuff() { CristalBuff.Play(); }
     public void FinishCristalBuff() { CristalBuff.Stop(); }
+    public void StartLightning(int ID)
+    {
+        Lightning.Play();
+        LightningMat.SetColor("_Tinte", PColors[ID]);
+    }
+    public void FinishLightning() { Lightning.Stop(); }
 }
