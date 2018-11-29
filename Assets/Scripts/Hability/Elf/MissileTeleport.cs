@@ -4,7 +4,8 @@ using UnityEngine;
 using System;
 using System.Linq;
 
-public class MissileTeleport : MonoBehaviour {
+public class MissileTeleport : MonoBehaviour
+{
 
     PlayerController player;
     List<PlayerController> _targets = new List<PlayerController>();
@@ -16,7 +17,7 @@ public class MissileTeleport : MonoBehaviour {
 
     void Start()
     {
-        speed = 12;
+        speed = 35;
     }
 
     void Update()
@@ -37,12 +38,15 @@ public class MissileTeleport : MonoBehaviour {
     public void SetDir(PlayerController p, Vector3 dir)
     {
         player = p;
-        _dir = dir;
+        if (dir != Vector3.zero)
+            _dir = dir;
+        else
+            _dir = new Vector3(Mathf.Sign(player.transform.localScale.z), 0, 0);
     }
 
     void ResetValues()
     {
-        speed = 12;
+        speed = 35;
         _targets.Clear();
     }
 
@@ -75,7 +79,7 @@ public class MissileTeleport : MonoBehaviour {
 
     IEnumerator OffParticles()
     {
-        while(true)
+        while (true)
         {
             transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
             yield return new WaitForSeconds(0.1f);

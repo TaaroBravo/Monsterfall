@@ -11,6 +11,7 @@ public class Missile : MonoBehaviour
     PlayerController _target;
     public event Action<Missile> OnDestroyMissile = delegate { };
     public event Action<PlayerController> OnHitPlayer = delegate { };
+    public event Action OutOfScreen = delegate { };
 
     public ParticleSystem explotion;
 
@@ -19,7 +20,7 @@ public class Missile : MonoBehaviour
 
     Transform _objetive;
     bool exploted;
-    bool inScreen;
+    public bool inScreen;
 
     void Start()
     {
@@ -32,6 +33,8 @@ public class Missile : MonoBehaviour
     {
         if (!GameManager.Instance.OutOfLimits(transform.position))
             inScreen = true;
+        else
+            OutOfScreen();
         transform.position += _dir * speed * Time.deltaTime;
         speed += Time.deltaTime * 20;
         if (_objetive && !exploted)

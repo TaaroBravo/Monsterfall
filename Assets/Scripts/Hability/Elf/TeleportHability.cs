@@ -65,6 +65,8 @@ public class TeleportHability : IHability
             timerCoolDown = coolDown;
             activeTimer = false;
             missileMoving = true;
+            _elfPlayer.canMove = false;
+            _elfPlayer.moveVector.x = 0;
             player.StartCoroutine(TimeToTeleport());
             player.lifeHUD.ActivateDashCD();
         }
@@ -73,6 +75,7 @@ public class TeleportHability : IHability
     void Shoot(Vector3 spawnPoint, Vector3 dir)
     {
         //MissileTeleport missile = ObjectPoolManager.Instance.GetObject<MissileTeleport>();
+        Debug.Log(dir);
         MissileTeleport missile = GameObject.Instantiate(_missilePrefab);
         missile.transform.position = spawnPoint;
         missile.SetDir(player, dir);
@@ -116,7 +119,7 @@ public class TeleportHability : IHability
     {
         while (true)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.6f);
             ReturnBullet(_currentMissile);
             break;
         }
@@ -166,7 +169,6 @@ public class TeleportHability : IHability
         float dirY = 0;
         if (Mathf.Abs(dir.y) * Mathf.Sign(dir.y) == 1)
         {
-            Debug.Log("Case 1 ---------");
             if (Mathf.Abs(dir.x) == 1)
             {
                 dirX = Mathf.Sign(dir.x);
@@ -182,7 +184,6 @@ public class TeleportHability : IHability
         }
         else if (Mathf.Abs(dir.y) * Mathf.Sign(dir.y) == -1)
         {
-            Debug.Log("Case 2 ---------");
             if (Mathf.Abs(dir.x) == 1)
             {
                 dirX = Mathf.Sign(dir.x);
@@ -198,7 +199,6 @@ public class TeleportHability : IHability
         }
         else
         {
-            Debug.Log("Case 3 ---------");
             dirY = 0;
             if (Mathf.Abs(dir.x) == 1)
                 dirX = Mathf.Sign(dir.x);
@@ -214,6 +214,7 @@ public class TeleportHability : IHability
     #region Pool
     void ReturnBullet(MissileTeleport m)
     {
+        _elfPlayer.canMove = true;
         Teleport();
         //m.OnDestroyMissile -= x => ReturnBullet(x);
         //m.OnHitPlayer -= x => HitPlayer(x);
