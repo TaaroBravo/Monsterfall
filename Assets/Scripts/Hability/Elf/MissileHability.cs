@@ -12,10 +12,13 @@ public class MissileHability : IHability
     Transform[] _randomPositions;
     Missile _missilePrefab;
 
-    float currentTimer;
-    float maxTimer;
+    //float currentTimer;
+    //float maxTimer;
     bool activeTimer;
     bool usingHability;
+
+    Missile _shootMissile;
+    bool inScreen;
 
     public MissileHability(PlayerController p, Missile missilePrefab, float _timerCoolDown = 0)
     {
@@ -25,17 +28,18 @@ public class MissileHability : IHability
         coolDown = _timerCoolDown;
         _randomPositions = _elfPlayer.randomPositions;
         _missilePrefab = missilePrefab;
-        maxTimer = 3f;
+        //maxTimer = 3f;
         //ObjectPoolManager.Instance.AddObjectPool<Missile>(InstantiateBullet, Initializate, Finalizate, 50, false);
     }
 
     public override void Update()
     {
         base.Update();
-        if (currentTimer < maxTimer && usingHability)
-            currentTimer += Time.deltaTime;
-        else if (activeTimer)
+        //if (currentTimer < maxTimer && usingHability)
+        //    currentTimer += Time.deltaTime;
+        if (activeTimer && !inScreen)
         {
+            Debug.Log("AAA");
             for (int i = 0; i < 6; i++)
             {
                 #region Shoots
@@ -44,13 +48,13 @@ public class MissileHability : IHability
                     if (i < 2)
                     {
                         Transform objetive = _elfPlayer.targets[0].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 40 + UnityEngine.Random.Range(0, 5f), objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), 70 + UnityEngine.Random.Range(0, 2f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[0]);
                     }
                     else
                     {
                         Transform objetive = _randomPositions[CalculateCoef()]; //Random cerca del objetivo con rulete
-                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 40 + UnityEngine.Random.Range(0, 5f), objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), 70 + UnityEngine.Random.Range(0, 2f), objetive.position.z);
                         Shoot(spawnPoint, objetive);
                     }
                 }
@@ -59,19 +63,19 @@ public class MissileHability : IHability
                     if (i < 2)
                     {
                         Transform objetive = _elfPlayer.targets[0].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 40 + UnityEngine.Random.Range(0, 5f), objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), 70 + UnityEngine.Random.Range(0, 2f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[0]);
                     }
                     else if (i < 4)
                     {
                         Transform objetive = _elfPlayer.targets[1].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 40 + UnityEngine.Random.Range(0, 5f), objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), 70 + UnityEngine.Random.Range(0, 2f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[1]);
                     }
                     else
                     {
                         Transform objetive = _randomPositions[CalculateCoef()];  //Random cerca del objetivo con rulete
-                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 40 + UnityEngine.Random.Range(0, 5f), objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), 70 + UnityEngine.Random.Range(0, 2f), objetive.position.z);
                         Shoot(spawnPoint, objetive);
                     }
                 }
@@ -80,26 +84,26 @@ public class MissileHability : IHability
                     if (i < 2)
                     {
                         Transform objetive = _elfPlayer.targets[0].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 40 + UnityEngine.Random.Range(0, 5f), objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), 70 + UnityEngine.Random.Range(0, 2f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[0]);
                     }
                     else if (i < 4)
                     {
                         Transform objetive = _elfPlayer.targets[1].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 40 + UnityEngine.Random.Range(0, 5f), objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), 70 + UnityEngine.Random.Range(0, 2f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[1]);
                     }
                     else
                     {
                         Transform objetive = _elfPlayer.targets[2].transform;
-                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 40 + UnityEngine.Random.Range(0, 5f), objetive.position.z);
+                        Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), 70 + UnityEngine.Random.Range(0, 2f), objetive.position.z);
                         Shoot(spawnPoint, objetive, _elfPlayer.targets[2]);
                     }
                 }
                 else
                 {
                     Transform objetive = _randomPositions[CalculateCoef()];
-                    Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), objetive.position.y + 40 + UnityEngine.Random.Range(0, 5f), objetive.position.z);
+                    Vector3 spawnPoint = new Vector3(objetive.position.x + UnityEngine.Random.Range(0, 3f), 70 + UnityEngine.Random.Range(0, 2f), objetive.position.z);
                     Shoot(spawnPoint, objetive);
                 }
                 #endregion
@@ -114,6 +118,7 @@ public class MissileHability : IHability
         if (timerCoolDown < 0 && !usingHability)
         {
             usingHability = true;
+            inScreen = true;
             player.usingHability = true;
             FeedbackPlay();
             player.StartCoroutine(FeedbackCantMove());
@@ -138,6 +143,12 @@ public class MissileHability : IHability
         }
     }
 
+    void FirstOutOfScreen()
+    {
+        Debug.Log("--------------------------");
+        inScreen = false;
+    }
+
     void Shoot(Vector3 spawnPoint, Vector3 dir)
     {
         //Missile missile = ObjectPoolManager.Instance.GetObject<Missile>();
@@ -145,6 +156,7 @@ public class MissileHability : IHability
         missile.transform.position = spawnPoint;
         missile.SetDir(player, dir);
         missile.ChangeColor(_elfPlayer.GetComponent<PlayerInput>().player_number);
+        missile.OutOfScreen += () => FirstOutOfScreen();
         missile.OnDestroyMissile += x => ReturnBullet(x);
     }
 
@@ -185,7 +197,7 @@ public class MissileHability : IHability
     {
         usingHability = false;
         player.usingHability = false;
-        currentTimer = 0;
+        //currentTimer = 0;
     }
 
     void FeedbackPlay()

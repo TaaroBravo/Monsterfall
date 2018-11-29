@@ -66,9 +66,14 @@ public class DownAttack : IAttack
                     else
                         target.ReceiveImpact(new Vector3(0, -CalculateImpact(currentPressed), 0), player, false, true);
 
-                    if (!(player is Rogue) && !(player is Berserk))
+                    if (!(player is Rogue) && !(player is Berserk) && !(player is Pirate))
                     {
                         target.SetDamage(10 * player.buffedPower);
+                        target.ApplyEffect(effect);
+                    }
+                    else if (player is Pirate)
+                    {
+                        target.SetDamage(17 * player.buffedPower);
                         target.ApplyEffect(effect);
                     }
                     else
