@@ -150,11 +150,13 @@ public class CreatorRays : MonoBehaviour
             rayObject.GetComponent<MeshFilter>().mesh = mesh;
             rayObject.GetComponent<MeshRenderer>().material = material;
             rayObject.tag = "CristalRay";
+            rayObject.GetComponent<DynamicCristal>().CalculateCollisions(positions);
         }
         else
         {
             currentMesh.GetComponent<MeshFilter>().mesh = mesh;
             currentMesh.GetComponent<MeshRenderer>().material = material;
+            currentMesh.GetComponent<DynamicCristal>().CalculateCollisions(positions);
         }
 
     }

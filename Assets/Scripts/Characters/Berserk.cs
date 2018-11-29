@@ -17,6 +17,9 @@ public class Berserk : PlayerController
     public bool chargeAttack;
     public bool recovery;
 
+    public bool usingBearHability;
+    public bool usingChargeHability;
+
     public override void Start()
     {
         base.Start();
@@ -54,6 +57,7 @@ public class Berserk : PlayerController
     public void HabilityRecovery()
     {
         recovery = true;
+        usingBearHability = false;
     }
 
     private void SetAttacks()
@@ -65,7 +69,7 @@ public class Berserk : PlayerController
 
     void SetHabilities()
     {
-        hability.Add(typeof(BearAttackHability).ToString(), new BearAttackHability(this, 15, 5f, 0.9f, 5f));
+        hability.Add(typeof(BearAttackHability).ToString(), new BearAttackHability(this, 15, 5f, 1.4f, 5f));
         hability.Add(typeof(ForwardCharge).ToString(), new ForwardCharge(this, chargeSpeed, chargeCooldown));
         myHability = BerserkHability;
         movementHability = MovementHability;
@@ -73,8 +77,6 @@ public class Berserk : PlayerController
 
     public void BerserkStompHability()
     {
-        //si no estoy stuneado.
-        //if (!stunnedByHit)
-        //    OnStompHability();
+
     }
 }

@@ -26,7 +26,7 @@ public class TeleportHability : IHability
         coolDown = _timerCoolDown;
         _missilePrefab = missilePrefab;
         maxTimer = 1.7f;
-        ObjectPoolManager.Instance.AddObjectPool<MissileTeleport>(InstantiateBullet, Initializate, Finalizate, 6, false);
+        //ObjectPoolManager.Instance.AddObjectPool<MissileTeleport>(InstantiateBullet, Initializate, Finalizate, 6, false);
     }
 
     public override void Update()
@@ -71,7 +71,8 @@ public class TeleportHability : IHability
 
     void Shoot(Vector3 spawnPoint, Vector3 dir)
     {
-        MissileTeleport missile = ObjectPoolManager.Instance.GetObject<MissileTeleport>();
+        //MissileTeleport missile = ObjectPoolManager.Instance.GetObject<MissileTeleport>();
+        MissileTeleport missile = GameObject.Instantiate(_missilePrefab);
         missile.transform.position = spawnPoint;
         missile.SetDir(player, dir);
         missile.ChangeColor(_elfPlayer.GetComponent<PlayerInput>().player_number);
@@ -129,6 +130,7 @@ public class TeleportHability : IHability
             yield return new WaitForSeconds(0.01f);
             player.GetComponent<FeedbackElf>().FinishTeleportFeedback();
             player.transform.position = m.transform.position - new Vector3(0, player.GetComponent<Collider>().bounds.extents.y, 0);
+            m.DestroyMissile();
             break;
         }
     }
@@ -165,10 +167,11 @@ public class TeleportHability : IHability
     void ReturnBullet(MissileTeleport m)
     {
         Teleport();
-        m.OnDestroyMissile -= x => ReturnBullet(x);
-        m.OnHitPlayer -= x => HitPlayer(x);
+        //m.OnDestroyMissile -= x => ReturnBullet(x);
+        //m.OnHitPlayer -= x => HitPlayer(x);
         ResetValues();
-        ObjectPoolManager.Instance.ReturnObject<MissileTeleport>(m);
+        //m.DestroyMissile();
+        //ObjectPoolManager.Instance.ReturnObject<MissileTeleport>(m);
     }
 
     MissileTeleport InstantiateBullet()

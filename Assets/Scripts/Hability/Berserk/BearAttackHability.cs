@@ -19,8 +19,6 @@ public class BearAttackHability : IHability
     bool failed;
 
     Berserk berserkPlayer;
-
-    bool usingHability;
     bool isGrounded;
 
     public BearAttackHability(Berserk _player, float power, float damage, float activeTime, float _cooldown)
@@ -38,10 +36,10 @@ public class BearAttackHability : IHability
     public override void Update()
     {
         base.Update();
-        if (!berserkPlayer.chargeAttack && berserkPlayer.recovery && !usingHability)
+        if (!berserkPlayer.chargeAttack && berserkPlayer.recovery && !berserkPlayer.usingBearHability)
             ResetValues();
 
-        if (player.usingHability && !failed && !berserkPlayer.chargeAttack && usingHability)
+        if (player.usingHability && !failed && !berserkPlayer.chargeAttack && berserkPlayer.usingBearHability)
         {
             if (!isGrounded)
                 JumpAttack();
@@ -71,7 +69,7 @@ public class BearAttackHability : IHability
             player.verticalVelocity = player.jumpForce;
             player.canMove = false;
             player.usingHability = true;
-            usingHability = true;
+            berserkPlayer.usingBearHability = true;
             timerActive = maxTimer;
             player.myAnim.Play("SkillLoad");
             player.StartCoroutine(LoadAttack());
@@ -181,7 +179,7 @@ public class BearAttackHability : IHability
         timerCoolDown = coolDown;
         player.canMove = true;
         player.usingHability = false;
-        usingHability = false;
+        berserkPlayer.usingBearHability = false;
         isGrounded = false;
     }
 

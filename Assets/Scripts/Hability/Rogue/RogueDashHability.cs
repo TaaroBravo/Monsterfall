@@ -100,7 +100,12 @@ public class RogueDashHability : IHability
             RaycastHit hit;
             if (Physics.Raycast(player.transform.position, _dir, out hit, 30))
             {
-                if (hit.collider.gameObject.tag == "Borders" && (hit.point - player.transform.position).magnitude < 6f)
+                if(hit.collider.gameObject.layer == 17 || (hit.collider.gameObject.layer == 19 && hit.collider.gameObject.tag == "Limit"))
+                {
+                    GameManager.Instance.RegisterLastPos(player, hit.point);
+                    finalPos = hit.point;
+                }
+                else if (hit.collider.gameObject.tag == "Borders" && (hit.point - player.transform.position).magnitude < 6f)
                 {
                     GameManager.Instance.RegisterLastPos(player, hit.point);
                     finalPos = hit.point;

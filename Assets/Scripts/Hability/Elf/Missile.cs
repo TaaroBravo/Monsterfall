@@ -140,9 +140,13 @@ public class Missile : MonoBehaviour
         }
     }
 
+    public void DestroyMissile()
+    {
+        Destroy(gameObject);
+    }
+
     public void ChangeColor(int ID)
     {
-        Debug.Log(ID);
         GetComponent<FeedbackMissile>().ChangeColor(ID);
     }
 }

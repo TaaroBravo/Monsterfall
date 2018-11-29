@@ -37,7 +37,7 @@ public class UpAttack : IAttack
     {
         if (timerCoolDownAttack < 0)
         {
-            ps = player.PS_Impact;
+            //ps = player.PS_Impact;
             player.myAnim.SetBool("ReleaseAUp", true);
             if (player.myAnim.GetBool("Grounded"))
                 player.myAnim.Play("AttackUp");
@@ -54,16 +54,17 @@ public class UpAttack : IAttack
                 PlayerController target = TargetScript(c.transform);
                 if (target == player)
                     continue;
-                player.hitParticles.Play();
+                ps = player.PS_Impact;
                 if (target != null && !hitPlayers.Contains(target))
                 {
+                    player.hitParticles.Play();
                     hitPlayers.Add(target);
                     if (player.GetComponent<BerserkerParticlesManager>()) player.GetComponent<BerserkerParticlesManager>().PlayAttackParticle();
                     if (!(player is Berserk))
                         target.ReceiveImpact(new Vector3(0, CalculateImpact(currentPressed), 0), player, currentPressed >= maxPressed);
                     else
                         target.ReceiveImpact(new Vector3(0, CalculateImpact(currentPressed), 0), player, false, true);
-                    
+
                     if (!(player is Rogue) && !(player is Berserk))
                     {
                         target.SetDamage(10 * player.buffedPower);

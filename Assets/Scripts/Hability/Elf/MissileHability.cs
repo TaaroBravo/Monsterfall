@@ -26,7 +26,7 @@ public class MissileHability : IHability
         _randomPositions = _elfPlayer.randomPositions;
         _missilePrefab = missilePrefab;
         maxTimer = 3f;
-        ObjectPoolManager.Instance.AddObjectPool<Missile>(InstantiateBullet, Initializate, Finalizate, 50, false);
+        //ObjectPoolManager.Instance.AddObjectPool<Missile>(InstantiateBullet, Initializate, Finalizate, 50, false);
     }
 
     public override void Update()
@@ -140,7 +140,8 @@ public class MissileHability : IHability
 
     void Shoot(Vector3 spawnPoint, Vector3 dir)
     {
-        Missile missile = ObjectPoolManager.Instance.GetObject<Missile>();
+        //Missile missile = ObjectPoolManager.Instance.GetObject<Missile>();
+        Missile missile = GameObject.Instantiate(_missilePrefab);
         missile.transform.position = spawnPoint;
         missile.SetDir(player, dir);
         missile.ChangeColor(_elfPlayer.GetComponent<PlayerInput>().player_number);
@@ -149,9 +150,11 @@ public class MissileHability : IHability
 
     void Shoot(Vector3 spawnPoint, Transform objetive, PlayerController target = null)
     {
-        Missile missile = ObjectPoolManager.Instance.GetObject<Missile>();
+        //Missile missile = ObjectPoolManager.Instance.GetObject<Missile>();
+        Missile missile = GameObject.Instantiate(_missilePrefab);
         missile.transform.position = spawnPoint;
         missile.SetObjetive(player, objetive, target);
+        missile.ChangeColor(_elfPlayer.GetComponent<PlayerInput>().player_number);
         missile.OnDestroyMissile += x => ReturnBullet(x);
         missile.OnHitPlayer += x => HitPlayer(x);
     }
@@ -194,9 +197,10 @@ public class MissileHability : IHability
     #region Pool
     void ReturnBullet(Missile m)
     {
-        m.OnDestroyMissile -= x => ReturnBullet(x);
-        m.OnHitPlayer -= x => HitPlayer(x);
-        ObjectPoolManager.Instance.ReturnObject<Missile>(m);
+        //m.OnDestroyMissile -= x => ReturnBullet(x);
+        //m.OnHitPlayer -= x => HitPlayer(x);
+        //ObjectPoolManager.Instance.ReturnObject<Missile>(m);
+        m.DestroyMissile();
     }
 
     Missile InstantiateBullet()

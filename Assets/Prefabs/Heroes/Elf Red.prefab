@@ -7138,9 +7138,9 @@ MonoBehaviour:
   onFire: 0
   targets: []
   randomPositions: []
-  missilePrefab: {fileID: 114825259118490604, guid: 609d145b5bb4c6f449f76d4644240386,
+  missilePrefab: {fileID: 114520546250196438, guid: 4e46b2aea110af6439b3de332c752718,
     type: 2}
-  missileTeleportPrefab: {fileID: 114598554814745560, guid: 3145925bf7dd8dd418d829c17ca0e17f,
+  missileTeleportPrefab: {fileID: 114675754052890764, guid: 703d40544910ca240b2aa027ec131443,
     type: 2}
 --- !u!122 &122985076789309266
 Halo:

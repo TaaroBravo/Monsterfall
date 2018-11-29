@@ -58,6 +58,11 @@ public class MissileTeleport : MonoBehaviour {
         //Todo el feedback
     }
 
+    public void DestroyMissile()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp"))

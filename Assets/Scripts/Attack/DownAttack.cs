@@ -36,7 +36,7 @@ public class DownAttack : IAttack
     {
         if (timerCoolDownAttack < 0)
         {
-            ps = player.PS_Impact;
+            //ps = player.PS_Impact;
             player.myAnim.SetBool("ReleaseADown", true);
             if (player.myAnim.GetBool("Grounded"))
                 player.myAnim.Play("AttackDown");
@@ -55,9 +55,10 @@ public class DownAttack : IAttack
                 PlayerController target = TargetScript(c.transform);
                 if (target == player)
                     continue;
-                player.hitParticles.Play();
+                ps = player.PS_Impact;
                 if (target != null && !hitPlayers.Contains(target))
                 {
+                    player.hitParticles.Play();
                     hitPlayers.Add(target);
                     if (player.GetComponent<BerserkerParticlesManager>()) player.GetComponent<BerserkerParticlesManager>().PlayAttackParticle();
                     if (!(player is Berserk))
