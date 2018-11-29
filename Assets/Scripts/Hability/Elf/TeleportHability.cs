@@ -60,7 +60,7 @@ public class TeleportHability : IHability
         {
             player.usingHability = true; //Quizas remplazar esto por una de dash
             Vector3 dir = CalculateDirection();
-            FeedbackPlay(dir);
+            dir = FeedbackPlay(dir);
             Shoot(player.GetComponent<FeedbackElf>().spawnPointDash.position, dir);
             timerCoolDown = coolDown;
             activeTimer = false;
@@ -84,6 +84,7 @@ public class TeleportHability : IHability
 
     void HitPlayer(PlayerController p)
     {
+        p.GetComponent<GeneralFeedback>().StartLightning(_elfPlayer.GetComponent<PlayerInput>().player_number);
         if (_elfPlayer.targets.Contains(p))
         {
             foreach (var target in _elfPlayer.targets)
@@ -158,27 +159,56 @@ public class TeleportHability : IHability
         currentTimer = 0;
     }
 
-    void FeedbackPlay(Vector3 dir)
+    Vector3 FeedbackPlay(Vector3 dir)
     {
         player.GetComponent<FeedbackElf>().shootDashFire.Play();
-        if (Mathf.Sign(dir.y) == 1)
+        float dirX = 0;
+        float dirY = 0;
+        if (Mathf.Abs(dir.y) * Mathf.Sign(dir.y) == 1)
         {
-            if (Mathf.Sign(dir.x) == 1)
+            Debug.Log("Case 1 ---------");
+            if (Mathf.Abs(dir.x) == 1)
+            {
+                dirX = Mathf.Sign(dir.x);
+                dirY = 1;
                 player.myAnim.Play("DashUpForward");
+            }
             else
+            {
+                dirX = 0;
+                dirY = 1;
                 player.myAnim.Play("DashUp");
+            }
         }
-        else if (Mathf.Sign(dir.y) == -1)
+        else if (Mathf.Abs(dir.y) * Mathf.Sign(dir.y) == -1)
         {
-            if (Mathf.Sign(dir.x) == 1)
+            Debug.Log("Case 2 ---------");
+            if (Mathf.Abs(dir.x) == 1)
+            {
+                dirX = Mathf.Sign(dir.x);
+                dirY = -1;
                 player.myAnim.Play("DashDownForward");
+            }
             else
+            {
+                dirX = 0;
+                dirY = -1;
                 player.myAnim.Play("DashDown");
+            }
         }
-        else if (Mathf.Sign(dir.y) == 0)
+        else
         {
+            Debug.Log("Case 3 ---------");
+            dirY = 0;
+            if (Mathf.Abs(dir.x) == 1)
+                dirX = Mathf.Sign(dir.x);
+            else
+                dirX = 0;
             player.myAnim.Play("DashForward");
         }
+        //if (dirX == 0)
+        //    dirX = Mathf.Abs(player.transform.localScale.z) * Mathf.Sign(player.transform.localScale.z);
+        return new Vector3(dirX, dirY);
     }
 
     #region Pool

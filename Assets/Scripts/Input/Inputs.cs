@@ -70,12 +70,12 @@ public class Inputs : MonoBehaviour
         //if (Input.GetKeyDown(startButton_J4))
         //    SetPlayerInput(0, ((int)playerIndices[3]) + 1);
 
-        if (Input.GetButtonDown(actionButton_K1))
-            SetPlayerInput(1, 1);
-        if (Input.GetButtonDown(actionButton_K2))
-            SetPlayerInput(1, 2);
-        if (Input.GetButtonDown(actionButton_K3))
-            SetPlayerInput(1, 3);
+        //if (Input.GetButtonDown(actionButton_K1))
+        //    SetPlayerInput(1, 1);
+        //if (Input.GetButtonDown(actionButton_K2))
+        //    SetPlayerInput(1, 2);
+        //if (Input.GetButtonDown(actionButton_K3))
+        //    SetPlayerInput(1, 3);
 
 
         //if (Input.GetButtonDown(rejectButton_J1))
@@ -95,12 +95,12 @@ public class Inputs : MonoBehaviour
         //if (Input.GetKeyDown("J_DownAttack_P" + (((int)playerIndices[3]) + 1)) && playersOrder.Count > 3)
         //    SetPlayerInput(0, ((int)playerIndices[3]) + 1);
 
-        if (Input.GetButtonDown(rejectButton_K1))
-            DisconnectPlayer(1, 1);
-        if (Input.GetButtonDown(rejectButton_K2))
-            DisconnectPlayer(1, 2);
-        if (Input.GetButtonDown(rejectButton_K3))
-            DisconnectPlayer(1, 3);
+        //if (Input.GetButtonDown(rejectButton_K1))
+        //    DisconnectPlayer(1, 1);
+        //if (Input.GetButtonDown(rejectButton_K2))
+        //    DisconnectPlayer(1, 2);
+        //if (Input.GetButtonDown(rejectButton_K3))
+        //    DisconnectPlayer(1, 3);
     }
 
     void SetUpActionsButtons()

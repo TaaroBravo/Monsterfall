@@ -81,35 +81,35 @@ public class PlayerInput : MonoBehaviour
                 //if (Mathf.Round(Input.GetAxisRaw(hability3Button)) < 0)
                 //    player.FallOff();
             }
-            if (Input.GetButtonDown(jumpButton))
-                player.Jump();
-            if (Input.GetButtonDown(hability1Button))
-                player.Dash("Pressed");
-            if (Input.GetButtonUp(hability1Button))
-                player.Dash("Realese");
-            if (Input.GetButtonDown(hability2Button))
-                player.Hability("Pressed");
-            if (Input.GetButtonUp(hability2Button))
-                player.Hability("Realese");
-            if (Input.GetButtonDown(hability3Button))
-                player.FallOff();
-            if (controller == Controller.J)
-            {
-                if (Mathf.Round(Input.GetAxisRaw(hability3Button)) < 0)
-                    player.FallOff();
-            }
-            if (Input.GetButtonDown(normalAttack))
-                player.AttackNormal("Pressed");
-            if (Input.GetButtonUp(normalAttack))
-                player.AttackNormal("Realese");
-            if (Input.GetButtonDown(downAttack))
-                player.AttackDown("Pressed");
-            if (Input.GetButtonUp(downAttack))
-                player.AttackDown("Realese");
-            if (Input.GetButtonDown(upAttack))
-                player.AttackUp("Pressed");
-            if (Input.GetButtonUp(upAttack))
-                player.AttackUp("Realese");
+            //if (Input.GetButtonDown(jumpButton))
+            //    player.Jump();
+            //if (Input.GetButtonDown(hability1Button))
+            //    player.Dash("Pressed");
+            //if (Input.GetButtonUp(hability1Button))
+            //    player.Dash("Realese");
+            //if (Input.GetButtonDown(hability2Button))
+            //    player.Hability("Pressed");
+            //if (Input.GetButtonUp(hability2Button))
+            //    player.Hability("Realese");
+            //if (Input.GetButtonDown(hability3Button))
+            //    player.FallOff();
+            //if (controller == Controller.J)
+            //{
+            //    if (Mathf.Round(Input.GetAxisRaw(hability3Button)) < 0)
+            //        player.FallOff();
+            //}
+            //if (Input.GetButtonDown(normalAttack))
+            //    player.AttackNormal("Pressed");
+            //if (Input.GetButtonUp(normalAttack))
+            //    player.AttackNormal("Realese");
+            //if (Input.GetButtonDown(downAttack))
+            //    player.AttackDown("Pressed");
+            //if (Input.GetButtonUp(downAttack))
+            //    player.AttackDown("Realese");
+            //if (Input.GetButtonDown(upAttack))
+            //    player.AttackUp("Pressed");
+            //if (Input.GetButtonUp(upAttack))
+            //    player.AttackUp("Realese");
         }
     }
 
