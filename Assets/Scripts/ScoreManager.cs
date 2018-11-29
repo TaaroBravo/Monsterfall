@@ -25,9 +25,16 @@ public class ScoreManager : MonoBehaviour
         roundNumber.sprite = roundCounters[round];
     }
 
-    public void LoadBars(List<PlayerInfo> playerInfo, Action callBack)
+    public void LoadBars(List<PlayerInfo> playerInfo, Action<List<PlayerInfo>> callBack, PlayerInfo alivePlayer)
     {
         playerInfo = playerInfo.OrderByDescending(x => x.newKills + x.previousKills).ToList();
+        if(alivePlayer != playerInfo.First() && alivePlayer.newKills + alivePlayer.previousKills == playerInfo.First().newKills + playerInfo.First().previousKills)
+        {
+            PlayerInfo tempFirst = playerInfo[0];
+            int index = playerInfo.FindIndex(0, playerInfo.Count(), x => x == alivePlayer);
+            playerInfo[0] = playerInfo[index];
+            playerInfo[index] = tempFirst;
+        }
         var maxKills = playerInfo.Select(x => x.newKills).First();
         if (maxKills >= 2)
             CalculateMVP(playerInfo.Select(x => x.player_number).First(), playerInfo.Select(x => x.characterChosen).First(), maxKills);
@@ -46,7 +53,7 @@ public class ScoreManager : MonoBehaviour
 
             playerInfo[i].round++;
         }
-        callBack();
+        callBack(playerInfo);
     }
 
     //TODO: Hacer que se calcule el daño que hizo al contrario y aparezca primero.

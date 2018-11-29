@@ -59,8 +59,9 @@ public class TeleportHability : IHability
         if (timerCoolDown < 0 && !_currentMissile)
         {
             player.usingHability = true; //Quizas remplazar esto por una de dash
-            FeedbackPlay();
-            Shoot(player.GetComponent<FeedbackElf>().spawnPointDash.position, CalculateDirection());
+            Vector3 dir = CalculateDirection();
+            FeedbackPlay(dir);
+            Shoot(player.GetComponent<FeedbackElf>().spawnPointDash.position, dir);
             timerCoolDown = coolDown;
             activeTimer = false;
             missileMoving = true;
@@ -157,10 +158,27 @@ public class TeleportHability : IHability
         currentTimer = 0;
     }
 
-    void FeedbackPlay()
+    void FeedbackPlay(Vector3 dir)
     {
         player.GetComponent<FeedbackElf>().shootDashFire.Play();
-        player.myAnim.Play("Dash");
+        if (Mathf.Sign(dir.y) == 1)
+        {
+            if (Mathf.Sign(dir.x) == 1)
+                player.myAnim.Play("DashUpForward");
+            else
+                player.myAnim.Play("DashUp");
+        }
+        else if (Mathf.Sign(dir.y) == -1)
+        {
+            if (Mathf.Sign(dir.x) == 1)
+                player.myAnim.Play("DashDownForward");
+            else
+                player.myAnim.Play("DashDown");
+        }
+        else if (Mathf.Sign(dir.y) == 0)
+        {
+            player.myAnim.Play("DashForward");
+        }
     }
 
     #region Pool

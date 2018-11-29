@@ -36,6 +36,8 @@ public class DynamicCristal : MonoBehaviour
         List<PlayerController> playersHitted = new List<PlayerController>();
         foreach (var player in players)
         {
+            if (player)
+                continue;
             Vector3 playerPosUp = new Vector3(player.transform.position.x, player.transform.position.y + player.GetComponent<Collider>().bounds.extents.y * 2, player.transform.position.z);
             Vector3 playerDirUp = (playerPosUp - cristal.position).normalized;
 

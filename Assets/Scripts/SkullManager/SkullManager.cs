@@ -8,7 +8,7 @@ public class SkullManager : MonoBehaviour {
 
     public void ActivateSkulls(int ammount) //se le pasa la cantidad de kills que obtuvo el player
     {
-        for (int i = 0; i < skulls.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             if (!skulls[i].normalstate && ammount > 0)
             {
@@ -19,7 +19,7 @@ public class SkullManager : MonoBehaviour {
     }
     public void NormalizeSkulls() // pone las calaveras amarillas como normales
     {
-        for (int i = 0; i < skulls.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             if (skulls[i].yellowstate)
                 skulls[i].Normalize();

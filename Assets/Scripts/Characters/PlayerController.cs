@@ -849,7 +849,6 @@ public class PlayerController : MonoBehaviour
         if (isDead)
             return;
         myLife -= Mathf.RoundToInt(damage);
-        //myLifeUI.TakeDamage(Mathf.RoundToInt(damage));
         lifeHUD.ReduceLife(Mathf.RoundToInt(damage));
         if (myLife <= 0 && !isDead)
         {

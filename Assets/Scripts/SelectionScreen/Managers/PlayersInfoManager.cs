@@ -8,6 +8,7 @@ public class PlayersInfoManager : MonoBehaviour {
     public static PlayersInfoManager Instance { get; private set; }
 
     public List<PlayerInfo> playersInfo = new List<PlayerInfo>();
+    public List<PlayerInfo> playersInfoOrder = new List<PlayerInfo>();
     public int playersCount;
 
     private void Awake()

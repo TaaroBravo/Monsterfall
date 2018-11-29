@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     public Transform crown;
     public Vector3 cube;
 
+    bool diesByPlayerHit;
+
     private void Awake()
     {
         Instance = this;
@@ -84,14 +86,21 @@ public class GameManager : MonoBehaviour
         if (infoManager.playersInfo.First().round > 0)
         {
             PlayerInfo firstPlayer = new PlayerInfo();
-            var numberOfKills = infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null).Select(x => x.newKills + x.previousKills);
-            foreach (var info in infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null))
-            {
-                if (info.newKills + info.previousKills == numberOfKills.OrderByDescending(z => z).First())
-                    firstPlayer = info;
-            }
-            if (myPlayers[firstPlayer.ID - 1] != null)
-                crown.position = myPlayers[firstPlayer.ID - 1].transform.position + (Vector3.up * 7);
+            var order = infoManager.playersInfo.OrderByDescending(x => x.newKills + x.previousKills).ToList();
+            if (infoManager.playersInfoOrder.Count > 0)
+                order = infoManager.playersInfoOrder.ToList();
+
+            firstPlayer = order.Where(x => alivePlayers.Select(y => y.GetComponent<PlayerInput>()).Where(y => y.player_number == x.player_number).First()).First();
+            var firstPlayerPosition = alivePlayers.Where(x => x.GetComponent<PlayerInput>().player_number == firstPlayer.player_number).First();
+            //firstPlayer = infoManager.playersInfo.Where(x => x.player_number == alivePlayers[0].GetComponent<PlayerInput>().player_number).First();
+            //var numberOfKills = infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null).Select(x => x.newKills + x.previousKills);
+            //foreach (var info in infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null))
+            //{
+            //    if (info.newKills + info.previousKills == numberOfKills.OrderByDescending(z => z).First())
+            //        firstPlayer = info;
+            //}
+            if (firstPlayerPosition != null)
+                crown.position = firstPlayerPosition.transform.position + (Vector3.up * 7);
             else
                 crown.position = Vector3.zero;
         }
@@ -102,7 +111,11 @@ public class GameManager : MonoBehaviour
         foreach (var info in infoManager.playersInfo)
         {
             if (info.player_number == player_number)
+            {
+                if (alivePlayers.Count == 2 || alivePlayers.Count == 1)
+                    diesByPlayerHit = true;
                 info.newKills++;
+            }
         }
     }
 
@@ -225,7 +238,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (player.GetComponent<PlayerInput>().id == info.ID)
                     {
-                        if (info.newKills + info.previousKills >= 10)
+                        if (info.newKills + info.previousKills >= 5)
                         {
                             if (alivePlayers.Contains(player))
                                 WinTheGame();
@@ -240,7 +253,7 @@ public class GameManager : MonoBehaviour
         {
             finishCanvas.SetActive(true);
             inGameCanvas.SetActive(false);
-            if (infoManager.playersInfo.First().round >= 8)
+            if (infoManager.playersInfo.First().round >= 19)
                 WinTheGame();
             else
                 StartCoroutine(StartNewRound());
@@ -253,7 +266,12 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            ScoreManager.Instance.LoadBars(infoManager.playersInfo, AllScoreFinished);
+            var firstPlayer = infoManager.playersInfo.Where(x => x.player_number == alivePlayers[0].GetComponent<PlayerInput>().player_number).First();
+            Debug.Log(firstPlayer.player_number);
+            if (firstPlayer != null && !diesByPlayerHit)
+                firstPlayer.newKills++;
+
+            ScoreManager.Instance.LoadBars(infoManager.playersInfo, AllScoreFinished, firstPlayer);
             yield return new WaitUntil(() => scoreFinished == true);
             yield return new WaitForSeconds(6f);
             ObjectPoolManager.Instance.Clean();
@@ -262,11 +280,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //TODO: Falta hacer que cuando se termine la ronda o cuando llegue a 10 kils ganes y se reinicie todo.
-
-    void AllScoreFinished()
+    void AllScoreFinished(List<PlayerInfo> infos)
     {
         scoreFinished = true;
+        infoManager.playersInfoOrder = infos;
     }
 
     IEnumerator StartNewGame()

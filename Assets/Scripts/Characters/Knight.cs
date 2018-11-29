@@ -21,7 +21,7 @@ public class Knight : PlayerController {
     public override void Start()
     {
         base.Start();
-        _fireEffect = new IFireEffect(0.5f, 4f, 0.4f);
+        _fireEffect = new IFireEffect(1f, 4f, 0.4f);
         lifeHUD.Set(punchCooldown, forcedJumpCooldown, myLife);
         SetAttacks();
         SetHabilities();

@@ -35,11 +35,19 @@ public class PunchHability : IHability
         if (active)
         {
             Vector3 center = player.transform.position + (Vector3.up * player.GetComponent<Collider>().bounds.extents.y);
-            Collider[] cols = Physics.OverlapBox(center, player.GetComponent<Collider>().bounds.extents * 5f, player.transform.rotation, LayerMask.GetMask("Hitbox"));
+            var layerMask1 = LayerMask.GetMask("Hitbox");
+            var layerMask2 = LayerMask.GetMask("Hook");
+            var layerMask = layerMask1 | layerMask2;
+            Collider[] cols = Physics.OverlapBox(center, player.GetComponent<Collider>().bounds.extents * 5f, player.transform.rotation, layerMask);
             foreach (Collider c in cols)
             {
                 if (CheckParently(c.transform))
                     continue;
+                if(c.GetComponent<Hook>())
+                {
+                    c.GetComponent<Hook>().returnFail = true;
+                    continue;
+                }
                 PlayerController target = TargetScript(c.transform);
                 if (target != null && !playersHitted.Contains(target))
                 {
