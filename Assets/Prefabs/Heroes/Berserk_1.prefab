@@ -8419,7 +8419,7 @@ MonoBehaviour:
   SkillCDBar: {fileID: 114365598982452742}
   DashCDBar: {fileID: 114221539028883958}
   LifeBar: {fileID: 114829216329715132}
-  iminverted: 0
+  iminverted: 1
 --- !u!114 &114410255723307326
 MonoBehaviour:
   m_ObjectHideFlags: 1

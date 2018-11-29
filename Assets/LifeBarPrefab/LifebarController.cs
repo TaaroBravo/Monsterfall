@@ -24,6 +24,7 @@ public class LifebarController : MonoBehaviour
     Color FinalLifeColor;
     float XAxis;
     public bool iminverted;
+    public float fixtimer;
 
     public void Set(float skillCD, float dashCD, float totalLife)
     {
@@ -42,9 +43,14 @@ public class LifebarController : MonoBehaviour
     public void ActivateSkillCD() { SkillOnCD = true; SkillCDBar.fillAmount = 0; }
     public void ActivateDashCD() { DashOnCD = true; DashCDBar.fillAmount = 0; }
 
+    private void Start()
+    {
+    }
     void Update()
     {
-        XAxis = myplayerinput.MainHorizontal();
+        fixtimer += Time.deltaTime;
+        XAxis = fixtimer > 0.2f ? myplayerinput.MainHorizontal() : 0.01f;
+        //XAxis = myplayerinput.MainHorizontal();
         //if (myplayerinput.MainHorizontal() != 0) XAxis = myplayerinput.MainHorizontal();
         if (!iminverted)
         {

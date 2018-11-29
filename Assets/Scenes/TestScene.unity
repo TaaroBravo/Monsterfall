@@ -2626,6 +2626,11 @@ Prefab:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114604515997137910, guid: 8191afeb60a86cb48b9c9a89378348cc,
+        type: 2}
+      propertyPath: iminverted
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8191afeb60a86cb48b9c9a89378348cc, type: 2}
   m_IsPrefabParent: 0
@@ -2839,6 +2844,11 @@ Prefab:
         type: 2}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114187294048635998, guid: e011f2ca7a4b95d4f867b4826a3ddd07,
+        type: 2}
+      propertyPath: iminverted
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e011f2ca7a4b95d4f867b4826a3ddd07, type: 2}
