@@ -12,6 +12,8 @@ public class GeneralFeedback : MonoBehaviour {
     public ParticleSystem.ShapeModule CristalBuffShape;
     public ParticleSystem.ShapeModule CristalBuffShape2;
     public ParticleSystem Lightning;
+    public ParticleSystem Crosshair;
+    ParticleSystem.MainModule mainCrosshair;
     public Material LightningMat;
     float XAxis;
     public bool iminverted;
@@ -22,6 +24,7 @@ public class GeneralFeedback : MonoBehaviour {
         CristalBuffShape = CristalBuff.shape;
         CristalBuffShape2 = CristalBuff2.shape;
         MainElfMark = ElfMark.main;
+        mainCrosshair = Crosshair.main;
         Color outcolor;
         if (ColorUtility.TryParseHtmlString("#1996E1FF", out outcolor)) PColors.Add(outcolor); // blue - 0
         if (ColorUtility.TryParseHtmlString("#E51B1BFF", out outcolor)) PColors.Add(outcolor); // red - 1
@@ -49,4 +52,13 @@ public class GeneralFeedback : MonoBehaviour {
         LightningMat.SetColor("_Tinte", PColors[ID]);
     }
     public void FinishLightning() { Lightning.Stop(); }
+    public void StartCrosshair(Color playerColor)
+    {
+        Crosshair.gameObject.SetActive(true);
+        mainCrosshair.startColor = playerColor;
+    }
+    public void FinishCrosshair()
+    {
+        Crosshair.gameObject.SetActive(false);
+    }
 }
