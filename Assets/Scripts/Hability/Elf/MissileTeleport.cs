@@ -15,6 +15,8 @@ public class MissileTeleport : MonoBehaviour
     Vector3 _dir;
     float speed;
 
+    Vector3 playerDir;
+
     void Start()
     {
         speed = 35;
@@ -22,6 +24,9 @@ public class MissileTeleport : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(_dir.magnitude);
+        if (_dir == Vector3.zero || _dir.magnitude < 1)
+            _dir = playerDir;
         transform.position += _dir * speed * Time.deltaTime;
 
         if (Physics.OverlapSphere(transform.position, 3f, 1 << 17).Any() || Physics.OverlapSphere(transform.position, 3f, 1 << 19).Where(x => x.tag == "Limit").Any())
@@ -42,6 +47,7 @@ public class MissileTeleport : MonoBehaviour
             _dir = dir;
         else
             _dir = new Vector3(Mathf.Sign(player.transform.localScale.z), 0, 0);
+        playerDir = new Vector3(Mathf.Sign(player.transform.localScale.z), 0, 0);
     }
 
     void ResetValues()

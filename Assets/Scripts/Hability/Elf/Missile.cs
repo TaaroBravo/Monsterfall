@@ -22,7 +22,7 @@ public class Missile : MonoBehaviour
     bool exploted;
     public bool inScreen;
 
-    public LineTracerTest projectile;
+    public projectileTrail projectile;
     int _ID;
 
     void Start()
@@ -48,11 +48,13 @@ public class Missile : MonoBehaviour
             if ((_objetive.position - transform.position).magnitude < 5f || Physics.OverlapSphere(transform.position, 5, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x.transform == _objetive).Any())
             {
                 exploted = true;
+                if (_target)
+                    projectile.GetComponent<LineRenderer>().positionCount = 0;
                 Explote();
             }
         }
         if (_target)
-            projectile.Set(transform, _target.transform, _ID);
+            projectile.SetPositions(transform.position, _target.transform.position + new Vector3(0, _target.GetComponent<Collider>().bounds.extents.y));
 
     }
 
@@ -145,6 +147,8 @@ public class Missile : MonoBehaviour
         if (!explotion.isPlaying)
         {
             transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+            if (_target)
+                _target.GetComponent<GeneralFeedback>().FinishCrosshair();
             explotion.Play();
         }
     }
@@ -159,6 +163,9 @@ public class Missile : MonoBehaviour
         GetComponent<FeedbackMissile>().ChangeColor(ID);
         _ID = ID;
         if (_target)
-            projectile.Set(transform, _target.transform, _ID);
+        {
+            projectile.SetColor(ID);
+            _target.GetComponent<GeneralFeedback>().StartCrosshair(ID);
+        }
     }
 }

@@ -5865,7 +5865,7 @@ MonoBehaviour:
   CristalBuff: {fileID: 198326602855960618}
   CristalBuff2: {fileID: 198836383832373422}
   Lightning: {fileID: 198433167396854104}
-  Crosshair: {fileID: 0}
+  Crosshair: {fileID: 198158314603360316}
   LightningMat: {fileID: 2100000, guid: 1be5e07eab6ed614e8f581a32481ae47, type: 2}
   iminverted: 1
   reposition: 0
@@ -77992,7 +77992,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -270985320
+  randomSeed: -1988791171
   InitialModule:
     serializedVersion: 3
     enabled: 1

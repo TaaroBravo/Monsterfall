@@ -42,7 +42,11 @@ public class Berserk : PlayerController
             yield return new WaitUntil(() => !canMove);
             yield return new WaitForSeconds(4f);
             if (!canMove)
+            {
+                DisableAll();
+                stunnedByHit = false;
                 canMove = true;
+            }
         }
     }
 

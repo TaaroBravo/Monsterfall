@@ -811,13 +811,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 198010249343028046, guid: 04cc4e21583e41f42b5e047ed8128771,
+    - target: {fileID: 198622104812045858, guid: 04cc4e21583e41f42b5e047ed8128771,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198622104812045858, guid: 04cc4e21583e41f42b5e047ed8128771,
+    - target: {fileID: 198010249343028046, guid: 04cc4e21583e41f42b5e047ed8128771,
         type: 2}
       propertyPath: LightsModule.light
       value: 

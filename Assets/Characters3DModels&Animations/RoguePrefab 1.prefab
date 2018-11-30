@@ -5745,7 +5745,7 @@ MonoBehaviour:
   CristalBuff: {fileID: 198256617900266788}
   CristalBuff2: {fileID: 198706312171646512}
   Lightning: {fileID: 198470914241550422}
-  Crosshair: {fileID: 0}
+  Crosshair: {fileID: 198731130537379426}
   LightningMat: {fileID: 2100000, guid: 1be5e07eab6ed614e8f581a32481ae47, type: 2}
   iminverted: 1
   reposition: 0

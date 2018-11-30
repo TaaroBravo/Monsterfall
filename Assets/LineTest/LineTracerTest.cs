@@ -28,7 +28,6 @@ public class LineTracerTest : MonoBehaviour {
     void Update()
     {
         //DebugKeys();
-        Debug.Log("Debug 1");
         if (!initialpointGO) return;
         var distance = Vector3.Distance(initialpointGO.transform.position, endpointGO.transform.position);
         //speed = Mathf.Abs(200 - distance);
@@ -36,7 +35,6 @@ public class LineTracerTest : MonoBehaviour {
         int ammountocreate = Mathf.FloorToInt(distance / separation);
         if (startline)
         {
-        Debug.Log("Debug 2");
             for (int i = 0; i < ammountocreate; i++)
             {
                 var line = Instantiate(lineMesh);

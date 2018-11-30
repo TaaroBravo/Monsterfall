@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GeneralFeedback : MonoBehaviour {
+public class GeneralFeedback : MonoBehaviour
+{
 
     List<Color> PColors = new List<Color>();
     public ParticleSystem.MainModule MainElfMark;
@@ -52,15 +53,16 @@ public class GeneralFeedback : MonoBehaviour {
         LightningMat.SetColor("_Tinte", PColors[ID]);
     }
     public void FinishLightning() { Lightning.Stop(); }
-    public void StartCrosshair(Color playerColor)
+    public void StartCrosshair(int ID)
     {
-        Crosshair.gameObject.SetActive(true);
-        mainCrosshair.startColor = playerColor;
-        Crosshair.Play();
+        //Crosshair.gameObject.SetActive(true);
+        mainCrosshair.startColor = PColors[ID];
+        //if (!Crosshair.isPlaying)
+            Crosshair.Play();
     }
     public void FinishCrosshair()
     {
-        Crosshair.gameObject.SetActive(false);
+        //Crosshair.gameObject.SetActive(false);
         Crosshair.Stop();
     }
 }
