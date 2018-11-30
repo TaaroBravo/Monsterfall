@@ -7021,6 +7021,7 @@ MonoBehaviour:
   DashCDBar: {fileID: 114779037678715570}
   LifeBar: {fileID: 114044458640760844}
   iminverted: 1
+  fixtimer: 0
 --- !u!114 &114653904511024292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146582,7 +146583,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1020345581101342}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0.13985981}
   m_LocalScale: {x: 0.41458824, y: 0.41458827, z: 0.41458824}
   m_Children:
@@ -146590,7 +146591,7 @@ RectTransform:
   - {fileID: 224903271020728328}
   m_Father: {fileID: 4074230196254180}
   m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.08046192, y: 2.0800006}

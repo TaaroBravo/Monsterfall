@@ -4808,7 +4808,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1992449203362638}
-  m_LocalRotation: {x: 0.67913115, y: 0.6079279, z: -0.36592048, w: -0.18790123}
+  m_LocalRotation: {x: 0.67913115, y: 0.6079279, z: -0.36592048, w: -0.18790121}
   m_LocalPosition: {x: -0.018811047, y: 1.3942292, z: 0.17168756}
   m_LocalScale: {x: 1.0000002, y: 0.9999996, z: 0.99999994}
   m_Children: []
@@ -8572,6 +8572,7 @@ MonoBehaviour:
   DashCDBar: {fileID: 114700031707658816}
   LifeBar: {fileID: 114278860467971734}
   iminverted: 1
+  fixtimer: 0
 --- !u!114 &114989095039319002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144187,7 +144188,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1592589741953252}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.094761185}
   m_LocalScale: {x: 0.3549106, y: 0.35491115, z: -0.35491094}
   m_Children:
@@ -144195,7 +144196,7 @@ RectTransform:
   - {fileID: 224123795014017386}
   m_Father: {fileID: 4447742752515830}
   m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.0138414595, y: 1.9555602}
