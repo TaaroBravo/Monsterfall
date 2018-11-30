@@ -39,7 +39,6 @@ public class MissileHability : IHability
         //    currentTimer += Time.deltaTime;
         if (activeTimer && !inScreen)
         {
-            Debug.Log("AAA");
             for (int i = 0; i < 6; i++)
             {
                 #region Shoots
@@ -145,7 +144,6 @@ public class MissileHability : IHability
 
     void FirstOutOfScreen()
     {
-        Debug.Log("--------------------------");
         inScreen = false;
     }
 

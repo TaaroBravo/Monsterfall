@@ -22,6 +22,9 @@ public class Missile : MonoBehaviour
     bool exploted;
     public bool inScreen;
 
+    public LineTracerTest projectile;
+    int _ID;
+
     void Start()
     {
         speed = 10;
@@ -48,6 +51,9 @@ public class Missile : MonoBehaviour
                 Explote();
             }
         }
+        if (_target)
+            projectile.Set(transform, _target.transform, _ID);
+
     }
 
     IEnumerator OutOfLimitsTimer()
@@ -151,5 +157,8 @@ public class Missile : MonoBehaviour
     public void ChangeColor(int ID)
     {
         GetComponent<FeedbackMissile>().ChangeColor(ID);
+        _ID = ID;
+        if (_target)
+            projectile.Set(transform, _target.transform, _ID);
     }
 }

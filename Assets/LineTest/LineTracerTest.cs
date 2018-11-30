@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LineTracerTest : MonoBehaviour {
 
-    public GameObject initialpointGO;
-    public GameObject endpointGO;
+    public Transform initialpointGO;
+    public Transform endpointGO;
     public GameObject lineMesh;
     public List<GameObject> spawnedlines = new List<GameObject>();
     public float separation;
@@ -18,6 +18,8 @@ public class LineTracerTest : MonoBehaviour {
     private void Awake()
     {
         Color outcolor;
+        separation = 10;
+        speed = 70;
         if (ColorUtility.TryParseHtmlString("#1996E1FF", out outcolor)) PColors.Add(outcolor); // blue - 0
         if (ColorUtility.TryParseHtmlString("#E51B1BFF", out outcolor)) PColors.Add(outcolor); // red - 1
         if (ColorUtility.TryParseHtmlString("#5CD025FF", out outcolor)) PColors.Add(outcolor); // green - 2
@@ -26,12 +28,16 @@ public class LineTracerTest : MonoBehaviour {
     void Update()
     {
         //DebugKeys();
+        Debug.Log("Debug 1");
+        if (!initialpointGO)
+            return;
         var distance = Vector3.Distance(initialpointGO.transform.position, endpointGO.transform.position);
         //speed = Mathf.Abs(200 - distance);
         var dir = (endpointGO.transform.position - initialpointGO.transform.position).normalized;
         int ammountocreate = Mathf.FloorToInt(distance / separation);
         if (startline)
         {
+        Debug.Log("Debug 2");
             for (int i = 0; i < ammountocreate; i++)
             {
                 var line = Instantiate(lineMesh);
@@ -74,7 +80,7 @@ public class LineTracerTest : MonoBehaviour {
             }
         }
     }
-    public void Set(GameObject start, GameObject end, int ID)
+    public void Set(Transform start, Transform end, int ID)
     {
         initialpointGO = start;
         endpointGO = end;

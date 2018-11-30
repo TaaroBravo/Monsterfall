@@ -6,7 +6,7 @@ public class projectileTrail : MonoBehaviour {
     Vector3 startpos;
     Vector3 endpos;
     LineRenderer toModify;
-    public Color lineColor;
+    public Color[] lineColor;
     
     public void SetPositions(Vector3 pos1, Vector3 pos2)
     {
@@ -14,9 +14,12 @@ public class projectileTrail : MonoBehaviour {
         endpos = pos2;
     }
 
-    public void SetColor(Color playerColor)
+    public void SetColor(int ID)
     {
-        toModify.material.SetColor("_PlayerColor", lineColor);
+        toModify = GetComponent<LineRenderer>();
+        toModify.SetPosition(0, startpos);
+        toModify.SetPosition(1, endpos);
+        toModify.material.SetColor("_PlayerColor", lineColor[ID]);
     }
 
     private void Start()

@@ -14,19 +14,19 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.66479236, g: 0.7588668, b: 0.85294116, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.0047
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.19607843, g: 0.24705882, b: 0.3882353, a: 1}
+  m_AmbientSkyColor: {r: 0.5514706, g: 0.65141994, b: 0.75, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 5d58357e4c0915541aa843bef78aa32d, type: 2}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -138,8 +138,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.28627452, g: 0.45490196, b: 0.62352943, a: 1}
-  m_Intensity: 0.98
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1.4
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -153,14 +153,14 @@ Light:
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_Flare: {fileID: 0}
+  m_Flare: {fileID: 12100000, guid: 70ff7d98b27dd54458e51a95f7984da3, type: 2}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1.51
+  m_BounceIntensity: 1.43
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -1234,7 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 9d7b9e4aea732894d938356ed366abb9, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 6da86197aa457484e9c71360f2a8832e, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -1349,18 +1349,34 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 198213416011364530, guid: 68b805a12f528b64383d8d12a9ce977e,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198251857313220758, guid: 68b805a12f528b64383d8d12a9ce977e,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 198213416011364530, guid: 68b805a12f528b64383d8d12a9ce977e,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.55438817
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.5788157
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.24405533
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.5459515
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
   m_IsPrefabParent: 0
@@ -1654,6 +1670,32 @@ Prefab:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.5543882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.57881576
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.24405536
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.54595155
+      objectReference: {fileID: 0}
+    - target: {fileID: 224664452810859166, guid: d14f4f174080fca47901f96c1ee0ce2b,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.4145882
+      objectReference: {fileID: 0}
+    - target: {fileID: 224662592005855334, guid: d14f4f174080fca47901f96c1ee0ce2b,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.03489057
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
   m_IsPrefabParent: 0
@@ -2248,19 +2290,39 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1651560638}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df10adf60de9f1947a8157dbbaf781dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a338d679868f45439ea43c7ae035e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceFog: 1
-  excludeFarPixels: 1
-  useRadialDistance: 1
-  heightFog: 0
-  height: 1
-  heightDensity: 2
-  startDistance: 0
-  fogShader: {fileID: 4800000, guid: 8deace52139596940b7802d4310e1d76, type: 3}
+  settings:
+    visualizeFocus: 0
+    tweakMode: 0
+    filteringQuality: 2
+    apertureShape: 2
+    apertureOrientation: 0
+  focus:
+    transform: {fileID: 0}
+    focusPlane: 0
+    range: 100
+    nearPlane: -50
+    nearFalloff: 15
+    farPlane: 50
+    farFalloff: 100
+    nearBlurRadius: 15
+    farBlurRadius: 10.5
+  bokehTexture:
+    texture: {fileID: 0}
+    scale: 1
+    intensity: 50
+    threshold: 2
+    spawnHeuristic: 0.15
+  m_FilmicDepthOfFieldShader: {fileID: 4800000, guid: bff0e5458fb914f5c9985ba4f09171d2,
+    type: 3}
+  m_MedianFilterShader: {fileID: 4800000, guid: a058b22d4123add4b807e832604e5e7b,
+    type: 3}
+  m_TextureBokehShader: {fileID: 4800000, guid: c961b8ed1f00f924d804ada5143bd0e8,
+    type: 3}
 --- !u!114 &1651560644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2353,7 +2415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7594fd5c5bd87ae49aed533df8abac38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainLightingProfile: {fileID: 11400000, guid: 084be36a662810e4d914995359a4a2ef,
+  mainLightingProfile: {fileID: 11400000, guid: 38e3ced4ccfc00645b3113b9b7f771c9,
     type: 2}
 --- !u!4 &1749957798
 Transform:

@@ -27,11 +27,23 @@ public class Berserk : PlayerController
         lifeHUD.Set(8, chargeCooldown * 1.5f, myLife);
         SetAttacks();
         SetHabilities();
+        StartCoroutine(ResetMovement());
     }
 
     public override void Update()
     {
         base.Update();
+    }
+
+    IEnumerator ResetMovement()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => !canMove);
+            yield return new WaitForSeconds(4f);
+            if (!canMove)
+                canMove = true;
+        }
     }
 
     void BerserkHability(string state)
