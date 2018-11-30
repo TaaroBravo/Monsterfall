@@ -45,7 +45,7 @@ public class Missile : MonoBehaviour
             Vector3 newPos = (_objetive.position - transform.position).normalized;
             _dir = Vector3.Lerp(_dir, newPos, Time.deltaTime);
             //_dir = (_objetive.position - transform.position).normalized;
-            if ((_objetive.position - transform.position).magnitude < 5f || Physics.OverlapSphere(transform.position, 5, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x.transform == _objetive).Any())
+            if ((_objetive.position - transform.position).magnitude < 3f || Physics.OverlapSphere(transform.position, 3, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x.transform == _objetive).Any())
             {
                 exploted = true;
                 if (_target)
