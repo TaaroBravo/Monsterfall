@@ -23,7 +23,7 @@ public class Berserk : PlayerController
     public override void Start()
     {
         base.Start();
-        superPunch = new IBerserkPunch(this, 15);
+        superPunch = new IBerserkPunch(this, 16);
         lifeHUD.Set(8, chargeCooldown * 1.5f, myLife);
         SetAttacks();
         SetHabilities();

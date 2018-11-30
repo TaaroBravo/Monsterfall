@@ -114,7 +114,10 @@ public class ForwardCharge : IHability
         _target.transform.parent = null;
         _target.hittedChargeBerserk = false;
         _target.SetStun(0.2f);
-        _target.SetDamage(Mathf.RoundToInt((distance / 1.3f) / 5) * 5);
+        int dmg = Mathf.RoundToInt((distance / 1.3f) / 5) * 5;
+        if (dmg > 35)
+            dmg = 35;
+        _target.SetDamage(dmg);
         _target.SetLastOneWhoHittedMe(player);
     }
 

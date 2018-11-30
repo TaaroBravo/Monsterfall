@@ -73,12 +73,12 @@ public class DownAttack : IAttack
                     }
                     else if (player is Pirate)
                     {
-                        target.SetDamage(17 * player.buffedPower);
+                        target.SetDamage(14 * player.buffedPower);
                         target.ApplyEffect(effect);
                     }
                     else if (player is Elf)
                     {
-                        target.SetDamage(13 * player.buffedPower);
+                        target.SetDamage(14 * player.buffedPower);
                         target.ApplyEffect(effect);
                     }
                     else

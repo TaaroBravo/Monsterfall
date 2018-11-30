@@ -94,14 +94,14 @@ public class TeleportHability : IHability
                 if (target == p)
                 {
                     p.SetLastOneWhoHittedMe(_elfPlayer);
-                    p.SetDamage(10);
+                    p.SetDamage(15);
                 }
             }
         }
         else
         {
             p.SetLastOneWhoHittedMe(_elfPlayer);
-            p.SetDamage(5);
+            p.SetDamage(10);
         }
     }
 
