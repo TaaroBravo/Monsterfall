@@ -18,8 +18,8 @@ public class LineTracerTest : MonoBehaviour {
     private void Awake()
     {
         Color outcolor;
-        separation = 10;
-        speed = 70;
+        separation = 2f;
+        speed = 15;
         if (ColorUtility.TryParseHtmlString("#1996E1FF", out outcolor)) PColors.Add(outcolor); // blue - 0
         if (ColorUtility.TryParseHtmlString("#E51B1BFF", out outcolor)) PColors.Add(outcolor); // red - 1
         if (ColorUtility.TryParseHtmlString("#5CD025FF", out outcolor)) PColors.Add(outcolor); // green - 2
@@ -29,8 +29,7 @@ public class LineTracerTest : MonoBehaviour {
     {
         //DebugKeys();
         Debug.Log("Debug 1");
-        if (!initialpointGO)
-            return;
+        if (!initialpointGO) return;
         var distance = Vector3.Distance(initialpointGO.transform.position, endpointGO.transform.position);
         //speed = Mathf.Abs(200 - distance);
         var dir = (endpointGO.transform.position - initialpointGO.transform.position).normalized;
@@ -42,7 +41,7 @@ public class LineTracerTest : MonoBehaviour {
             {
                 var line = Instantiate(lineMesh);
                 spawnedlines.Add(line);
-                spawnedlines[i].transform.position = initialpointGO.transform.position + dir * (2 + i) * separation;
+                spawnedlines[i].transform.position = initialpointGO.transform.position + dir * i * separation;
             }
             startline = false;
             updateline = true;
@@ -53,7 +52,7 @@ public class LineTracerTest : MonoBehaviour {
             {
                 var line = Instantiate(lineMesh);
                 spawnedlines.Add(line);
-                line.transform.position = initialpointGO.transform.position + dir * (2 + i) * separation;
+                line.transform.position = initialpointGO.transform.position + dir * (1+i) * separation;
             }
         }
         for (int i = 0; i < spawnedlines.Count; i++)
@@ -61,18 +60,19 @@ public class LineTracerTest : MonoBehaviour {
             var actualdistance = Vector3.Distance(endpointGO.transform.position, spawnedlines[i].transform.position);
             var oppositedir = (initialpointGO.transform.position - endpointGO.transform.position).normalized;
             spawnedlines[i].transform.right = dir;
-            spawnedlines[i].transform.Rotate(
-                initialpointGO.transform.position.z > endpointGO.transform.position.z &&
-                Mathf.Abs(initialpointGO.transform.position.z) - Mathf.Abs(endpointGO.transform.position.z) > 40 ?
-                new Vector3(100, 0, 0) :
-                initialpointGO.transform.position.z < endpointGO.transform.position.z &&
-                Mathf.Abs(initialpointGO.transform.position.z) - Mathf.Abs(endpointGO.transform.position.z) > 30 ?
-                new Vector3(-100, 0, 0) : new Vector3(0, 0, 0));
+            spawnedlines[i].transform.Rotate(-100, 0, 0);
+            //spawnedlines[i].transform.Rotate(
+            //    initialpointGO.transform.position.x > endpointGO.transform.position.x &&
+            //    Mathf.Abs(initialpointGO.transform.position.x) - Mathf.Abs(endpointGO.transform.position.x) > 4 ?
+            //    new Vector3(100, 0, 0) :
+            //    initialpointGO.transform.position.x < endpointGO.transform.position.x &&
+            //    Mathf.Abs(initialpointGO.transform.position.x) - Mathf.Abs(endpointGO.transform.position.x) > 4 ?
+            //    new Vector3(-100, 0, 0) : new Vector3(0, 0, 0));
             spawnedlines[i].transform.position =
                 endpointGO.transform.position + oppositedir * actualdistance
                 + dir * speed * Time.deltaTime;
-            if (Vector3.Distance(spawnedlines[i].transform.position, endpointGO.transform.position) < 10f ||
-                Vector3.Distance(spawnedlines[i].transform.position, initialpointGO.transform.position) < 5f)
+            if (Vector3.Distance(spawnedlines[i].transform.position, endpointGO.transform.position) < 1f
+                || Vector3.Distance(spawnedlines[i].transform.position, initialpointGO.transform.position) < 0.1f)
             {
                 Destroy(spawnedlines[i]);
                 spawnedlines.RemoveAt(i);
