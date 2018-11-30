@@ -24,7 +24,6 @@ public class MissileTeleport : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(_dir.magnitude);
         if (_dir == Vector3.zero || _dir.magnitude < 1)
             _dir = playerDir;
         transform.position += _dir * speed * Time.deltaTime;
@@ -96,7 +95,6 @@ public class MissileTeleport : MonoBehaviour
 
     public void ChangeColor(int ID)
     {
-        Debug.Log(ID);
         GetComponent<ElfTeleportMissileFeedback>().ChangeColor(ID);
     }
 }

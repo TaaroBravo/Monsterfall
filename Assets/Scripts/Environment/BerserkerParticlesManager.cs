@@ -70,7 +70,6 @@ public class BerserkerParticlesManager : MonoBehaviour
         {
             if (XAxis > 0) // frente
             {
-                Debug.Log("caso 3");
                 //GP_main1.startRotationY = 0f;
                 //GP_main2.startRotationY = 0f;
                 GP_shape1.rotation = new Vector3(0, 90, 0);
@@ -78,7 +77,6 @@ public class BerserkerParticlesManager : MonoBehaviour
             }
             else if (XAxis < 0) // dado vuelta
             {
-                Debug.Log("caso 4");
                 //GP_main1.startRotationY = 0f;
                 //GP_main2.startRotationY = 0f;
                 GP_shape1.rotation = new Vector3(0, 90, 0);

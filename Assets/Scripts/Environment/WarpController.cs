@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class WarpController : MonoBehaviour {
+public class WarpController : MonoBehaviour
+{
 
     public event Action OnTeleportPlayer = delegate { };
 
@@ -25,11 +26,17 @@ public class WarpController : MonoBehaviour {
     {
         while (true)
         {
-            pl.GetComponent<ParticlePuños>().puñoderecho.gameObject.SetActive(false);
-            pl.GetComponent<ParticlePuños>().puñoizquierdo.gameObject.SetActive(false);
+            if (pl.GetComponent<ParticlePuños>().puñoderecho)
+            {
+                pl.GetComponent<ParticlePuños>().puñoderecho.gameObject.SetActive(false);
+                pl.GetComponent<ParticlePuños>().puñoizquierdo.gameObject.SetActive(false);
+            }
             yield return new WaitForSeconds(0.25f);
-            pl.GetComponent<ParticlePuños>().puñoderecho.gameObject.SetActive(true);
-            pl.GetComponent<ParticlePuños>().puñoizquierdo.gameObject.SetActive(true);
+            if (pl.GetComponent<ParticlePuños>().puñoderecho)
+            {
+                pl.GetComponent<ParticlePuños>().puñoderecho.gameObject.SetActive(true);
+                pl.GetComponent<ParticlePuños>().puñoizquierdo.gameObject.SetActive(true);
+            }
             break;
         }
     }

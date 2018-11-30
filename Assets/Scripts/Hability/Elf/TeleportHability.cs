@@ -75,7 +75,6 @@ public class TeleportHability : IHability
     void Shoot(Vector3 spawnPoint, Vector3 dir)
     {
         //MissileTeleport missile = ObjectPoolManager.Instance.GetObject<MissileTeleport>();
-        Debug.Log(dir);
         MissileTeleport missile = GameObject.Instantiate(_missilePrefab);
         missile.transform.position = spawnPoint;
         missile.SetDir(player, dir);

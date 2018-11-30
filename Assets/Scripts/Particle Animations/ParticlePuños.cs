@@ -21,17 +21,23 @@ public class ParticlePuños : MonoBehaviour
     void Start()
     {
         yo = GetComponent<PlayerController>();
+        if (!puñoderecho)
+            return;
         puñoder = puñoderecho.emission;
         puñoizq = puñoizquierdo.emission;
         ResetEmission();
     }
     void Update()
     {
+        if (!puñoderecho)
+            return;
         if (PrenderPuñoDerecho && puñoderecho) ParticulasPuñoDerecho();
         if (PrenderPuñoIzquierdo && puñoizquierdo) ParticulasPuñoIzquierdo();
     }
     public void PuñoAActivar(string golpe)
     {
+        if (!puñoderecho)
+            return;
         if (yo.myAnim.GetBool("Grounded"))
         {
             if (golpe == "arriba") PrenderPuñoDerecho = true;
@@ -47,6 +53,8 @@ public class ParticlePuños : MonoBehaviour
     }
     void ParticulasPuñoDerecho()
     {
+        if (!puñoderecho)
+            return;
         TimerDeActivacion += Time.deltaTime;
         puñoder.rateOverDistance = 15;
         if (TimerDeActivacion > 0.2f)
@@ -57,6 +65,8 @@ public class ParticlePuños : MonoBehaviour
     }
     void ParticulasPuñoIzquierdo()
     {
+        if (!puñoderecho)
+            return;
         TimerDeActivacion += Time.deltaTime;
         puñoizq.rateOverDistance = 15;
         if (TimerDeActivacion > 0.2f)
@@ -68,7 +78,10 @@ public class ParticlePuños : MonoBehaviour
     void ResetEmission()
     {
         TimerDeActivacion = 0;
-        puñoder.rateOverDistance = 0;
-        puñoizq.rateOverDistance = 0;
+        if(puñoderecho != null)
+        {
+            puñoder.rateOverDistance = 0;
+            puñoizq.rateOverDistance = 0;
+        }
     }
 }

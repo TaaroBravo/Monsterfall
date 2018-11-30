@@ -39,11 +39,12 @@ public class Berserk : PlayerController
     {
         while (true)
         {
-            yield return new WaitUntil(() => !canMove);
-            yield return new WaitForSeconds(4f);
-            if (!canMove)
+            yield return new WaitUntil(() => stunnedByHit);
+            yield return new WaitForSeconds(3f);
+            if (stunnedByHit)
             {
                 DisableAll();
+                myAnim.SetBool("Stunned", false);
                 stunnedByHit = false;
                 canMove = true;
             }

@@ -90,9 +90,11 @@ public class GameManager : MonoBehaviour
             if (infoManager.playersInfoOrder.Count > 0)
                 order = infoManager.playersInfoOrder.ToList();
 
-            firstPlayer = order.Where(x => alivePlayers.Select(y => y.GetComponent<PlayerInput>()).Where(y => y.player_number == x.player_number).First()).First();
-            var secondPlayer = order.Where(x => alivePlayers.Select(y => y.GetComponent<PlayerInput>()).Where(y => y.player_number == x.player_number).First()).Skip(1).First();
-            var firstPlayerPosition = alivePlayers.Where(x => x.GetComponent<PlayerInput>().player_number == firstPlayer.player_number).First();
+            firstPlayer = order.Where(x => alivePlayers.Select(y => y.GetComponent<PlayerInput>()).Where(y => y.player_number == x.player_number).First()).FirstOrDefault();
+            var secondPlayer = order.Where(x => alivePlayers.Select(y => y.GetComponent<PlayerInput>()).Where(y => y.player_number == x.player_number).First()).Skip(1).FirstOrDefault();
+            if (finishedGame)
+                return;
+            var firstPlayerPosition = alivePlayers.Where(x => x.GetComponent<PlayerInput>().player_number == firstPlayer.player_number).FirstOrDefault();
             //firstPlayer = infoManager.playersInfo.Where(x => x.player_number == alivePlayers[0].GetComponent<PlayerInput>().player_number).First();
             //var numberOfKills = infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null).Select(x => x.newKills + x.previousKills);
             //foreach (var info in infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null))
@@ -100,7 +102,7 @@ public class GameManager : MonoBehaviour
             //    if (info.newKills + info.previousKills == numberOfKills.OrderByDescending(z => z).First())
             //        firstPlayer = info;
             //}
-            if (firstPlayerPosition != null && secondPlayer != null &&firstPlayer.newKills + firstPlayer.previousKills != secondPlayer.newKills + secondPlayer.previousKills)
+            if (firstPlayerPosition != null && secondPlayer != null && firstPlayer.newKills + firstPlayer.previousKills != secondPlayer.newKills + secondPlayer.previousKills)
                 crown.position = firstPlayerPosition.transform.position + (Vector3.up * 7);
             else
                 crown.position = Vector3.zero;
@@ -188,7 +190,7 @@ public class GameManager : MonoBehaviour
     #region Checks
     IEnumerator OutOfLimitsPlayer()
     {
-        while (true)
+        while (!finishedGame)
         {
             for (int i = 0; i < myPlayers.Count; i++)
             {
@@ -196,6 +198,8 @@ public class GameManager : MonoBehaviour
                 if (myPlayers[i] && !OutOfLimits(myPlayers[i].transform.position))
                     position = myPlayers[i].transform.position;
                 yield return new WaitForSeconds(0.1f);
+                if (finishedGame)
+                    break;
                 if (myPlayers[i] && OutOfLimits(myPlayers[i].transform.position))
                 {
                     myPlayers[i].transform.position = position;
@@ -230,6 +234,7 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
+        StopCoroutine(OutOfLimitsPlayer());
         foreach (var player in alivePlayers)
         {
             player.canMove = false;
@@ -254,7 +259,7 @@ public class GameManager : MonoBehaviour
         {
             finishCanvas.SetActive(true);
             inGameCanvas.SetActive(false);
-            if (infoManager.playersInfo.First().round >= 19)
+            if (infoManager.playersInfo.First().round >= 9)
                 WinTheGame();
             else
                 StartCoroutine(StartNewRound());
@@ -292,6 +297,9 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(6f);
+            Destroy(infoManager.gameObject);
+            if (FindObjectOfType<MusicInGame>())
+                Destroy(FindObjectOfType<MusicInGame>().gameObject);
             if (FindObjectOfType<PlayersInfoManager>())
                 Destroy(FindObjectOfType<PlayersInfoManager>().gameObject);
             ObjectPoolManager.Instance.Clean();
