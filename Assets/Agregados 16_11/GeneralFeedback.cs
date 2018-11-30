@@ -56,9 +56,11 @@ public class GeneralFeedback : MonoBehaviour {
     {
         Crosshair.gameObject.SetActive(true);
         mainCrosshair.startColor = playerColor;
+        Crosshair.Play();
     }
     public void FinishCrosshair()
     {
         Crosshair.gameObject.SetActive(false);
+        Crosshair.Stop();
     }
 }
