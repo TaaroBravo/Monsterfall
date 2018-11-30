@@ -67,7 +67,7 @@ public class ShootDashHability : IHability
                 }
                 else
                     target.ReceiveImpact(new Vector3(Mathf.Sign(player.transform.localScale.z) * 50, 0, 0), player, false);
-                target.SetDamage(10);
+                target.SetDamage(13);
                 target.WhoHitedMe(player);
                 player.whoIHited = target;
             }
