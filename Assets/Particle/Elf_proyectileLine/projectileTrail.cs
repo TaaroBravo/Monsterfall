@@ -31,8 +31,11 @@ public class projectileTrail : MonoBehaviour {
 
     private void Update()
     {
-        toModify.SetPosition(0, startpos);
-        toModify.SetPosition(1, endpos);
+        if(toModify.positionCount > 0)
+        {
+            toModify.SetPosition(0, startpos);
+            toModify.SetPosition(1, endpos);
+        }
     }
 
 }

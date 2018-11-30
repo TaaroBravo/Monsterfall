@@ -57,12 +57,13 @@ public class GeneralFeedback : MonoBehaviour
     {
         //Crosshair.gameObject.SetActive(true);
         mainCrosshair.startColor = PColors[ID];
-        //if (!Crosshair.isPlaying)
+        if (!Crosshair.isPlaying)
             Crosshair.Play();
     }
     public void FinishCrosshair()
     {
         //Crosshair.gameObject.SetActive(false);
-        Crosshair.Stop();
+        if (!Crosshair.isStopped)
+            Crosshair.Stop();
     }
 }
