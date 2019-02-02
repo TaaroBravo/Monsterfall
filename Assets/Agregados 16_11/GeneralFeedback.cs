@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GeneralFeedback : MonoBehaviour
 {
-
+    public GameObject iceblock;
     List<Color> PColors = new List<Color>();
     public ParticleSystem.MainModule MainElfMark;
     public ParticleSystem ElfMark;
@@ -22,6 +22,7 @@ public class GeneralFeedback : MonoBehaviour
 
     private void Start()
     {
+        iceblock.SetActive(false);
         CristalBuffShape = CristalBuff.shape;
         CristalBuffShape2 = CristalBuff2.shape;
         MainElfMark = ElfMark.main;
@@ -65,5 +66,22 @@ public class GeneralFeedback : MonoBehaviour
         //Crosshair.gameObject.SetActive(false);
         if (!Crosshair.isStopped)
             Crosshair.Stop();
+    }
+    public void StartFrozen()
+    {
+        iceblock.GetComponent<IceBlock>().CenterShakePosition = iceblock.transform.position;
+        iceblock.SetActive(true);
+    }
+    public void FinishFrozen()
+    {
+        iceblock.SetActive(false);
+    }
+    public void StartIceblockShake()
+    {
+        iceblock.GetComponent<IceBlock>().Shaking = true;
+    }
+    public void FinishIceblockShake()
+    {
+        iceblock.GetComponent<IceBlock>().Shaking = false;
     }
 }

@@ -145,4 +145,4 @@ MonoBehaviour:
   foliageState: 0
   snowState: 0
   OptionsState: 1
-  LightingBoxState: 1
+  LightingBoxState: 0
