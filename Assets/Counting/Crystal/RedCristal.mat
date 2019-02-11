@@ -37,5 +37,5 @@ Material:
     m_Floats:
     - __dirty: 0
     m_Colors:
-    - _Color0: {r: 0.9448276, g: 1, b: 0, a: 0}
-    - _Vector0: {r: -0.66, g: 1.01, b: 0.8, a: 0}
+    - _Color0: {r: 1, g: 0, b: 0, a: 0}
+    - _Vector0: {r: 0.47, g: 5.04, b: 1.8, a: 0}
