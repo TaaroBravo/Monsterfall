@@ -130,11 +130,15 @@ public class TeleportHability : IHability
         while (true)
         {
             MissileTeleport m = _currentMissile;
-            player.GetComponent<FeedbackElf>().StartTeleportFeedback();
+            //player.GetComponent<FeedbackElf>().StartTeleportFeedback();
+            var trail = m.GetComponent<ElfTeleportMissileFeedback>().Part3.transform;
+            trail.SetParent(null);
             yield return new WaitForSeconds(0.01f);
-            player.GetComponent<FeedbackElf>().FinishTeleportFeedback();
+            //player.GetComponent<FeedbackElf>().FinishTeleportFeedback();
             player.transform.position = m.transform.position - new Vector3(0, player.GetComponent<Collider>().bounds.extents.y, 0);
             m.DestroyMissile();
+            yield return new WaitForSeconds(1f);
+            player.GetComponent<FeedbackElf>().DestroyTrail(trail);
             break;
         }
     }
@@ -242,14 +246,13 @@ public class TeleportHability : IHability
     {
         float x = player.GetComponent<PlayerInput>().MainHorizontal();
         float y = player.GetComponent<PlayerInput>().MainVertical();
-        int newX = (int)Mathf.Sign(x) * (int)Mathf.Abs(x);
-        int newY = (int)Mathf.Sign(y) * (int)Mathf.Abs(y);
+        //-1;1
+        //1;-1
+        //int x = (int)(Mathf.Sign(x) * Mathf.Abs(x));
+        //int y = (int)(Mathf.Sign(y) * Mathf.Abs(y));
         if (x + y == 0)
-        {
-            newX = (int)Mathf.Sign(player.transform.localScale.z);
-            newY = 0;
-        }
-        return new Vector3(newX, newY);
+            x = (int)Mathf.Sign(player.transform.localScale.z);
+        return new Vector3(x, y);
 
     }
 

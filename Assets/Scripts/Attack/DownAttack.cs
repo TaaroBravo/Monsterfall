@@ -93,6 +93,7 @@ public class DownAttack : IAttack
             currentPressed = 1;
             timerCoolDownAttack = coolDownAttack;
             player.PS_Charged.Stop();
+        player.myAnim.ResetTrigger("ReleaseADown");
         }
     }
 

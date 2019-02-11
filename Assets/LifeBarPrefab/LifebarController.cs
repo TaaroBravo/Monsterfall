@@ -43,11 +43,24 @@ public class LifebarController : MonoBehaviour
     public void ActivateSkillCD() { SkillOnCD = true; SkillCDBar.fillAmount = 0; }
     public void ActivateDashCD() { DashOnCD = true; DashCDBar.fillAmount = 0; }
 
+    public RectTransform _uiContainer;
+    public Vector3 offSet;
     private void Start()
     {
+        offSet.y = 5;
+        transform.SetParent(null);
+        _uiContainer = transform.GetChild(1).GetComponent<RectTransform>();
     }
     void Update()
     {
+        if (myplayerinput.GetComponent<PlayerController>().isDead || GameManager.Instance.finishedGame)
+            Destroy(gameObject);
+        
+        Vector3 pos = new Vector3(myplayerinput.transform.position.x, myplayerinput.transform.position.y + offSet.y, 0);
+        _uiContainer.position = RectTransformUtility.WorldToScreenPoint(Camera.main, pos);
+        _uiContainer.localScale = new Vector3(1f, 0.4f, 1);
+
+
         fixtimer += Time.deltaTime;
         XAxis = fixtimer > 0.2f ? myplayerinput.MainHorizontal() : 0.01f;
         //XAxis = myplayerinput.MainHorizontal();

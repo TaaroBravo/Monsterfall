@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenu_Selector : MonoBehaviour {
+public class MainMenu_Selector : MonoBehaviour
+{
 
     MainMenu_Manager MM_Manager;
     public List<Transform> positions;
     public float rotation_speed;
     int currentindex;
+
+    bool loading;
+    bool pauseMenu;
+    bool controlsMenu;
 
     void Start()
     {
@@ -21,8 +26,11 @@ public class MainMenu_Selector : MonoBehaviour {
         MM_Manager.selector.transform.Rotate(0, 0, rotation_speed);
         if (Input.GetKeyDown(KeyCode.DownArrow)) GoDown();
         if (Input.GetKeyDown(KeyCode.UpArrow)) GoUp();
-        if (Input.GetKeyDown(KeyCode.Return) && currentindex == 1) MM_Manager.Play_Transition();
-        if (Input.GetKeyDown(KeyCode.Space)) MM_Manager.Finish_Loading();
+        if (Input.GetKeyDown(KeyCode.Return) && currentindex == 0 && !loading)
+        {
+            MM_Manager.Play_Transition();
+            loading = true;
+        }
     }
     void GoDown()
     {

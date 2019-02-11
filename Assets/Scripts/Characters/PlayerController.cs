@@ -149,12 +149,14 @@ public class PlayerController : MonoBehaviour
     public Dictionary<string, IHability> hability = new Dictionary<string, IHability>();
     #endregion
 
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         myAnim = GetComponent<Animator>();
         contrains = GetComponent<PlayerContrains>();
         lifeHUD = transform.ChildrenWithComponent<LifebarController>().Where(x => x != null).First();
+
     }
 
     void SetRayPos()
@@ -178,6 +180,7 @@ public class PlayerController : MonoBehaviour
 
     public virtual void Update()
     {
+
         PhysicsOptions();
         Move();
         UpdateHabilities();
@@ -639,22 +642,26 @@ public class PlayerController : MonoBehaviour
     bool invulnerableRays;
     public void HitByRay(Vector3 dir)
     {
+        Vector2 newDir = Vector3.zero;
+        if (!(dir.x < 0.1f && dir.x > -0.1f))
+            newDir.x = Mathf.Sign(dir.x);
+        if (!(dir.y < 0.1f && dir.y > -0.1f))
+            newDir.y = Mathf.Sign(dir.y);
         if (!invulnerableRays)
         {
             if (controller.isGrounded || IsCloseToGround())
             {
-                dir = new Vector3(Mathf.Sign(dir.x), 0);
                 if (stunnedByHit)
-                    ReceiveImpact(dir * 50, lastOneWhoHittedMe);
+                    ReceiveImpact(newDir * 50, lastOneWhoHittedMe);
                 else
-                    ReceiveImpact(dir * 50, null);
+                    ReceiveImpact(newDir * 50, null);
             }
             else
             {
                 if (stunnedByHit)
-                    ReceiveImpact(dir * 50, lastOneWhoHittedMe);
+                    ReceiveImpact(newDir * 50, lastOneWhoHittedMe);
                 else
-                    ReceiveImpact(dir * 50, null);
+                    ReceiveImpact(newDir * 50, null);
             }
             SetDamage(15);
             StartCoroutine(InvulnerableToRays());
@@ -753,6 +760,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        if (hit.gameObject.tag.Equals("Borders"))
+        {
+            //SmoothHitRefleject();
+            stunnedByHit = false;
+            playerMarked = false;
+            myAnim.SetBool("Stunned", false);
+        }
         var dir = Vector3.Dot(transform.up, hit.normal);
         if (!controller.isGrounded && dir == -1)
         {
@@ -909,6 +923,11 @@ public class PlayerController : MonoBehaviour
             impactStunMaxTimer = impactSpeed / maxImpactToInfinitStun;
     }
     #endregion
+
+    public void DestroyObject(GameObject obj)
+    {
+        Destroy(obj, 3f);
+    }
 
     //private void OnDrawGizmos()
     //{

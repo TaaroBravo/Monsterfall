@@ -26,6 +26,8 @@ public class CreatorRays : MonoBehaviour
     public float speed = 2f;
     public float duration = 5f;
 
+    private float _timeToDeath;
+
     private void Awake()
     {
         Instance = this;
@@ -49,7 +51,18 @@ public class CreatorRays : MonoBehaviour
         lowPos = cristal.transform.position - new Vector3(0, 0.25f, 0);
         highPos = lowPos + new Vector3(0, 0.5f, 0);
         StartCoroutine(StartCoroutine());
-        StartCoroutine(WaitToSuddenDeath());
+        CalculateTimeToDeath();
+        StartCoroutine(WaitToSuddenDeath(_timeToDeath));
+    }
+
+    void CalculateTimeToDeath()
+    {
+        if(players.Count() == 4)
+            _timeToDeath = 60f;
+        else if(players.Count() == 3)
+            _timeToDeath = 45f;
+        else if (players.Count() == 2)
+            _timeToDeath = 30f;
     }
 
     public void SetPlayers(PlayerController[] _players)
@@ -116,11 +129,11 @@ public class CreatorRays : MonoBehaviour
         }
     }
 
-    IEnumerator WaitToSuddenDeath()
+    IEnumerator WaitToSuddenDeath(float x)
     {
         while (true)
         {
-            yield return new WaitForSeconds(60f);
+            yield return new WaitForSeconds(x);
             activeMode = true;
             countOfRays = 2;
             break;

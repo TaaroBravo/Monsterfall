@@ -14,6 +14,7 @@ public class SpawnerHeroes : MonoBehaviour {
     public List<GameObject> roguePrefabs;
     public List<GameObject> berserkPrefabs;
     public List<GameObject> elfPrefab;
+    public List<GameObject> yetiPrefab;
     List<List<GameObject>> heroes = new List<List<GameObject>>();
 
 	void Awake()
@@ -24,6 +25,7 @@ public class SpawnerHeroes : MonoBehaviour {
         heroes.Add(roguePrefabs);
         heroes.Add(berserkPrefabs);
         heroes.Add(elfPrefab);
+        heroes.Add(yetiPrefab);
 	}
 
     public PlayerController SpawnHero(int hero_index, int player_number)

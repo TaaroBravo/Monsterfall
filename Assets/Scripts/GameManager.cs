@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
             //hero.myLifeUI = FindObjectsOfType<PlayerHPHud>().Where(x => x.player_number == infoManager.playersInfo[i].player_number).First();
             //hero.myLifeUI.maxHP = hero.myLife;
             //hero.myLifeUI.character_chosen = infoManager.playersInfo[i].characterChosen;
-            SetCooldownHUD(hero.transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), infoManager.playersInfo[i].characterChosen);
+            //SetCooldownHUD(hero.transform.ChildrenWithComponent<CdHUDChecker>().Where(x => x != null).First(), infoManager.playersInfo[i].characterChosen);
             SetUpInfoPlayers(hero, i);
             heroes.Add(hero);
         }
@@ -273,7 +273,6 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             var firstPlayer = infoManager.playersInfo.Where(x => x.player_number == alivePlayers[0].GetComponent<PlayerInput>().player_number).First();
-            Debug.Log(firstPlayer.player_number);
             if (firstPlayer != null && !diesByPlayerHit)
                 firstPlayer.newKills++;
 

@@ -65,30 +65,30 @@ public class PlayerInputMenu : MonoBehaviour
                 player.ActionButton();
 
         }
-        //if (Input.GetButtonDown(actionButton))
-        //    player.ActionButton();
-        //if (Input.GetButtonDown(rejectButton))
-        //    player.RejectButton();
-        //if (controller == Controller.J)
-        //{
-        //    if (Input.GetAxis(horizontalMove) != 0 && _cooldown)
-        //    {
-        //        player.Move(new Vector2(Input.GetAxis(horizontalMove) == 0 ? 0 : Input.GetAxis(horizontalMove) > 0 ? 1 : -1, 0));
-        //        StartCoroutine(CoolDown());
-        //    }
-        //    if (Input.GetAxis(verticalMove) != 0 && _cooldown)
-        //    {
-        //        player.Move(new Vector2(0, Input.GetAxis(verticalMove) == 0 ? 0 : Input.GetAxis(verticalMove) > 0 ? 1 : -1));
-        //        StartCoroutine(CoolDown());
-        //    }
-        //}
-        //else
-        //{
-        //if (Input.GetButtonDown(horizontalMove))
-        //    player.Move(new Vector2((int)MainHorizontal(), 0));
-        //if (Input.GetButtonDown(verticalMove))
-        //    player.Move(new Vector2(0, -(int)MainVertical()));
-        //}
+        if (Input.GetButtonDown(actionButton))
+            player.ActionButton();
+        if (Input.GetButtonDown(rejectButton))
+            player.RejectButton();
+        if (controller == Controller.J)
+        {
+            if (Input.GetAxis(horizontalMove) != 0 && _cooldown)
+            {
+                player.Move(new Vector2(Input.GetAxis(horizontalMove) == 0 ? 0 : Input.GetAxis(horizontalMove) > 0 ? 1 : -1, 0));
+                StartCoroutine(CoolDown());
+            }
+            if (Input.GetAxis(verticalMove) != 0 && _cooldown)
+            {
+                player.Move(new Vector2(0, Input.GetAxis(verticalMove) == 0 ? 0 : Input.GetAxis(verticalMove) > 0 ? 1 : -1));
+                StartCoroutine(CoolDown());
+            }
+        }
+        else
+        {
+            if (Input.GetButtonDown(horizontalMove))
+                player.Move(new Vector2((int)MainHorizontal(), 0));
+            if (Input.GetButtonDown(verticalMove))
+                player.Move(new Vector2(0, -(int)MainVertical()));
+        }
     }
 
     IEnumerator CoolDown()

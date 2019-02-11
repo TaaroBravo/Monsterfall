@@ -107,6 +107,7 @@ public class Missile : MonoBehaviour
                 playersHitted.Add(enemy);
                 OnHitPlayer(enemy);
                 enemy.ReceiveImpact((Vector3.right * Mathf.Sign((enemy.transform.position - transform.position).x) * 30), player);
+                enemy.myAnim.Play("GetHit");
                 enemy.SetLastOneWhoHittedMe(player);
                 DestroyedMissile();
             }

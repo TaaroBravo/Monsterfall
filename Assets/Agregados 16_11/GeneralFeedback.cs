@@ -22,7 +22,8 @@ public class GeneralFeedback : MonoBehaviour
 
     private void Start()
     {
-        iceblock.SetActive(false);
+        if (iceblock)
+            iceblock.SetActive(false);
         CristalBuffShape = CristalBuff.shape;
         CristalBuffShape2 = CristalBuff2.shape;
         MainElfMark = ElfMark.main;
@@ -44,6 +45,11 @@ public class GeneralFeedback : MonoBehaviour
     {
         MainElfMark.startColor = PColors[ID];
         ElfMark.Play();
+        mainCrosshair.startColor = PColors[ID];
+        mainCrosshair.simulationSpeed = 0.5f;
+        //mainCrosshair
+        if (!Crosshair.isPlaying)
+            Crosshair.Play();
     }
     public void FinishElfMark() { ElfMark.Stop(); }
     public void StartCristalBuff() { CristalBuff.Play(); }
@@ -58,6 +64,7 @@ public class GeneralFeedback : MonoBehaviour
     {
         //Crosshair.gameObject.SetActive(true);
         mainCrosshair.startColor = PColors[ID];
+        mainCrosshair.simulationSpeed = 2f;
         if (!Crosshair.isPlaying)
             Crosshair.Play();
     }

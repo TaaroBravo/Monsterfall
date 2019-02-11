@@ -51,13 +51,10 @@ public class DynamicCristal : MonoBehaviour
 
                 if (Physics.Raycast(cristal.position, (finalPos - cristal.position).normalized, out info, 1000, layerMask))
                 {
-                    Debug.Log("Entre 1");
                     if (info.collider.gameObject.layer == 8 || info.collider.gameObject.layer == LayerMask.GetMask("Hitbox") && !playersHitted.Contains(player))
                     {
-                        Debug.Log("Entre 2");
                         if (TargetScript(info.transform) == player)
                         {
-                            Debug.Log("Entre 3");
                             playersHitted.Add(player);
                             HitPlayer(player, playerDirUp);
                         }
@@ -89,7 +86,6 @@ public class DynamicCristal : MonoBehaviour
 
     void HitPlayer(PlayerController player, Vector3 dir)
     {
-        Debug.Log(player.name);
         player.HitByRay(dir);
     }
 }

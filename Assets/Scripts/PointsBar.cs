@@ -23,7 +23,8 @@ public class PointsBar : MonoBehaviour {
         Pirate,
         Rogue,
         Berserker,
-        Elf
+        Elf,
+        Yeti
     }
 
     public Sprite[] characterSprites = new Sprite[0];
@@ -39,6 +40,7 @@ public class PointsBar : MonoBehaviour {
         characterPortraitsDictionary.Add(Characters.Berserker, characterSprites[(int)Characters.Berserker]);
         characterPortraitsDictionary.Add(Characters.Rogue, characterSprites[(int)Characters.Rogue]);
         characterPortraitsDictionary.Add(Characters.Elf, characterSprites[(int)Characters.Elf]);
+        characterPortraitsDictionary.Add(Characters.Yeti, characterSprites[(int)Characters.Yeti]);
 
         for (int i = 0; i < 4; i++)
         {

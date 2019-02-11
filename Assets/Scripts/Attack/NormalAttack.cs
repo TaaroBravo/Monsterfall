@@ -97,6 +97,7 @@ public class NormalAttack : IAttack
         currentPressed = 1;
         timerCoolDownAttack = coolDownAttack;
         player.PS_Charged.Stop();
+        player.myAnim.ResetTrigger("ReleaseAForward");
     }
 
     public override void Pressed()

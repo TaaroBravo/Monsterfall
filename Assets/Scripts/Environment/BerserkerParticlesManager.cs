@@ -46,13 +46,13 @@ public class BerserkerParticlesManager : MonoBehaviour
             candash = true; // solucion temporal
             dashCDtimer = 0;
         }
-        if (dashCDtimer >= 1.2f) p2Em.rateOverDistance = 0f; // solucion temporal
+        if (dashCDtimer >= 1.2f)
+            p2Em.rateOverDistance = 0f; // solucion temporal
         /// feedback de golpe normal
         if (!iminverted)
         {
             if (XAxis > 0) // dado vuelta
             {
-                Debug.Log("caso 1");
                 //GP_main1.startRotationY = 0f;
                 //GP_main2.startRotationY = 0f;
                 GP_shape1.rotation = new Vector3(0, -90, 0);

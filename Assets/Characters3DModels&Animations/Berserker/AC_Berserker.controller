@@ -122,6 +122,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: ReleaseAForward
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Berserk
@@ -872,7 +878,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: RealeaseAForward
+    m_ConditionEvent: ReleaseAForward
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102785047093156058}
@@ -1547,7 +1553,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Landed
-  m_Speed: 6
+  m_Speed: 10
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101431347395177338}
@@ -1627,7 +1633,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackUp
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101958830298051608}
@@ -1708,7 +1714,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackDown
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101089066468298330}
@@ -1891,7 +1897,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: AttackForward
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101602548714516832}
@@ -2206,7 +2212,7 @@ AnimatorStateMachine:
     m_Position: {x: 816, y: 312, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102968720818163088}
-    m_Position: {x: 276, y: 444, z: 0}
+    m_Position: {x: 192, y: 456, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102132173302880366}
     m_Position: {x: 312, y: 672, z: 0}
@@ -2215,13 +2221,13 @@ AnimatorStateMachine:
     m_Position: {x: 552, y: 672, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102005183840179406}
-    m_Position: {x: 276, y: 384, z: 0}
+    m_Position: {x: 192, y: 396, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102016236334931858}
     m_Position: {x: 324, y: 612, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102809002169664962}
-    m_Position: {x: 276, y: 504, z: 0}
+    m_Position: {x: 192, y: 516, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102622008418100800}
     m_Position: {x: 552, y: 612, z: 0}

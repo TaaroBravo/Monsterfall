@@ -240,4 +240,9 @@ public class FeedbackElf : MonoBehaviour
         DashFinish.Play();
         teleporting = false;
     }
+
+    public void DestroyTrail(Transform t)
+    {
+        Destroy(t.gameObject);
+    }
 }

@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MainMenu_Manager : MonoBehaviour {
+public class MainMenu_Manager : MonoBehaviour
+{
 
     public List<Transform> objectstomove;
     // 0 - Left Section
@@ -37,7 +39,7 @@ public class MainMenu_Manager : MonoBehaviour {
     bool Fade_To_Black;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         Assign_Initials_Positions();
         Assign_Finals_Positions();
@@ -202,7 +204,7 @@ public class MainMenu_Manager : MonoBehaviour {
     }
     void Hide_Loading_Hud()
     {
-        for (int i = 2; i < objectstomove.Count-1; i++) objectstomove[i].position = finalpositions[i];
+        for (int i = 2; i < objectstomove.Count - 1; i++) objectstomove[i].position = finalpositions[i];
         for (int i = 0; i < objectstoappear.Count; i++) objectstoappear[i].color = new Color(objectstoappear[i].color.r, objectstoappear[i].color.g, objectstoappear[i].color.b, 0);
     }
     void Show(GameObject Object, bool EndStep, int Step_index = 0, bool Transition = false)
@@ -232,7 +234,7 @@ public class MainMenu_Manager : MonoBehaviour {
         Timers[Timer_Index] += Time.deltaTime;
         if (Timers[Timer_Index] >= time) End_Step(Step_index, Timer_Index, Transition);
     }
-    void Move(Transform Object, Vector3 initialposition, Vector3 finalposition,float time, int Step_index, int Timer_Index, bool Transition)
+    void Move(Transform Object, Vector3 initialposition, Vector3 finalposition, float time, int Step_index, int Timer_Index, bool Transition)
     {
         Timers[Timer_Index] += Time.deltaTime;
         Object.position = Vector3.Lerp(initialposition, finalposition, Timers[Timer_Index] / time);
@@ -278,10 +280,25 @@ public class MainMenu_Manager : MonoBehaviour {
     {
         Play_To_Loading_Transition = true;
         Fade_To_Black = true;
+        StartCoroutine(TimeToLoading());
     }
+
+    IEnumerator TimeToLoading()
+    {
+        yield return new WaitForSeconds(3f);
+        Finish_Loading();
+    }
+
     public void Finish_Loading()
     {
         Loading_Loop = false;
         Loading_To_Game_Transition = true;
+        StartCoroutine(TimeToCharacterSelection());
+    }
+
+    IEnumerator TimeToCharacterSelection()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(1);
     }
 }

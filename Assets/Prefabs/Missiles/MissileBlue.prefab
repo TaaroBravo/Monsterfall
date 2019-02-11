@@ -195,7 +195,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1099715974184142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.127611, y: 8.386696, z: 32.37315}
+  m_LocalPosition: {x: -13.799761, y: 47.8314, z: -4.54475}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4680994275940124}
@@ -275,6 +275,7 @@ MonoBehaviour:
   Part4: {fileID: 198850230507560074}
   Part5: {fileID: 198367534483191870}
   Part6: {fileID: 198443246533611250}
+  destroysound: {fileID: 0}
 --- !u!114 &114520546250196438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -344,7 +345,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.09
+    widthMultiplier: 0.3
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -13753,7 +13754,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1479256384
+  randomSeed: 641068690
   InitialModule:
     serializedVersion: 3
     enabled: 1

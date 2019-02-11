@@ -11,6 +11,7 @@ TagManager:
   - ParticleCollider
   - PositionsElf
   - Limit
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - AttackCollider
   - HookPoints
   - DashArea
-  - 
+  - Platforms
   - 
   - 
   - 

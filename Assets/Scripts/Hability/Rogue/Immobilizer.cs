@@ -19,13 +19,19 @@ public class Immobilizer : MonoBehaviour
 
     bool canEnter;
 
+    private void Awake()
+    {
+        OnFailedHit += x => StopDestroy();
+        OnHitEnemy += (x, y) => StopDestroy();
+    }
+
     void Update()
     {
         if (gameObject.activeSelf)
         {
             transform.right = direction;
             transform.position += transform.right * speed * Time.deltaTime;
-            if (Physics.OverlapSphere(transform.position, 1f, 1 << 19).Any())
+            if (Physics.OverlapSphere(transform.position, 0.5f, 1 << 19).Any())
                 OnFailedHit(this);
             _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Where(x => x.GetComponent<PlayerController>() != null).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _shooter).Where(x => !x.isDead).FirstOrDefault();
             if (_target && canEnter)
@@ -43,13 +49,50 @@ public class Immobilizer : MonoBehaviour
         _shooter = rogue;
         direction = dir;
         canEnter = true;
+        StartCoroutine(OffObject());
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Default"))
-        {
             OnFailedHit(this);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp"))
+        {
+            WarpController door = other.gameObject.GetComponent<WarpController>();
+            door.WarpHook(transform);
+            StartCoroutine(OffParticles());
+        }
+    }
+
+    void StopDestroy()
+    {
+        StopCoroutine(OffObject());
+    }
+
+    public void DestroyImmobilizer()
+    {
+        Destroy(gameObject);
+    }
+
+    IEnumerator OffObject()
+    {
+        yield return new WaitForSeconds(3.5f);
+        if(gameObject.activeSelf)
+            OnFailedHit(this);
+    }
+
+    IEnumerator OffParticles()
+    {
+        while (true)
+        {
+            transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+            yield return new WaitForSeconds(0.1f);
+            transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+            break;
         }
     }
 }

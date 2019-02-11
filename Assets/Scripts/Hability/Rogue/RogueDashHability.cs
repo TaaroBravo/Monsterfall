@@ -62,7 +62,9 @@ public class RogueDashHability : IHability
 
         if (active)
         {
-            player.transform.position += _dir * _speed * Time.deltaTime;
+
+            //player.transform.position += _dir * _speed * Time.deltaTime;
+            player.controller.Move(_dir * _speed * Time.deltaTime);
             Collider[] cols = Physics.OverlapSphere(_hitArea.bounds.center, _hitArea.bounds.extents.y, LayerMask.GetMask("Hitbox"));
             foreach (Collider c in cols)
             {
@@ -78,11 +80,11 @@ public class RogueDashHability : IHability
                 }
             }
         }
-        if ((finalPos - player.transform.position).magnitude < 3f)
-        {
-            player.transform.position = finalPos;
-            ResetValues();
-        }
+        //if ((finalPos - player.transform.position).magnitude < 3f)
+        //{
+        //    player.transform.position = finalPos;
+        //    ResetValues();
+        //}
     }
 
     public override void Hability()
@@ -96,7 +98,6 @@ public class RogueDashHability : IHability
             float distance = _speed * _activeTime;
             _dir = new Vector3(x, y, 0);
             finalPos = CalculateFinalPos(_dir, distance);
-
             RaycastHit hit;
             if (Physics.Raycast(player.transform.position, _dir, out hit, 30))
             {
@@ -114,11 +115,30 @@ public class RogueDashHability : IHability
 
             damage = _dir;
             _hability.Play();
-            player.controller.enabled = false;
+            //player.controller.enabled = false;
+            OffCollisions();
             player.StartCoroutine(IsDashingTimer(_activeTime));
             timerCoolDown = coolDown;
             player.usingHability = true;
             player.lifeHUD.ActivateDashCD();
+        }
+    }
+
+    void OffCollisions()
+    {
+        foreach (var item in GameObject.FindGameObjectsWithTag("Platform"))
+        {
+            foreach(Collider col in item.GetComponents<Collider>())
+                Physics.IgnoreCollision(player.GetComponent<Collider>(), col, true);
+        }
+    }
+
+    void OnCollisions()
+    {
+        foreach (var item in GameObject.FindGameObjectsWithTag("Platform"))
+        {
+            foreach (Collider col in item.GetComponents<Collider>())
+                Physics.IgnoreCollision(player.GetComponent<Collider>(), col, false);
         }
     }
 
@@ -135,7 +155,8 @@ public class RogueDashHability : IHability
         player.StopCoroutine(IsDashingTimer(_activeTime));
         player.canMove = true;
         player.myAnim.SetBool("Dashing", false);
-        player.controller.enabled = true;
+        //player.controller.enabled = true;
+        OnCollisions();
         player.usingHability = false;
         playersHitted.Clear();
     }

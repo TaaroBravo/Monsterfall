@@ -17,7 +17,7 @@ public class ImmobilizerTrapHability : IHability
         timerCoolDown = _timerCoolDown;
         coolDown = _timerCoolDown;
         _bulletPrefab = _immobilizer;
-        ObjectPoolManager.Instance.AddObjectPool<Immobilizer>(InstantiateBullet, Initializate, Finalizate, 5, true);
+        //ObjectPoolManager.Instance.AddObjectPool<Immobilizer>(InstantiateBullet, Initializate, Finalizate, 5, true);
     }
 
     public override void Update()
@@ -45,9 +45,9 @@ public class ImmobilizerTrapHability : IHability
 
     void Shoot(Vector3 dirPos)
     {
-        //Hacer animacion de disparo.
         Vector3 _direction = ((startPos + dirPos) - startPos).normalized;
-        Immobilizer immobilizer = ObjectPoolManager.Instance.GetObject<Immobilizer>();
+        //Immobilizer immobilizer = ObjectPoolManager.Instance.GetObject<Immobilizer>();
+        Immobilizer immobilizer = GameObject.Instantiate(_bulletPrefab);
         immobilizer.transform.position = startPos;
         immobilizer.SetShooter(player, _direction);
         immobilizer.OnFailedHit += x => ResetValues(x);
@@ -69,30 +69,31 @@ public class ImmobilizerTrapHability : IHability
 
     void ResetValues(Immobilizer immobilizer)
     {
-        immobilizer.OnHitEnemy -= (x, y) =>
-        {
-            OnHitEnemy(x);
-            ResetValues(y);
-        };
-        immobilizer.OnFailedHit -= x => ResetValues(x);
-        ObjectPoolManager.Instance.ReturnObject<Immobilizer>(immobilizer);
+        immobilizer.DestroyImmobilizer();
+        //immobilizer.OnHitEnemy -= (x, y) =>
+        //{
+        //    OnHitEnemy(x);
+        //    ResetValues(y);
+        //};
+        //immobilizer.OnFailedHit -= x => ResetValues(x);
+        //ObjectPoolManager.Instance.ReturnObject<Immobilizer>(immobilizer);
         player.usingHability = false;
     }
 
-    Immobilizer InstantiateBullet()
-    {
-        return GameObject.Instantiate(_bulletPrefab);
-    }
+    //Immobilizer InstantiateBullet()
+    //{
+    //    return GameObject.Instantiate(_bulletPrefab);
+    //}
 
-    void Initializate(Immobilizer c)
-    {
-        c.gameObject.SetActive(true);
-    }
+    //void Initializate(Immobilizer c)
+    //{
+    //    c.gameObject.SetActive(true);
+    //}
 
-    void Finalizate(Immobilizer c)
-    {
-        c.gameObject.SetActive(false);
-    }
+    //void Finalizate(Immobilizer c)
+    //{
+    //    c.gameObject.SetActive(false);
+    //}
 
     public override void Release()
     {

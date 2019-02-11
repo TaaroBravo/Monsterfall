@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23189732767496532}
   - component: {fileID: 114561937272811586}
   - component: {fileID: 54976217071629624}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Immobilizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

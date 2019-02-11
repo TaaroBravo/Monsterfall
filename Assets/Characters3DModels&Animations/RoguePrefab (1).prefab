@@ -1532,6 +1532,7 @@ GameObject:
   - component: {fileID: 114282360976706580}
   - component: {fileID: 82499650754391080}
   - component: {fileID: 82239854179932020}
+  - component: {fileID: 54763095597816960}
   m_Layer: 9
   m_Name: RoguePrefab (1)
   m_TagString: Player
@@ -3602,7 +3603,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1392613062338402}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -0.14, y: 2.6, z: -0.07}
+  m_LocalPosition: {x: -0.14, y: 3.3678477, z: -0.07}
   m_LocalScale: {x: 0.098279536, y: 0.098279536, z: 0.098279536}
   m_Children: []
   m_Father: {fileID: 4400254763351854}
@@ -5559,6 +5560,21 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!54 &54763095597816960
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1456264898930740}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!65 &65085618080117630
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5982,6 +5998,8 @@ MonoBehaviour:
   LifeBar: {fileID: 114976052665595572}
   iminverted: 1
   fixtimer: 0
+  _uiContainer: {fileID: 0}
+  offSet: {x: 0, y: 0, z: 0}
 --- !u!114 &114168463848806016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6355,11 +6373,11 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -124992,7 +125010,7 @@ Canvas:
   m_GameObject: {fileID: 1455642821587840}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -125085,9 +125103,9 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455642821587840}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.10048618}
-  m_LocalScale: {x: 0.48233402, y: 0.4823344, z: -0.48233435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224112273166278656}
   - {fileID: 224386171111958268}
@@ -125096,9 +125114,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.20599675, y: 2.37}
-  m_SizeDelta: {x: 10, y: 10}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!224 &224929435189176256
 RectTransform:
   m_ObjectHideFlags: 1

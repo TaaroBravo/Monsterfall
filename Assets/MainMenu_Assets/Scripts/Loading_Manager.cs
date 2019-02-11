@@ -44,8 +44,8 @@ public class Loading_Manager : MonoBehaviour {
     void Update()
     {
         // DEBUG
-        if (Input.GetKeyDown(KeyCode.O)) Play_Transition();
-        if (Input.GetKeyDown(KeyCode.P)) Finish_Loading();
+        //if (Input.GetKeyDown(KeyCode.O)) Play_Transition();
+        //if (Input.GetKeyDown(KeyCode.P)) Finish_Loading();
         // DEBUG
         if (Play_To_Loading_Transition)
         {
