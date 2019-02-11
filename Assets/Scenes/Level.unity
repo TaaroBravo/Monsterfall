@@ -84494,7 +84494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cristal: {fileID: 1003229459}
-  material: {fileID: 2100000, guid: c55afdc4a8a3b4890b07cc7d176510bb, type: 2}
+  material: {fileID: 2100000, guid: 893f0a116ff17444eb334c11022e502b, type: 2}
   rays:
   - {fileID: 1373611115}
   - {fileID: 792855970}
