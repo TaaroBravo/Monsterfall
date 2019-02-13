@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Pirate3
+  m_Name: Yeti4
   m_Shader: {fileID: 4800000, guid: 60c9fd8db6aaaaa4994ff649b99093e9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 381e364d40cac9d418d4469fc45873f7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 99c7934777add314889e0301dfe916be, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlbedoMap:
@@ -31,11 +31,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CNDefault_Normal:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f165b4fa97211e04884094cbb65c8045, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CNv2Default_MetallicSmoothness:
-        m_Texture: {fileID: 2800000, guid: 3b383548823fb2e4bb6717b1d63452c6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 76286a303ef91f947ba0eb0a2fc9b5ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -47,7 +47,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Splatmap:
-        m_Texture: {fileID: 2800000, guid: af5ab63a69b074347be0e4c17fb9dc1b, type: 3}
+        m_Texture: {fileID: 2800000, guid: e306adc7b0b2d2c4d8a39b54e43b5fb3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
@@ -68,8 +68,8 @@ Material:
     - _Metallic: 0
     - __dirty: 0
     m_Colors:
-    - _AlbedoTint: {r: 0.07586213, g: 1, b: 0, a: 0}
-    - _BorderColor: {r: 0, g: 1, b: 0.048275925, a: 0}
-    - _Color0: {r: 0, g: 0.13103434, b: 1, a: 0}
-    - _DissolveEmissionColor: {r: 0.9843137, g: 1, b: 0, a: 0}
+    - _AlbedoTint: {r: 0.78676474, g: 0.77543396, b: 0.37602726, a: 0}
+    - _BorderColor: {r: 0.9862068, g: 1, b: 0, a: 0}
+    - _Color0: {r: 0, g: 0.13103431, b: 1, a: 0}
+    - _DissolveEmissionColor: {r: 1, g: 0.9724137, b: 0, a: 0}
     - _InvulnerableEmissionColor: {r: 1, g: 0.93103445, b: 0, a: 0}

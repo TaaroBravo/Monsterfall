@@ -34,7 +34,7 @@ public class MainMenu_Selector : MonoBehaviour
     }
     void GoDown()
     {
-        if (positions[currentindex + 1])
+        if (currentindex<3)
         {
             currentindex++;
             MM_Manager.selector.transform.position = positions[currentindex].position;
@@ -44,7 +44,7 @@ public class MainMenu_Selector : MonoBehaviour
     }
     void GoUp()
     {
-        if (positions[currentindex - 1])
+        if (currentindex>0)
         {
             currentindex--;
             MM_Manager.selector.transform.position = positions[currentindex].position;

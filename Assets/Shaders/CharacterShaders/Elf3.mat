@@ -71,5 +71,5 @@ Material:
     - _AlbedoTint: {r: 0.07586213, g: 1, b: 0, a: 0}
     - _BorderColor: {r: 0, g: 1, b: 0.048275925, a: 0}
     - _Color0: {r: 0, g: 0.13103434, b: 1, a: 0}
-    - _DissolveEmissionColor: {r: 1, g: 0, b: 0, a: 0}
+    - _DissolveEmissionColor: {r: 0.9843137, g: 1, b: 0, a: 0}
     - _InvulnerableEmissionColor: {r: 1, g: 0.93103445, b: 0, a: 0}

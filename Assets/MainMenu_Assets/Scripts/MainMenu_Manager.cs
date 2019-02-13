@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenu_Manager : MonoBehaviour
@@ -15,7 +16,7 @@ public class MainMenu_Manager : MonoBehaviour
     // 5 - Match Configuration 2 ( Win Condition )
     // 6 - Match Configuration 3 ( Map Shuffle )
     // 7 - Loading Bar Bundle
-    public List<SpriteRenderer> objectstoappear;
+    public List<Image> objectstoappear;
     // 0 - Black Background
     // 1 - Loading Text
     // 2 - Loading Text Dot 1
@@ -59,8 +60,8 @@ public class MainMenu_Manager : MonoBehaviour
                 if (Play_Transition_Steps[0])
                 {
                     Hide(selector, false);
-                    Move_and_Rotate(objectstomove[0], initialpositions[0], finalpositions[0], -5f, 0.4f, 0.8f, 0, 0, Play_To_Loading_Transition);
-                    Move_and_Rotate(objectstomove[1], initialpositions[1], finalpositions[1], 5f, 0.4f, 0.8f, 0, 1, Play_To_Loading_Transition);
+                    Move(objectstomove[0], initialpositions[0], finalpositions[0], 0.8f, 0, 0, Play_To_Loading_Transition);
+                    Move(objectstomove[1], initialpositions[1], finalpositions[1], 0.8f, 0, 1, Play_To_Loading_Transition);
                     break;
                 }
                 else if (Play_Transition_Steps[1])
@@ -195,11 +196,11 @@ public class MainMenu_Manager : MonoBehaviour
     {
         for (int i = 0; i < objectstomove.Count; i++)
         {
-            if (i == 0) finalpositions.Add(objectstomove[i].position + new Vector3(-5, 0, 0));
-            else if (i == 1) finalpositions.Add(objectstomove[i].position + new Vector3(5, 0, 0));
-            else if (i == 2) finalpositions.Add(objectstomove[i].position + new Vector3(-20, 0, 0));
-            else if (i == 3) finalpositions.Add(objectstomove[i].position + new Vector3(20, 0, 0));
-            else finalpositions.Add(objectstomove[i].position + new Vector3(-20, 0, 0));
+            if (i == 0) finalpositions.Add(objectstomove[i].position + new Vector3(-1000, 0, 0));
+            else if (i == 1) finalpositions.Add(objectstomove[i].position + new Vector3(1000, 0, 0));
+            else if (i == 2) finalpositions.Add(objectstomove[i].position + new Vector3(-1000, 0, 0));
+            else if (i == 3) finalpositions.Add(objectstomove[i].position + new Vector3(1000, 0, 0));
+            else finalpositions.Add(objectstomove[i].position + new Vector3(-1000, 0, 0));
         }
     }
     void Hide_Loading_Hud()
@@ -217,13 +218,13 @@ public class MainMenu_Manager : MonoBehaviour
         Object.SetActive(false);
         if (EndStep) End_Step(Step_index, 0, Transition);
     }
-    void FadeIn(SpriteRenderer Object, float time, int Step_index, int Timer_Index, bool Transition)
+    void FadeIn(Image Object, float time, int Step_index, int Timer_Index, bool Transition)
     {
         Timers[Timer_Index] += Time.deltaTime;
         Object.color = new Color(Object.color.r, Object.color.g, Object.color.b, 0 + Timers[Timer_Index] / time);
         if (Timers[Timer_Index] >= time) End_Step(Step_index, Timer_Index, Transition);
     }
-    void FadeOut(SpriteRenderer Object, float time, int Step_index, int Timer_Index, bool Transition)
+    void FadeOut(Image Object, float time, int Step_index, int Timer_Index, bool Transition)
     {
         Timers[Timer_Index] += Time.deltaTime;
         Object.color = new Color(Object.color.r, Object.color.g, Object.color.b, 1 - Timers[Timer_Index] / time);
@@ -238,7 +239,7 @@ public class MainMenu_Manager : MonoBehaviour
     {
         Timers[Timer_Index] += Time.deltaTime;
         Object.position = Vector3.Lerp(initialposition, finalposition, Timers[Timer_Index] / time);
-        if (Object.position == finalposition) End_Step(Step_index, Timer_Index, Transition);
+        if (Timers[Timer_Index] > time) End_Step(Step_index, Timer_Index, Transition);
     }
     void Rotate(Transform Object, bool EndStep, Vector3 rotation_ammount, float time, int Step_index = 0, int Timer_Index = 0, bool Transition = false)
     {
@@ -285,7 +286,7 @@ public class MainMenu_Manager : MonoBehaviour
 
     IEnumerator TimeToLoading()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         Finish_Loading();
     }
 
@@ -298,7 +299,7 @@ public class MainMenu_Manager : MonoBehaviour
 
     IEnumerator TimeToCharacterSelection()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.3f);
         SceneManager.LoadScene(1);
     }
 }
