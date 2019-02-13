@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1185211696127258}
+  m_IsPrefabParent: 1
+--- !u!1 &1185211696127258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4390316973539268}
+  - component: {fileID: 114413053088161616}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4390316973539268
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1185211696127258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.501026, y: 41.416126, z: 0.21004763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114413053088161616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1185211696127258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d16a7d3662a510e4ca8b7b2337f0e380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClipInWorldPrefab: {fileID: 1768331949011894, guid: f98b117c6ea1b3f41bfdf4162187ae94,
+    type: 2}
+  run: {fileID: 0}
+  jump: {fileID: 8300000, guid: 8e280b8d5acb21941821438f8a7780f3, type: 3}
+  land: {fileID: 8300000, guid: bea5ae83c1422b24ea49baad5ff81f5e, type: 3}
+  punch: {fileID: 8300000, guid: 6ec9c822da4bc1c4aad55f98b608149d, type: 3}
+  hitPlayer: {fileID: 8300000, guid: cc50aa57a46a5e6478e7e8f754a4f7b9, type: 3}
+  death: {fileID: 8300000, guid: e8e46b9eb1624b4438168b36746270c8, type: 3}
+  stunned: {fileID: 0}
+  teleport: {fileID: 8300000, guid: f6d29b9202a995b4e84a9f152a7b2ef1, type: 3}
+  navigationOnHud: {fileID: 8300000, guid: d1b13522fcead4f4a9fa855840aa74d0, type: 3}
+  pauseClip: {fileID: 8300000, guid: 617ea35946d0cf34b94e8d793cb780f8, type: 3}
+  winRound: {fileID: 0}
+  winGame: {fileID: 0}
+  explosionKnight: {fileID: 8300000, guid: 92b29f64ca122cb40b771cbee75d32ef, type: 3}
+  fireJump: {fileID: 8300000, guid: e9f776796851b2943878639f1d976a36, type: 3}
+  fire: {fileID: 8300000, guid: d02ef1767ce9f4545850b714b423e7bb, type: 3}
+  throwHook: {fileID: 8300000, guid: 38b523985ab5b1a47aea81bcff0b1935, type: 3}
+  hookSomething: {fileID: 8300000, guid: 8cd7ef835b0b9814eb8571dc489ce345, type: 3}
+  traveling: {fileID: 0}
+  fireGun: {fileID: 8300000, guid: e78529d62207fa64cb969cb3b596a4c9, type: 3}
+  throwBlade: {fileID: 8300000, guid: 2e3a7f17935661a43bcc032f9633ac62, type: 3}
+  throwHit: {fileID: 8300000, guid: c507ed05d98690e4288edb2758cbbd76, type: 3}
+  teleportAbility: {fileID: 8300000, guid: 96a619c4bc754264091bcb65f7fc86f1, type: 3}
+  chargingAttack: {fileID: 0}
+  jumpingAttack: {fileID: 8300000, guid: 56e8f98db9b6f2d4eb2eecb482d362c6, type: 3}
+  attackingAbility: {fileID: 0}
+  runAbility: {fileID: 0}
+  hitWithRun: {fileID: 8300000, guid: 0796fcd18b443d642a1d671b5029469f, type: 3}
+  shootingMissileElf: {fileID: 8300000, guid: 94c724055de8c104a9d80d60af90ae84, type: 3}
+  incomingMissiles: {fileID: 0}
+  explosionMissiles: {fileID: 8300000, guid: 08364d10b5ccec94783ad19e667c8cfd, type: 3}
+  teleportMissile: {fileID: 8300000, guid: a43928b0a8f14644fa60eca25dcb6619, type: 3}
+  teleportingElf: {fileID: 8300000, guid: aa87736ce36b4d14484850dd8c4202d2, type: 3}
+  markEffect: {fileID: 0}
+  explosionYeti: {fileID: 8300000, guid: 37e9cf7ca11a01d4bbbb4c2d33604e47, type: 3}
+  hitWithIce: {fileID: 8300000, guid: 14589e5b545f50d469d0e83bbe12dbb2, type: 3}
+  iceIdle: {fileID: 0}
+  creationOfPlatform: {fileID: 0}

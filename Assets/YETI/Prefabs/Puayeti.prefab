@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4520610612287728}
   - component: {fileID: 33308474863441382}
   - component: {fileID: 23606175952401224}
+  - component: {fileID: 114842984260632526}
+  - component: {fileID: 65412501954618284}
   m_Layer: 0
   m_Name: Puayeti
   m_TagString: Untagged
@@ -52,8 +54,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1201826956902808}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 202.317, y: 683, z: 426}
-  m_LocalScale: {x: 0.6772723, y: 0.6772717, z: 0.6772717}
+  m_LocalPosition: {x: -19.794603, y: 31.700197, z: -1.694572}
+  m_LocalScale: {x: 0.045873355, y: 0.04587331, z: 0.04587331}
   m_Children:
   - {fileID: 4953097762266572}
   m_Father: {fileID: 0}
@@ -113,6 +115,31 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1201826956902808}
   m_Mesh: {fileID: 4300000, guid: bd4436be87339cd46b9866e96edceadf, type: 3}
+--- !u!65 &65412501954618284
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1201826956902808}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 19.636953, y: 20.625425, z: 103.58306}
+  m_Center: {x: -3.4524295, y: -16.198618, z: 9.915761}
+--- !u!114 &114842984260632526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1201826956902808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c7b905925e98fb45a162e45e319a05b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icePrefab: {fileID: 114034310566612960, guid: a793a115cb12ed2438209c823bd54766,
+    type: 2}
 --- !u!198 &198222024988313430
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -325,8 +352,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 5
+      scalar: 2
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:

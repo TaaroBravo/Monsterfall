@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     public Transform crown;
     public Vector3 cube;
 
+    public GameObject pauseMenu;
+
     bool diesByPlayerHit;
 
     private void Awake()
@@ -296,15 +298,34 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(6f);
-            Destroy(infoManager.gameObject);
-            if (FindObjectOfType<MusicInGame>())
-                Destroy(FindObjectOfType<MusicInGame>().gameObject);
-            if (FindObjectOfType<PlayersInfoManager>())
-                Destroy(FindObjectOfType<PlayersInfoManager>().gameObject);
-            ObjectPoolManager.Instance.Clean();
-            SceneManager.LoadScene(0);
+            ChargeScene();
             break;
         }
+    }
+
+    public void PauseMenu(bool state)
+    {
+        if(state)
+        {
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pauseMenu.SetActive(false);
+        }
+    }
+
+    public void ChargeScene()
+    {
+        Destroy(infoManager.gameObject);
+        if (FindObjectOfType<MusicInGame>())
+            Destroy(FindObjectOfType<MusicInGame>().gameObject);
+        if (FindObjectOfType<PlayersInfoManager>())
+            Destroy(FindObjectOfType<PlayersInfoManager>().gameObject);
+        ObjectPoolManager.Instance.Clean();
+        SceneManager.LoadScene(0);
     }
     #endregion
 

@@ -767,6 +767,16 @@ public class PlayerController : MonoBehaviour
             playerMarked = false;
             myAnim.SetBool("Stunned", false);
         }
+
+        if(hit.gameObject.GetComponent<IcePlatform>())
+        {
+            if(this is Yeti)
+                moveSpeed = 16;
+            else
+                moveSpeed = 8;
+        }
+        else
+            moveSpeed = 12;
         var dir = Vector3.Dot(transform.up, hit.normal);
         if (!controller.isGrounded && dir == -1)
         {

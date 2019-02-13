@@ -57,12 +57,13 @@ public class CreatorRays : MonoBehaviour
 
     void CalculateTimeToDeath()
     {
-        if(players.Count() == 4)
-            _timeToDeath = 60f;
+        countOfRays = 2;
+        if (players.Count() == 4)
+            _timeToDeath = 55f;
         else if(players.Count() == 3)
-            _timeToDeath = 45f;
+            _timeToDeath = 40f;
         else if (players.Count() == 2)
-            _timeToDeath = 30f;
+            _timeToDeath = 25f;
     }
 
     public void SetPlayers(PlayerController[] _players)
@@ -97,14 +98,14 @@ public class CreatorRays : MonoBehaviour
             else activeMode = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            countOfRays = 1;
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            countOfRays = 2;
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            countOfRays = 3;
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-            countOfRays = 4;
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //    countOfRays = 1;
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //    countOfRays = 2;
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //    countOfRays = 3;
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //    countOfRays = 4;
         #endregion
     }
 
@@ -134,9 +135,25 @@ public class CreatorRays : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(x);
+            //cristal.SetActive(true);
             activeMode = true;
+            countOfRays = 0;
+            yield return ChangeScale(cristal.transform.Find("Cristal").localScale, new Vector3(0.3290589f, 0.3290589f, 0.239385f),1f);
+            //yield return new WaitForSeconds(1f);
             countOfRays = 2;
             break;
+        }
+    }
+
+    public IEnumerator ChangeScale(Vector3 a, Vector3 b, float time)
+    {
+        float i = 0f;
+        float rate = (1f / time);
+        while (i < 1)
+        {
+            i += Time.deltaTime * rate;
+            cristal.transform.Find("Cristal").localScale = Vector3.Lerp(a, b, i);
+            yield return null;
         }
     }
 

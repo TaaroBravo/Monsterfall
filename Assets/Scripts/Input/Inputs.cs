@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class Inputs : MonoBehaviour
 {
@@ -178,6 +179,21 @@ public class Inputs : MonoBehaviour
             {
                 DisconnectPlayer(0, ((int)item) + 1);
             }
+
+            if (prevState.Buttons.Back == ButtonState.Released && state.Buttons.Back == ButtonState.Pressed)
+            {
+                BackToMenu();
+            }
         }
+    }
+
+    void BackToMenu()
+    {
+
+        if (FindObjectOfType<MusicInGame>())
+            Destroy(FindObjectOfType<MusicInGame>().gameObject);
+        if (FindObjectOfType<PlayersInfoManager>())
+            Destroy(FindObjectOfType<PlayersInfoManager>().gameObject);
+        SceneManager.LoadScene(0);
     }
 }

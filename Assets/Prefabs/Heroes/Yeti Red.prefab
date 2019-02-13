@@ -2338,9 +2338,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300921432413420}
-  m_LocalRotation: {x: -0, y: 0.7071099, z: -0, w: -0.7071037}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -17.06, y: 0, z: 6.6638107}
-  m_LocalScale: {x: 0.23016, y: 0.23016, z: 0.23016}
+  m_LocalScale: {x: -0.23016, y: 0.23016, z: -0.23016}
   m_Children:
   - {fileID: 4129263009813898}
   - {fileID: 4970645307780754}
@@ -2362,7 +2362,7 @@ Transform:
   - {fileID: 4488464158658136}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 269.999, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4263998474195894
 Transform:
   m_ObjectHideFlags: 1
@@ -2452,7 +2452,7 @@ Transform:
   m_GameObject: {fileID: 1062837964331782}
   m_LocalRotation: {x: 0.000000029711336, y: 0.70666754, z: -0.000000029785175, w: 0.7075458}
   m_LocalPosition: {x: 0, y: 31.7, z: 1.59}
-  m_LocalScale: {x: -1.2031397, y: 1.2031393, z: 1.2031397}
+  m_LocalScale: {x: -1.20314, y: 1.2031393, z: 1.20314}
   m_Children: []
   m_Father: {fileID: 4262648839785360}
   m_RootOrder: 8
@@ -3998,6 +3998,14 @@ MonoBehaviour:
   lastOneWhoHittedMe: {fileID: 0}
   buffedPower: 1
   onFire: 0
+  icePlatfromPrefab: {fileID: 114434287585434346, guid: 1e5b8d5984e783f4d9e2ac534b1a72cb,
+    type: 2}
+  spikesPrefab: {fileID: 114842984260632526, guid: 56d0daa1b9cf70247bc3628b1f919a6e,
+    type: 2}
+  icePrefab: {fileID: 114034310566612960, guid: a793a115cb12ed2438209c823bd54766,
+    type: 2}
+  onMark: 0
+  frozenCharacter: []
 --- !u!114 &114756736564164100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4128,7 +4136,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7bdd02e408131aa4185f61fcdcc0aaf3, type: 3}
+  - {fileID: 2100000, guid: e6a78ddf888ac5745aea1a1ad8b7a8c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

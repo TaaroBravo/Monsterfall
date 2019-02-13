@@ -50,6 +50,8 @@ public class NormalAttack : IAttack
             //Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents * 2, col.transform.rotation, LayerMask.GetMask("Hitbox"));
             foreach (Collider c in cols)
             {
+                if (c.GetComponent<Ice>())
+                    c.GetComponent<Ice>().DestroyObject();
                 if (c.transform.gameObject.layer == LayerMask.GetMask("Hitbox"))
                     continue;
                 if (CheckParently(c.transform))
@@ -70,7 +72,12 @@ public class NormalAttack : IAttack
 
                     if (!(player is Rogue) && !(player is Berserk) && !(player is Pirate) && !(player is Elf))
                     {
-                        target.SetDamage(10 * player.buffedPower);
+                        if (player is Yeti && ((Yeti)player).frozenCharacter.Contains(target))
+                        {
+                            target.SetDamage(20 * player.buffedPower);
+                        }
+                        else
+                            target.SetDamage(10 * player.buffedPower);
                         target.ApplyEffect(effect);
                     }
                     else if (player is Pirate)

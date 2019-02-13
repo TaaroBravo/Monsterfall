@@ -15,7 +15,6 @@ public class Elf : PlayerController
     public Transform[] randomPositions;
     IEffect markEffect;
 
-    //Falta asignarlos
     public Missile missilePrefab;
     public MissileTeleport missileTeleportPrefab;
 

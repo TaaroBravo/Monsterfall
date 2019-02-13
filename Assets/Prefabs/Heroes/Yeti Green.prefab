@@ -3835,6 +3835,14 @@ MonoBehaviour:
   lastOneWhoHittedMe: {fileID: 0}
   buffedPower: 1
   onFire: 0
+  icePlatfromPrefab: {fileID: 114434287585434346, guid: 1e5b8d5984e783f4d9e2ac534b1a72cb,
+    type: 2}
+  spikesPrefab: {fileID: 114842984260632526, guid: 56d0daa1b9cf70247bc3628b1f919a6e,
+    type: 2}
+  icePrefab: {fileID: 114034310566612960, guid: a793a115cb12ed2438209c823bd54766,
+    type: 2}
+  onMark: 0
+  frozenCharacter: []
 --- !u!114 &114313301857714098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4128,7 +4136,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7bdd02e408131aa4185f61fcdcc0aaf3, type: 3}
+  - {fileID: 2100000, guid: 73579a98c0b3d0047be7dfac24221ae8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

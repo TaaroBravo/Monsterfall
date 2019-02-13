@@ -1,6 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
+using UnityEngine.UI;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
+using System;
 
 public class MainMenu_Selector : MonoBehaviour
 {
@@ -9,34 +14,242 @@ public class MainMenu_Selector : MonoBehaviour
     public List<Transform> positions;
     public float rotation_speed;
     int currentindex;
+    int currentindexInOptions;
+    float currentindexInSlider;
+    Dictionary<int, Slider> slidePositions;
 
     bool loading;
     bool pauseMenu;
     bool controlsMenu;
+
+    public GameObject controlsCanvas;
+    public GameObject optionsCanvas;
+
+    bool controlsCanvasActive;
+    bool optionsCanvasActive;
+
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
+    PlayerIndex[] playerIndices;
+
+    bool _cooldown = true;
+
+    public Slider generalSlider;
+    public Slider soundSlider;
+    public Slider musicSlider;
+    public Slider graphicsSlider;
+
+    public Image[] handle;
+    public Sprite handleActive;
+    public Sprite handleDisable;
+
+    public AudioMixer mixer;
 
     void Start()
     {
         MM_Manager = GetComponent<MainMenu_Manager>();
         currentindex = 0;
         MM_Manager.selector.transform.position = positions[currentindex].position;
+        playerIndices = new PlayerIndex[1];
+        slidePositions = new Dictionary<int, Slider>();
+        slidePositions.Add(0, generalSlider);
+        slidePositions.Add(1, soundSlider);
+        slidePositions.Add(2, musicSlider);
+        slidePositions.Add(3, graphicsSlider);
+        generalSlider.value = 0;
+        soundSlider.value = 0f;
+        musicSlider.value = 0f;
+        graphicsSlider.value = 2; // Deberia ser lo que vale las opciones de graficos.
+        GetGamepadInputs();
     }
 
     void Update()
     {
+        GetGamepadInputs();
         MM_Manager.selector.transform.Rotate(0, 0, rotation_speed);
-        if (Input.GetKeyDown(KeyCode.DownArrow)) GoDown();
-        if (Input.GetKeyDown(KeyCode.UpArrow)) GoUp();
-        if (Input.GetKeyDown(KeyCode.Return) && currentindex == 0 && !loading)
+
+        if (optionsCanvasActive)
         {
-            MM_Manager.Play_Transition();
-            loading = true;
+            for (int i = 0; i < handle.Length; i++)
+            {
+                handle[i].sprite = handleDisable;
+            }
+            handle[currentindexInOptions].sprite = handleActive;
         }
     }
+
+    void GetGamepadInputs()
+    {
+        if (!playerIndexSet || !prevState.IsConnected)
+        {
+            for (int i = 0; i < 1; ++i)
+            {
+                PlayerIndex testPlayerIndex = (PlayerIndex)i;
+                GamePadState testState = GamePad.GetState(testPlayerIndex);
+                if (testState.IsConnected)
+                {
+                    playerIndex = testPlayerIndex;
+                    playerIndices[i] = testPlayerIndex;
+                    playerIndexSet = true;
+                }
+            }
+        }
+
+        foreach (var item in playerIndices)
+        {
+            prevState = state;
+            state = GamePad.GetState(item);
+            if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
+            {
+                Accept();
+            }
+
+            if ((prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed) || (prevState.Buttons.Back == ButtonState.Released && state.Buttons.Back == ButtonState.Pressed))
+            {
+                Back();
+            }
+
+            if (state.ThumbSticks.Left.Y != 0 && _cooldown)
+            {
+                if (!optionsCanvasActive && !controlsCanvasActive)
+                {
+                    Move(state.ThumbSticks.Left.Y == 0 ? 0 : state.ThumbSticks.Left.Y > 0 ? -1 : 1);
+                    StartCoroutine(CoolDown());
+                }
+                else if (optionsCanvasActive)
+                {
+                    MoveOnOptions(state.ThumbSticks.Left.Y == 0 ? 0 : state.ThumbSticks.Left.Y > 0 ? -1 : 1);
+                    StartCoroutine(CoolDown());
+                }
+            }
+
+            if (state.ThumbSticks.Left.X != 0 && _cooldown)
+            {
+                if (optionsCanvasActive)
+                {
+                    SlideOptions(state.ThumbSticks.Left.X == 0 ? 0 : state.ThumbSticks.Left.X < 0 ? -1 : 1);
+                    StartCoroutine(CoolDown());
+                }
+            }
+        }
+    }
+
+    void Accept()
+    {
+        if (currentindex == 0)
+        {
+            PlayGame();
+        }
+        else if (currentindex == 1)
+        {
+            ShowOptions(true);
+        }
+        else if (currentindex == 2)
+        {
+            ShowControls(true);
+        }
+        else if (currentindex == 3)
+        {
+            QuitGame();
+        }
+    }
+
+    void Back()
+    {
+        if (optionsCanvasActive)
+        {
+            ShowOptions(false);
+        }
+        else if (controlsCanvasActive)
+        {
+            ShowControls(false);
+        }
+    }
+
+    void MoveOnOptions(int x)
+    {
+        currentindexInOptions += x;
+        if (currentindexInOptions >= 3)
+        {
+            currentindexInOptions = 3;
+        }
+        else if (currentindexInOptions < 0)
+        {
+            currentindexInOptions = 0;
+        }
+    }
+
+    void SlideOptions(int x)
+    {
+        currentindexInSlider = slidePositions[currentindexInOptions].value;
+        if (currentindexInOptions == slidePositions.Count - 1)
+        {
+            currentindexInSlider += x;
+            if (currentindexInSlider < 0)
+                currentindexInSlider = 0;
+            if (currentindexInSlider >= 2)
+                currentindexInSlider = 2;
+            slidePositions[currentindexInOptions].value = currentindexInSlider;
+            QualitySettings.SetQualityLevel((int)currentindexInSlider);
+        }
+        else
+        {
+            currentindexInSlider += x * 5;
+            if (currentindexInSlider < -80)
+                currentindexInSlider = -80;
+            if (currentindexInSlider >= 0)
+                currentindexInSlider = 0;
+            slidePositions[currentindexInOptions].value = currentindexInSlider;
+            if(currentindexInOptions == 0)
+            {
+                mixer.SetFloat("GeneralVolume", currentindexInSlider);
+            }
+            else if (currentindexInOptions == 1)
+            {
+                mixer.SetFloat("SoundsVolume", currentindexInSlider);
+            }
+            else
+            {
+                mixer.SetFloat("MusicVolume", currentindexInSlider);
+            }
+            
+        }
+    }
+
+    void Move(int x)
+    {
+        var tempIndex = currentindex;
+        currentindex += x;
+        if (currentindex == positions.Count)
+        {
+            currentindex = positions.Count - 1;
+        }
+        else if (currentindex < 0)
+        {
+            currentindex = 0;
+        }
+        if (currentindex != tempIndex)
+        {
+            MM_Manager.selector.transform.position = positions[currentindex].position;
+            MM_Manager.selector.transform.rotation = positions[currentindex].rotation;
+        }
+    }
+
+    IEnumerator CoolDown()
+    {
+        _cooldown = false;
+        yield return new WaitForSeconds(0.2f);
+        _cooldown = true;
+    }
+
     void GoDown()
     {
-        if (currentindex<3)
+        if (currentindex < 3)
         {
             currentindex++;
+            //MM_Manager.selector.transform.position = Camera.main.WorldToScreenPoint(positions[currentindex].position);
             MM_Manager.selector.transform.position = positions[currentindex].position;
             MM_Manager.selector.transform.rotation = positions[currentindex].rotation;
 
@@ -44,11 +257,52 @@ public class MainMenu_Selector : MonoBehaviour
     }
     void GoUp()
     {
-        if (currentindex>0)
+        if (currentindex > 0)
         {
             currentindex--;
+            //MM_Manager.selector.transform.position = Camera.main.WorldToScreenPoint(positions[currentindex].position);
             MM_Manager.selector.transform.position = positions[currentindex].position;
             MM_Manager.selector.transform.rotation = positions[currentindex].rotation;
         }
+    }
+
+    public void ShowControls(bool state)
+    {
+        if (state)
+        {
+            controlsCanvas.SetActive(true);
+            controlsCanvasActive = true;
+        }
+        else
+        {
+            controlsCanvas.SetActive(false);
+            controlsCanvasActive = false;
+
+        }
+    }
+
+    public void ShowOptions(bool state)
+    {
+        if (state)
+        {
+            optionsCanvas.SetActive(true);
+            optionsCanvasActive = true;
+        }
+        else
+        {
+            optionsCanvas.SetActive(false);
+            optionsCanvasActive = false;
+
+        }
+    }
+
+    void PlayGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

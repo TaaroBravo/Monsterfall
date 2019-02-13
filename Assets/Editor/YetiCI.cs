@@ -99,17 +99,14 @@ public class YetiCI : Editor
         {
             EditorGUILayout.LabelField("Hability:", EditorStyles.boldLabel);
             EditorGUILayout.Space();
-            //EditorGUILayout.LabelField("Immobilizer Jump");
-            //player.immobilizer = (Immobilizer)EditorGUILayout.ObjectField(player.immobilizer, typeof(Immobilizer), true);
-            //player.immobilizerCooldown = EditorGUILayout.FloatField("Cooldown de la habilidad", player.immobilizerCooldown);
-            //EditorGUILayout.Space();
-            //EditorGUILayout.LabelField("Rogue Dash");
-            //player.hitArea = (Collider)EditorGUILayout.ObjectField(player.hitArea, typeof(Collider), true);
-            //player.ps_DashRogue = (ParticleSystem)EditorGUILayout.ObjectField(player.ps_DashRogue, typeof(ParticleSystem), true);
-            //player.speedOfRogueDash = EditorGUILayout.FloatField("Velocidad del Rogue Dash", player.speedOfRogueDash);
-            //player.rogueDashCooldown = EditorGUILayout.FloatField("Cooldown del Hability", player.rogueDashCooldown);
-            //player.powerOfDash = EditorGUILayout.FloatField("Poder del Rogue Dash", player.powerOfDash);
-            //player.dashingTime = EditorGUILayout.FloatField("Tiempo activo del Rogue Dash", player.dashingTime);
+            EditorGUILayout.LabelField("Ice");
+            player.icePrefab = (Ice)EditorGUILayout.ObjectField(player.icePrefab, typeof(Ice), true);
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Ice Spikes");
+            player.spikesPrefab = (IceSpikes)EditorGUILayout.ObjectField(player.spikesPrefab, typeof(IceSpikes), true);
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Ice Platform");
+            player.icePlatfromPrefab = (IcePlatform)EditorGUILayout.ObjectField(player.icePlatfromPrefab, typeof(IcePlatform), true);
             EditorGUILayout.Space();
         }
         EditorGUILayout.EndFadeGroup();
