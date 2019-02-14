@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 00fe5a99c1ef4a940987f4147dd5f6b7
+timeCreated: 1550157460
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _bloquehieloyeti_DefaultMaterial_Normal: {fileID: 2800000, guid: 28914e2b621372f498f24670edcef55c,
+      type: 3}
+  - _bloquehieloyeti_DefaultMaterial_AlbedoTransparency: {fileID: 2800000, guid: 2944c319ba2ed8e4cbe7fe8f887d9978,
+      type: 3}
+  - _bloquehieloyeti_DefaultMaterial_MetallicSmoothness: {fileID: 2800000, guid: 30965785e46a953409a5621e5b197289,
+      type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
