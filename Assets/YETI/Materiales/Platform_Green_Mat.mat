@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Ice_Yellow_Mat 2
+  m_Name: Platform_Green_Mat
   m_Shader: {fileID: 4800000, guid: 00fe5a99c1ef4a940987f4147dd5f6b7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -38,4 +38,4 @@ Material:
     - _Float0: 1
     - __dirty: 0
     m_Colors:
-    - _Tint: {r: 0.8161765, g: 0.80674, b: 0.4741025, a: 0}
+    - _Tint: {r: 0.57657206, g: 0.88235295, b: 0.5514706, a: 0}
