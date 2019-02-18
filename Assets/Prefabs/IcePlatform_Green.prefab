@@ -28,6 +28,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1241589351680654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4486738265457988}
+  - component: {fileID: 65669151336280732}
+  m_Layer: 19
+  m_Name: HookpointCollider (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1289049146812412
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,6 +92,19 @@ Transform:
   m_Father: {fileID: 4941108818752636}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+--- !u!4 &4486738265457988
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241589351680654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4941108818752636}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4941108818752636
 Transform:
   m_ObjectHideFlags: 1
@@ -83,10 +112,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1289049146812412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -53.96578, y: 10.1, z: 19.27}
+  m_LocalPosition: {x: -44.80251, y: 12.17, z: 5.670677}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4269231010621910}
+  - {fileID: 4486738265457988}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -156,6 +186,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.602049, y: 1.8898191, z: 1}
   m_Center: {x: -0.24946117, y: -0.99108934, z: 0}
+--- !u!65 &65669151336280732
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241589351680654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.654995, y: 2.845789, z: 1}
+  m_Center: {x: -0.35717583, y: -0.993371, z: 0}
 --- !u!114 &114936933225610186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22b5f35b56b5374f9b9d8aa82389a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particlePlatform: {fileID: 198630718493330074}
 --- !u!198 &198630718493330074
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -227,7 +270,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 711376394
+  randomSeed: -138018185
   InitialModule:
     serializedVersion: 3
     enabled: 1

@@ -108,6 +108,9 @@ public class YetiCI : Editor
             EditorGUILayout.LabelField("Ice Platform");
             player.icePlatfromPrefab = (IcePlatform)EditorGUILayout.ObjectField(player.icePlatfromPrefab, typeof(IcePlatform), true);
             EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Ice Explosion");
+            player.explotePS = (ParticleSystem)EditorGUILayout.ObjectField(player.explotePS, typeof(ParticleSystem), true);
+            EditorGUILayout.Space();
         }
         EditorGUILayout.EndFadeGroup();
         fadeVariablesImpact.target = EditorGUILayout.Foldout(fadeVariablesImpact.target, "Variables de Impacto");

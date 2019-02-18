@@ -28,6 +28,13 @@ public class CreatorRays : MonoBehaviour
 
     private float _timeToDeath;
 
+    public AudioSource windComing;
+    public AudioSource cristalGeneration1;
+    public AudioSource electricSound;
+    public AudioSource bellsInComing;
+    public AudioSource explosion;
+    public AudioSource cristalIdle;
+
     private void Awake()
     {
         Instance = this;
@@ -53,6 +60,23 @@ public class CreatorRays : MonoBehaviour
         StartCoroutine(StartCoroutine());
         CalculateTimeToDeath();
         StartCoroutine(WaitToSuddenDeath(_timeToDeath));
+        StartCoroutine(FeedbackRays(_timeToDeath));
+    }
+
+    IEnumerator FeedbackRays(float x)
+    {
+        yield return new WaitForSeconds(x - 5.5f);
+        bellsInComing.Play();
+        windComing.Play();
+        yield return new WaitForSeconds(5f);
+        cristalGeneration1.Play();
+        yield return new WaitForSeconds(0.3f);
+        electricSound.Play();
+        yield return new WaitForSeconds(0.2f);
+        explosion.Play();
+        yield return new WaitForSeconds(0.2f);
+        cristalIdle.Play();
+
     }
 
     void CalculateTimeToDeath()
@@ -60,10 +84,10 @@ public class CreatorRays : MonoBehaviour
         countOfRays = 2;
         if (players.Count() == 4)
             _timeToDeath = 55f;
-        else if(players.Count() == 3)
-            _timeToDeath = 40f;
+        else if (players.Count() == 3)
+            _timeToDeath = 45f;
         else if (players.Count() == 2)
-            _timeToDeath = 25f;
+            _timeToDeath = 35f;
     }
 
     public void SetPlayers(PlayerController[] _players)
@@ -138,7 +162,7 @@ public class CreatorRays : MonoBehaviour
             //cristal.SetActive(true);
             activeMode = true;
             countOfRays = 0;
-            yield return ChangeScale(cristal.transform.Find("Cristal").localScale, new Vector3(0.3290589f, 0.3290589f, 0.239385f),1f);
+            yield return ChangeScale(cristal.transform.Find("Cristal").localScale, new Vector3(0.3290589f, 0.3290589f, 0.239385f), 1f);
             //yield return new WaitForSeconds(1f);
             countOfRays = 2;
             break;
@@ -258,7 +282,7 @@ public class CreatorRays : MonoBehaviour
     void MoveRays()
     {
         foreach (var ray in rays)
-            ray.Rotate(0, 0, -20 * Time.deltaTime);
+            ray.Rotate(0, 0, -10 * Time.deltaTime);
     }
 
     #region OnDrawGizmos

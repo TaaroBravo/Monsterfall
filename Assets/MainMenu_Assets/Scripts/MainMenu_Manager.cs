@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class MainMenu_Manager : MonoBehaviour
 {
@@ -52,7 +53,9 @@ public class MainMenu_Manager : MonoBehaviour
     }
     void Update()
     {
-        model_background.transform.Rotate(0, 0.05f, 0);
+        if (GameObject.FindObjectsOfType<MusicInGame>().Count() > 1)
+            Destroy(GameObject.FindObjectsOfType<MusicInGame>().First().gameObject);
+        model_background.transform.Rotate(0, 0.5f * Time.deltaTime, 0);
         if (Play_To_Loading_Transition)
         {
             for (int i = 0; i < Play_Transition_Steps.Count; i++)

@@ -16,6 +16,7 @@ public class WarpController : MonoBehaviour
     public void WarpWithParent(Transform pl)
     {
         pl.transform.position = parentWarp.zoneToRespawn.position;
+        AudioManager.Instance.CreateSound("Teleport");
         OnTeleportPlayer();
         StartCoroutine(StopParticles(pl));
         if (pl.GetComponent<PlayerController>() && pl.GetComponent<PlayerController>() is Knight)
@@ -65,6 +66,7 @@ public class WarpController : MonoBehaviour
     public void WarpHook(Transform hook)
     {
         hook.transform.position = parentWarp.zoneToTeleportHook.position;
+        AudioManager.Instance.CreateSound("Teleport");
     }
 
 }

@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem PS_Stunned;
     public ParticleSystem PS_Marked;
     public ParticleSystem PS_Charged;
+
     public ParticleSystem PS_Fall;
     public ParticleSystem PS_LitOnFire;
     public ParticleSystem PS_LitOnFire2;
@@ -642,6 +643,9 @@ public class PlayerController : MonoBehaviour
     bool invulnerableRays;
     public void HitByRay(Vector3 dir)
     {
+        if (GameManager.Instance.finishedGame)
+            return;
+
         Vector2 newDir = Vector3.zero;
         if (!(dir.x < 0.1f && dir.x > -0.1f))
             newDir.x = Mathf.Sign(dir.x);
@@ -649,6 +653,7 @@ public class PlayerController : MonoBehaviour
             newDir.y = Mathf.Sign(dir.y);
         if (!invulnerableRays)
         {
+            AudioManager.Instance.CreateSound("HitRay");
             if (controller.isGrounded || IsCloseToGround())
             {
                 if (stunnedByHit)
@@ -663,7 +668,7 @@ public class PlayerController : MonoBehaviour
                 else
                     ReceiveImpact(newDir * 50, null);
             }
-            SetDamage(15);
+            SetDamage(10);
             StartCoroutine(InvulnerableToRays());
         }
     }
@@ -763,6 +768,10 @@ public class PlayerController : MonoBehaviour
         if (hit.gameObject.tag.Equals("Borders"))
         {
             //SmoothHitRefleject();
+            if (this is Berserk && ((Berserk)this).usingChargeHability)
+            {
+                ((Berserk)this).usingChargeHability = false;
+            }
             stunnedByHit = false;
             playerMarked = false;
             myAnim.SetBool("Stunned", false);
@@ -777,6 +786,9 @@ public class PlayerController : MonoBehaviour
         }
         else
             moveSpeed = 12;
+
+       
+
         var dir = Vector3.Dot(transform.up, hit.normal);
         if (!controller.isGrounded && dir == -1)
         {
@@ -840,6 +852,7 @@ public class PlayerController : MonoBehaviour
             coyoteBool = false;
         }
     }
+
     bool onFireWithParticle;
     private void OnTriggerStay(Collider other)
     {
@@ -852,6 +865,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator BurnEstela()
     {
+        AudioManager.Instance.CreateSound("Fire");
         while (true)
         {
             SetDamage(1);
@@ -945,4 +959,15 @@ public class PlayerController : MonoBehaviour
     //    Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 2f);
     //}
 
+    public void LandSoundPlay() { AudioManager.Instance.CreateSound("Land"); }
+    public void GetHitSoundPlay() { }
+    public void JumpSoundPlay() { AudioManager.Instance.CreateSound("Jump"); }
+    public void HitSoundPlay() { }
+    public void DeathSoundPlay() { AudioManager.Instance.CreateSound("Death"); }
+    public void ImpactSoundPlay() { }
+    public void RunLSoundPlay() { AudioManager.Instance.CreateSound("RunL"); }
+    public void RunRSoundPlay() { AudioManager.Instance.CreateSound("RunR"); }
+    public void SkillSoundPlay() { }
+    public void DashSoundPlay() { }
+    public void StunSoundPlay() { AudioManager.Instance.CreateSound("Stunned"); }
 }

@@ -83,6 +83,7 @@ public class Missile : MonoBehaviour
         player = p;
         _objetive = objetive;
         _target = target;
+        AudioManager.Instance.CreateSound("IncomingMissileElf");
     }
 
     void ResetValues()
@@ -96,6 +97,7 @@ public class Missile : MonoBehaviour
 
     void Explote()
     {
+        AudioManager.Instance.CreateSound("ExplosionMissileElf");
         var layerMask1 = 1 << 8;
         var layerMask2 = 1 << 9;
         var layerMask = layerMask1 | layerMask2;

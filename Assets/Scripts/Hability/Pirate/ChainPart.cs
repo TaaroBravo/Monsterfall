@@ -5,14 +5,11 @@ using UnityEngine;
 public class ChainPart : MonoBehaviour {
 
     public const float CHAIN_LENGTH = 2f;
-
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        if (!gameObject.activeSelf)
+            Destroy(gameObject, 1f);
 	}
 
     public static void Init(ChainPart c)

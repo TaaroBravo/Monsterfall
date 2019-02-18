@@ -23,8 +23,6 @@ public class PlayerInput : MonoBehaviour
     public string hability2Button;
     public string hability3Button;
 
-    bool isPressingStart;
-
     public enum Controller
     {
         J,
@@ -47,95 +45,102 @@ public class PlayerInput : MonoBehaviour
             {
                 prevState = state;
                 state = GamePad.GetState(playerIndex);
-                if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
-                    player.Jump();
+                if (!GameManager.Instance.pauseMenu)
+                {
+                    if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
+                        player.Jump();
 
-                if (prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed)
-                    player.AttackDown("Pressed");
+                    if (prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed)
+                        player.AttackDown("Pressed");
 
-                else if (prevState.Buttons.B == ButtonState.Pressed && state.Buttons.B == ButtonState.Released)
-                    player.AttackDown("Realese");
+                    else if (prevState.Buttons.B == ButtonState.Pressed && state.Buttons.B == ButtonState.Released)
+                        player.AttackDown("Realese");
 
-                if (prevState.Buttons.X == ButtonState.Released && state.Buttons.X == ButtonState.Pressed)
-                    player.AttackNormal("Pressed");
+                    if (prevState.Buttons.X == ButtonState.Released && state.Buttons.X == ButtonState.Pressed)
+                        player.AttackNormal("Pressed");
 
-                else if (prevState.Buttons.X == ButtonState.Pressed && state.Buttons.X == ButtonState.Released)
-                    player.AttackNormal("Realese");
+                    else if (prevState.Buttons.X == ButtonState.Pressed && state.Buttons.X == ButtonState.Released)
+                        player.AttackNormal("Realese");
 
-                if (prevState.Buttons.Y == ButtonState.Released && state.Buttons.Y == ButtonState.Pressed)
-                    player.AttackUp("Pressed");
+                    if (prevState.Buttons.Y == ButtonState.Released && state.Buttons.Y == ButtonState.Pressed)
+                        player.AttackUp("Pressed");
 
-                else if (prevState.Buttons.Y == ButtonState.Pressed && state.Buttons.Y == ButtonState.Released)
-                    player.AttackUp("Realese");
+                    else if (prevState.Buttons.Y == ButtonState.Pressed && state.Buttons.Y == ButtonState.Released)
+                        player.AttackUp("Realese");
 
-                if (prevState.Buttons.LeftShoulder == ButtonState.Released && state.Buttons.LeftShoulder == ButtonState.Pressed)
-                    player.Dash("Pressed");
+                    if (prevState.Buttons.LeftShoulder == ButtonState.Released && state.Buttons.LeftShoulder == ButtonState.Pressed)
+                        player.Dash("Pressed");
 
-                if (prevState.Buttons.LeftShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Released)
-                    player.Dash("Realese");
+                    if (prevState.Buttons.LeftShoulder == ButtonState.Pressed && state.Buttons.LeftShoulder == ButtonState.Released)
+                        player.Dash("Realese");
 
-                if (prevState.Buttons.RightShoulder == ButtonState.Released && state.Buttons.RightShoulder == ButtonState.Pressed)
-                    player.Hability("Pressed");
+                    if (prevState.Buttons.RightShoulder == ButtonState.Released && state.Buttons.RightShoulder == ButtonState.Pressed)
+                        player.Hability("Pressed");
 
-                if (prevState.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.RightShoulder == ButtonState.Released)
-                    player.Hability("Realese");
+                    if (prevState.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.RightShoulder == ButtonState.Released)
+                        player.Hability("Realese");
+                }
 
                 if (prevState.Buttons.Start == ButtonState.Released && state.Buttons.Start == ButtonState.Pressed)
                 {
-                    if (!isPressingStart)
-                        StartCoroutine(IsPressing());
-                    isPressingStart = true;
-                    GameManager.Instance.PauseMenu(true);
+                    if (GameManager.Instance.pauseMenu)
+                        GameManager.Instance.PauseMenu(false);
+                    else
+                        GameManager.Instance.PauseMenu(true);
                 }
-                if (prevState.Buttons.Start == ButtonState.Pressed && state.Buttons.Start == ButtonState.Released)
+
+                if (prevState.Buttons.Back == ButtonState.Released && state.Buttons.Back == ButtonState.Pressed && GameManager.Instance.pauseMenu)
                 {
-                    isPressingStart = false;
-                    StopCoroutine(IsPressing());
-                    GameManager.Instance.PauseMenu(false);
+                    GameManager.Instance.ChargeScene();
                 }
-       
+
 
                 //if (Mathf.Round(Input.GetAxisRaw(hability3Button)) < 0)
                 //    player.FallOff();
             }
 
-            if (Input.GetButtonDown(jumpButton))
-                player.Jump();
-            if (Input.GetButtonDown(hability1Button))
-                player.Dash("Pressed");
-            if (Input.GetButtonUp(hability1Button))
-                player.Dash("Realese");
-            if (Input.GetButtonDown(hability2Button))
-                player.Hability("Pressed");
-            if (Input.GetButtonUp(hability2Button))
-                player.Hability("Realese");
-            if (Input.GetButtonDown(hability3Button))
-                player.FallOff();
-            if (controller == Controller.J)
-            {
-                if (Mathf.Round(Input.GetAxisRaw(hability3Button)) < 0)
-                    player.FallOff();
-            }
-            if (Input.GetButtonDown(normalAttack))
-                player.AttackNormal("Pressed");
-            if (Input.GetButtonUp(normalAttack))
-                player.AttackNormal("Realese");
-            if (Input.GetButtonDown(downAttack))
-                player.AttackDown("Pressed");
-            if (Input.GetButtonUp(downAttack))
-                player.AttackDown("Realese");
-            if (Input.GetButtonDown(upAttack))
-                player.AttackUp("Pressed");
-            if (Input.GetButtonUp(upAttack))
-                player.AttackUp("Realese");
+            //if (Input.GetButtonDown(jumpButton))
+            //    player.Jump();
+            //if (Input.GetButtonDown(hability1Button))
+            //    player.Dash("Pressed");
+            //if (Input.GetButtonUp(hability1Button))
+            //    player.Dash("Realese");
+            //if (Input.GetButtonDown(hability2Button))
+            //    player.Hability("Pressed");
+            //if (Input.GetButtonUp(hability2Button))
+            //    player.Hability("Realese");
+            //if (Input.GetButtonDown(hability3Button))
+            //    player.FallOff();
+            //if (controller == Controller.J)
+            //{
+            //    if (Mathf.Round(Input.GetAxisRaw(hability3Button)) < 0)
+            //        player.FallOff();
+            //}
+            //if (Input.GetButtonDown(normalAttack))
+            //    player.AttackNormal("Pressed");
+            //if (Input.GetButtonUp(normalAttack))
+            //    player.AttackNormal("Realese");
+            //if (Input.GetButtonDown(downAttack))
+            //    player.AttackDown("Pressed");
+            //if (Input.GetButtonUp(downAttack))
+            //    player.AttackDown("Realese");
+            //if (Input.GetButtonDown(upAttack))
+            //    player.AttackUp("Pressed");
+            //if (Input.GetButtonUp(upAttack))
+            //    player.AttackUp("Realese");
         }
-    }
-
-    IEnumerator IsPressing()
-    {
-        yield return new WaitForSeconds(1.5f);
-        if (isPressingStart)
-            GameManager.Instance.ChargeScene();
+        else if (GameManager.Instance.weHaveAWinner)
+        {
+            prevState = state;
+            state = GamePad.GetState(playerIndex);
+            if (prevState.Buttons.Back == ButtonState.Released && state.Buttons.Back == ButtonState.Pressed)
+            {
+                GameManager.Instance.canReturnNow = true;
+                GameManager.Instance.ChargeScene();
+            }
+        }
+        //else
+        //    Debug.Log("1. " + player + " 2. " + player.canMove + " 3. " + !GameManager.Instance.startingGame + " 4. " + !GameManager.Instance.finishedGame + " 5. " + !GameManager.Instance.pauseMenu);
     }
 
     public float MainHorizontal()

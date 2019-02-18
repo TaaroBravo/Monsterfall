@@ -35,9 +35,12 @@ public class GameManager : MonoBehaviour
     public Transform crown;
     public Vector3 cube;
 
-    public GameObject pauseMenu;
-
+    public GameObject pauseMenuPanel;
+    public bool pauseMenu;
     bool diesByPlayerHit;
+
+    public bool weHaveAWinner;
+    public bool canReturnNow;
 
     private void Awake()
     {
@@ -71,6 +74,7 @@ public class GameManager : MonoBehaviour
         foreach (var item in myPlayers)
             item.OnDestroyCharacter += x => LoseCharacter(x);
         lastPos = initialPos;
+        pauseMenu = false;
         StartCoroutine(StartGame(timeToStart));
         StartCoroutine(OutOfLimitsPlayer());
     }
@@ -92,11 +96,11 @@ public class GameManager : MonoBehaviour
             if (infoManager.playersInfoOrder.Count > 0)
                 order = infoManager.playersInfoOrder.ToList();
 
-            firstPlayer = order.Where(x => alivePlayers.Select(y => y.GetComponent<PlayerInput>()).Where(y => y.player_number == x.player_number).First()).FirstOrDefault();
-            var secondPlayer = order.Where(x => alivePlayers.Select(y => y.GetComponent<PlayerInput>()).Where(y => y.player_number == x.player_number).First()).Skip(1).FirstOrDefault();
+            firstPlayer = order.Where(x => alivePlayers.Where(y => y != null && y.GetComponent<PlayerInput>()).Select(y => y.GetComponent<PlayerInput>()).Where(y => y.player_number == x.player_number).FirstOrDefault()).FirstOrDefault();
+            var secondPlayer = order.Where(x => x != null).Where(x => alivePlayers.Where(y => y != null && y.GetComponent<PlayerInput>()).Select(y => y.GetComponent<PlayerInput>()).Where(y => y.player_number == x.player_number).FirstOrDefault()).Skip(1).FirstOrDefault();
             if (finishedGame)
                 return;
-            var firstPlayerPosition = alivePlayers.Where(x => x.GetComponent<PlayerInput>().player_number == firstPlayer.player_number).FirstOrDefault();
+            var firstPlayerPosition = alivePlayers.Where(x => firstPlayer != null).Where(x => x.GetComponent<PlayerInput>().player_number == firstPlayer.player_number).FirstOrDefault();
             //firstPlayer = infoManager.playersInfo.Where(x => x.player_number == alivePlayers[0].GetComponent<PlayerInput>().player_number).First();
             //var numberOfKills = infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null).Select(x => x.newKills + x.previousKills);
             //foreach (var info in infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null))
@@ -169,6 +173,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
+            AudioManager.Instance.CreateSound("Ready");
             startingGame = true;
             foreach (var player in myPlayers)
             {
@@ -177,6 +182,7 @@ public class GameManager : MonoBehaviour
                 player.canMove = false;
             }
             yield return new WaitForSeconds(x);
+            AudioManager.Instance.CreateSound("Fight");
             foreach (var player in myPlayers)
             {
                 player.myAnim.SetBool("Stunned", false);
@@ -202,7 +208,7 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
                 if (finishedGame)
                     break;
-                if (myPlayers[i] && OutOfLimits(myPlayers[i].transform.position))
+                if (i < myPlayers.Count && myPlayers[i] && OutOfLimits(myPlayers[i].transform.position))
                 {
                     myPlayers[i].transform.position = position;
                     myPlayers[i].DisableAll();
@@ -297,7 +303,8 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(6f);
+            yield return new WaitUntil(() => canReturnNow == true);
+            //yield return new WaitForSeconds(6f);
             ChargeScene();
             break;
         }
@@ -305,26 +312,29 @@ public class GameManager : MonoBehaviour
 
     public void PauseMenu(bool state)
     {
-        if(state)
+        if (state)
         {
             Time.timeScale = 0;
-            pauseMenu.SetActive(true);
+            pauseMenuPanel.SetActive(true);
+            AudioManager.Instance.CreateSound("Pause");
+            pauseMenu = true;
         }
         else
         {
             Time.timeScale = 1;
-            pauseMenu.SetActive(false);
+            pauseMenuPanel.SetActive(false);
+            pauseMenu = false;
         }
     }
 
     public void ChargeScene()
     {
-        Destroy(infoManager.gameObject);
+        if (infoManager)
+            Destroy(infoManager.gameObject);
         if (FindObjectOfType<MusicInGame>())
             Destroy(FindObjectOfType<MusicInGame>().gameObject);
         if (FindObjectOfType<PlayersInfoManager>())
             Destroy(FindObjectOfType<PlayersInfoManager>().gameObject);
-        ObjectPoolManager.Instance.Clean();
         SceneManager.LoadScene(0);
     }
     #endregion
@@ -334,7 +344,6 @@ public class GameManager : MonoBehaviour
         var winner = infoManager.playersInfo.OrderByDescending(x => x.newKills + x.previousKills).First();
         int winner_color = winner.player_number;
         int winner_character = winner.characterChosen;
-
         finishCanvas.SetActive(false);
         inGameCanvas.SetActive(false);
         victoryCanvas.SetActive(true);
@@ -342,6 +351,7 @@ public class GameManager : MonoBehaviour
         foreach (var player in myPlayers)
             player.canMove = false;
         finishedGame = true;
+        weHaveAWinner = true;
         StartCoroutine(StartNewGame());
     }
 
@@ -358,6 +368,11 @@ public class GameManager : MonoBehaviour
             }
         }
         return closes;
+    }
+
+    public void DestroyObject(GameObject ob)
+    {
+        Destroy(ob, 2f);
     }
 
 

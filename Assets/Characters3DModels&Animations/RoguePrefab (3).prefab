@@ -5870,7 +5870,7 @@ MonoBehaviour:
   powerOfDash: 20
   dashingTime: 0.3
   rogueDashCooldown: 2
-  ps_DashRogue: {fileID: 198036603301718120}
+  ps_DashRogue: {fileID: 198877920675001110}
   onMark: 0
 --- !u!114 &114183241929103250
 MonoBehaviour:

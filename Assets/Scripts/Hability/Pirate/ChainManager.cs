@@ -90,6 +90,7 @@ public class ChainManager
         for (int i = 0; i < index; i++)
         {
             ObjectPoolManager.Instance.ReturnObject<ChainPart>(_chainParts[i]);
+            GameManager.Instance.DestroyObject(_chainParts[i].gameObject);
         }
         for (int i = index - 1; i >= 0; i--)
         {
@@ -155,6 +156,7 @@ public class ChainManager
         _chainSections.Clear();
         foreach (var item in _chainParts)
         {
+            GameManager.Instance.DestroyObject(item.gameObject);
             ObjectPoolManager.Instance.ReturnObject<ChainPart>(item);
         }
         _chainParts.Clear();

@@ -288,8 +288,7 @@ ModelImporter:
       - time: 0
         functionName: JumpSoundPlay
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: c044a9017b920d24897389ea54a54827,
-          type: 3}
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

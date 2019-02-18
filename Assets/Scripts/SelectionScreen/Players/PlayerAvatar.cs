@@ -48,6 +48,7 @@ public class PlayerAvatar : MonoBehaviour
     {
         if (inGame && !ready)
         {
+            AudioManager.Instance.CreateSound("OnGame");
             ready = true;
             OnSelectedCharacter(this);
         }

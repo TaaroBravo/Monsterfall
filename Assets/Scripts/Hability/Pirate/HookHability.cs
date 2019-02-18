@@ -62,6 +62,7 @@ public class HookHability : IHability
         }
         else if (timerCoolDown < 0 && !grabHook && !player.usingHability)
         {
+            AudioManager.Instance.CreateSound("ThrowHook");
             _hook.gameObject.SetActive(true);
             float x = player.GetComponent<PlayerInput>().MainHorizontal();
             float y = player.GetComponent<PlayerInput>().MainVertical();

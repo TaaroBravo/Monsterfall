@@ -23,6 +23,7 @@ public class RogueDashHability : IHability
     Vector3 startPos;
 
     ParticleSystem _hability;
+    ParticleSystem.EmissionModule emissionModule;
 
     List<PlayerController> playersHitted = new List<PlayerController>();
 
@@ -38,22 +39,48 @@ public class RogueDashHability : IHability
         _hitArea = hitArea;
         _hability = hability;
         startPos = player.transform.position;
+        emissionModule = _hability.emission;
+        _hability.gameObject.SetActive(false);
+        ((Rogue)p).OnTeleportRogue += Teleporting;
+    }
+
+    void Teleporting()
+    {
+        player.StartCoroutine(ParticlesTeleporting());
     }
 
     IEnumerator IsDashingTimer(float x)
     {
         while (true)
         {
+            emissionModule.rateOverDistance = 7;
             active = true;
             player.isDashing = true;
+            _hability.gameObject.SetActive(true);
+            _hability.Play();
             player.myAnim.Play("Dash");
             player.myAnim.SetBool("Dashing", true);
             yield return new WaitForSeconds(x);
             player.isDashing = false;
             active = false;
+            player.StartCoroutine(OffParticles());
+            emissionModule.rateOverDistance = 0;
             ResetValues();
             break;
         }
+    }
+
+    IEnumerator OffParticles()
+    {
+        yield return new WaitUntil(() => _hability.particleCount == 0);
+        _hability.gameObject.SetActive(false);
+    }
+
+    IEnumerator ParticlesTeleporting()
+    {
+        emissionModule.rateOverDistance = 0;
+        yield return new WaitForSeconds(0.5f);
+        emissionModule.rateOverDistance = 7;
     }
 
     public override void Update()
@@ -95,6 +122,7 @@ public class RogueDashHability : IHability
             float y = player.GetComponent<PlayerInput>().MainVertical();
             if (x + y == 0)
                 x = Mathf.Sign(player.transform.localScale.z);
+            player.ResetVelocity();
             float distance = _speed * _activeTime;
             _dir = new Vector3(x, y, 0);
             finalPos = CalculateFinalPos(_dir, distance);
@@ -112,7 +140,6 @@ public class RogueDashHability : IHability
                     finalPos = hit.point;
                 }
             }
-
             damage = _dir;
             _hability.Play();
             //player.controller.enabled = false;
@@ -120,6 +147,7 @@ public class RogueDashHability : IHability
             player.StartCoroutine(IsDashingTimer(_activeTime));
             timerCoolDown = coolDown;
             player.usingHability = true;
+            AudioManager.Instance.CreateSound("TeleportAbility");
             player.lifeHUD.ActivateDashCD();
         }
     }

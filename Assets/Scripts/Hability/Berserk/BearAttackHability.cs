@@ -65,6 +65,7 @@ public class BearAttackHability : IHability
         if (timerCoolDown < 0)
         {
             ResetValues();
+            AudioManager.Instance.CreateSound("ChargingBerserk");
             //_dir = Mathf.Sign(player.transform.localScale.z);
             player.verticalVelocity = player.jumpForce;
             player.canMove = false;
@@ -85,6 +86,7 @@ public class BearAttackHability : IHability
         while (true)
         {
             yield return new WaitForSeconds(0.2f);
+            AudioManager.Instance.CreateSound("JumpingBerserk");
             JumpAttack();
             break;
         }
@@ -102,6 +104,7 @@ public class BearAttackHability : IHability
     void AttackingFeedback()
     {
         //player.myAnim.Play("SkillAttack");
+        AudioManager.Instance.CreateSound("AttackingAbilityBerserk");
         _target.myAnim.Play("GetHitDown");
         _target.SetStun(3);
     }

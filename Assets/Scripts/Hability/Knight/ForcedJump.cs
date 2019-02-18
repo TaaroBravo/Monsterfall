@@ -35,6 +35,7 @@ public class ForcedJump : IHability
             player.StartCoroutine(WaitToLand());
             player.StartCoroutine(ResetValuesCoroutine());
             ((Knight)player).CallJumpHabilityCoroutine();
+            AudioManager.Instance.CreateSound("FireJump");
             player.lifeHUD.ActivateDashCD();
         }
     }

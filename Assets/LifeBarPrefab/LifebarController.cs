@@ -78,7 +78,7 @@ public class LifebarController : MonoBehaviour
         //Debugkeys();
         if (_totalLife > 0)
         {
-            LifeBar.fillAmount = _currentLife / _totalLife;
+            LifeBar.fillAmount = Mathf.Clamp(_currentLife / _totalLife, 0.1f,1f);
             LifeBar.color = new Color(FinalLifeColor.r, FinalLifeColor.g, FinalLifeColor.b, 1f - (_currentLife / _totalLife) / 4);
         }
         if (SkillOnCD)
@@ -108,20 +108,20 @@ public class LifebarController : MonoBehaviour
     }
     void Debugkeys()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            var temp = Random.Range(0f, 5f);
-            var temp2 = Random.Range(0f, 5f);
-            Debug.Log(temp + "  " + temp2);
-            Set(temp, temp2, 100);
-        }
-        if (Input.GetKeyDown(KeyCode.W)) ActivateSkillCD();
-        if (Input.GetKeyDown(KeyCode.E)) ActivateDashCD();
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            var temp = Random.Range(0, 33);
-            Debug.Log(temp);
-            ReduceLife(temp);
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    var temp = Random.Range(0f, 5f);
+        //    var temp2 = Random.Range(0f, 5f);
+        //    Debug.Log(temp + "  " + temp2);
+        //    Set(temp, temp2, 100);
+        //}
+        //if (Input.GetKeyDown(KeyCode.W)) ActivateSkillCD();
+        //if (Input.GetKeyDown(KeyCode.E)) ActivateDashCD();
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    var temp = Random.Range(0, 33);
+        //    Debug.Log(temp);
+        //    ReduceLife(temp);
+        //}
     }
 }

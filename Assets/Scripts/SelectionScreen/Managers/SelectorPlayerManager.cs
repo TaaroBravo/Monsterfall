@@ -77,6 +77,7 @@ public class SelectorPlayerManager : MonoBehaviour
         charactersView[newPlayer.player_number].State = charactersView[newPlayer.player_number].SelectingState;
         charactersView[newPlayer.player_number].SetCharacterRandom();
         StartCoroutine(FixTimeConnecting(newPlayer));
+        AudioManager.Instance.CreateSound("HitPlayer");
     }
 
     IEnumerator FixTimeConnecting(PlayerAvatar player)

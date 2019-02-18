@@ -21,16 +21,19 @@ public class IceSpikes : MonoBehaviour {
 
     }
 
-    public void SetDir(PlayerController p, Vector3 dir)
+    public void SetDir(PlayerController p, Vector3 dir, Ice myIce)
     {
         player = p;
         transform.forward = dir;
         Physics.IgnoreCollision(GetComponent<Collider>(), player.GetComponent<Collider>(), true);
+        icePrefab = myIce;
     }
+
 
     void DestroySpike()
     {
-        //Feedback
+        //Feedback 
+        AudioManager.Instance.CreateSound("HitWithIce");
         Destroy(gameObject);
     }
 
@@ -42,7 +45,10 @@ public class IceSpikes : MonoBehaviour {
         _target.SetDamage(5);
         _target.SetLastOneWhoHittedMe(player);
         var ice = GameObject.Instantiate(icePrefab);
+        var iceDry = GameObject.Instantiate(((Yeti)player).explotePS);
+        AudioManager.Instance.CreateSound("IceCreation");
         ice.transform.position = _target.transform.position;
+        iceDry.transform.position = _target.transform.position;
         ((Yeti)player).frozenCharacter.Add(_target);
         ice.SetPlayer(player, _target);
 

@@ -5,6 +5,6 @@ using UnityEngine;
 public class Crystal : MonoBehaviour {
 
 	void Update () {
-        transform.Rotate(0, 0, 0.3f);
+        transform.Rotate(0, 0, 10f * Time.deltaTime);
 	}
 }

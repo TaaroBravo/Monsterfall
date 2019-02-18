@@ -116,6 +116,7 @@ public class MissileHability : IHability
     {
         if (timerCoolDown < 0 && !usingHability)
         {
+            AudioManager.Instance.CreateSound("ShootingMissilesElf");
             usingHability = true;
             inScreen = true;
             player.usingHability = true;

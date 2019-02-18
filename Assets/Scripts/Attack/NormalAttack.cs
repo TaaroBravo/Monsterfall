@@ -6,6 +6,7 @@ using System;
 public class NormalAttack : IAttack
 {
     ParticleSystem ps;
+    GameObject myAudioClip;
     public NormalAttack(PlayerController pl, IEffect _effect = null, float _timerCoolDown = 0)
     {
         player = pl;
@@ -39,6 +40,8 @@ public class NormalAttack : IAttack
         if (timerCoolDownAttack < 0)
         {
             //ps = player.PS_Impact;
+            AudioManager.Instance.CreateSound("Punch");
+            AudioManager.Instance.FadeOut(myAudioClip, 0.1f);
             player.myAnim.SetBool("RealeaseAForward", true);
             player.myAnim.SetTrigger("ReleaseAForward");
             if (player.myAnim.GetBool("Grounded"))
@@ -62,6 +65,7 @@ public class NormalAttack : IAttack
                 ps = player.PS_Impact;
                 if (target != null && !hitPlayers.Contains(target))
                 {
+                    AudioManager.Instance.CreateSound("HitPlayer");
                     player.hitParticles.Play();
                     hitPlayers.Add(target);
                     if (player.GetComponent<BerserkerParticlesManager>()) player.GetComponent<BerserkerParticlesManager>().PlayAttackParticle();
@@ -112,6 +116,7 @@ public class NormalAttack : IAttack
         player.myAnim.SetBool("ReleaseAForward", false);
         if (!isPressing)
             player.myAnim.Play("ChargingAForward");
+        myAudioClip = AudioManager.Instance.CreateSound("ChargingAttack", 100);
         isPressing = true;
     }
 }

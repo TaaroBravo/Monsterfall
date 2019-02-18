@@ -8,10 +8,12 @@ public class IcePlatform : MonoBehaviour
 {
     //Implementar Feedback
     PlayerController player;
+    public ParticleSystem particlePlatform;
 
     private void Start()
     {
         //Ignorar colisiones con los bordes
+        particlePlatform.Play();
         foreach (var item in GameObject.FindGameObjectsWithTag("Platform"))
         {
             foreach (Collider col in item.GetComponents<Collider>())
@@ -47,5 +49,7 @@ public class IcePlatform : MonoBehaviour
     private void OnDestroy()
     {
         //Instanciar feedback
+        var particles = GameObject.Instantiate(particlePlatform);
+        particles.gameObject.transform.position = particlePlatform.transform.position;
     }
 }

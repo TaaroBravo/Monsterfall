@@ -80,11 +80,8 @@ public class PunchHability : IHability
             active = true;
             timerCoolDown = coolDown;
             player.lifeHUD.ActivateSkillCD();
+            AudioManager.Instance.CreateSound("ExplosionKnight");
         }
-        //else
-        //{
-        //    cooldownHUD.UseSkill(coolDown);
-        //}
     }
 
     void ResetValues()

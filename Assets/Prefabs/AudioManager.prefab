@@ -53,40 +53,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClipInWorldPrefab: {fileID: 1768331949011894, guid: f98b117c6ea1b3f41bfdf4162187ae94,
     type: 2}
-  run: {fileID: 0}
-  jump: {fileID: 8300000, guid: 8e280b8d5acb21941821438f8a7780f3, type: 3}
+  mixer: {fileID: 243776297741000402, guid: 66617de15218d2f4fb317fbcc0256d58, type: 2}
+  runL: {fileID: 8300000, guid: 3b87d0f89b8ef2243a0048399e73e733, type: 3}
+  runR: {fileID: 8300000, guid: 2db7261e36a819a4e9bc7cc73e64819d, type: 3}
+  jumpA: {fileID: 8300000, guid: e70b7e62203ec7d4aaa79bebfa645ef1, type: 3}
+  jumpB: {fileID: 8300000, guid: 2c3a2029377bf3646b3a07606d2de6f6, type: 3}
+  jumpC: {fileID: 8300000, guid: 01518f143e6be1249847792b87d94390, type: 3}
+  jumpD: {fileID: 8300000, guid: a6084f4c27de7774d89cb8616b89889d, type: 3}
   land: {fileID: 8300000, guid: bea5ae83c1422b24ea49baad5ff81f5e, type: 3}
   punch: {fileID: 8300000, guid: 6ec9c822da4bc1c4aad55f98b608149d, type: 3}
   hitPlayer: {fileID: 8300000, guid: cc50aa57a46a5e6478e7e8f754a4f7b9, type: 3}
   death: {fileID: 8300000, guid: e8e46b9eb1624b4438168b36746270c8, type: 3}
   stunned: {fileID: 0}
+  charginAttack: {fileID: 8300000, guid: db3de24a1941acc4eb4cc9de62718428, type: 3}
+  hitRay: {fileID: 8300000, guid: 3eb90bf1b45b4c8419b5ed1821183bca, type: 3}
   teleport: {fileID: 8300000, guid: f6d29b9202a995b4e84a9f152a7b2ef1, type: 3}
   navigationOnHud: {fileID: 8300000, guid: d1b13522fcead4f4a9fa855840aa74d0, type: 3}
+  onGame: {fileID: 8300000, guid: bd8c16354c6572b4e826b70dd5c8d6c2, type: 3}
   pauseClip: {fileID: 8300000, guid: 617ea35946d0cf34b94e8d793cb780f8, type: 3}
-  winRound: {fileID: 0}
-  winGame: {fileID: 0}
+  readyClip: {fileID: 8300000, guid: c3fe23f4244404d40adc3c9b22f900cf, type: 3}
+  fightClip: {fileID: 8300000, guid: 7e322f2f3bc3d2841a25a7eed7967a1f, type: 3}
+  winRound: {fileID: 8300000, guid: e04fe94a9b93b8f4d8108509fde42176, type: 3}
+  winGame: {fileID: 8300000, guid: 9c68efcdd41e7f540ab8447e44a589b3, type: 3}
   explosionKnight: {fileID: 8300000, guid: 92b29f64ca122cb40b771cbee75d32ef, type: 3}
   fireJump: {fileID: 8300000, guid: e9f776796851b2943878639f1d976a36, type: 3}
   fire: {fileID: 8300000, guid: d02ef1767ce9f4545850b714b423e7bb, type: 3}
   throwHook: {fileID: 8300000, guid: 38b523985ab5b1a47aea81bcff0b1935, type: 3}
   hookSomething: {fileID: 8300000, guid: 8cd7ef835b0b9814eb8571dc489ce345, type: 3}
-  traveling: {fileID: 0}
+  traveling: {fileID: 8300000, guid: 06df4fb2e2420a0418f2f6c296a6d312, type: 3}
   fireGun: {fileID: 8300000, guid: e78529d62207fa64cb969cb3b596a4c9, type: 3}
   throwBlade: {fileID: 8300000, guid: 2e3a7f17935661a43bcc032f9633ac62, type: 3}
   throwHit: {fileID: 8300000, guid: c507ed05d98690e4288edb2758cbbd76, type: 3}
   teleportAbility: {fileID: 8300000, guid: 96a619c4bc754264091bcb65f7fc86f1, type: 3}
-  chargingAttack: {fileID: 0}
+  chargingAttackBerserk: {fileID: 8300000, guid: 63d857995efdcae4cb786a44baeec7bb,
+    type: 3}
   jumpingAttack: {fileID: 8300000, guid: 56e8f98db9b6f2d4eb2eecb482d362c6, type: 3}
-  attackingAbility: {fileID: 0}
-  runAbility: {fileID: 0}
+  attackingAbility: {fileID: 8300000, guid: 0f9e4d270b0ecdb48b6e99cb0cd62317, type: 3}
+  runAbility: {fileID: 8300000, guid: b88b490fb288fd64c847f89c3fccc2ae, type: 3}
   hitWithRun: {fileID: 8300000, guid: 0796fcd18b443d642a1d671b5029469f, type: 3}
   shootingMissileElf: {fileID: 8300000, guid: 94c724055de8c104a9d80d60af90ae84, type: 3}
-  incomingMissiles: {fileID: 0}
+  incomingMissiles: {fileID: 8300000, guid: d16bad4a9cdb34c4186297438d889cb9, type: 3}
   explosionMissiles: {fileID: 8300000, guid: 08364d10b5ccec94783ad19e667c8cfd, type: 3}
   teleportMissile: {fileID: 8300000, guid: a43928b0a8f14644fa60eca25dcb6619, type: 3}
   teleportingElf: {fileID: 8300000, guid: aa87736ce36b4d14484850dd8c4202d2, type: 3}
-  markEffect: {fileID: 0}
-  explosionYeti: {fileID: 8300000, guid: 37e9cf7ca11a01d4bbbb4c2d33604e47, type: 3}
+  markEffect: {fileID: 8300000, guid: e63b7762c8320944db5dbbd9f7033f58, type: 3}
+  explosionYeti: {fileID: 8300000, guid: cdef73788916db244958045d0d393ef1, type: 3}
   hitWithIce: {fileID: 8300000, guid: 14589e5b545f50d469d0e83bbe12dbb2, type: 3}
-  iceIdle: {fileID: 0}
-  creationOfPlatform: {fileID: 0}
+  iceIdle: {fileID: 8300000, guid: 4447ee7af12e95d4d84c44a06629fdd2, type: 3}
+  creationOfPlatform: {fileID: 8300000, guid: 995a2e037c14376439423e0c31432d32, type: 3}
+  iceDestruction: {fileID: 8300000, guid: 521bc90a69a1b1943ba78e474e7ea286, type: 3}

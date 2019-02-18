@@ -58,6 +58,7 @@ public class TeleportHability : IHability
         activeTimer = true;
         if (timerCoolDown < 0 && !_currentMissile)
         {
+            AudioManager.Instance.CreateSound("TeleportMissileElf");
             player.usingHability = true; //Quizas remplazar esto por una de dash
             Vector3 dir = CalculateDirection();
             dir = FeedbackPlay(dir);

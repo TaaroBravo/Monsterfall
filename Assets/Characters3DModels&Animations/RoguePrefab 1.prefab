@@ -6244,7 +6244,7 @@ MonoBehaviour:
   powerOfDash: 20
   dashingTime: 0.3
   rogueDashCooldown: 2
-  ps_DashRogue: {fileID: 198022051945762414}
+  ps_DashRogue: {fileID: 198935915375815174}
   onMark: 0
 --- !u!122 &122172487681039456
 Halo:

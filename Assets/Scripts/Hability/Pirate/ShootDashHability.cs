@@ -52,6 +52,7 @@ public class ShootDashHability : IHability
     {
         shootFire.Play();
         player.myAnim.Play("ShootHability");
+        AudioManager.Instance.CreateSound("FirePirate");
         Collider[] cols = Physics.OverlapBox(shootRange.bounds.center, shootRange.bounds.extents * 2f, shootRange.transform.rotation, LayerMask.GetMask("Hitbox"));
         foreach (Collider c in cols)
         {

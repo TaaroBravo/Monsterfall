@@ -24,6 +24,7 @@ public class IcePlatformHability : IHability
             FeedbackPlay();
             SpawnPlatform();
             timerCoolDown = coolDown;
+            AudioManager.Instance.CreateSound("CreationOfPlatform");
             player.lifeHUD.ActivateDashCD();
         }
     }

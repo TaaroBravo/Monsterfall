@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class MusicInGame : MonoBehaviour
 {
 
@@ -19,10 +20,10 @@ public class MusicInGame : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Level")
         {
-            //source.volume = 0.4f;
-            //source.clip = inGame;
-            //if (!source.isPlaying)
-            //    source.Play();
+            source.volume = 0.4f;
+            source.clip = inGame;
+            if (!source.isPlaying)
+                source.Play();
         }
         else
         {

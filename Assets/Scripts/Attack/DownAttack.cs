@@ -5,6 +5,7 @@ using UnityEngine;
 public class DownAttack : IAttack
 {
     ParticleSystem ps;
+    GameObject myAudioClip;
     public DownAttack(PlayerController pl, IEffect _effect = null, float _timerCoolDown = 0)
     {
         player = pl;
@@ -37,6 +38,8 @@ public class DownAttack : IAttack
         if (timerCoolDownAttack < 0)
         {
             //ps = player.PS_Impact;
+            AudioManager.Instance.CreateSound("Punch");
+            AudioManager.Instance.FadeOut(myAudioClip, 0.1f);
             player.myAnim.SetBool("ReleaseADown", true);
             if (player.myAnim.GetBool("Grounded"))
                 player.myAnim.Play("AttackDown");
@@ -60,6 +63,7 @@ public class DownAttack : IAttack
                 ps = player.PS_Impact;
                 if (target != null && !hitPlayers.Contains(target))
                 {
+                    AudioManager.Instance.CreateSound("HitPlayer");
                     player.hitParticles.Play();
                     hitPlayers.Add(target);
                     if (player.GetComponent<BerserkerParticlesManager>()) player.GetComponent<BerserkerParticlesManager>().PlayAttackParticle();
@@ -107,7 +111,9 @@ public class DownAttack : IAttack
     public override void Pressed()
     {
         player.myAnim.SetBool("ReleaseADown", false);
-        player.myAnim.Play("ChargingADown");
+        if (!isPressing)
+            player.myAnim.Play("ChargingADown");
+        myAudioClip = AudioManager.Instance.CreateSound("ChargingAttack", 100);
         isPressing = true;
     }
 }

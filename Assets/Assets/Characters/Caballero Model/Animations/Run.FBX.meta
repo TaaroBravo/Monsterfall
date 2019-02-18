@@ -286,10 +286,30 @@ ModelImporter:
       curves: []
       events:
       - time: 0
-        functionName: RunSoundPlay
+        functionName: RunLSoundPlay
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: c044a9017b920d24897389ea54a54827,
-          type: 3}
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.26645768
+        functionName: RunRSoundPlay
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.507837
+        functionName: RunLSoundPlay
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.794702
+        functionName: RunRSoundPlay
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

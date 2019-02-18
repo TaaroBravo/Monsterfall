@@ -78,6 +78,8 @@ public class Hook : MonoBehaviour
         {
             PlayerTeleported(x, y);
         };
+
+ 
     }
 
     void Update()
@@ -89,10 +91,6 @@ public class Hook : MonoBehaviour
             ResetAll();
         if (secondStateActive)
         {
-            //X - Falta comprobar que cuando este cerca de bordes frene y vuelva
-            //X - Que cuando esté muy cerca se vuelva directo
-            //- Que no deje personas encrustadas
-            //X - Que un target también sea el que agarre si está girando.
             transform.parent = null;
             if(Vector3.Distance(transform.position, _myPlayer.transform.position) < 3f || CloseToLimits())
             {
@@ -113,6 +111,7 @@ public class Hook : MonoBehaviour
         }
         else if (reachingPoint)
         {
+           
             _myPlayer.controller.enabled = false;
             if (warpPositions.Count() > 0)
             {
@@ -156,7 +155,10 @@ public class Hook : MonoBehaviour
                     return;
                 }
                 if (Physics.OverlapSphere(transform.position, 1f, 1 << 19).Any() && !_target)
+                {
                     _hookPlatform = transform.position;
+                    AudioManager.Instance.CreateSound("HookSomething");
+                }
                 if (_currentDistance >= maxDistance)
                     FailedFire();
             }
@@ -226,6 +228,16 @@ public class Hook : MonoBehaviour
         }
     }
 
+    IEnumerator SoundCreator()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => reachingPoint || _target);
+            AudioManager.Instance.CreateSound("Traveling");
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
     void ResetAll()
     {
         _hookPlatform = Vector3.zero;
@@ -262,6 +274,7 @@ public class Hook : MonoBehaviour
     #region Fire Hook
     public void Fire(Vector3 dir)
     {
+        StartCoroutine(SoundCreator());
         ResetAll();
         canEnterTeleport = true;
         fired = true;

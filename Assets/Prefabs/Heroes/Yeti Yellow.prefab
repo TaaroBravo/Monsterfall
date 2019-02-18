@@ -3829,16 +3829,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c044a9017b920d24897389ea54a54827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gethitsound: {fileID: 0}
-  landsound: {fileID: 82515281385572060}
-  jumpsound: {fileID: 82390090625676942}
-  hitsound: {fileID: 0}
-  deathsound: {fileID: 0}
-  impactsound: {fileID: 0}
-  runsound: {fileID: 0}
-  skillsound: {fileID: 0}
-  dashsound: {fileID: 0}
-  stunsound: {fileID: 0}
 --- !u!114 &114526012839920966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3948,11 +3938,13 @@ MonoBehaviour:
   lastOneWhoHittedMe: {fileID: 0}
   buffedPower: 1
   onFire: 0
-  icePlatfromPrefab: {fileID: 114434287585434346, guid: 1e5b8d5984e783f4d9e2ac534b1a72cb,
+  icePlatfromPrefab: {fileID: 114508047475353824, guid: 93e76ec6460455747b497f6bce5a106d,
     type: 2}
   spikesPrefab: {fileID: 114842984260632526, guid: 56d0daa1b9cf70247bc3628b1f919a6e,
     type: 2}
-  icePrefab: {fileID: 114034310566612960, guid: a793a115cb12ed2438209c823bd54766,
+  icePrefab: {fileID: 114377066742506108, guid: 3835ff80d91f69049831a8dccfb8275f,
+    type: 2}
+  explotePS: {fileID: 198862827148124946, guid: 00df99cca4e260340bf339fb640b3364,
     type: 2}
   onMark: 0
   frozenCharacter: []

@@ -38,6 +38,7 @@ public class Immobilizer : MonoBehaviour
             {
                 canEnter = false;
                 OnHitEnemy(_target, this);
+                AudioManager.Instance.CreateSound("ThrowHit");
             }
             if (GameManager.Instance.OutOfLimits(transform.position))
                 OnFailedHit(this);

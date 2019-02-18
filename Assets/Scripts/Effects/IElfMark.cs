@@ -53,6 +53,7 @@ public class IElfMark : IEffect
         //Encender particula en el enemigo:
         int ID = _player.GetComponent<PlayerInput>().player_number;
         player.GetComponent<GeneralFeedback>().StartElfMark(ID);
+        AudioManager.Instance.CreateSound("MarkElf");
     }
 
     public float GetDelayTimer()

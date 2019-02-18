@@ -6,6 +6,8 @@ using System.Linq;
 
 public class Rogue : PlayerController
 {
+    public event Action OnTeleportRogue = delegate { };
+
     public Immobilizer immobilizer;
     public float immobilizerCooldown;
 
@@ -82,6 +84,16 @@ public class Rogue : PlayerController
     void MovementHability(string state)
     {
         hability["RogueDashHability"].Hability();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("DoorWarp"))
+        {
+            canJump = false;
+            coyoteBool = false;
+            OnTeleportRogue();
+        }
     }
 
     private void SetAttacks()

@@ -46,7 +46,7 @@ public class HorizontalMovement : IMove
                 player.myAnim.SetBool("Grounded", false);
         }
 
-        if (GameManager.Instance.startingGame || GameManager.Instance.finishedGame)
+        if (GameManager.Instance.startingGame || GameManager.Instance.finishedGame || GameManager.Instance.pauseMenu)
             return;
         movement = player.GetComponent<PlayerInput>().MainHorizontal();
         if (movement != 0)

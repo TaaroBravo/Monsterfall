@@ -29,13 +29,18 @@ public class IceSpikesHability : IHability
             Shoot();
             FeedbackPlay();
             timerCoolDown = coolDown;
+            var particles = GameObject.Instantiate(_yeti.explotePS);
+            particles.transform.position = /*_yeti.transform.position + */_yeti.GetComponent<Collider>().bounds.center;
+            particles.Play();
+            AudioManager.Instance.CreateSound("ExplosionYeti");
+            player.myAnim.Play("SkillCall");
             player.lifeHUD.ActivateSkillCD();
         }
     }
 
     void Shoot()
     {
-        int amount = UnityEngine.Random.Range(8, 10);
+        int amount = 10;
         var radius = 2;
 
         for (int i = 0; i < amount; i++)
@@ -47,7 +52,7 @@ public class IceSpikesHability : IHability
 
             spike.transform.position = newPos;
             Vector3 dir = (newPos - _yeti.transform.position).normalized;
-            spike.SetDir(player, dir);
+            spike.SetDir(player, dir, _yeti.icePrefab);
             //spike.ChangeColor(_yeti.GetComponent<PlayerInput>().player_number);
         }
     }

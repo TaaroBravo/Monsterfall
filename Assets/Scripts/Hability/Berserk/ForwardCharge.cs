@@ -82,6 +82,7 @@ public class ForwardCharge : IHability
             player.usingHability = true;
             player.myAnim.Play("Dash");
             player.myAnim.SetBool("Dashing", true);
+            AudioManager.Instance.CreateSound("RunAbilityBerserk");
             player.StartCoroutine(TimeToDisable());
             player.lifeHUD.ActivateDashCD();
         }
@@ -111,6 +112,7 @@ public class ForwardCharge : IHability
 
     void DamageTarget()
     {
+        AudioManager.Instance.CreateSound("HitRunningBerserk");
         _target.transform.parent = null;
         _target.hittedChargeBerserk = false;
         _target.SetStun(0.2f);

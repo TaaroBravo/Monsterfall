@@ -57,6 +57,7 @@ public class MissileTeleport : MonoBehaviour
 
     public void DestroyedMissile()
     {
+        AudioManager.Instance.CreateSound("TeleportingElf");
         ResetValues();
         ExploteFeedback();
         OnDestroyMissile(this);

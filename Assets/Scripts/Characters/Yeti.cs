@@ -9,6 +9,7 @@ public class Yeti : PlayerController
     public IcePlatform icePlatfromPrefab;
     public IceSpikes spikesPrefab;
     public Ice icePrefab;
+    public ParticleSystem explotePS;
 
     IEffect iceEffect;
     public bool onMark;
@@ -19,7 +20,7 @@ public class Yeti : PlayerController
     {
         base.Start();
         iceEffect = new IIceEffect(this, 4, icePrefab);
-        lifeHUD.Set(7, 5, myLife);
+        lifeHUD.Set(11, 5, myLife);
         SetAttacks();
         SetHabilities();
     }
@@ -81,7 +82,7 @@ public class Yeti : PlayerController
 
     void SetHabilities()
     {
-        hability.Add(typeof(IceSpikesHability).ToString(), new IceSpikesHability(this, spikesPrefab, 5f));
+        hability.Add(typeof(IceSpikesHability).ToString(), new IceSpikesHability(this, spikesPrefab, 11f));
         hability.Add(typeof(IcePlatformHability).ToString(), new IcePlatformHability(this, icePlatfromPrefab, 5f));
         myHability = YetiAbility;
         movementHability = YetiMovementAbility;

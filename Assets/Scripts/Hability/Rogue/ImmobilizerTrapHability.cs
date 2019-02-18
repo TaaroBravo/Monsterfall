@@ -30,6 +30,7 @@ public class ImmobilizerTrapHability : IHability
         if (timerCoolDown < 0)
         {
             //Hacer un spawnpoint
+            AudioManager.Instance.CreateSound("ThrowBlade");
             startPos = player.transform.position + (Vector3.up * 3);
             float x = player.GetComponent<PlayerInput>().MainHorizontal();
             float y = player.GetComponent<PlayerInput>().MainVertical();

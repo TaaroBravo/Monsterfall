@@ -187,8 +187,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Charging
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 40
+      firstFrame: 4
+      lastFrame: 5
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -42,6 +42,8 @@ public class PlayerInputMenu : MonoBehaviour
         //}
         playerIndex = (PlayerIndex)id - 1;
         SetPlayerInput();
+        if (id == 0)
+            return;
         if (controller == Controller.J)
         {
             prevState = state;
@@ -50,12 +52,14 @@ public class PlayerInputMenu : MonoBehaviour
             {
                 player.Move(new Vector2(state.ThumbSticks.Left.X == 0 ? 0 : state.ThumbSticks.Left.X > 0 ? 1 : -1, 0));
                 StartCoroutine(CoolDown());
+                AudioManager.Instance.CreateSound("NavigationHUD");
             }
 
             if (state.ThumbSticks.Left.Y != 0 && _cooldown)
             {
                 player.Move(new Vector2(0, state.ThumbSticks.Left.Y == 0 ? 0 : state.ThumbSticks.Left.Y > 0 ? -1 : 1));
                 StartCoroutine(CoolDown());
+                AudioManager.Instance.CreateSound("NavigationHUD");
             }
 
             if (prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed)
@@ -65,10 +69,10 @@ public class PlayerInputMenu : MonoBehaviour
                 player.ActionButton();
 
         }
-        if (Input.GetButtonDown(actionButton))
-            player.ActionButton();
-        if (Input.GetButtonDown(rejectButton))
-            player.RejectButton();
+        //if (Input.GetButtonDown(actionButton))
+        //    player.ActionButton();
+        //if (Input.GetButtonDown(rejectButton))
+        //    player.RejectButton();
         if (controller == Controller.J)
         {
             if (Input.GetAxis(horizontalMove) != 0 && _cooldown)
@@ -82,13 +86,13 @@ public class PlayerInputMenu : MonoBehaviour
                 StartCoroutine(CoolDown());
             }
         }
-        else
-        {
-            if (Input.GetButtonDown(horizontalMove))
-                player.Move(new Vector2((int)MainHorizontal(), 0));
-            if (Input.GetButtonDown(verticalMove))
-                player.Move(new Vector2(0, -(int)MainVertical()));
-        }
+        //else
+        //{
+        //    if (Input.GetButtonDown(horizontalMove))
+        //        player.Move(new Vector2((int)MainHorizontal(), 0));
+        //    if (Input.GetButtonDown(verticalMove))
+        //        player.Move(new Vector2(0, -(int)MainVertical()));
+        //}
     }
 
     IEnumerator CoolDown()
@@ -124,16 +128,16 @@ public class PlayerInputMenu : MonoBehaviour
             horizontalMove = "JoystickHorizontal_P" + id;
             verticalMove = "JoystickVertical_P" + id;
         }
-        else
-        {
-            horizontalMove = controller.ToString() + "_MainHorizontal_P" + id;
-            verticalMove = controller.ToString() + "_MainVertical_P" + id;
-        }
-        if (controller == Controller.K && id == 2)
-            actionButton = controller.ToString() + "_NormalAttack_P" + id;
-        else
-            actionButton = controller.ToString() + "_JumpButton_P" + id;
-        rejectButton = controller.ToString() + "_DownAttack_P" + id;
+        //else
+        //{
+        //    horizontalMove = controller.ToString() + "_MainHorizontal_P" + id;
+        //    verticalMove = controller.ToString() + "_MainVertical_P" + id;
+        //}
+        //if (controller == Controller.K && id == 2)
+        //    actionButton = controller.ToString() + "_NormalAttack_P" + id;
+        //else
+        //    actionButton = controller.ToString() + "_JumpButton_P" + id;
+        //rejectButton = controller.ToString() + "_DownAttack_P" + id;
     }
 
     void CleanInputs()

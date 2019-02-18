@@ -103,11 +103,13 @@ public class MainMenu_Selector : MonoBehaviour
             state = GamePad.GetState(item);
             if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
             {
+                AudioManager.Instance.CreateSound("NavigationHUD");
                 Accept();
             }
 
             if ((prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed) || (prevState.Buttons.Back == ButtonState.Released && state.Buttons.Back == ButtonState.Pressed))
             {
+                AudioManager.Instance.CreateSound("NavigationHUD");
                 Back();
             }
 
@@ -115,11 +117,13 @@ public class MainMenu_Selector : MonoBehaviour
             {
                 if (!optionsCanvasActive && !controlsCanvasActive)
                 {
+                    //AudioManager.Instance.CreateSound("NavigationHUD");
                     Move(state.ThumbSticks.Left.Y == 0 ? 0 : state.ThumbSticks.Left.Y > 0 ? -1 : 1);
                     StartCoroutine(CoolDown());
                 }
                 else if (optionsCanvasActive)
                 {
+                    //AudioManager.Instance.CreateSound("NavigationHUD");
                     MoveOnOptions(state.ThumbSticks.Left.Y == 0 ? 0 : state.ThumbSticks.Left.Y > 0 ? -1 : 1);
                     StartCoroutine(CoolDown());
                 }
@@ -129,6 +133,7 @@ public class MainMenu_Selector : MonoBehaviour
             {
                 if (optionsCanvasActive)
                 {
+                    //AudioManager.Instance.CreateSound("NavigationHUD");
                     SlideOptions(state.ThumbSticks.Left.X == 0 ? 0 : state.ThumbSticks.Left.X < 0 ? -1 : 1);
                     StartCoroutine(CoolDown());
                 }
@@ -171,13 +176,17 @@ public class MainMenu_Selector : MonoBehaviour
     void MoveOnOptions(int x)
     {
         currentindexInOptions += x;
-        if (currentindexInOptions >= 3)
+        if (currentindexInOptions > 3)
         {
             currentindexInOptions = 3;
         }
         else if (currentindexInOptions < 0)
         {
             currentindexInOptions = 0;
+        }
+        else
+        {
+            AudioManager.Instance.CreateSound("NavigationHUD");
         }
     }
 
@@ -193,6 +202,7 @@ public class MainMenu_Selector : MonoBehaviour
                 currentindexInSlider = 2;
             slidePositions[currentindexInOptions].value = currentindexInSlider;
             QualitySettings.SetQualityLevel((int)currentindexInSlider);
+            AudioManager.Instance.CreateSound("NavigationHUD");
         }
         else
         {
@@ -214,7 +224,7 @@ public class MainMenu_Selector : MonoBehaviour
             {
                 mixer.SetFloat("MusicVolume", currentindexInSlider);
             }
-            
+            AudioManager.Instance.CreateSound("NavigationHUD");
         }
     }
 
@@ -234,6 +244,7 @@ public class MainMenu_Selector : MonoBehaviour
         {
             MM_Manager.selector.transform.position = positions[currentindex].position;
             MM_Manager.selector.transform.rotation = positions[currentindex].rotation;
+            AudioManager.Instance.CreateSound("NavigationHUD");
         }
     }
 
