@@ -4446,14 +4446,14 @@ RectTransform:
   m_GameObject: {fileID: 475200763}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7032566, y: 0.61043537, z: 0.19317521}
+  m_LocalScale: {x: 1.2001601, y: 0.43012905, z: 0.13611642}
   m_Children: []
   m_Father: {fileID: 2130014}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 278.0999, y: -167.6}
+  m_AnchoredPosition: {x: 300.4, y: -172.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &475200765
@@ -13203,7 +13203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1802846645
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13219,7 +13219,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -179.988, y: -179.998, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 332, y: -215}
+  m_AnchoredPosition: {x: 101.2, y: -215}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1802846646
@@ -13254,7 +13254,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Copyright pending
+  m_Text: 'Made by: Lautaro Bravo, Maximiliano Garcia, Valentina Barraza, Dario Colo'
 --- !u!222 &1802846647
 CanvasRenderer:
   m_ObjectHideFlags: 0
