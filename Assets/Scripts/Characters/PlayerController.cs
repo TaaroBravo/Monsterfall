@@ -767,11 +767,8 @@ public class PlayerController : MonoBehaviour
     {
         if (hit.gameObject.tag.Equals("Borders"))
         {
-            //SmoothHitRefleject();
-            if (this is Berserk && ((Berserk)this).usingChargeHability)
-            {
-                ((Berserk)this).usingChargeHability = false;
-            }
+            if (this is Berserk && ((Berserk)this).chargeAttack)
+                ((Berserk)this).chargeAttack = false;
             stunnedByHit = false;
             playerMarked = false;
             myAnim.SetBool("Stunned", false);

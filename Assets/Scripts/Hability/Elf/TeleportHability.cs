@@ -171,6 +171,24 @@ public class TeleportHability : IHability
         player.GetComponent<FeedbackElf>().shootDashFire.Play();
         float dirX = 0;
         float dirY = 0;
+        if(dir.x != 0)
+        {
+            if (dir.x > 0.5f)
+                dir.x = 1;
+            else if (dir.x < -0.5f)
+                dir.x = -1;
+            else
+                dir.x = 0;
+        }
+        else if(dir.y != 0)
+        {
+            if (dir.y > 0.5f)
+                dir.y = 1;
+            else if (dir.y < -0.5f)
+                dir.y = -1;
+            else
+                dir.y = 0;
+        }
         if (Mathf.Abs(dir.y) * Mathf.Sign(dir.y) == 1)
         {
             if (Mathf.Abs(dir.x) == 1)
@@ -190,7 +208,8 @@ public class TeleportHability : IHability
         {
             if (Mathf.Abs(dir.x) == 1)
             {
-                dirX = Mathf.Sign(dir.x);
+                //dirX = Mathf.Sign(dir.x);
+                dirX = 1 * Mathf.Sign(player.transform.localScale.z);
                 dirY = -1;
                 player.myAnim.Play("DashDownForward");
             }
@@ -210,9 +229,7 @@ public class TeleportHability : IHability
                 dirX = 0;
             player.myAnim.Play("DashForward");
         }
-        //if (dirX == 0)
-        //    dirX = Mathf.Abs(player.transform.localScale.z) * Mathf.Sign(player.transform.localScale.z);
-        return new Vector3(dirX, dirY);
+        return new Vector3(dir.x, dir.y);
     }
 
     #region Pool

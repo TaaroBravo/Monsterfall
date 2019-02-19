@@ -25,7 +25,7 @@ public class IIceEffect : IEffect
         if (target == hitTarget)
         {
             countOfMarks++;
-            if (countOfMarks >= 3)
+            if (countOfMarks >= 6)
             {
                 countOfMarks = 0;
                 Freeze();

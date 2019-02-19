@@ -40,7 +40,7 @@ public class IceSpikes : MonoBehaviour {
     void HitEnemy()
     {
         _target.myAnim.Play("GetHit");
-        _target.SetStun(5f);
+        _target.SetStun(3.2f);
         _target.ResetVelocity();
         _target.SetDamage(5);
         _target.SetLastOneWhoHittedMe(player);
@@ -51,11 +51,6 @@ public class IceSpikes : MonoBehaviour {
         iceDry.transform.position = _target.transform.position;
         ((Yeti)player).frozenCharacter.Add(_target);
         ice.SetPlayer(player, _target);
-
-        //X Que el enemigo no se pueda mover
-        //X Agregarlo a la lista de de los enemigos congelados por el yeti
-        //X Crear hielo sobre él.
-        //Poner el hielo del color del player
         DestroySpike();
     }
 

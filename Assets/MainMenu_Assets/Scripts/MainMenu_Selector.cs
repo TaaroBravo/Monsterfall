@@ -61,7 +61,8 @@ public class MainMenu_Selector : MonoBehaviour
         generalSlider.value = 0;
         soundSlider.value = 0f;
         musicSlider.value = 0f;
-        graphicsSlider.value = 2; // Deberia ser lo que vale las opciones de graficos.
+        
+        graphicsSlider.value = QualitySettings.GetQualityLevel();
         GetGamepadInputs();
     }
 

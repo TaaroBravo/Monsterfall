@@ -28,7 +28,9 @@ public class MissileTeleport : MonoBehaviour
             _dir = playerDir;
         transform.position += _dir * speed * Time.deltaTime;
 
-        if (Physics.OverlapSphere(transform.position, 3f, 1 << 17).Any() || Physics.OverlapSphere(transform.position, 3f, 1 << 19).Where(x => x.tag == "Limit").Any())
+        //if (Physics.OverlapSphere(transform.position, 3f, 1 << 17).Any() || Physics.OverlapSphere(transform.position, 3f, 1 << 19).Where(x => x.tag == "Limit").Any())
+        //    DestroyedMissile();        
+        if (/*Physics.OverlapSphere(transform.position, 3f, 1 << 17).Any()*/ /*||*/ Physics.OverlapSphere(transform.position, 3f, 1 << 19).Where(x => x.tag == "Limit").Any())
             DestroyedMissile();
 
         var _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Where(x => x.GetComponent<PlayerController>() != null).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player).Where(x => !x.isDead).FirstOrDefault();

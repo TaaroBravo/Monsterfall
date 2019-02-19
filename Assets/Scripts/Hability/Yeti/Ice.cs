@@ -11,7 +11,7 @@ public class Ice : MonoBehaviour
     {
         Physics.IgnoreCollision(GetComponent<Collider>(), target.GetComponent<Collider>(), true);
         target.myAnim.Play("GetHitDown");
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 3);
     }
 
     private void OnDestroy()
@@ -22,6 +22,11 @@ public class Ice : MonoBehaviour
         {
             ((Yeti)player).frozenCharacter.Remove(target);
         }
+    }
+
+    private void Update()
+    {
+        transform.position = target.transform.position;
     }
 
 

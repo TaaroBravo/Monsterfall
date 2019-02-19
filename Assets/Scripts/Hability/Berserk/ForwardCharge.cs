@@ -31,13 +31,14 @@ public class ForwardCharge : IHability
 
         if (player.usingHability && berserkPlayer.chargeAttack)
         {
-            if (player.IsTouchingWalls())
-            {
-                if (_target)
-                    DamageTarget();
-                ResetValues();
-                return;
-            }
+            //if (player.IsTouchingWalls())
+            //{
+            //    Debug.Log("NO DEBERIA");
+            //    if (_target)
+            //        DamageTarget();
+            //    ResetValues();
+            //    return;
+            //}
             timerActive += Time.deltaTime;
             player.moveVector.x = _dir * _speed;
             distance = Mathf.RoundToInt(_speed * timerActive / 5) * 5;
@@ -51,9 +52,16 @@ public class ForwardCharge : IHability
             player.myAnim.Play("Stunned");
             ResetValues();
         }
+        else if(player.usingHability && !berserkPlayer.chargeAttack && !berserkPlayer.usingBearHability && !berserkPlayer.recovery)
+        {
+            if(!_target)
+                player.myAnim.Play("Stunned");
+            ResetValues();
+        }
         else
         {
             player.GetComponent<BerserkerParticlesManager>().StopCharge();
+            //ResetValues();
         }
     }
 
@@ -61,7 +69,7 @@ public class ForwardCharge : IHability
     {
         while (true)
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2f);
             if (_target)
                 DamageTarget();
             ResetValues();

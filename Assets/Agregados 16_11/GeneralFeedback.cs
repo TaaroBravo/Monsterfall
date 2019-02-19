@@ -47,6 +47,7 @@ public class GeneralFeedback : MonoBehaviour
         ElfMark.Play();
         mainCrosshair.startColor = PColors[ID];
         mainCrosshair.simulationSpeed = 0.5f;
+        MainElfMark.startLifetime = 3f;
         //mainCrosshair
         if (!Crosshair.isPlaying)
             Crosshair.Play();
