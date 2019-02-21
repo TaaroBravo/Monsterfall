@@ -17,6 +17,8 @@ public class IFireEffect : IEffect
 
     public void Effect(PlayerController player)
     {
+        if (!player)
+            return;
         if (!player.GetComponent<FireParticle>().fire1.isPlaying)
         {
             player.GetComponent<FireParticle>().fire1.Play();

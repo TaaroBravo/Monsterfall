@@ -133,12 +133,12 @@ public class MissileHability : IHability
     {
         while (true)
         {
-            player.canMove = false;
+            player.canInteract = false;
             if (player.controller.isGrounded)
                 yield return new WaitForSeconds(1f);
             else
                 yield return new WaitUntil(() => player.controller.isGrounded);
-            player.canMove = true;
+            player.canInteract = true;
             break;
         }
     }

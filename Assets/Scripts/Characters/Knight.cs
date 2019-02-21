@@ -30,7 +30,7 @@ public class Knight : PlayerController {
     public override void Update()
     {
         base.Update();
-        if (!canMove)
+        if (!canInteract)
             StartCoroutine(TimerIsTouchingWalls());
     }
 
@@ -66,8 +66,8 @@ public class Knight : PlayerController {
             if (IsTouchingWalls())
                 state = true;
             yield return new WaitForSeconds(1f);
-            if (state && !canMove && IsTouchingWalls())
-                canMove = true;
+            if (state && !canInteract && IsTouchingWalls())
+                canInteract = true;
             StopCoroutine(TimerIsTouchingWalls());
             break;
         }

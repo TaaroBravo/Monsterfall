@@ -66,7 +66,7 @@ public class TeleportHability : IHability
             timerCoolDown = coolDown;
             activeTimer = false;
             missileMoving = true;
-            _elfPlayer.canMove = false;
+            _elfPlayer.canInteract = false;
             _elfPlayer.moveVector.x = 0;
             player.StartCoroutine(TimeToTeleport());
             player.lifeHUD.ActivateDashCD();
@@ -235,7 +235,7 @@ public class TeleportHability : IHability
     #region Pool
     void ReturnBullet(MissileTeleport m)
     {
-        _elfPlayer.canMove = true;
+        _elfPlayer.canInteract = true;
         Teleport();
         //m.OnDestroyMissile -= x => ReturnBullet(x);
         //m.OnHitPlayer -= x => HitPlayer(x);

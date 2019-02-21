@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GeneralFeedback : MonoBehaviour
 {
+    public ParticleSystem slashParticle;
+    public ParticleSystem slashDown;
+    public ParticleSystem slashUp;
     public GameObject iceblock;
     List<Color> PColors = new List<Color>();
     public ParticleSystem.MainModule MainElfMark;
@@ -91,5 +94,47 @@ public class GeneralFeedback : MonoBehaviour
     public void FinishIceblockShake()
     {
         iceblock.GetComponent<IceBlock>().Shaking = false;
+    }
+
+    public void PlaySlash()
+    {
+        var slash = GameObject.Instantiate(slashParticle);
+        slash.gameObject.SetActive(true);
+        slash.gameObject.AddComponent<SelfDestruct>();
+        slash.GetComponent<SelfDestruct>().selfdestruct_in = 1;
+        Vector3 pos = slashParticle.transform.localScale;
+        pos.x *= Mathf.Sign(transform.localScale.z);
+        slash.gameObject.transform.localScale = pos;
+        slash.transform.position = slashParticle.transform.position;
+        slash.transform.rotation = slashParticle.transform.rotation;
+        slash.Play();
+    }
+
+    public void PlaySlashDown()
+    {
+        var slash = GameObject.Instantiate(slashDown);
+        slash.gameObject.SetActive(true);
+        slash.gameObject.AddComponent<SelfDestruct>();
+        slash.GetComponent<SelfDestruct>().selfdestruct_in = 1;
+        Vector3 pos = slashDown.transform.localScale;
+        pos.x *= Mathf.Sign(transform.localScale.z);
+        slash.gameObject.transform.localScale = pos;
+        slash.transform.rotation = slashDown.transform.rotation;
+        slash.transform.position = slashDown.transform.position;
+        slash.Play();
+    }
+
+    public void PlaySlashUp()
+    {
+        var slash = GameObject.Instantiate(slashUp);
+        slash.gameObject.SetActive(true);
+        slash.gameObject.AddComponent<SelfDestruct>();
+        slash.GetComponent<SelfDestruct>().selfdestruct_in = 1;
+        slash.transform.rotation = slashUp.transform.rotation;
+        slash.transform.position = slashUp.transform.position;
+        Vector3 pos = slashUp.transform.localScale;
+        pos.x *= Mathf.Sign(transform.localScale.z);
+        slash.gameObject.transform.localScale = pos;
+        slash.Play();
     }
 }

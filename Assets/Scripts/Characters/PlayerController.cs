@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     public PlayerContrains contrains;
 
     #region Movement Variables
-    public bool canMove;
+    public bool canInteract;
+    public bool canMove = true;
 
     public Vector3 moveVector;
     public float moveSpeed;
@@ -356,11 +357,11 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            canMove = false;
+            canInteract = false;
             myAnim.Play("Stunned");
             myAnim.SetBool("Stunned", true);
             yield return new WaitForSeconds(x);
-            canMove = true;
+            canInteract = true;
             myAnim.SetBool("Stunned", false);
             break;
         }
@@ -404,7 +405,7 @@ public class PlayerController : MonoBehaviour
     public void DisableStun()
     {
         stunnedByHit = false;
-        canMove = true;
+        canInteract = true;
     }
 
     public void DisableAll()
@@ -890,7 +891,7 @@ public class PlayerController : MonoBehaviour
             if (lastOneWhoHittedMe)
                 GameManager.Instance.SetKills(lastOneWhoHittedMe.GetComponent<PlayerInput>().player_number);
             OnDestroyCharacter(this);
-            canMove = false;
+            canInteract = false;
             myAnim.StopPlayback();
             myAnim.SetTrigger("Death");
             myAnim.Play("Death");

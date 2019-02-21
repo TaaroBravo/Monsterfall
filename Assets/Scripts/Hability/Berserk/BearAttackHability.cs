@@ -45,7 +45,7 @@ public class BearAttackHability : IHability
                 JumpAttack();
             if (_target && !hasTarget)
             {
-                _target.canMove = false;
+                _target.canInteract = false;
                 AttackingFeedback();
                 player.StartCoroutine(AttackTimer());
                 hasTarget = true;
@@ -68,7 +68,7 @@ public class BearAttackHability : IHability
             AudioManager.Instance.CreateSound("ChargingBerserk");
             //_dir = Mathf.Sign(player.transform.localScale.z);
             player.verticalVelocity = player.jumpForce;
-            player.canMove = false;
+            player.canInteract = false;
             player.usingHability = true;
             berserkPlayer.usingBearHability = true;
             timerActive = maxTimer;
@@ -135,7 +135,7 @@ public class BearAttackHability : IHability
             timerActive -= 0.3f;
         }
         player.myAnim.SetTrigger("SkillAttackOut");
-        player.canMove = true;
+        player.canInteract = true;
         player.usingHability = false;
         berserkPlayer.recovery = false;
         player.StartCoroutine(BackTargetToNormal());
@@ -172,7 +172,7 @@ public class BearAttackHability : IHability
         if (_target)
         {
             _target.transform.parent = null;
-            _target.canMove = true;
+            _target.canInteract = true;
         }
         berserkPlayer.recovery = false;
         failed = false;
@@ -180,7 +180,7 @@ public class BearAttackHability : IHability
         _target = null;
         timerActive = 0;
         timerCoolDown = coolDown;
-        player.canMove = true;
+        player.canInteract = true;
         player.usingHability = false;
         berserkPlayer.usingBearHability = false;
         isGrounded = false;

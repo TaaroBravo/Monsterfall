@@ -62794,6 +62794,7 @@ GameObject:
   - component: {fileID: 1252655944}
   - component: {fileID: 1252655942}
   - component: {fileID: 1252655937}
+  - component: {fileID: 1252655943}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -62920,6 +62921,23 @@ MonoBehaviour:
   negLimitX: -10
   posLimitY: 48
   negLimitY: 29
+--- !u!95 &1252655943
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1252655935}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5b05c2b1753540d45a95af38cce179f9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &1252655944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85059,6 +85077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cristal: {fileID: 1003229459}
+  firePrefab: {fileID: 1793445065711672, guid: e342a49bd8b5cc54096bf1a54c21d524, type: 2}
   material: {fileID: 2100000, guid: 893f0a116ff17444eb334c11022e502b, type: 2}
   rays:
   - {fileID: 1373611115}

@@ -38,7 +38,7 @@ public class ShootDashHability : IHability
 
     void ShootDash()
     {
-        player.canMove = false;
+        player.canInteract = false;
         Shoot();
         float direction = Mathf.Sign(player.transform.localScale.z);
         player.moveVector.x = power * -direction;
@@ -92,7 +92,7 @@ public class ShootDashHability : IHability
     void ResetValues()
     {
         timerCoolDown = coolDown;
-        player.canMove = true;
+        player.canInteract = true;
         player.usingHability = false;
         player.myAnim.SetBool("Dashing", false);
     }

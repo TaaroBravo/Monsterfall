@@ -58,10 +58,31 @@ public class MainMenu_Selector : MonoBehaviour
         slidePositions.Add(1, soundSlider);
         slidePositions.Add(2, musicSlider);
         slidePositions.Add(3, graphicsSlider);
-        generalSlider.value = 0;
+        generalSlider.value = 0f;
         soundSlider.value = 0f;
         musicSlider.value = 0f;
-        
+        if (PlayerPrefs.HasKey("GeneralVolume"))
+            generalSlider.value = PlayerPrefs.GetFloat("GeneralVolume");
+        else
+        {
+            PlayerPrefs.SetFloat("GeneralVolume", 0f);
+            generalSlider.value = 0f;
+        }
+        if (PlayerPrefs.HasKey("SoundsVolume"))
+            soundSlider.value = PlayerPrefs.GetFloat("SoundsVolume");
+        else
+        {
+            PlayerPrefs.SetFloat("SoundsVolume", 0f);
+            soundSlider.value = 0f;
+        }
+        if (PlayerPrefs.HasKey("MusicVolume"))
+            musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+        else
+        {
+            PlayerPrefs.SetFloat("MusicVolume", 0f);
+            musicSlider.value = 0f;
+        }
+
         graphicsSlider.value = QualitySettings.GetQualityLevel();
         GetGamepadInputs();
     }
@@ -216,14 +237,17 @@ public class MainMenu_Selector : MonoBehaviour
             if(currentindexInOptions == 0)
             {
                 mixer.SetFloat("GeneralVolume", currentindexInSlider);
+                PlayerPrefs.SetFloat("GeneralVolume", currentindexInSlider);
             }
             else if (currentindexInOptions == 1)
             {
                 mixer.SetFloat("SoundsVolume", currentindexInSlider);
+                PlayerPrefs.SetFloat("SoundsVolume", currentindexInSlider);
             }
             else
             {
                 mixer.SetFloat("MusicVolume", currentindexInSlider);
+                PlayerPrefs.SetFloat("MusicVolume", currentindexInSlider);
             }
             AudioManager.Instance.CreateSound("NavigationHUD");
         }

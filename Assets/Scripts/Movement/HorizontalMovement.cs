@@ -29,7 +29,6 @@ public class HorizontalMovement : IMove
             player.verticalVelocity = -player.gravity * Time.deltaTime;
             if (!player.isDead)
             {
-                //Hacerlo con un bool en la animacion
                 player.myAnim.SetBool("Jumping", false);
                 player.myAnim.SetBool("Grounded", true);
             }
@@ -49,6 +48,8 @@ public class HorizontalMovement : IMove
         if (GameManager.Instance.startingGame || GameManager.Instance.finishedGame || GameManager.Instance.pauseMenu)
             return;
         movement = player.GetComponent<PlayerInput>().MainHorizontal();
+        if (!player.canMove)
+            movement = 0;
         if (movement != 0)
         {
             if (!player.myAnim.GetBool("Jumping") && !player.isDead)
@@ -70,17 +71,30 @@ public class HorizontalMovement : IMove
 
     public override void Move()
     {
-        if (player.canMove)
-        {
-            if (movement > 0)
-                player.transform.localScale = new Vector3(-scale, scale, scale);
-            else if (movement < 0)
-                player.transform.localScale = new Vector3(-scale, scale, -scale);
 
-            if (!player.controller.isGrounded && movement == 0 && player.moveVector.x != 0)
-                player.moveVector.x += -Mathf.Sign(player.moveVector.x) * 1.5f;
+        if (player.canInteract)
+        {
+            if (!player.canMove)
+            {
+                if (!player.controller.isGrounded && Mathf.Abs(player.moveVector.x) > 0.1f)
+                    player.moveVector.x += -Mathf.Sign(player.moveVector.x) * 1.5f * Time.deltaTime;
+                else
+                {
+                    movement = 0;
+                    player.moveVector.x = 0;
+                }
+            }
             else
-                player.moveVector.x = movement * currentSpeedTimer * player.moveSpeed + player.impactVelocity.x;
+            {
+                if (movement > 0)
+                    player.transform.localScale = new Vector3(-scale, scale, scale);
+                else if (movement < 0)
+                    player.transform.localScale = new Vector3(-scale, scale, -scale);
+                if (!player.controller.isGrounded && movement == 0 && player.moveVector.x != 0)
+                    player.moveVector.x += -Mathf.Sign(player.moveVector.x) * 1.5f;
+                else
+                    player.moveVector.x = movement * currentSpeedTimer * player.moveSpeed + player.impactVelocity.x;
+            }
         }
         else if (!player.usingHability)
         {

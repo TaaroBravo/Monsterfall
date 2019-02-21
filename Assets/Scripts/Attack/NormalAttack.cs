@@ -7,6 +7,7 @@ public class NormalAttack : IAttack
 {
     ParticleSystem ps;
     GameObject myAudioClip;
+    MultipleTargetCamera cam;
     public NormalAttack(PlayerController pl, IEffect _effect = null, float _timerCoolDown = 0)
     {
         player = pl;
@@ -21,6 +22,7 @@ public class NormalAttack : IAttack
         currentPressed = 1;
         maxPressed = 2.5f;
         minImpact = 17;
+        cam = GameObject.FindObjectOfType<MultipleTargetCamera>();
     }
 
     public override void Update()
@@ -40,7 +42,9 @@ public class NormalAttack : IAttack
         if (timerCoolDownAttack < 0)
         {
             //ps = player.PS_Impact;
+            player.canMove = true;
             AudioManager.Instance.CreateSound("Punch");
+            player.GetComponent<GeneralFeedback>().PlaySlash();
             AudioManager.Instance.FadeOut(myAudioClip, 0.1f);
             player.myAnim.SetBool("RealeaseAForward", true);
             player.myAnim.SetTrigger("ReleaseAForward");
@@ -65,6 +69,7 @@ public class NormalAttack : IAttack
                 ps = player.PS_Impact;
                 if (target != null && !hitPlayers.Contains(target))
                 {
+                    cam.StartShaking();
                     AudioManager.Instance.CreateSound("HitPlayer");
                     player.hitParticles.Play();
                     hitPlayers.Add(target);
@@ -118,5 +123,6 @@ public class NormalAttack : IAttack
             player.myAnim.Play("ChargingAForward");
         myAudioClip = AudioManager.Instance.CreateSound("ChargingAttack", 100);
         isPressing = true;
+        player.canMove = false;
     }
 }

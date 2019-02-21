@@ -46,7 +46,7 @@ public class Berserk : PlayerController
                 DisableAll();
                 myAnim.SetBool("Stunned", false);
                 stunnedByHit = false;
-                canMove = true;
+                canInteract = true;
             }
         }
     }

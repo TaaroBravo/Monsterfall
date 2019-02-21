@@ -181,7 +181,7 @@ public class RogueDashHability : IHability
         finalPos = Vector3.zero;
         player.moveVector.x = 0;
         player.StopCoroutine(IsDashingTimer(_activeTime));
-        player.canMove = true;
+        player.canInteract = true;
         player.myAnim.SetBool("Dashing", false);
         //player.controller.enabled = true;
         OnCollisions();

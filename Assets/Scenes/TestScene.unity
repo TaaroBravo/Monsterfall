@@ -176,13 +176,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 41.834003, y: -154.345, z: -138.45401}
 --- !u!4 &47426824 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c,
     type: 2}
-  m_PrefabInternal: {fileID: 959017977}
+  m_PrefabInternal: {fileID: 316637228}
 --- !u!1 &78122942
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +213,7 @@ Transform:
   - {fileID: 1255681473}
   - {fileID: 1989059823}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &154383291
 Prefab:
@@ -254,39 +254,34 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198311341089430146, guid: 20f9fbd263b9d984180a98a88354de71,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
+    - target: {fileID: 4677732788029682, guid: 20f9fbd263b9d984180a98a88354de71, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.5543882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677732788029682, guid: 20f9fbd263b9d984180a98a88354de71, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.57881576
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677732788029682, guid: 20f9fbd263b9d984180a98a88354de71, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.24405536
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677732788029682, guid: 20f9fbd263b9d984180a98a88354de71, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.54595155
+      objectReference: {fileID: 0}
     - target: {fileID: 198567621303336114, guid: 20f9fbd263b9d984180a98a88354de71,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 4677732788029682, guid: 20f9fbd263b9d984180a98a88354de71, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.55438817
-      objectReference: {fileID: 0}
-    - target: {fileID: 4677732788029682, guid: 20f9fbd263b9d984180a98a88354de71, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.5788157
-      objectReference: {fileID: 0}
-    - target: {fileID: 4677732788029682, guid: 20f9fbd263b9d984180a98a88354de71, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.24405533
-      objectReference: {fileID: 0}
-    - target: {fileID: 4677732788029682, guid: 20f9fbd263b9d984180a98a88354de71, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.5459515
-      objectReference: {fileID: 0}
-    - target: {fileID: 224098390104371762, guid: 20f9fbd263b9d984180a98a88354de71,
+    - target: {fileID: 198311341089430146, guid: 20f9fbd263b9d984180a98a88354de71,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20f9fbd263b9d984180a98a88354de71, type: 2}
   m_IsPrefabParent: 0
@@ -325,7 +320,7 @@ Transform:
   - {fileID: 1409768826}
   - {fileID: 1407971651}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &210568252
 Prefab:
@@ -366,13 +361,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 198386697971856474, guid: f5380917b63adba40bb20dad3d630266,
+    - target: {fileID: 198032309564704930, guid: f5380917b63adba40bb20dad3d630266,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198032309564704930, guid: f5380917b63adba40bb20dad3d630266,
+    - target: {fileID: 198386697971856474, guid: f5380917b63adba40bb20dad3d630266,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -474,8 +469,66 @@ Transform:
   m_LocalScale: {x: 18.442398, y: 3.8576627, z: 14.478231}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &316637228
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1397074046}
+    m_Modifications:
+    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -37.216377
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 20.212292
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000005960465
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000029802326
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198647409018543152, guid: 76b08385cafc29a47a7a8199f1b7209c,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198238634427167416, guid: 76b08385cafc29a47a7a8199f1b7209c,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 1313411764419566, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
+      propertyPath: m_Name
+      value: Caballero Blue
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &360993658 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4326208198524846, guid: 7d65d2a9998afa241b98af6b3d0e8922,
@@ -570,7 +623,7 @@ Transform:
   m_LocalScale: {x: 22.475521, y: 4.7012854, z: 17.64444}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!1001 &543236265
 Prefab:
@@ -611,88 +664,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 198148725852919670, guid: 7d65d2a9998afa241b98af6b3d0e8922,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198715768750547304, guid: 7d65d2a9998afa241b98af6b3d0e8922,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 224714095615081570, guid: 7d65d2a9998afa241b98af6b3d0e8922,
+    - target: {fileID: 198148725852919670, guid: 7d65d2a9998afa241b98af6b3d0e8922,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d65d2a9998afa241b98af6b3d0e8922, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &543463851
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1397074046}
-    m_Modifications:
-    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -28.298363
-      objectReference: {fileID: 0}
-    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 19.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0.00000005960465
-      objectReference: {fileID: 0}
-    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.000000029802326
-      objectReference: {fileID: 0}
-    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198942668303316988, guid: 07d39eaf907cf9c49b5e70e48b651529,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
-    - target: {fileID: 198618450965059216, guid: 07d39eaf907cf9c49b5e70e48b651529,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
-    - target: {fileID: 1290402735160424, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
-      propertyPath: m_Name
-      value: Caballero Red
-      objectReference: {fileID: 0}
-    - target: {fileID: 224823848502425422, guid: 07d39eaf907cf9c49b5e70e48b651529,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &595811378
 Prefab:
@@ -733,23 +718,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 198035514639399752, guid: bbb1e6fba50218a4c8c00cae4d584a24,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198435469156491478, guid: bbb1e6fba50218a4c8c00cae4d584a24,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 224104124729281084, guid: bbb1e6fba50218a4c8c00cae4d584a24,
+    - target: {fileID: 198035514639399752, guid: bbb1e6fba50218a4c8c00cae4d584a24,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbb1e6fba50218a4c8c00cae4d584a24, type: 2}
   m_IsPrefabParent: 0
@@ -802,13 +782,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 198010249343028046, guid: 04cc4e21583e41f42b5e047ed8128771,
+    - target: {fileID: 198622104812045858, guid: 04cc4e21583e41f42b5e047ed8128771,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198622104812045858, guid: 04cc4e21583e41f42b5e047ed8128771,
+    - target: {fileID: 198010249343028046, guid: 04cc4e21583e41f42b5e047ed8128771,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -860,79 +840,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198026132680609380, guid: fee11fc765d3fa045a3c32a6f143f627,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198175492022960714, guid: fee11fc765d3fa045a3c32a6f143f627,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 224025216542789328, guid: fee11fc765d3fa045a3c32a6f143f627,
+    - target: {fileID: 198026132680609380, guid: fee11fc765d3fa045a3c32a6f143f627,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fee11fc765d3fa045a3c32a6f143f627, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &647059358
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4159048153008942, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -10.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159048153008942, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 14.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159048153008942, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -9.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159048153008942, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159048153008942, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159048153008942, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159048153008942, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159048153008942, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159048153008942, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 3.0406635
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159048153008942, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 3.8026695
-      objectReference: {fileID: 0}
-    - target: {fileID: 4159048153008942, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.1034793
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 7f33b82433833cd43a321d8eb290d350, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &706716719
 Prefab:
@@ -973,23 +894,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 198244081704655216, guid: 2c8125cdd5807e64fab62b558d2eee7d,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198164556570152686, guid: 2c8125cdd5807e64fab62b558d2eee7d,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 224796986452791372, guid: 2c8125cdd5807e64fab62b558d2eee7d,
+    - target: {fileID: 198244081704655216, guid: 2c8125cdd5807e64fab62b558d2eee7d,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c8125cdd5807e64fab62b558d2eee7d, type: 2}
   m_IsPrefabParent: 0
@@ -1032,23 +948,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 198134381955897112, guid: 6e2113cec26f32b4ca860aa8a234f0ee,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198849395735140074, guid: 6e2113cec26f32b4ca860aa8a234f0ee,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 224539546862547978, guid: 6e2113cec26f32b4ca860aa8a234f0ee,
+    - target: {fileID: 198134381955897112, guid: 6e2113cec26f32b4ca860aa8a234f0ee,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e2113cec26f32b4ca860aa8a234f0ee, type: 2}
   m_IsPrefabParent: 0
@@ -1091,23 +1002,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 198520502643876390, guid: 9b2595490e5d4dc46a287b4ec9ff2fca,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198139688627483756, guid: 9b2595490e5d4dc46a287b4ec9ff2fca,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 224320154763433930, guid: 9b2595490e5d4dc46a287b4ec9ff2fca,
+    - target: {fileID: 198520502643876390, guid: 9b2595490e5d4dc46a287b4ec9ff2fca,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b2595490e5d4dc46a287b4ec9ff2fca, type: 2}
   m_IsPrefabParent: 0
@@ -1141,7 +1047,7 @@ Transform:
   - {fileID: 1201810649}
   - {fileID: 365538125}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &920278550
 Prefab:
@@ -1222,7 +1128,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4392817171475648, guid: 703d40544910ca240b2aa027ec131443, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 703d40544910ca240b2aa027ec131443, type: 2}
@@ -1270,71 +1176,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &959017977
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1397074046}
-    m_Modifications:
-    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -37.216377
-      objectReference: {fileID: 0}
-    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 20.212292
-      objectReference: {fileID: 0}
-    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0.00000005960465
-      objectReference: {fileID: 0}
-    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.000000029802326
-      objectReference: {fileID: 0}
-    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4449818050145632, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 198238634427167416, guid: 76b08385cafc29a47a7a8199f1b7209c,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
-    - target: {fileID: 198647409018543152, guid: 76b08385cafc29a47a7a8199f1b7209c,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
-    - target: {fileID: 1313411764419566, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
-      propertyPath: m_Name
-      value: Caballero Blue
-      objectReference: {fileID: 0}
-    - target: {fileID: 224511614068865340, guid: 76b08385cafc29a47a7a8199f1b7209c,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &974555262
 Prefab:
   m_ObjectHideFlags: 0
@@ -1374,39 +1217,34 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 198213416011364530, guid: 68b805a12f528b64383d8d12a9ce977e,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
+    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.5543882
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.57881576
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.24405536
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.54595155
+      objectReference: {fileID: 0}
     - target: {fileID: 198251857313220758, guid: 68b805a12f528b64383d8d12a9ce977e,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.55438817
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.5788157
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.24405533
-      objectReference: {fileID: 0}
-    - target: {fileID: 4918581366491280, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.5459515
-      objectReference: {fileID: 0}
-    - target: {fileID: 224932254013746048, guid: 68b805a12f528b64383d8d12a9ce977e,
+    - target: {fileID: 198213416011364530, guid: 68b805a12f528b64383d8d12a9ce977e,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68b805a12f528b64383d8d12a9ce977e, type: 2}
   m_IsPrefabParent: 0
@@ -1449,23 +1287,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 198949038910800822, guid: 2948cd493a50da5428cdea72379cd0fb,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198502334224357756, guid: 2948cd493a50da5428cdea72379cd0fb,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 224475805830069696, guid: 2948cd493a50da5428cdea72379cd0fb,
+    - target: {fileID: 198949038910800822, guid: 2948cd493a50da5428cdea72379cd0fb,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2948cd493a50da5428cdea72379cd0fb, type: 2}
   m_IsPrefabParent: 0
@@ -1508,23 +1341,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 198946491932931516, guid: 5df06bc7afc45634eae0f1068f79331e,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198113531338997532, guid: 5df06bc7afc45634eae0f1068f79331e,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 224951368746694202, guid: 5df06bc7afc45634eae0f1068f79331e,
+    - target: {fileID: 198946491932931516, guid: 5df06bc7afc45634eae0f1068f79331e,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5df06bc7afc45634eae0f1068f79331e, type: 2}
   m_IsPrefabParent: 0
@@ -1572,18 +1400,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 198148663199554744, guid: 1e5b7ac1bab485847ae81f6274aa1a61,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
-    - target: {fileID: 198259170966361434, guid: 1e5b7ac1bab485847ae81f6274aa1a61,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 4663352588541734, guid: 1e5b7ac1bab485847ae81f6274aa1a61, type: 2}
       propertyPath: m_LocalRotation.x
       value: -0.55438817
@@ -1600,11 +1416,18 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.5459515
       objectReference: {fileID: 0}
-    - target: {fileID: 224786439713571378, guid: 1e5b7ac1bab485847ae81f6274aa1a61,
+    - target: {fileID: 198259170966361434, guid: 1e5b7ac1bab485847ae81f6274aa1a61,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198148663199554744, guid: 1e5b7ac1bab485847ae81f6274aa1a61,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e5b7ac1bab485847ae81f6274aa1a61, type: 2}
   m_IsPrefabParent: 0
@@ -1647,23 +1470,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 198320682564466448, guid: 674e48c9b321db2488645d96bff4b4ea,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198243944864091496, guid: 674e48c9b321db2488645d96bff4b4ea,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 224116657326578106, guid: 674e48c9b321db2488645d96bff4b4ea,
+    - target: {fileID: 198320682564466448, guid: 674e48c9b321db2488645d96bff4b4ea,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 674e48c9b321db2488645d96bff4b4ea, type: 2}
   m_IsPrefabParent: 0
@@ -1676,7 +1494,7 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529,
     type: 2}
-  m_PrefabInternal: {fileID: 543463851}
+  m_PrefabInternal: {fileID: 1346845215}
 --- !u!1001 &1104766368
 Prefab:
   m_ObjectHideFlags: 0
@@ -1716,23 +1534,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 198448889091613254, guid: f387a1a18bc44e54695f88126f35869b,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198971847840209026, guid: f387a1a18bc44e54695f88126f35869b,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 224723592508288188, guid: f387a1a18bc44e54695f88126f35869b,
+    - target: {fileID: 198448889091613254, guid: f387a1a18bc44e54695f88126f35869b,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f387a1a18bc44e54695f88126f35869b, type: 2}
   m_IsPrefabParent: 0
@@ -1773,7 +1586,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4562870455216484, guid: 4e46b2aea110af6439b3de332c752718, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e46b2aea110af6439b3de332c752718, type: 2}
@@ -1825,7 +1638,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4746243055267616, guid: f98b117c6ea1b3f41bfdf4162187ae94, type: 2}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f98b117c6ea1b3f41bfdf4162187ae94, type: 2}
@@ -1874,39 +1687,34 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 198261527632595822, guid: d14f4f174080fca47901f96c1ee0ce2b,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
+    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.55438817
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.5788157
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.24405533
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.5459515
+      objectReference: {fileID: 0}
     - target: {fileID: 198755018020832362, guid: d14f4f174080fca47901f96c1ee0ce2b,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.5543882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.57881576
-      objectReference: {fileID: 0}
-    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.24405536
-      objectReference: {fileID: 0}
-    - target: {fileID: 4169590552650436, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.54595155
-      objectReference: {fileID: 0}
-    - target: {fileID: 224664452810859166, guid: d14f4f174080fca47901f96c1ee0ce2b,
+    - target: {fileID: 198261527632595822, guid: d14f4f174080fca47901f96c1ee0ce2b,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 2}
   m_IsPrefabParent: 0
@@ -1994,7 +1802,7 @@ Transform:
   m_LocalScale: {x: 3.383862, y: 1, z: 2.9048402}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!1001 &1339844452
 Prefab:
@@ -2035,13 +1843,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198667883027898348, guid: b151e669a8b956740879ae70aaf0ee5d,
+    - target: {fileID: 198332157591764268, guid: b151e669a8b956740879ae70aaf0ee5d,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198332157591764268, guid: b151e669a8b956740879ae70aaf0ee5d,
+    - target: {fileID: 198667883027898348, guid: b151e669a8b956740879ae70aaf0ee5d,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -2053,6 +1861,64 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b151e669a8b956740879ae70aaf0ee5d, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1346845215
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1397074046}
+    m_Modifications:
+    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -28.298363
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 19.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000005960465
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000029802326
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205789408193576, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198618450965059216, guid: 07d39eaf907cf9c49b5e70e48b651529,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 198942668303316988, guid: 07d39eaf907cf9c49b5e70e48b651529,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
+    - target: {fileID: 1290402735160424, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
+      propertyPath: m_Name
+      value: Caballero Red
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1397074045
 GameObject:
@@ -2079,12 +1945,12 @@ Transform:
   m_LocalPosition: {x: 14.09, y: 0, z: -20.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 47426824}
   - {fileID: 1081567951}
   - {fileID: 1796025266}
   - {fileID: 186363386}
-  - {fileID: 47426824}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1407971651 stripped
 Transform:
@@ -2179,7 +2045,7 @@ Transform:
   m_LocalScale: {x: 0.2589122, y: 0.2589122, z: 0.2589122}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1543447642 stripped
 Transform:
@@ -2225,23 +2091,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198912298536331044, guid: 311508bb3fc94a44da954e94db3207ee,
-        type: 2}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
-        type: 2}
     - target: {fileID: 198967425498664468, guid: 311508bb3fc94a44da954e94db3207ee,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 224260722547973664, guid: 311508bb3fc94a44da954e94db3207ee,
+    - target: {fileID: 198912298536331044, guid: 311508bb3fc94a44da954e94db3207ee,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 311508bb3fc94a44da954e94db3207ee, type: 2}
   m_IsPrefabParent: 0
@@ -2467,7 +2328,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1766118988
 GameObject:
@@ -2499,7 +2360,7 @@ Transform:
   - {fileID: 1061272659}
   - {fileID: 595811379}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1796025265
 Prefab:
@@ -2538,15 +2399,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4603397137058616, guid: 5ad9a501079de7b4aa552c9136061ba4, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 198502818171417074, guid: 5ad9a501079de7b4aa552c9136061ba4,
+    - target: {fileID: 198339475534368172, guid: 5ad9a501079de7b4aa552c9136061ba4,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198339475534368172, guid: 5ad9a501079de7b4aa552c9136061ba4,
+    - target: {fileID: 198502818171417074, guid: 5ad9a501079de7b4aa552c9136061ba4,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -2555,11 +2416,6 @@ Prefab:
     - target: {fileID: 1568983460594482, guid: 5ad9a501079de7b4aa552c9136061ba4, type: 2}
       propertyPath: m_Name
       value: Caballero Yellow
-      objectReference: {fileID: 0}
-    - target: {fileID: 224161089719908958, guid: 5ad9a501079de7b4aa552c9136061ba4,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ad9a501079de7b4aa552c9136061ba4, type: 2}
@@ -2608,13 +2464,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198318866799221914, guid: c3e6aa7e0be21cd40bfbb2f1e91ae60c,
+    - target: {fileID: 198310512700552410, guid: c3e6aa7e0be21cd40bfbb2f1e91ae60c,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198310512700552410, guid: c3e6aa7e0be21cd40bfbb2f1e91ae60c,
+    - target: {fileID: 198318866799221914, guid: c3e6aa7e0be21cd40bfbb2f1e91ae60c,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -2623,11 +2479,6 @@ Prefab:
     - target: {fileID: 1138819411546408, guid: c3e6aa7e0be21cd40bfbb2f1e91ae60c, type: 2}
       propertyPath: m_Name
       value: Berserk_red
-      objectReference: {fileID: 0}
-    - target: {fileID: 224517412120574354, guid: c3e6aa7e0be21cd40bfbb2f1e91ae60c,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3e6aa7e0be21cd40bfbb2f1e91ae60c, type: 2}
@@ -2671,13 +2522,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 198986900594830262, guid: a8b93057d69100e4f8e1fde83039f7fe,
+    - target: {fileID: 198355423596027108, guid: a8b93057d69100e4f8e1fde83039f7fe,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198355423596027108, guid: a8b93057d69100e4f8e1fde83039f7fe,
+    - target: {fileID: 198986900594830262, guid: a8b93057d69100e4f8e1fde83039f7fe,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -2747,7 +2598,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4390316973539268, guid: a2a2b02902cef9d4eb2896522a7f20eb, type: 2}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2a2b02902cef9d4eb2896522a7f20eb, type: 2}
@@ -2782,7 +2633,7 @@ Transform:
   - {fileID: 360993658}
   - {fileID: 1944396148}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2062578999
 Prefab:
@@ -2821,15 +2672,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4829540616824496, guid: ede7703d40353e8418deb2d45f70747c, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 198099626309129902, guid: ede7703d40353e8418deb2d45f70747c,
+    - target: {fileID: 198348902120608724, guid: ede7703d40353e8418deb2d45f70747c,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
-    - target: {fileID: 198348902120608724, guid: ede7703d40353e8418deb2d45f70747c,
+    - target: {fileID: 198099626309129902, guid: ede7703d40353e8418deb2d45f70747c,
         type: 2}
       propertyPath: LightsModule.light
       value: 
@@ -2838,11 +2689,6 @@ Prefab:
     - target: {fileID: 1021383369193140, guid: ede7703d40353e8418deb2d45f70747c, type: 2}
       propertyPath: m_Name
       value: Caballero Green
-      objectReference: {fileID: 0}
-    - target: {fileID: 224963137325763256, guid: ede7703d40353e8418deb2d45f70747c,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ede7703d40353e8418deb2d45f70747c, type: 2}
@@ -2936,5 +2782,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 21.447, y: 0, z: 0}

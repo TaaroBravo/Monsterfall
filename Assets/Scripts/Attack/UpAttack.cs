@@ -6,6 +6,7 @@ public class UpAttack : IAttack
 {
     ParticleSystem ps;
     GameObject myAudioClip;
+    MultipleTargetCamera cam;
     public UpAttack(PlayerController pl, IEffect _effect = null, float _timerCoolDown = 0)
     {
         player = pl;
@@ -19,6 +20,7 @@ public class UpAttack : IAttack
         currentPressed = 1;
         maxPressed = 2.5f;
         minImpact = 17;
+        cam = GameObject.FindObjectOfType<MultipleTargetCamera>();
     }
 
     public override void Update()
@@ -38,8 +40,10 @@ public class UpAttack : IAttack
         if (timerCoolDownAttack < 0)
         {
             //ps = player.PS_Impact;
+            player.canMove = true;
             AudioManager.Instance.CreateSound("Punch");
             AudioManager.Instance.FadeOut(myAudioClip, 0.1f);
+            player.GetComponent<GeneralFeedback>().PlaySlashUp();
             player.myAnim.SetBool("ReleaseAUp", true);
             if (player.myAnim.GetBool("Grounded"))
                 player.myAnim.Play("AttackUp");
@@ -59,6 +63,7 @@ public class UpAttack : IAttack
                 if (target == player)
                     continue;
                 ps = player.PS_Impact;
+                cam.StartShaking();
                 if (target != null && !hitPlayers.Contains(target))
                 {
                     AudioManager.Instance.CreateSound("HitPlayer");
@@ -113,5 +118,6 @@ public class UpAttack : IAttack
             player.myAnim.Play("ChargingAUp");
         myAudioClip = AudioManager.Instance.CreateSound("ChargingAttack", 100);
         isPressing = true;
+        player.canMove = false;
     }
 }

@@ -47,7 +47,7 @@ public class ForwardCharge : IHability
             else
                 _target = Physics.OverlapSphere(player.transform.position, 1f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player).Where(x => !x.isDead).FirstOrDefault();
         }
-        else if(!player.canMove && berserkPlayer.chargeAttack)
+        else if(!player.canInteract && berserkPlayer.chargeAttack)
         {
             player.myAnim.Play("Stunned");
             ResetValues();
@@ -85,7 +85,7 @@ public class ForwardCharge : IHability
             timerActive = 0;
             distance = 0;
             _dir = Mathf.Sign(player.transform.localScale.z);
-            player.canMove = false;
+            player.canInteract = false;
             berserkPlayer.chargeAttack = true;
             player.usingHability = true;
             player.myAnim.Play("Dash");
@@ -144,7 +144,7 @@ public class ForwardCharge : IHability
         timerActive = 0;
         distance = 0;
         timerCoolDown = coolDown;
-        player.canMove = true;
+        player.canInteract = true;
         player.usingHability = false;
         berserkPlayer.chargeAttack = false;
     }

@@ -39,7 +39,7 @@ public class PlayerInput : MonoBehaviour
     {
         playerIndex = (PlayerIndex)id - 1;
         SetPlayerInput();
-        if (player && player.canMove && !GameManager.Instance.startingGame && !GameManager.Instance.finishedGame)
+        if (player && player.canInteract && !GameManager.Instance.startingGame && !GameManager.Instance.finishedGame)
         {
             if (controller == Controller.J)
             {
@@ -47,7 +47,9 @@ public class PlayerInput : MonoBehaviour
                 state = GamePad.GetState(playerIndex);
                 if (!GameManager.Instance.pauseMenu)
                 {
-                    if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
+
+
+                    if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed && player.canMove)
                         player.Jump();
 
                     if (prevState.Buttons.B == ButtonState.Released && state.Buttons.B == ButtonState.Pressed)

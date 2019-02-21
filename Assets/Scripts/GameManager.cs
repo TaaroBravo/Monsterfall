@@ -179,14 +179,14 @@ public class GameManager : MonoBehaviour
             {
                 player.myAnim.Play("Stunned");
                 player.myAnim.SetBool("Stunned", true);
-                player.canMove = false;
+                player.canInteract = false;
             }
             yield return new WaitForSeconds(x);
             AudioManager.Instance.CreateSound("Fight");
             foreach (var player in myPlayers)
             {
                 player.myAnim.SetBool("Stunned", false);
-                player.canMove = true;
+                player.canInteract = true;
             }
             startingGame = false;
             break;
@@ -245,7 +245,7 @@ public class GameManager : MonoBehaviour
         StopCoroutine(OutOfLimitsPlayer());
         foreach (var player in alivePlayers)
         {
-            player.canMove = false;
+            player.canInteract = false;
             if (player)
             {
                 foreach (var info in infoManager.playersInfo)
@@ -301,13 +301,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartNewGame()
     {
-        while (true)
-        {
-            yield return new WaitUntil(() => canReturnNow == true);
-            //yield return new WaitForSeconds(6f);
-            ChargeScene();
-            break;
-        }
+        yield return new WaitUntil(() => canReturnNow == true);
+        ChargeScene();
     }
 
     public void PauseMenu(bool state)
@@ -349,7 +344,7 @@ public class GameManager : MonoBehaviour
         victoryCanvas.SetActive(true);
         victoryCanvas.GetComponent<VictoryManager>().AssignValues(winner_color, winner_character);
         foreach (var player in myPlayers)
-            player.canMove = false;
+            player.canInteract = false;
         finishedGame = true;
         weHaveAWinner = true;
         StartCoroutine(StartNewGame());

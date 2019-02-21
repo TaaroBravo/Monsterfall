@@ -29,17 +29,11 @@ public class PlayerInputMenu : MonoBehaviour
     void Start()
     {
         player = GetComponent<PlayerAvatar>();
-        //StartCoroutine(CoolDown());
         _cooldown = true;
     }
 
     private void LateUpdate()
     {
-        //if (id < 1)
-        //{
-        //    CleanInputs();
-        //    return;
-        //}
         playerIndex = (PlayerIndex)id - 1;
         SetPlayerInput();
         if (id == 0)
@@ -69,42 +63,25 @@ public class PlayerInputMenu : MonoBehaviour
                 player.ActionButton();
 
         }
+
+        #region Sirve para Teclado algunas cosas
         //if (Input.GetButtonDown(actionButton))
         //    player.ActionButton();
         //if (Input.GetButtonDown(rejectButton))
         //    player.RejectButton();
-        if (controller == Controller.J)
-        {
-            if (Input.GetAxis(horizontalMove) != 0 && _cooldown)
-            {
-                player.Move(new Vector2(Input.GetAxis(horizontalMove) == 0 ? 0 : Input.GetAxis(horizontalMove) > 0 ? 1 : -1, 0));
-                StartCoroutine(CoolDown());
-            }
-            if (Input.GetAxis(verticalMove) != 0 && _cooldown)
-            {
-                player.Move(new Vector2(0, Input.GetAxis(verticalMove) == 0 ? 0 : Input.GetAxis(verticalMove) > 0 ? 1 : -1));
-                StartCoroutine(CoolDown());
-            }
-        }
-        //else
-        //{
-        //    if (Input.GetButtonDown(horizontalMove))
-        //        player.Move(new Vector2((int)MainHorizontal(), 0));
-        //    if (Input.GetButtonDown(verticalMove))
-        //        player.Move(new Vector2(0, -(int)MainVertical()));
-        //}
+
+        //if (Input.GetButtonDown(horizontalMove))
+        //    player.Move(new Vector2((int)MainHorizontal(), 0));
+        //if (Input.GetButtonDown(verticalMove))
+        //    player.Move(new Vector2(0, -(int)MainVertical()));
+        #endregion 
     }
 
     IEnumerator CoolDown()
     {
-        while (true)
-        {
-            //yield return new WaitUntil(() => !_cooldown);
-            _cooldown = false;
-            yield return new WaitForSeconds(0.2f);
-            _cooldown = true;
-            break;
-        }
+        _cooldown = false;
+        yield return new WaitForSeconds(0.2f);
+        _cooldown = true;
     }
 
     public float MainHorizontal()

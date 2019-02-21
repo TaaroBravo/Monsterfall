@@ -5,7 +5,7 @@ using System.Linq;
 
 public class PlayersManager : MonoBehaviour
 {
-
+    bool alreadyFinish;
     public List<PlayerController> myPlayers = new List<PlayerController>();
 
     private void Awake()
@@ -19,12 +19,20 @@ public class PlayersManager : MonoBehaviour
         if (alivePlayers.Count() <= 1)
         {
             alivePlayers.First().myAnim.Play("Victory");
-            GameManager.Instance.FinishGame();
+            if(!alreadyFinish)
+            StartCoroutine(WaitToFinish());
         }
     }
 
     void SetPlayers(List<PlayerController> heroes)
     {
         myPlayers = heroes;
+    }
+
+    IEnumerator WaitToFinish()
+    {
+        alreadyFinish = true;
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.FinishGame();
     }
 }

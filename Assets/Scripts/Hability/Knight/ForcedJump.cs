@@ -30,7 +30,7 @@ public class ForcedJump : IHability
         if (timerCoolDown < 0 && !player.usingHability)
         {
             player.usingHability = true;
-            player.canMove = false;
+            player.canInteract = false;
             JumpPlayer();
             player.StartCoroutine(WaitToLand());
             player.StartCoroutine(ResetValuesCoroutine());
@@ -45,7 +45,7 @@ public class ForcedJump : IHability
         while (true)
         {
             yield return new WaitForSeconds(2f);
-            player.canMove = true;
+            player.canInteract = true;
             player.usingHability = false;
             break;
         }
@@ -58,12 +58,12 @@ public class ForcedJump : IHability
             ((Knight)player).forcedJumping = true;
             yield return new WaitForSeconds(0.3f);
             if (player.IsTouchingWalls())
-                player.canMove = true;
+                player.canInteract = true;
             yield return new WaitUntil(() => player.controller.isGrounded /*|| player.IsTouchingWalls()*/);
             player.GetComponent<KnightFeedbackController>().fireEstela.Stop();
             //player.GetComponent<KnightFeedbackController>().fireEstela.gameObject.SetActive(false);
             if (player.IsTouchingWalls())
-                player.canMove = true;
+                player.canInteract = true;
             ElevatePlayers();
             ((Knight)player).forcedJumping = false;
             break;
@@ -111,7 +111,7 @@ public class ForcedJump : IHability
     void ResetValues()
     {
         timerCoolDown = coolDown;
-        player.canMove = true;
+        player.canInteract = true;
         player.usingHability = false;
         ((Knight)player).forcedJumping = false;
     }
@@ -119,7 +119,7 @@ public class ForcedJump : IHability
     void ForceReset()
     {
         timerCoolDown = coolDown;
-        player.canMove = true;
+        player.canInteract = true;
         player.usingHability = false;
         ((Knight)player).forcedJumping = false;
         player.StopCoroutine(WaitToLand());

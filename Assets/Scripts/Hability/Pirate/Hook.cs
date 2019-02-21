@@ -249,11 +249,11 @@ public class Hook : MonoBehaviour
         _myPlayer.controller.enabled = true;
         if (_target)
         {
-            _target.canMove = true;
+            _target.canInteract = true;
             _target.controller.enabled = true;
             _target = null;
         }
-        _myPlayer.canMove = true;
+        _myPlayer.canInteract = true;
         transform.parent = _myPlayer.transform;
         transform.position = Vector3.zero;
         warpPositions.Clear();
@@ -301,11 +301,11 @@ public class Hook : MonoBehaviour
         }
         OnReturning();
         target.DisableAll();
-        target.canMove = false;
+        target.canInteract = false;
         hooked = true;
-        if (target.canMove)
+        if (target.canInteract)
             target.myAnim.Play("GetHit");
-        target.canMove = false;
+        target.canInteract = false;
         _currentTime = 0;
         target.transform.position = transform.position;
         target.controller.enabled = false;
@@ -382,7 +382,7 @@ public class Hook : MonoBehaviour
         playerTeleported = false;
         transform.parent = _myPlayer.transform;
         transform.localPosition = _startPosition;
-        target.canMove = true;
+        target.canInteract = true;
         target.transform.position = endPoint.position;
         target.myAnim.Play("Stunned");
         target.controller.enabled = true;

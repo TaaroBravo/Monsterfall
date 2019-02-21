@@ -9,6 +9,7 @@ public class CreatorRays : MonoBehaviour
     public static CreatorRays Instance { get; private set; }
 
     public GameObject cristal;
+    public GameObject firePrefab;
 
     public Material material;
     public Transform[] rays;
@@ -34,6 +35,8 @@ public class CreatorRays : MonoBehaviour
     public AudioSource bellsInComing;
     public AudioSource explosion;
     public AudioSource cristalIdle;
+    bool cooldownA;
+    bool cooldownB;
 
     private void Awake()
     {
@@ -61,6 +64,7 @@ public class CreatorRays : MonoBehaviour
         CalculateTimeToDeath();
         StartCoroutine(WaitToSuddenDeath(_timeToDeath));
         StartCoroutine(FeedbackRays(_timeToDeath));
+        cooldownA = cooldownB = true;
     }
 
     IEnumerator FeedbackRays(float x)
@@ -187,6 +191,10 @@ public class CreatorRays : MonoBehaviour
         {
             vertices[i] = new Vector3(positions[i].Item1, positions[i].Item2);
             uv[i] = new Vector3(positions[i].Item1, positions[i].Item2);
+            if (reference == rays[0] && cooldownA && i != 0)
+                SpawnFireA(positions[i].Item1, positions[i].Item2);
+            if (reference == rays[1] && cooldownB && i != 0)
+                SpawnFireB(positions[i].Item1, positions[i].Item2);
         }
 
         Mesh mesh = new Mesh();
@@ -277,6 +285,34 @@ public class CreatorRays : MonoBehaviour
         #endregion
 
         CreateRaysObject(positions, reference);
+    }
+
+    void SpawnFireA(float x, float y)
+    {
+        var fire = GameObject.Instantiate(firePrefab);
+        fire.transform.position = new Vector3(x, y);
+        cooldownA = false;
+        StartCoroutine(CooldownA());
+    }
+
+    void SpawnFireB(float x, float y)
+    {
+        var fire = GameObject.Instantiate(firePrefab);
+        fire.transform.position = new Vector3(x, y);
+        cooldownB = false;
+        StartCoroutine(CooldownB());
+    }
+
+    IEnumerator CooldownA()
+    {
+        yield return new WaitForSeconds(0.1f);
+        cooldownA = true;
+    }
+
+    IEnumerator CooldownB()
+    {
+        yield return new WaitForSeconds(0.1f);
+        cooldownB = true;
     }
 
     void MoveRays()
