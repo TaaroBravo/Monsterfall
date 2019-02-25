@@ -34732,7 +34732,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 2f4127aa894b4d44381294408b8a88fa, type: 2}
     - target: {fileID: 100000, guid: bbe5cd240d8da664993817b3b99b7de3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bbe5cd240d8da664993817b3b99b7de3, type: 3}
       propertyPath: m_Name
@@ -66019,7 +66019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cristal: {fileID: 1003229459}
-  firePrefab: {fileID: 1793445065711672, guid: e342a49bd8b5cc54096bf1a54c21d524, type: 2}
+  firePrefab: {fileID: 1119856259268004, guid: 0627a1c59b4bcd242998264db6a67740, type: 2}
   material: {fileID: 2100000, guid: 893f0a116ff17444eb334c11022e502b, type: 2}
   rays:
   - {fileID: 1373611115}
