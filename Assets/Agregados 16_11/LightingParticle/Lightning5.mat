@@ -34,4 +34,4 @@ Material:
     - _Cutoff: 0.5
     - __dirty: 0
     m_Colors:
-    - _Tinte: {r: 0.5824503, g: 0.87975025, b: 0.97794116, a: 1}
+    - _Tinte: {r: 1, g: 0, b: 0, a: 1}
