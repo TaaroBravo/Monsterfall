@@ -31,6 +31,7 @@ public class BearAttackHability : IHability
         _damage = damage;
         timerCoolDown = _cooldown;
         coolDown = _cooldown;
+        berserkPlayer.OnRecovery += ResetValues;
     }
 
     public override void Update()
@@ -77,6 +78,7 @@ public class BearAttackHability : IHability
             player.StartCoroutine(IsGrounded());
             timerCoolDown = coolDown;
             player.lifeHUD.ActivateSkillCD();
+            player.StartCoroutine(CanNotAttack());
             //JumpAttack();
         }
     }
@@ -107,6 +109,12 @@ public class BearAttackHability : IHability
         AudioManager.Instance.CreateSound("AttackingAbilityBerserk");
         _target.myAnim.Play("GetHitDown");
         _target.SetStun(3);
+    }
+
+    IEnumerator CanNotAttack()
+    {
+        yield return new WaitForSeconds(4f);
+        ResetValuesForTime();
     }
 
     IEnumerator IsGrounded()
@@ -143,13 +151,9 @@ public class BearAttackHability : IHability
 
     IEnumerator BackTargetToNormal()
     {
-        while (true)
-        {
-            _target.SetStun(1.5f);
-            yield return new WaitForSeconds(1.5f);
-            ResetValues();
-            break;
-        }
+        _target.SetStun(1.5f);
+        yield return new WaitForSeconds(1.5f);
+        ResetValues();
     }
 
     void AttackTarget()
@@ -167,7 +171,7 @@ public class BearAttackHability : IHability
         player.myAnim.Play("SkillLanding");
     }
 
-    void ResetValues()
+    void ResetValuesForTime()
     {
         if (_target)
         {
@@ -182,8 +186,30 @@ public class BearAttackHability : IHability
         timerCoolDown = coolDown;
         player.canInteract = true;
         player.usingHability = false;
+        player.canMove = true;
         berserkPlayer.usingBearHability = false;
         isGrounded = false;
+    }
+
+    void ResetValues()
+    {
+        if (_target)
+        {
+            _target.transform.parent = null;
+            _target.canInteract = true;
+        }
+        berserkPlayer.recovery = false;
+        failed = false;
+        hasTarget = false;
+        _target = null;
+        timerActive = 0;
+        timerCoolDown = coolDown;
+        player.canInteract = true;
+        player.canMove = true;
+        player.usingHability = false;
+        berserkPlayer.usingBearHability = false;
+        isGrounded = false;
+        player.StopCoroutine(CanNotAttack());
     }
 
     public override void Release()

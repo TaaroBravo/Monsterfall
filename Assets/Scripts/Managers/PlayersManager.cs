@@ -6,6 +6,7 @@ using System.Linq;
 public class PlayersManager : MonoBehaviour
 {
     bool alreadyFinish;
+    bool gameStarted;
     public List<PlayerController> myPlayers = new List<PlayerController>();
 
     private void Awake()
@@ -15,18 +16,22 @@ public class PlayersManager : MonoBehaviour
 
     void Update()
     {
+        if (!myPlayers.Any() || !gameStarted)
+            return;
         var alivePlayers = myPlayers.Where(x => x != null && x.GetComponent<PlayerController>());
         if (alivePlayers.Count() <= 1)
         {
-            alivePlayers.First().myAnim.Play("Victory");
-            if(!alreadyFinish)
-            StartCoroutine(WaitToFinish());
+            if (alivePlayers.Any())
+                alivePlayers.First().myAnim.Play("Victory");
+            if (!alreadyFinish)
+                StartCoroutine(WaitToFinish());
         }
     }
 
     void SetPlayers(List<PlayerController> heroes)
     {
         myPlayers = heroes;
+        gameStarted = true;
     }
 
     IEnumerator WaitToFinish()

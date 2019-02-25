@@ -247,20 +247,20 @@ public class MainMenu_Manager : MonoBehaviour
     void Rotate(Transform Object, bool EndStep, Vector3 rotation_ammount, float time, int Step_index = 0, int Timer_Index = 0, bool Transition = false)
     {
         Timers[Timer_Index] += Time.deltaTime;
-        Object.Rotate(rotation_ammount);
+        Object.Rotate(rotation_ammount * Time.deltaTime);
         if (Timers[Timer_Index] > time && EndStep) End_Step(Step_index, Timer_Index, Transition);
     }
     void RotateMany(List<Transform> Objects, Vector3 rotation_ammount, float time, int Step_index, int Timer_Index, bool Transition)
     {
         Timers[Timer_Index] += Time.deltaTime;
-        for (int i = 0; i < Objects.Count; i++) Objects[i].Rotate(rotation_ammount);
+        for (int i = 0; i < Objects.Count; i++) Objects[i].Rotate(rotation_ammount * Time.deltaTime);
         if (Timers[Timer_Index] > time) End_Step(Step_index, Timer_Index, Transition);
     }
     void Move_and_Rotate(Transform Object, Vector3 initialposition, Vector3 finalposition, float rotation_ammount, float rotate_time, float move_time, int Step_index, int Timer_Index, bool Transition)
     {
         Timers[Timer_Index] += Time.deltaTime;
         Object.position = Vector3.Lerp(initialposition, finalposition, Timers[Timer_Index] / move_time);
-        if (Timers[Timer_Index] < rotate_time) Object.Rotate(0, rotation_ammount, 0);
+        if (Timers[Timer_Index] < rotate_time) Object.Rotate(0, rotation_ammount * Time.deltaTime, 0);
         if (Object.position == finalposition) End_Step(Step_index, Timer_Index, Transition);
     }
     void End_Step(int Step_Index, int Timer_Index, bool Transition)

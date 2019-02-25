@@ -6,6 +6,7 @@ using System.Linq;
 [RequireComponent(typeof(Camera))]
 public class MultipleTargetCamera : MonoBehaviour
 {
+    bool gameStarted;
     public List<Transform> targets = new List<Transform>();
 
     public Vector3 offset;
@@ -33,7 +34,7 @@ public class MultipleTargetCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        if (targets.Count == 0)
+        if (!targets.Any() || !gameStarted)
             return;
 
         for (int i = 0; i < targets.Count; i++)
@@ -128,6 +129,7 @@ public class MultipleTargetCamera : MonoBehaviour
         targets.Clear();
         foreach (var hero in heroes)
             targets.Add(hero.transform);
+        gameStarted = true;
     }
 
 }

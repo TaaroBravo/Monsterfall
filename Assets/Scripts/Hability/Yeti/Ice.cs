@@ -16,17 +16,16 @@ public class Ice : MonoBehaviour
 
     private void OnDestroy()
     {
-        //Instanciar Feedback
         AudioManager.Instance.CreateSound("IceDestruction");
         if (((Yeti)player).frozenCharacter.Contains(target))
-        {
             ((Yeti)player).frozenCharacter.Remove(target);
-        }
+
     }
 
     private void Update()
     {
         transform.position = target.transform.position;
+        target.ResetVelocity();
     }
 
 

@@ -40,14 +40,14 @@ public class IceSpikesHability : IHability
 
     void Shoot()
     {
-        int amount = 10;
+        int amount = 6;
         var radius = 2;
 
         for (int i = 0; i < amount; i++)
         {
             IceSpikes spike = GameObject.Instantiate(_spikesPrefab);
 
-            float angle = i * Mathf.PI * 2 / 8;
+            float angle = i * Mathf.PI * 2 / 6;
             Vector3 newPos = new Vector3(_yeti.transform.position.x - Mathf.Cos(angle) * radius, _yeti.transform.position.y -Mathf.Sin(angle) * radius, _yeti.transform.position.z);
 
             spike.transform.position = newPos;

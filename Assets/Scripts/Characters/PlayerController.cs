@@ -178,6 +178,7 @@ public class PlayerController : MonoBehaviour
         SetHabilities();
         StartCoroutine(CanAttack(0.25f));
         SetRayPos();
+        maxTimeHard = 5f;
     }
 
     public virtual void Update()
@@ -188,10 +189,28 @@ public class PlayerController : MonoBehaviour
         UpdateHabilities();
         Attack();
         StunAndMark();
-
+        ControlStun();
         if (isDead)
             moveVector = new Vector3(0, -10, 0);
         controller.Move(moveVector * Time.deltaTime);
+    }
+
+    float maxTimeHard;
+    float currentTimeStunnedHard;
+
+    void ControlStun()
+    {
+        if (stunnedByHit || !canMove)
+        {
+            if (currentTimeStunnedHard >= maxTimeHard)
+            {
+                ResetAll();
+                currentTimeStunnedHard = 0;
+            }
+            else
+                currentTimeStunnedHard += Time.deltaTime;
+        }
+        currentTimeStunnedHard = 0;
     }
 
     #region Moves & Jump
@@ -355,16 +374,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator StunCoroutine(float x)
     {
-        while (true)
-        {
-            canInteract = false;
-            myAnim.Play("Stunned");
-            myAnim.SetBool("Stunned", true);
-            yield return new WaitForSeconds(x);
-            canInteract = true;
-            myAnim.SetBool("Stunned", false);
-            break;
-        }
+        canInteract = false;
+        myAnim.Play("Stunned");
+        myAnim.SetBool("Stunned", true);
+        yield return new WaitForSeconds(x);
+        canInteract = true;
+        myAnim.SetBool("Stunned", false);
     }
 
     void StunUpdate()
@@ -775,9 +790,12 @@ public class PlayerController : MonoBehaviour
             myAnim.SetBool("Stunned", false);
         }
 
-        if(hit.gameObject.GetComponent<IcePlatform>())
+        if (hit.gameObject.GetComponent<IcePlatform>())
         {
-            if(this is Yeti)
+            stunnedByHit = false;
+            playerMarked = false;
+            myAnim.SetBool("Stunned", false);
+            if (this is Yeti)
                 moveSpeed = 16;
             else
                 moveSpeed = 8;
@@ -785,7 +803,15 @@ public class PlayerController : MonoBehaviour
         else
             moveSpeed = 12;
 
-       
+        if (hit.gameObject.GetComponent<Ice>() && stunnedByHit)
+        {
+            stunnedByHit = false;
+            myAnim.SetBool("Stunned", false);
+            impactVelocity = Vector3.zero;
+            moveVector = Vector3.zero;
+        }
+
+
 
         var dir = Vector3.Dot(transform.up, hit.normal);
         if (!controller.isGrounded && dir == -1)
@@ -951,11 +977,22 @@ public class PlayerController : MonoBehaviour
         Destroy(obj, 3f);
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawCube(attackColliders.bounds.center, attackColliders.bounds.extents * 2f);
-    //}
+    public virtual void ResetAll()
+    {
+        canMove = true;
+        canInteract = true;
+        stunnedByHit = false;
+        impactVelocity = Vector3.zero;
+        moveVector = Vector3.zero;
+        myAnim.SetBool("Stunned", false);
+        playerMarked = false;
+        usingHability = false;
+        isDashing = false;
+        canDash = false;
+        isFallingOff = false;
+        usingHability = false;
+        ResetVelocity();
+    }
 
     public void LandSoundPlay() { AudioManager.Instance.CreateSound("Land"); }
     public void GetHitSoundPlay() { }

@@ -37,6 +37,7 @@ public class CreatorRays : MonoBehaviour
     public AudioSource cristalIdle;
     bool cooldownA;
     bool cooldownB;
+    float rotationSpeed;
 
     private void Awake()
     {
@@ -60,11 +61,17 @@ public class CreatorRays : MonoBehaviour
         };
         lowPos = cristal.transform.position - new Vector3(0, 0.25f, 0);
         highPos = lowPos + new Vector3(0, 0.5f, 0);
-        StartCoroutine(StartCoroutine());
+        StartCoroutine(WaitToGameManager());
+        StartCoroutine(StartCoroutine());  
+        cooldownA = cooldownB = true;
+    }
+
+    IEnumerator WaitToGameManager()
+    {
+        yield return new WaitForEndOfFrame();
         CalculateTimeToDeath();
         StartCoroutine(WaitToSuddenDeath(_timeToDeath));
         StartCoroutine(FeedbackRays(_timeToDeath));
-        cooldownA = cooldownB = true;
     }
 
     IEnumerator FeedbackRays(float x)
@@ -80,7 +87,6 @@ public class CreatorRays : MonoBehaviour
         explosion.Play();
         yield return new WaitForSeconds(0.2f);
         cristalIdle.Play();
-
     }
 
     void CalculateTimeToDeath()
@@ -146,6 +152,7 @@ public class CreatorRays : MonoBehaviour
         }
     }
 
+
     public IEnumerator RepeatLerp(Vector3 a, Vector3 b, float time)
     {
         float i = 0f;
@@ -160,17 +167,20 @@ public class CreatorRays : MonoBehaviour
 
     IEnumerator WaitToSuddenDeath(float x)
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(x);
-            //cristal.SetActive(true);
-            activeMode = true;
-            countOfRays = 0;
-            yield return ChangeScale(cristal.transform.Find("Cristal").localScale, new Vector3(0.3290589f, 0.3290589f, 0.239385f), 1f);
-            //yield return new WaitForSeconds(1f);
-            countOfRays = 2;
-            break;
-        }
+        yield return new WaitForSeconds(x);
+        //cristal.SetActive(true);
+        activeMode = true;
+        countOfRays = 0;
+        yield return ChangeScale(cristal.transform.Find("Cristal").localScale, new Vector3(0.3290589f, 0.3290589f, 0.239385f), 1f);
+        //yield return new WaitForSeconds(1f);
+        countOfRays = 2;
+        rotationSpeed = 10;
+        yield return new WaitForSeconds(5f);
+        rotationSpeed = 12;
+        yield return new WaitForSeconds(5f);
+        rotationSpeed = 15;
+        yield return new WaitForSeconds(5f);
+        rotationSpeed = 18;
     }
 
     public IEnumerator ChangeScale(Vector3 a, Vector3 b, float time)
@@ -318,7 +328,7 @@ public class CreatorRays : MonoBehaviour
     void MoveRays()
     {
         foreach (var ray in rays)
-            ray.Rotate(0, 0, -10 * Time.deltaTime);
+            ray.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
     }
 
     #region OnDrawGizmos

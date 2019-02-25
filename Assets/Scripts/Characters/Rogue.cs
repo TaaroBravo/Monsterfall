@@ -33,6 +33,8 @@ public class Rogue : PlayerController
         enter = true;
     }
 
+
+
     public override void Update()
     {
         base.Update();

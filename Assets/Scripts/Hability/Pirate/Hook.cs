@@ -144,9 +144,10 @@ public class Hook : MonoBehaviour
             if (fired && !hooked)
             {
                 transform.parent = null;
-                transform.position = Vector3.MoveTowards(transform.position, transform.position + _direction, speed * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, transform.position + _direction, speed * Time.deltaTime);
+                transform.position += _direction.normalized *  speed / 1.5f * Time.deltaTime;
                 _currentTime += Time.deltaTime;
-                _currentDistance = speed * _currentTime;
+                _currentDistance = speed * 1.2f * _currentTime;
                 _target = Physics.OverlapSphere(transform.position, 2f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != _myPlayer).Where(x => !x.isDead).FirstOrDefault();
                 if (_target && Vector3.Distance(_myPlayer.transform.position, _target.transform.position) < 3f)
                 {

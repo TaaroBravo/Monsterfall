@@ -47,7 +47,7 @@ public class IIceEffect : IEffect
         if (_player.frozenCharacter.Contains(target))
             return;
         target.myAnim.Play("GetHit");
-        target.SetStun(5f);
+        target.SetStun(3f);
         target.ResetVelocity();
         target.SetLastOneWhoHittedMe(_player);
         var ice = GameObject.Instantiate(icePrefab);

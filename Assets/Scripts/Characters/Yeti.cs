@@ -30,6 +30,8 @@ public class Yeti : PlayerController
         base.Update();
     }
 
+   
+
     public void CooldownMark(Action<PlayerController> callback)
     {
         if (!onMark)

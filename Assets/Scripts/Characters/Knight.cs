@@ -34,6 +34,12 @@ public class Knight : PlayerController {
             StartCoroutine(TimerIsTouchingWalls());
     }
 
+    public override void ResetAll()
+    {
+        base.ResetAll();
+        forcedJumping = false;
+    }
+
 
     public void CallJumpHabilityCoroutine()
     {

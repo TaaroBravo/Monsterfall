@@ -7,6 +7,7 @@ using System;
 public class Berserk : PlayerController
 {
     public event Action OnStompHability = delegate { };
+    public event Action OnRecovery = delegate { };
 
     IEffect superPunch;
     public float power;
@@ -28,6 +29,15 @@ public class Berserk : PlayerController
         SetAttacks();
         SetHabilities();
         StartCoroutine(ResetMovement());
+    }
+
+    public override void ResetAll()
+    {
+        base.ResetAll();
+        chargeAttack = false;
+        usingBearHability = false;
+        usingChargeHability = false;
+        recovery = true;
     }
 
     public override void Update()
@@ -75,6 +85,7 @@ public class Berserk : PlayerController
     {
         recovery = true;
         usingBearHability = false;
+        OnRecovery();
     }
 
     private void SetAttacks()

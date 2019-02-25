@@ -38,7 +38,7 @@ public class PunchHability : IHability
             var layerMask1 = LayerMask.GetMask("Hitbox");
             var layerMask2 = LayerMask.GetMask("Hook");
             var layerMask = layerMask1 | layerMask2;
-            Collider[] cols = Physics.OverlapBox(center, player.GetComponent<Collider>().bounds.extents * 5f, player.transform.rotation, layerMask);
+            Collider[] cols = Physics.OverlapBox(center, player.GetComponent<Collider>().bounds.extents * 6f, player.transform.rotation, layerMask);
             foreach (Collider c in cols)
             {
                 if (CheckParently(c.transform))
@@ -61,7 +61,7 @@ public class PunchHability : IHability
                         damage.y = dir.y;
                     playersHitted.Add(target);
                     target.ReceiveImpact(damage * _power, player);
-                    target.SetDamage(11); // rico nerf
+                    target.SetDamage(15); // rico nerf
                     player.whoIHited = target;
                 }
             }

@@ -84,6 +84,10 @@ public class MainMenu_Selector : MonoBehaviour
         }
 
         graphicsSlider.value = QualitySettings.GetQualityLevel();
+        Time.timeScale = 1;
+        _cooldown = true;
+        optionsCanvasActive = false;
+        controlsCanvasActive = false;
         GetGamepadInputs();
     }
 

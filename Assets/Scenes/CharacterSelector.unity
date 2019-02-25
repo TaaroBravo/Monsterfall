@@ -1308,7 +1308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97c9112bd4f01040ba4154271f343da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Level
+  sceneToLoad: Level 2
   HUD: {fileID: 1494891850}
   loadScreen: {fileID: 1402980617}
   loadingBarA: {fileID: 481206468}

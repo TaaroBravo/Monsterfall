@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Cursor.visible = false;
+        alivePlayers = new List<PlayerController>();
+        myPlayers = new List<PlayerController>();
     }
 
     private void OnDrawGizmos()
@@ -55,6 +57,17 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start()
+    {
+        StartCoroutine(WaitForStart());
+    }
+
+    IEnumerator WaitForStart()
+    {
+        yield return new WaitForEndOfFrame();
+        Recalculate();
+    }
+
+    void Recalculate()
     {
         infoManager = PlayersInfoManager.Instance;
         if (infoManager)
@@ -81,6 +94,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (!myPlayers.Any())
+            return;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (FindObjectOfType<PlayersInfoManager>())
@@ -101,13 +116,6 @@ public class GameManager : MonoBehaviour
             if (finishedGame)
                 return;
             var firstPlayerPosition = alivePlayers.Where(x => firstPlayer != null).Where(x => x.GetComponent<PlayerInput>().player_number == firstPlayer.player_number).FirstOrDefault();
-            //firstPlayer = infoManager.playersInfo.Where(x => x.player_number == alivePlayers[0].GetComponent<PlayerInput>().player_number).First();
-            //var numberOfKills = infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null).Select(x => x.newKills + x.previousKills);
-            //foreach (var info in infoManager.playersInfo.Where(x => myPlayers[x.ID - 1] != null))
-            //{
-            //    if (info.newKills + info.previousKills == numberOfKills.OrderByDescending(z => z).First())
-            //        firstPlayer = info;
-            //}
             if (firstPlayerPosition != null && secondPlayer != null && firstPlayer.newKills + firstPlayer.previousKills != secondPlayer.newKills + secondPlayer.previousKills)
                 crown.position = firstPlayerPosition.transform.position + (Vector3.up * 7);
             else
