@@ -68,8 +68,8 @@ Material:
     - _Metallic: 0
     - __dirty: 0
     m_Colors:
-    - _AlbedoTint: {r: 0.07586216, g: 1, b: 0, a: 0}
-    - _BorderColor: {r: 0, g: 1, b: 0.04827571, a: 0}
-    - _Color0: {r: 0, g: 0.13103437, b: 1, a: 0}
-    - _DissolveEmissionColor: {r: 1, g: 0.9724138, b: 0, a: 0}
+    - _AlbedoTint: {r: 0.07586213, g: 1, b: 0, a: 0}
+    - _BorderColor: {r: 0, g: 1, b: 0.048275687, a: 0}
+    - _Color0: {r: 0, g: 0.13103434, b: 1, a: 0}
+    - _DissolveEmissionColor: {r: 1, g: 0.9724137, b: 0, a: 0}
     - _InvulnerableEmissionColor: {r: 1, g: 0.93103445, b: 0, a: 0}
