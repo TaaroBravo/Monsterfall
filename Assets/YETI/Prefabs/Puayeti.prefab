@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1201826956902808}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 23.5, y: 64.8738, z: 0.399972}
+  m_LocalPosition: {x: -37.634357, y: 51.8, z: 9.4}
   m_LocalScale: {x: 0.045873355, y: 0.04587331, z: 0.04587331}
   m_Children:
   - {fileID: 4953097762266572}
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7b905925e98fb45a162e45e319a05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exploted: {fileID: 19800002, guid: 0dc3481e235c6cb48996f9a365f50e0f, type: 2}
   icePrefab: {fileID: 114034310566612960, guid: a793a115cb12ed2438209c823bd54766,
     type: 2}
 --- !u!198 &198222024988313430

@@ -68,6 +68,7 @@ public class Missile : MonoBehaviour
             {
                 exploted = true;
                 Explote();
+                break;
             }
         }
     }
@@ -119,12 +120,8 @@ public class Missile : MonoBehaviour
 
     IEnumerator TimeToDestroy()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(15f);
-            DestroyedMissile();
-            break;
-        }
+        yield return new WaitForSeconds(2.25f);
+        DestroyedMissile();
     }
 
     public void DestroyedMissile()
@@ -135,14 +132,10 @@ public class Missile : MonoBehaviour
 
     IEnumerator EndMissile()
     {
-        while (true)
-        {
-            ExploteFeedback();
-            yield return new WaitForSeconds(2f);
-            ResetValues();
-            OnDestroyMissile(this);
-            break;
-        }
+        ExploteFeedback();
+        yield return new WaitForSeconds(2f);
+        ResetValues();
+        OnDestroyMissile(this);
     }
 
     void ExploteFeedback()

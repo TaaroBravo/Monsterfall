@@ -22,6 +22,12 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(SetRoundLater());
+    }
+
+    IEnumerator SetRoundLater()
+    {
+        yield return new WaitForSeconds(2f);
         roundNumber.sprite = roundCounters[round];
     }
 

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4754277634763722}
   - component: {fileID: 198442410318688568}
   - component: {fileID: 199016027989150188}
+  - component: {fileID: 114996342508138722}
   m_Layer: 0
   m_Name: PS_CristalRayTouch
   m_TagString: Untagged
@@ -103,6 +104,18 @@ Transform:
   m_Father: {fileID: 4754277634763722}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -179.994, y: 0, z: 0}
+--- !u!114 &114996342508138722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119856259268004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7153f00279846284ba02c9470eb1018f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDestroy: 2
 --- !u!198 &198442410318688568
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -9,6 +9,8 @@ public class BerserkerParticlesManager : MonoBehaviour
     public ParticleSystem golpenormal;
     public ParticleSystem golpenormal1;
     public ParticleSystem golpenormal2;
+    public ParticleSystem scratch;
+    public ParticleSystem hitWall;
     ParticleSystem.MainModule GP_main1;
     ParticleSystem.ShapeModule GP_shape1;
     ParticleSystem.MainModule GP_main2;

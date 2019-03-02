@@ -135,7 +135,7 @@ public class PlayerInput : MonoBehaviour
         {
             prevState = state;
             state = GamePad.GetState(playerIndex);
-            if (prevState.Buttons.Back == ButtonState.Released && state.Buttons.Back == ButtonState.Pressed)
+            if (prevState.Buttons.Start == ButtonState.Released && state.Buttons.Start == ButtonState.Pressed || prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
             {
                 GameManager.Instance.canReturnNow = true;
                 GameManager.Instance.ChargeScene();

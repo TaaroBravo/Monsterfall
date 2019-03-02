@@ -17,15 +17,30 @@ public class Ice : MonoBehaviour
     private void OnDestroy()
     {
         AudioManager.Instance.CreateSound("IceDestruction");
-        if (((Yeti)player).frozenCharacter.Contains(target))
-            ((Yeti)player).frozenCharacter.Remove(target);
+        if(target)
+        {
+            target.frozen = false;
+            target.canMove = true;
+            target.canInteract = true;
+            target.myAnim.SetBool("Stunned", false);
+            if (((Yeti)player).frozenCharacter.Contains(target))
+                ((Yeti)player).frozenCharacter.Remove(target);
+        }
 
     }
 
     private void Update()
     {
         transform.position = target.transform.position;
-        target.ResetVelocity();
+        if (!target || target.isDead)
+            Destroy(gameObject);
+    }
+
+    private void LateUpdate()
+    {
+        target.canMove = false;
+        target.canInteract = false;
+        target.FreezeReset();
     }
 
 

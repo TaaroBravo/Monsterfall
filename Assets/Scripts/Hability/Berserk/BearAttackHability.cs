@@ -85,13 +85,9 @@ public class BearAttackHability : IHability
 
     IEnumerator LoadAttack()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.2f);
-            AudioManager.Instance.CreateSound("JumpingBerserk");
-            JumpAttack();
-            break;
-        }
+        yield return new WaitForSeconds(0.2f);
+        AudioManager.Instance.CreateSound("JumpingBerserk");
+        JumpAttack();
     }
 
     void JumpAttack()
@@ -113,21 +109,17 @@ public class BearAttackHability : IHability
 
     IEnumerator CanNotAttack()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
         ResetValuesForTime();
     }
 
     IEnumerator IsGrounded()
     {
-        while (true)
-        {
             yield return new WaitForSeconds(0.7f);
             yield return new WaitUntil(() => player.controller.isGrounded/* || player.IsCloseToGround()*/);
             player.ResetVelocity();
             if (!_target)
                 FailAttack();
-            break;
-        }
     }
 
     IEnumerator AttackTimer()
@@ -140,6 +132,8 @@ public class BearAttackHability : IHability
             player.ResetVelocity();
             isGrounded = true;
             AttackTarget();
+            var slash = GameObject.Instantiate(player.GetComponent<BerserkerParticlesManager>().scratch);
+            slash.transform.position = player.GetComponent<Collider>().bounds.center - new Vector3(0, 0, 5);
             timerActive -= 0.3f;
         }
         player.myAnim.SetTrigger("SkillAttackOut");
@@ -151,7 +145,8 @@ public class BearAttackHability : IHability
 
     IEnumerator BackTargetToNormal()
     {
-        _target.SetStun(1.5f);
+        if (_target)
+            _target.SetStun(1.5f);
         yield return new WaitForSeconds(1.5f);
         ResetValues();
     }
@@ -177,6 +172,7 @@ public class BearAttackHability : IHability
         {
             _target.transform.parent = null;
             _target.canInteract = true;
+            _target.canMove = true;
         }
         berserkPlayer.recovery = false;
         failed = false;

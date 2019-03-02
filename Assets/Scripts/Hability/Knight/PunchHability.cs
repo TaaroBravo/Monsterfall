@@ -61,7 +61,7 @@ public class PunchHability : IHability
                         damage.y = dir.y;
                     playersHitted.Add(target);
                     target.ReceiveImpact(damage * _power, player);
-                    target.SetDamage(15); // rico nerf
+                    target.SetDamage(20); // rico nerf
                     player.whoIHited = target;
                 }
             }
@@ -75,7 +75,9 @@ public class PunchHability : IHability
         if (timerCoolDown < 0)
         {
             player.usingHability = true;
-            _hability.Play();
+            var hab = GameObject.Instantiate(_hability);
+            hab.gameObject.SetActive(true);
+            hab.transform.position = player.GetComponent<Collider>().bounds.center;
             player.myAnim.Play("GameStart");
             active = true;
             timerCoolDown = coolDown;

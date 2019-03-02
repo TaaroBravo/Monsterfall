@@ -168,7 +168,7 @@ public class TeleportHability : IHability
 
     Vector3 FeedbackPlay(Vector3 dir)
     {
-        player.GetComponent<FeedbackElf>().shootDashFire.Play();
+        //player.GetComponent<FeedbackElf>().shootDashFire.Play();
         float dirX = 0;
         float dirY = 0;
         if(dir.x != 0)

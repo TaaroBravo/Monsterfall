@@ -63,9 +63,9 @@ public class UpAttack : IAttack
                 if (target == player)
                     continue;
                 ps = player.PS_Impact;
-                cam.StartShaking();
                 if (target != null && !hitPlayers.Contains(target))
                 {
+                    cam.StartShaking();
                     AudioManager.Instance.CreateSound("HitPlayer");
                     player.hitParticles.Play();
                     hitPlayers.Add(target);

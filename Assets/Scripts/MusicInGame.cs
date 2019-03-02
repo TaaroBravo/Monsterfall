@@ -18,7 +18,7 @@ public class MusicInGame : MonoBehaviour
     }
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Level")
+        if (SceneManager.GetActiveScene().name == "Level 2")
         {
             source.volume = 0.4f;
             source.clip = inGame;

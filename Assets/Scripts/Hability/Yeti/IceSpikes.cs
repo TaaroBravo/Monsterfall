@@ -8,6 +8,7 @@ public class IceSpikes : MonoBehaviour {
     PlayerController player;
     PlayerController _target;
 
+    public ParticleSystem exploted;
     public Ice icePrefab;
 
 	void Update ()
@@ -32,8 +33,9 @@ public class IceSpikes : MonoBehaviour {
 
     void DestroySpike()
     {
-        //Feedback 
         AudioManager.Instance.CreateSound("HitWithIce");
+        var particle = Instantiate(exploted);
+        particle.transform.position = transform.position;
         Destroy(gameObject);
     }
 
@@ -42,7 +44,8 @@ public class IceSpikes : MonoBehaviour {
         _target.myAnim.Play("GetHit");
         _target.SetStun(3.2f);
         _target.ResetVelocity();
-        _target.SetDamage(5);
+        _target.frozen = true;
+        _target.SetDamage(3);
         _target.SetLastOneWhoHittedMe(player);
         var ice = GameObject.Instantiate(icePrefab);
         var iceDry = GameObject.Instantiate(((Yeti)player).explotePS);

@@ -65,14 +65,16 @@ public class MainMenu_Selector : MonoBehaviour
             generalSlider.value = PlayerPrefs.GetFloat("GeneralVolume");
         else
         {
-            PlayerPrefs.SetFloat("GeneralVolume", 0f);
+            PlayerPrefs.SetFloat("GeneralVolume",0f);
             generalSlider.value = 0f;
+            mixer.SetFloat("GeneralVolume", 0f);
         }
         if (PlayerPrefs.HasKey("SoundsVolume"))
             soundSlider.value = PlayerPrefs.GetFloat("SoundsVolume");
         else
         {
             PlayerPrefs.SetFloat("SoundsVolume", 0f);
+            mixer.SetFloat("SoundsVolume", 0f);
             soundSlider.value = 0f;
         }
         if (PlayerPrefs.HasKey("MusicVolume"))
@@ -81,7 +83,10 @@ public class MainMenu_Selector : MonoBehaviour
         {
             PlayerPrefs.SetFloat("MusicVolume", 0f);
             musicSlider.value = 0f;
+            mixer.SetFloat("MusicVolume", 0f);
         }
+
+    
 
         graphicsSlider.value = QualitySettings.GetQualityLevel();
         Time.timeScale = 1;
@@ -94,8 +99,8 @@ public class MainMenu_Selector : MonoBehaviour
     void Update()
     {
         GetGamepadInputs();
-        MM_Manager.selector.transform.Rotate(0, 0, rotation_speed);
-
+        MM_Manager.selector.transform.Rotate(0, 0, 50 * Time.deltaTime);
+        SelectionFeedback.Instance.SetKey(currentindex);
         if (optionsCanvasActive)
         {
             for (int i = 0; i < handle.Length; i++)

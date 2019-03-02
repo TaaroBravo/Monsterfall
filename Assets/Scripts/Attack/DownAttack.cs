@@ -65,9 +65,9 @@ public class DownAttack : IAttack
                 if (target == player)
                     continue;
                 ps = player.PS_Impact;
-                cam.StartShaking();
                 if (target != null && !hitPlayers.Contains(target))
                 {
+                    cam.StartShaking();
                     AudioManager.Instance.CreateSound("HitPlayer");
                     player.hitParticles.Play();
                     hitPlayers.Add(target);
@@ -109,7 +109,7 @@ public class DownAttack : IAttack
             currentPressed = 1;
             timerCoolDownAttack = coolDownAttack;
             player.PS_Charged.Stop();
-        player.myAnim.ResetTrigger("ReleaseADown");
+            player.myAnim.ResetTrigger("ReleaseADown");
         }
     }
 

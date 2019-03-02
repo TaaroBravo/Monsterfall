@@ -58,11 +58,11 @@ public class IElfMark : IEffect
 
     public float GetDelayTimer()
     {
-        return 10000;
+        return 10;
     }
 
     public float GetMaxTimer()
     {
-        return 1000000;
+        return 10;
     }
 }

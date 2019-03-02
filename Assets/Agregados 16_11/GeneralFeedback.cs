@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class GeneralFeedback : MonoBehaviour
 {
     public ParticleSystem slashParticle;
@@ -27,8 +27,9 @@ public class GeneralFeedback : MonoBehaviour
     {
         if (iceblock)
             iceblock.SetActive(false);
-        CristalBuffShape = CristalBuff.shape;
-        CristalBuffShape2 = CristalBuff2.shape;
+        CristalBuff = transform.ChildrenWithComponent<RayShield>().First().GetComponent<ParticleSystem>();
+        //CristalBuffShape = CristalBuff.shape;
+        //CristalBuffShape2 = CristalBuff2.shape;
         MainElfMark = ElfMark.main;
         mainCrosshair = Crosshair.main;
         Color outcolor;
@@ -40,7 +41,8 @@ public class GeneralFeedback : MonoBehaviour
     private void Update()
     {
         //XAxis = GetComponent<PlayerInput>().MainHorizontal();
-        CristalBuff.gameObject.transform.eulerAngles = new Vector3(270, 180, 0);
+        //CristalBuff.gameObject.transform.eulerAngles = new Vector3(270, 180, 0);
+        CristalBuff.transform.position = transform.position;
         if (!iminverted) ElfMark.gameObject.transform.eulerAngles = new Vector3(270, 180, 0);
         else ElfMark.gameObject.transform.eulerAngles = new Vector3(90, 0, 0);
     }
@@ -56,8 +58,18 @@ public class GeneralFeedback : MonoBehaviour
             Crosshair.Play();
     }
     public void FinishElfMark() { ElfMark.Stop(); }
-    public void StartCristalBuff() { CristalBuff.Play(); }
-    public void FinishCristalBuff() { CristalBuff.Stop(); }
+    public void StartCristalBuff()
+    {
+        CristalBuff.Play();
+        foreach (var item in CristalBuff.transform.ChildrenWithComponent<ParticleSystem>())
+            item.Play();
+    }
+    public void FinishCristalBuff()
+    {
+        CristalBuff.Stop();
+        foreach (var item in CristalBuff.transform.ChildrenWithComponent<ParticleSystem>())
+            item.Stop();
+    }
     public void StartLightning(int ID)
     {
         Lightning.Play();

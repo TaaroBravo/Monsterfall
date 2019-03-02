@@ -71,7 +71,7 @@ public class ForwardCharge : IHability
     {
         while (true)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
             if (_target)
                 DamageTarget();
             ResetValues();
@@ -114,6 +114,7 @@ public class ForwardCharge : IHability
         {
             _target.hittedChargeBerserk = true;
             _target.transform.position = player.transform.position + (Vector3.right * Mathf.Sign(player.transform.localScale.z));
+            _target.canInteract = false;
             var enemies = Physics.OverlapSphere(player.transform.position, 1f, 1 << 9).Where(x => x.GetComponent<PlayerController>()).Select(x => x.GetComponent<PlayerController>()).Where(x => x != player && x != _target).Where(x => !x.isDead);
             foreach (var _enemy in enemies)
                 _enemy.ReceiveImpact((Vector3.right * Mathf.Sign(player.transform.localScale.z) * 30), player);
@@ -127,8 +128,8 @@ public class ForwardCharge : IHability
         _target.hittedChargeBerserk = false;
         _target.SetStun(0.2f);
         int dmg = Mathf.RoundToInt((distance / 1.3f) / 5) * 5;
-        if (dmg > 35)
-            dmg = 35;
+        if (dmg > 25)
+            dmg = 25;
         _target.SetDamage(dmg);
         _target.SetLastOneWhoHittedMe(player);
     }

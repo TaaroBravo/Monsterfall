@@ -387,6 +387,7 @@ public class Hook : MonoBehaviour
         target.transform.position = endPoint.position;
         target.myAnim.Play("Stunned");
         target.controller.enabled = true;
+        target.SetStun(1.5f);
         StopCoroutine(ResetAllCoroutine());
     }
     #endregion

@@ -48,7 +48,7 @@ public class IIceEffect : IEffect
             return;
         target.myAnim.Play("GetHit");
         target.SetStun(3f);
-        target.ResetVelocity();
+        target.FreezeReset();
         target.SetLastOneWhoHittedMe(_player);
         var ice = GameObject.Instantiate(icePrefab);
         Physics.IgnoreCollision(ice.GetComponent<Collider>(), target.GetComponent<Collider>(), true);

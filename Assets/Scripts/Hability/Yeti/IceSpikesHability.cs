@@ -30,7 +30,8 @@ public class IceSpikesHability : IHability
             FeedbackPlay();
             timerCoolDown = coolDown;
             var particles = GameObject.Instantiate(_yeti.explotePS);
-            particles.transform.position = /*_yeti.transform.position + */_yeti.GetComponent<Collider>().bounds.center;
+            particles.gameObject.SetActive(true);
+            particles.transform.position = _yeti.GetComponent<Collider>().bounds.center;
             particles.Play();
             AudioManager.Instance.CreateSound("ExplosionYeti");
             player.myAnim.Play("SkillCall");

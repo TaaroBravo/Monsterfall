@@ -27,7 +27,7 @@ public class IRogueMark : IEffect
         if (target == player)
         {
             countOfMarks++;
-            if(countOfMarks >= 4)
+            if (countOfMarks >= 4)
             {
                 countOfMarks = 4;
                 damageMultiply = maxOfMarks;
@@ -58,7 +58,7 @@ public class IRogueMark : IEffect
     {
         countOfMarks = 0;
         damageMultiply = 1;
-        if(target)
+        if (target)
         {
             target.GetComponent<RogueSkillCall>().ResetFeedback();
             target = null;
@@ -68,7 +68,11 @@ public class IRogueMark : IEffect
     void SetDamage()
     {
         target.SetDamage((damage + damageMultiply) * _player.buffedPower);
-        target.GetComponent<RogueSkillCall>().PassState(countOfMarks - 1, _player.GetComponent<PlayerInput>().player_number, Disable);
+        if (!target.isDead)
+            target.GetComponent<RogueSkillCall>().PassState(countOfMarks - 1, _player.GetComponent<PlayerInput>().player_number, Disable);
+        else
+            target.GetComponent<RogueSkillCall>().PassState(0, _player.GetComponent<PlayerInput>().player_number, Disable);
+
     }
 
     public float GetDelayTimer()

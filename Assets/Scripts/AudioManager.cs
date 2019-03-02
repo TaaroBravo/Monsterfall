@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip stunned;
     public AudioClip charginAttack;
     public AudioClip hitRay;
+    public AudioClip kill;
 
     public AudioClip teleport;
 
@@ -110,6 +111,7 @@ public class AudioManager : MonoBehaviour
         allClips.Add("Teleport", teleport); //
         allClips.Add("Stunned", stunned); //
         allClips.Add("HitRay", hitRay); //
+        allClips.Add("Kill", kill); //
 
         allClips.Add("NavigationHUD", navigationOnHud);
         allClips.Add("OnGame", onGame);

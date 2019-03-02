@@ -20,7 +20,7 @@ public class Yeti : PlayerController
     {
         base.Start();
         iceEffect = new IIceEffect(this, 4, icePrefab);
-        lifeHUD.Set(11, 5, myLife);
+        lifeHUD.Set(8, 2.5f, myLife);
         SetAttacks();
         SetHabilities();
     }
@@ -77,15 +77,15 @@ public class Yeti : PlayerController
 
     private void SetAttacks()
     {
-        attacks.Add(typeof(NormalAttack).ToString(), new NormalAttack(this, iceEffect, normalAttackCoolDown));
-        attacks.Add(typeof(UpAttack).ToString(), new UpAttack(this, iceEffect, upAttackCoolDown));
-        attacks.Add(typeof(DownAttack).ToString(), new DownAttack(this, iceEffect, downAttackCoolDown));
+        attacks.Add(typeof(NormalAttack).ToString(), new NormalAttack(this, null, normalAttackCoolDown));
+        attacks.Add(typeof(UpAttack).ToString(), new UpAttack(this, null, upAttackCoolDown));
+        attacks.Add(typeof(DownAttack).ToString(), new DownAttack(this, null, downAttackCoolDown));
     }
 
     void SetHabilities()
     {
-        hability.Add(typeof(IceSpikesHability).ToString(), new IceSpikesHability(this, spikesPrefab, 11f));
-        hability.Add(typeof(IcePlatformHability).ToString(), new IcePlatformHability(this, icePlatfromPrefab, 5f));
+        hability.Add(typeof(IceSpikesHability).ToString(), new IceSpikesHability(this, spikesPrefab, 8f));
+        hability.Add(typeof(IcePlatformHability).ToString(), new IcePlatformHability(this, icePlatfromPrefab, 2.5f));
         myHability = YetiAbility;
         movementHability = YetiMovementAbility;
     }

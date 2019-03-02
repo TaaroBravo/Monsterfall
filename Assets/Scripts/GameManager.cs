@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public bool weHaveAWinner;
     public bool canReturnNow;
+    public Phantom phantomPrefab;
 
     private void Awake()
     {
@@ -77,7 +78,10 @@ public class GameManager : MonoBehaviour
             playersObj.Clear();
             myPlayers = CallSpawnHeroes();
             foreach (var hero in myPlayers)
+            {
                 playersObj.Add(hero.gameObject);
+                hero.OnDeath += x => DeathOfPlayer(x);
+            }
             SetUpHUD(infoManager.playersInfo);
             OnSpawnCharacters(myPlayers);
             CreatorRays.Instance.SetPlayers(myPlayers.ToArray());
@@ -132,6 +136,8 @@ public class GameManager : MonoBehaviour
                 if (alivePlayers.Count == 2 || alivePlayers.Count == 1)
                     diesByPlayerHit = true;
                 info.newKills++;
+                AudioManager.Instance.CreateSound("Kill");
+                AudioManager.Instance.CreateSound("Kill");
             }
         }
     }
@@ -139,6 +145,26 @@ public class GameManager : MonoBehaviour
     public void LoseCharacter(PlayerController p)
     {
         alivePlayers.Remove(p);
+    }
+
+    void DeathOfPlayer(PlayerController p)
+    {
+        var phantom = Instantiate(phantomPrefab);
+        List<Color> PColors = new List<Color>();
+        Color outcolor;
+        if (ColorUtility.TryParseHtmlString("#1996E1FF", out outcolor)) PColors.Add(outcolor); // blue - 0
+        if (ColorUtility.TryParseHtmlString("#E51B1BFF", out outcolor)) PColors.Add(outcolor); // red - 1
+        if (ColorUtility.TryParseHtmlString("#5CD025FF", out outcolor)) PColors.Add(outcolor); // green - 2
+        if (ColorUtility.TryParseHtmlString("#FBEB11FF", out outcolor)) PColors.Add(outcolor); // yellow - 3
+        if (p.lastOneWhoHittedMe)
+        {
+            var IDKiller = p.lastOneWhoHittedMe.GetComponent<PlayerInput>().player_number;
+            phantom.SetColorKiller(PColors[IDKiller]);
+        }
+        else
+            phantom.SetColorKiller(Vector4.zero);
+        var IDDead = p.GetComponent<PlayerInput>().player_number;
+        phantom.SetColorDeath(PColors[IDDead], p.transform.position);
     }
 
     #region Start Game
@@ -179,26 +205,22 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartGame(float x)
     {
-        while (true)
+        AudioManager.Instance.CreateSound("Ready");
+        startingGame = true;
+        foreach (var player in myPlayers)
         {
-            AudioManager.Instance.CreateSound("Ready");
-            startingGame = true;
-            foreach (var player in myPlayers)
-            {
-                player.myAnim.Play("Stunned");
-                player.myAnim.SetBool("Stunned", true);
-                player.canInteract = false;
-            }
-            yield return new WaitForSeconds(x);
-            AudioManager.Instance.CreateSound("Fight");
-            foreach (var player in myPlayers)
-            {
-                player.myAnim.SetBool("Stunned", false);
-                player.canInteract = true;
-            }
-            startingGame = false;
-            break;
+            player.myAnim.Play("Stunned");
+            player.myAnim.SetBool("Stunned", true);
+            player.canInteract = false;
         }
+        yield return new WaitForSeconds(x);
+        AudioManager.Instance.CreateSound("Fight");
+        foreach (var player in myPlayers)
+        {
+            player.myAnim.SetBool("Stunned", false);
+            player.canInteract = true;
+        }
+        startingGame = false;
     }
 
     #endregion
@@ -286,19 +308,30 @@ public class GameManager : MonoBehaviour
     bool scoreFinished;
     IEnumerator StartNewRound()
     {
-        while (true)
+        var firstPlayer = infoManager.playersInfo.Where(x => x.player_number == alivePlayers[0].GetComponent<PlayerInput>().player_number).First();
+        if (firstPlayer != null && !diesByPlayerHit)
         {
-            var firstPlayer = infoManager.playersInfo.Where(x => x.player_number == alivePlayers[0].GetComponent<PlayerInput>().player_number).First();
-            if (firstPlayer != null && !diesByPlayerHit)
-                firstPlayer.newKills++;
-
+            firstPlayer.newKills++;
+            if (firstPlayer.newKills + firstPlayer.previousKills >= 5)
+                WinTheGame();
+            else
+            {
+                ScoreManager.Instance.LoadBars(infoManager.playersInfo, AllScoreFinished, firstPlayer);
+                yield return new WaitUntil(() => scoreFinished == true);
+                yield return new WaitForSeconds(6f);
+                ObjectPoolManager.Instance.Clean();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
+        else
+        {
             ScoreManager.Instance.LoadBars(infoManager.playersInfo, AllScoreFinished, firstPlayer);
             yield return new WaitUntil(() => scoreFinished == true);
             yield return new WaitForSeconds(6f);
             ObjectPoolManager.Instance.Clean();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            break;
         }
+
     }
 
     void AllScoreFinished(List<PlayerInfo> infos)

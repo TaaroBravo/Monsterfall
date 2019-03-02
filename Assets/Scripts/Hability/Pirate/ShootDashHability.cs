@@ -51,6 +51,7 @@ public class ShootDashHability : IHability
     void Shoot()
     {
         shootFire.Play();
+        //shootFire.Play();
         player.myAnim.Play("ShootHability");
         AudioManager.Instance.CreateSound("FirePirate");
         Collider[] cols = Physics.OverlapBox(shootRange.bounds.center, shootRange.bounds.extents * 2f, shootRange.transform.rotation, LayerMask.GetMask("Hitbox"));
@@ -61,7 +62,7 @@ public class ShootDashHability : IHability
             PlayerController target = TargetScript(c.transform);
             if (target != null)
             {
-                if(target is Berserk)
+                if (target is Berserk)
                 {
                     target.SetStun(0.3f);
                     target.DisableAll();
@@ -77,16 +78,12 @@ public class ShootDashHability : IHability
 
     IEnumerator IsDashingTimer(float x)
     {
-        while (true)
-        {
-            player.isDashing = true;
-            player.myAnim.SetBool("Dashing", true);
-            yield return new WaitForSeconds(x);
-            player.isDashing = false;
-            player.myAnim.SetBool("Dashing", false);
-            ResetValues();
-            break;
-        }
+        player.isDashing = true;
+        player.myAnim.SetBool("Dashing", true);
+        yield return new WaitForSeconds(x);
+        player.isDashing = false;
+        player.myAnim.SetBool("Dashing", false);
+        ResetValues();
     }
 
     void ResetValues()

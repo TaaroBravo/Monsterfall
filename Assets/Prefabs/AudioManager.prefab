@@ -67,6 +67,7 @@ MonoBehaviour:
   stunned: {fileID: 0}
   charginAttack: {fileID: 8300000, guid: db3de24a1941acc4eb4cc9de62718428, type: 3}
   hitRay: {fileID: 8300000, guid: 3eb90bf1b45b4c8419b5ed1821183bca, type: 3}
+  kill: {fileID: 8300000, guid: 4a35f76d6ee15bc4e80c4b70fc09ddd9, type: 3}
   teleport: {fileID: 8300000, guid: f6d29b9202a995b4e84a9f152a7b2ef1, type: 3}
   navigationOnHud: {fileID: 8300000, guid: d1b13522fcead4f4a9fa855840aa74d0, type: 3}
   onGame: {fileID: 8300000, guid: bd8c16354c6572b4e826b70dd5c8d6c2, type: 3}

@@ -131,16 +131,12 @@ public class MissileHability : IHability
 
     IEnumerator FeedbackCantMove()
     {
-        while (true)
-        {
-            player.canInteract = false;
-            if (player.controller.isGrounded)
-                yield return new WaitForSeconds(1f);
-            else
-                yield return new WaitUntil(() => player.controller.isGrounded);
-            player.canInteract = true;
-            break;
-        }
+        player.canInteract = false;
+        if (player.controller.isGrounded)
+            yield return new WaitForSeconds(1f);
+        else
+            yield return new WaitUntil(() => player.controller.isGrounded);
+        player.canInteract = true;
     }
 
     void FirstOutOfScreen()

@@ -41,37 +41,32 @@ public class MultipleTargetCamera : MonoBehaviour
             if (targets[i] == null)
                 targets.Remove(targets[i]);
 
-        if (!shaking)
-        {
-            Move();
-            Zoom();
-            BoundsOfCamera();
-        }
+        Move();
+        Zoom();
+        BoundsOfCamera();
     }
 
     public void StartShaking()
     {
-        //shaking = true;
-        //StartCoroutine(Shake(0.5f, 0.5f));
+
     }
 
     IEnumerator Shake(float duration, float magnitude)
     {
-        //shaking = true;
-        //Vector3 originalPos = transform.localPosition;
-        //float elapsed = 0.0f;
-        //while (elapsed < duration)
-        //{
-        //    float x = Random.Range(-1, 1) * magnitude;
+        shaking = true;
+        Vector3 originalPos = transform.localPosition;
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1, 1) * magnitude;
 
-        //    transform.localPosition = new Vector3(originalPos.x + x, originalPos.y, originalPos.z);
+            transform.localPosition = new Vector3(originalPos.x + x, originalPos.y, originalPos.z);
 
-        //    elapsed += Time.deltaTime;
-        //    yield return null;
-        //}
-        //transform.localPosition = originalPos;
-        //shaking = false;
-        yield return null;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.localPosition = originalPos;
+        shaking = false;
     }
 
     void BoundsOfCamera()

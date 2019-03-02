@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 using System.Linq;
 
 public class PlayerController : MonoBehaviour
@@ -136,6 +137,8 @@ public class PlayerController : MonoBehaviour
 
     Tuple<bool, Vector3> rejectWall = new Tuple<bool, Vector3>(false, Vector3.zero);
 
+    public event Action<PlayerController> OnDeath = delegate { };
+
     public float buffedPower = 1;
 
     #region Ray Borders
@@ -151,6 +154,7 @@ public class PlayerController : MonoBehaviour
     public Dictionary<string, IHability> hability = new Dictionary<string, IHability>();
     #endregion
 
+    public bool frozen;
 
     private void Awake()
     {
@@ -158,7 +162,7 @@ public class PlayerController : MonoBehaviour
         myAnim = GetComponent<Animator>();
         contrains = GetComponent<PlayerContrains>();
         lifeHUD = transform.ChildrenWithComponent<LifebarController>().Where(x => x != null).First();
-
+        myAnim.GetBehaviour<FreeBehaviour>().player = this;
     }
 
     void SetRayPos()
@@ -210,7 +214,8 @@ public class PlayerController : MonoBehaviour
             else
                 currentTimeStunnedHard += Time.deltaTime;
         }
-        currentTimeStunnedHard = 0;
+        else
+            currentTimeStunnedHard = 0;
     }
 
     #region Moves & Jump
@@ -315,17 +320,13 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator CoyoteTime(float timer)
     {
-        while (true)
+        bool grounded = controller.isGrounded;
+        yield return new WaitForSeconds(timer);
+        if (grounded != controller.isGrounded && !isJumping && isFalling)
         {
-            bool grounded = controller.isGrounded;
-            yield return new WaitForSeconds(timer);
-            if (grounded != controller.isGrounded && !isJumping && isFalling)
-            {
-                coyoteBool = true;
-                yield return new WaitForSeconds(timer * 2);
-                coyoteBool = false;
-            }
-            break;
+            coyoteBool = true;
+            yield return new WaitForSeconds(timer * 2);
+            coyoteBool = false;
         }
     }
 
@@ -346,15 +347,11 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator HitReflectTime()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.2f);
-            rejectWall = Tuple.Create(false, Vector3.zero);
-            stunnedByHit = false;
-            impactVelocity = Vector3.zero;
-            myAnim.SetBool("Stunned", false);
-            break;
-        }
+        yield return new WaitForSeconds(0.2f);
+        rejectWall = Tuple.Create(false, Vector3.zero);
+        stunnedByHit = false;
+        impactVelocity = Vector3.zero;
+        myAnim.SetBool("Stunned", false);
     }
     #endregion
 
@@ -417,10 +414,17 @@ public class PlayerController : MonoBehaviour
         moveVector = Vector3.zero;
     }
 
+    public void FreezeReset()
+    {
+        moveVector = Vector3.zero;
+        impactVelocity = Vector3.zero;
+    }
+
     public void DisableStun()
     {
         stunnedByHit = false;
         canInteract = true;
+        canMove = true;
     }
 
     public void DisableAll()
@@ -504,13 +508,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator CanAttack(float x)
     {
-        while (true)
-        {
-            canAttack = false;
-            yield return new WaitForSeconds(x);
-            canAttack = true;
-            break;
-        }
+        canAttack = false;
+        yield return new WaitForSeconds(x);
+        canAttack = true;
     }
 
     void UpdateHabilities()
@@ -537,13 +537,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DashCoolDown()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(1.5f);
-            isDashing = false;
-            canDash = true;
-            break;
-        }
+        yield return new WaitForSeconds(1.5f);
+        isDashing = false;
+        canDash = true;
     }
 
     public void FallOff()
@@ -691,17 +687,13 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator InvulnerableToRays()
     {
-        while (true)
-        {
-            invulnerableRays = true;
-            buffedPower = 2f;
-            GetComponent<GeneralFeedback>().StartCristalBuff();
-            yield return new WaitForSeconds(10f);
-            GetComponent<GeneralFeedback>().FinishCristalBuff();
-            invulnerableRays = false;
-            buffedPower = 1;
-            break;
-        }
+        invulnerableRays = true;
+        buffedPower = 2f;
+        GetComponent<GeneralFeedback>().StartCristalBuff();
+        yield return new WaitForSeconds(10f);
+        GetComponent<GeneralFeedback>().FinishCristalBuff();
+        invulnerableRays = false;
+        buffedPower = 1;
     }
 
     public void SetLastOneWhoHittedMe(PlayerController killer)
@@ -781,11 +773,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.tag.Equals("Borders"))
+
+        if (hit.gameObject.tag.Equals("Borders") && !frozen)
         {
-            if (this is Berserk && ((Berserk)this).chargeAttack)
+            if (this is Berserk && ((Berserk)this).chargeAttack && hit.gameObject.layer != LayerMask.NameToLayer("Platforms"))
+            {
                 ((Berserk)this).chargeAttack = false;
+                var particlePrefab = ((Berserk)this).GetComponent<BerserkerParticlesManager>().hitWall;
+                var particle = Instantiate(particlePrefab);
+                particle.transform.position = hit.point;
+                particle.transform.right = hit.normal;
+            }
             stunnedByHit = false;
+            canMove = true;
             playerMarked = false;
             myAnim.SetBool("Stunned", false);
         }
@@ -806,6 +806,7 @@ public class PlayerController : MonoBehaviour
         if (hit.gameObject.GetComponent<Ice>() && stunnedByHit)
         {
             stunnedByHit = false;
+            canMove = true;
             myAnim.SetBool("Stunned", false);
             impactVelocity = Vector3.zero;
             moveVector = Vector3.zero;
@@ -886,22 +887,28 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(BurnEstela());
         }
     }
-
+    bool cooldownSoundFire;
     public IEnumerator BurnEstela()
     {
+        //AudioManager.Instance.CreateSound("Fire");
+        if (!cooldownSoundFire)
+            StartCoroutine(ReproduceFire());
+        SetDamage(1);
+        onFireWithParticle = true;
+        GetComponent<FireParticle>().fire1.Play();
+        GetComponent<FireParticle>().fire2.Play();
+        yield return new WaitForSeconds(0.1f);
+        GetComponent<FireParticle>().fire1.Stop();
+        GetComponent<FireParticle>().fire2.Stop();
+        onFireWithParticle = false;
+    }
+
+    IEnumerator ReproduceFire()
+    {
+        cooldownSoundFire = true;
+        yield return new WaitForSeconds(0.3f);
         AudioManager.Instance.CreateSound("Fire");
-        while (true)
-        {
-            SetDamage(1);
-            onFireWithParticle = true;
-            GetComponent<FireParticle>().fire1.Play();
-            GetComponent<FireParticle>().fire2.Play();
-            yield return new WaitForSeconds(0.1f);
-            GetComponent<FireParticle>().fire1.Stop();
-            GetComponent<FireParticle>().fire2.Stop();
-            onFireWithParticle = false;
-            break;
-        }
+        cooldownSoundFire = false;
     }
     #endregion
 
@@ -914,9 +921,11 @@ public class PlayerController : MonoBehaviour
         lifeHUD.ReduceLife(Mathf.RoundToInt(damage));
         if (myLife <= 0 && !isDead)
         {
+            StartCoroutine(Vibration(0.5f, 0.6f));
             if (lastOneWhoHittedMe)
                 GameManager.Instance.SetKills(lastOneWhoHittedMe.GetComponent<PlayerInput>().player_number);
             OnDestroyCharacter(this);
+            OnDeath(this);
             canInteract = false;
             myAnim.StopPlayback();
             myAnim.SetTrigger("Death");
@@ -926,15 +935,22 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject, 1.1f);
             isDead = true;
         }
+        else
+            StartCoroutine(Vibration(0.2f, 0.3f));
+    }
+
+    IEnumerator Vibration(float intensity, float time)
+    {
+        var playerIndex = GetComponent<PlayerInput>().playerIndex;
+        GamePad.SetVibration(playerIndex, intensity, intensity);
+        yield return new WaitForSeconds(time);
+        GamePad.SetVibration(playerIndex, 0f, 0f);
     }
 
     IEnumerator Death(float x)
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(x - 0.1f);
-            isDead = true;
-        }
+        yield return new WaitForSeconds(x - 0.1f);
+        isDead = true;
     }
 
 
