@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/UI/CharacterSelector.unity
     guid: 9bca61a5d5a330d49839299e0b497f22
   - enabled: 1
-    path: Assets/Maps/01 - CASTLE/Level 2.unity
+    path: Assets/MAPS/01 - CASTLE/Level 2.unity
     guid: 48a135ba915001c4cb85bb4321686c07
+  - enabled: 1
+    path: Assets/MAPS/01 - CASTLE/Level 3.unity
+    guid: 3f60186bc1742ac4987396701a851cdd
   m_configObjects: {}

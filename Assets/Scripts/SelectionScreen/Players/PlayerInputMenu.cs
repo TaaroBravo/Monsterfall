@@ -65,15 +65,15 @@ public class PlayerInputMenu : MonoBehaviour
         }
 
         #region Sirve para Teclado algunas cosas
-        //if (Input.GetButtonDown(actionButton))
-        //    player.ActionButton();
-        //if (Input.GetButtonDown(rejectButton))
-        //    player.RejectButton();
+        if (Input.GetButtonDown(actionButton))
+            player.ActionButton();
+        if (Input.GetButtonDown(rejectButton))
+            player.RejectButton();
 
-        //if (Input.GetButtonDown(horizontalMove))
-        //    player.Move(new Vector2((int)MainHorizontal(), 0));
-        //if (Input.GetButtonDown(verticalMove))
-        //    player.Move(new Vector2(0, -(int)MainVertical()));
+        if (Input.GetButtonDown(horizontalMove))
+            player.Move(new Vector2((int)MainHorizontal(), 0));
+        if (Input.GetButtonDown(verticalMove))
+            player.Move(new Vector2(0, -(int)MainVertical()));
         #endregion 
     }
 
@@ -105,16 +105,16 @@ public class PlayerInputMenu : MonoBehaviour
             horizontalMove = "JoystickHorizontal_P" + id;
             verticalMove = "JoystickVertical_P" + id;
         }
-        //else
-        //{
-        //    horizontalMove = controller.ToString() + "_MainHorizontal_P" + id;
-        //    verticalMove = controller.ToString() + "_MainVertical_P" + id;
-        //}
-        //if (controller == Controller.K && id == 2)
-        //    actionButton = controller.ToString() + "_NormalAttack_P" + id;
-        //else
-        //    actionButton = controller.ToString() + "_JumpButton_P" + id;
-        //rejectButton = controller.ToString() + "_DownAttack_P" + id;
+        else
+        {
+            horizontalMove = controller.ToString() + "_MainHorizontal_P" + id;
+            verticalMove = controller.ToString() + "_MainVertical_P" + id;
+        }
+        if (controller == Controller.K && id == 2)
+            actionButton = controller.ToString() + "_NormalAttack_P" + id;
+        else
+            actionButton = controller.ToString() + "_JumpButton_P" + id;
+        rejectButton = controller.ToString() + "_DownAttack_P" + id;
     }
 
     void CleanInputs()
