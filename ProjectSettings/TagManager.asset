@@ -12,6 +12,7 @@ TagManager:
   - PositionsElf
   - Limit
   - Platform
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -35,7 +36,7 @@ TagManager:
   - HookPoints
   - DashArea
   - Platforms
-  - 
+  - PostProcessing
   - 
   - 
   - 
