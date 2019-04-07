@@ -38,11 +38,11 @@ public class Jump : IMove
         var jumpParticle = GameObject.Instantiate(player.PS_Jump);
         psr = jumpParticle.GetComponent<ParticleSystemRenderer>();
         //psr.pivot = new Vector3(0, 0.65f, 0);
-        psr.pivot = new Vector3(0, 0.4f, 0);
+        //psr.pivot = new Vector3(0, 0.4f, 0); // test disable
         psr.gameObject.AddComponent<DestroyableObject>();
         psr.GetComponent<DestroyableObject>().timeToDestroy = 2;
-        jumpParticle.transform.position = player.transform.position;
-        jumpParticle.transform.localScale = Vector3.one * 3;
+        jumpParticle.transform.position = player.transform.position; // test disable
+        jumpParticle.transform.localScale = Vector3.one /** 3*/; // test disable
         jumpParticle.Play();
         //player.PS_Jump.Play();
     }
