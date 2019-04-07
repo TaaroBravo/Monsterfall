@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Columna
+  m_Name: PortalPlatform
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF _METALLICGLOSSMAP _METALLICSPECGLOSSMAP
   m_LightmapFlags: 4
@@ -28,11 +28,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 54a234b6e1338484aa51ddddeab38998, type: 3}
+        m_Texture: {fileID: 2800000, guid: ac1950009cae6694cabc9cbc9e670d44, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: b28b3d5035b153246b3aa90e971c7578, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3e9c7c92401afce48a5d926cd4fdde5e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -50,7 +50,7 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 0
-    - _GlossMapScale: 0.65
+    - _GlossMapScale: 0.746
     - _Glossiness: 0.135
     - _GlossyReflections: 0
     - _Metallic: 0
