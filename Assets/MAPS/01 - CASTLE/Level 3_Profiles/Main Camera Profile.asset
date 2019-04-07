@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Main Camera Profile
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 114953759922632472}
-  - {fileID: 114678776291239866}
---- !u!114 &114678776291239866
+  - {fileID: 114307064597560054}
+  - {fileID: 114979041939646134}
+--- !u!114 &114307064597560054
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,42 +24,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
-  m_Name: Vignette
+  m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
+  m_Name: Bloom
   m_EditorClassIdentifier: 
   active: 1
   enabled:
     overrideState: 1
     value: 1
-  mode:
+  intensity:
+    overrideState: 1
+    value: 0
+  threshold:
+    overrideState: 1
+    value: 1
+  softKnee:
+    overrideState: 1
+    value: 0.5
+  clamp:
+    overrideState: 1
+    value: 65472
+  diffusion:
+    overrideState: 1
+    value: 7
+  anamorphicRatio:
     overrideState: 1
     value: 0
   color:
     overrideState: 1
-    value: {r: 0, g: 0, b: 0, a: 1}
-  center:
-    overrideState: 1
-    value: {x: 0.5, y: 0.5}
-  intensity:
-    overrideState: 1
-    value: 1
-  smoothness:
-    overrideState: 1
-    value: 0.2
-  roundness:
-    overrideState: 0
-    value: 1
-  rounded:
+    value: {r: 1, g: 1, b: 1, a: 1}
+  fastMode:
     overrideState: 0
     value: 0
-  mask:
+  dirtTexture:
     overrideState: 0
     value: {fileID: 0}
     defaultState: 1
-  opacity:
+  dirtIntensity:
     overrideState: 0
-    value: 1
---- !u!114 &114953759922632472
+    value: 0
+--- !u!114 &114979041939646134
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,7 +83,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1.25
+    value: 0
   color:
     overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
