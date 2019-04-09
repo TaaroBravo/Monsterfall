@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RayMat
-  m_Shader: {fileID: 4800000, guid: ae6162a15b6a4284c8851b344f459da8, type: 3}
+  m_Name: Shader Graphs_RayShader
+  m_Shader: {fileID: 4800000, guid: 4e4d750a5f175364a8918c3f8c6f9d32, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 0
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -19,21 +19,17 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Flowmap:
+    - Texture2D_A7722A49:
         m_Texture: {fileID: 2800000, guid: 3d2c9e17f1075ed4b8ce5687db27151f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Map:
+    - Texture2D_F6404810:
         m_Texture: {fileID: 2800000, guid: cd7d0a5a29b91ca428f3fc0f7e44eb4e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _texcoord:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Float0: 0.285
-    - _Float1: 0.2
-    - _Transp: 1
-    - __dirty: 0
-    m_Colors: []
+    - Vector1_5AA050FD: 0.1
+    - Vector1_8BA46879: 0.68
+    m_Colors:
+    - Color_E9A48F9D: {r: 2, g: 0, b: 0.1150284, a: 0.5921569}
+    - Vector2_6692412E: {r: 1, g: 1, b: 0, a: 0}
