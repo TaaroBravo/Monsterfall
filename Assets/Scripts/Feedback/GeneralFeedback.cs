@@ -19,6 +19,9 @@ public class GeneralFeedback : MonoBehaviour
     public ParticleSystem Crosshair;
     ParticleSystem.MainModule mainCrosshair;
     public Material LightningMat;
+    public Material mymaterial;
+    float _dissolvetimer;
+    bool _start_dissolve;
     float XAxis;
     public bool iminverted;
     public bool reposition;
@@ -40,6 +43,7 @@ public class GeneralFeedback : MonoBehaviour
     }
     private void Update()
     {
+        if (_start_dissolve) _dissolvetimer += Time.deltaTime;
         //XAxis = GetComponent<PlayerInput>().MainHorizontal();
         //CristalBuff.gameObject.transform.eulerAngles = new Vector3(270, 180, 0);
         CristalBuff.transform.position = transform.position;
@@ -148,5 +152,10 @@ public class GeneralFeedback : MonoBehaviour
         pos.x *= Mathf.Sign(transform.localScale.z);
         slash.gameObject.transform.localScale = pos;
         slash.Play();
+    }
+    public void Start_Death_Dissolve()
+    {
+        _start_dissolve = true;
+        mymaterial.SetFloat("_Dissolve_Intensity", _dissolvetimer);
     }
 }
