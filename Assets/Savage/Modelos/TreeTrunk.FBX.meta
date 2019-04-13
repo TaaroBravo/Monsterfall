@@ -1,17 +1,14 @@
 fileFormatVersion: 2
-guid: 1e07b5fb1b8ab2a4380e451e88e9b889
+guid: b2bfb73cbaa5baf48b6c17607a0e5526
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: TreeTrunk
     400000: //RootNode
-    400002: TreeTrunk
-    2100000: TreeTrunkMat
-    2300000: TreeTrunk
-    3300000: TreeTrunk
+    2100000: 07 - Default
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: TreeTrunk
-    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -63,7 +60,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
     previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
