@@ -14,8 +14,10 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -28,8 +30,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_5AA050FD: 0.1
-    - Vector1_8BA46879: 0.68
+    - Vector1_5AA050FD: 0.25
+    - Vector1_8BA46879: 0.5
     m_Colors:
-    - Color_E9A48F9D: {r: 2, g: 0, b: 0.1150284, a: 0.5921569}
+    - Color_8B681749: {r: 0.5754717, g: 0.07837188, b: 0, a: 1}
+    - Color_E9A48F9D: {r: 45.254833, g: 0, b: 0, a: 1}
     - Vector2_6692412E: {r: 1, g: 1, b: 0, a: 0}
