@@ -3,38 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine.Experimental.VFX;
 
 public class PortalesFeedback : MonoBehaviour
 {
+    #region Top Portal
+    public VisualEffect Particulas_Portal_Top; // VFX ( visual effect )
+    public Light Luz_Portal_Top; // Point Light
+    public Material Material_Portal_Top;
+    bool Activated_Top;
+    bool GoingUp_Top;
+    bool GoingDown_Top;
+    float timer_top;
+    #endregion
 
-    public GameObject portalTop;
-    public GameObject portalBot;
-    public GameObject portalIzq;
-    public GameObject portalDer;
-    public float DistanceToGo;
-    public float TimeToGo;
-    public float TimeToReturn;
+    #region Top Portal
+    public VisualEffect Particulas_Portal_Bot; // VFX ( visual effect )
+    public Light Luz_Portal_Bot; // Point Light
+    public Material Material_Portal_Bot;
+    bool Activated_Bot;
+    bool GoingUp_Bot;
+    bool GoingDown_Bot;
+    float timer_Bot;
+    #endregion
 
-    bool DerPortalGo;
-    bool DerPortalReturn;
-    bool IzqPortalGo;
-    bool IzqPortalReturn;
-    bool TopPortalGo;
-    bool TopPortalReturn;
-    bool BotPortalGo;
-    bool BotPortalReturn;
-    float DerPortalTimer;
-    float IzqPortalTimer;
-    float TopPortalTimer;
-    float BotPortalTimer;
-    public Vector3 portalTopSP;
-    public Vector3 portalBotSP;
-    public Vector3 portalDerSP;
-    public Vector3 portalIzqSP;
-    public Vector3 portalTopEP;
-    public Vector3 portalBotEP;
-    public Vector3 portalDerEP;
-    public Vector3 portalIzqEP;
+    #region Top Portal
+    public VisualEffect Particulas_Portal_Izq; // VFX ( visual effect )
+    public Light Luz_Portal_Izq; // Point Light
+    public Material Material_Portal_Izq;
+    bool Activated_Izq;
+    bool GoingUp_Izq;
+    bool GoingDown_Izq;
+    float timer_Izq;
+    #endregion
+
+    #region Top Portal
+    public VisualEffect Particulas_Portal_Der; // VFX ( visual effect )
+    public Light Luz_Portal_Der; // Point Light
+    public Material Material_Portal_Der;
+    bool Activated_Der;
+    bool GoingUp_Der;
+    bool GoingDown_Der;
+    float timer_Der;
+    #endregion
 
     public WarpController leftWarp;
     public WarpController rightWarp;
@@ -44,14 +55,6 @@ public class PortalesFeedback : MonoBehaviour
 
     void Start()
     {
-        portalDerSP = portalDer.transform.position;
-        portalIzqSP = portalIzq.transform.position;
-        portalTopSP = portalTop.transform.position;
-        portalBotSP = portalBot.transform.position;
-        portalDerEP = new Vector3(portalDer.transform.position.x - DistanceToGo, portalDer.transform.position.y, portalDer.transform.position.z);
-        portalIzqEP = new Vector3(portalIzq.transform.position.x + DistanceToGo, portalIzq.transform.position.y, portalIzq.transform.position.z);
-        portalTopEP = new Vector3(portalTop.transform.position.x, portalTop.transform.position.y - 7f, portalTop.transform.position.z);
-        portalBotEP = new Vector3(portalBot.transform.position.x, portalBot.transform.position.y + 6.5f, portalBot.transform.position.z);
         leftWarp.OnTeleportPlayer += () => ActivateRightPortal();
         rightWarp.OnTeleportPlayer += () => ActivateLeftPortal();
         upWarp.OnTeleportPlayer += () => ActivateBotPortal();
@@ -60,171 +63,154 @@ public class PortalesFeedback : MonoBehaviour
 
     void Update()
     {
-        DerPortalTimer += Time.deltaTime;
-        IzqPortalTimer += Time.deltaTime;
-        TopPortalTimer += Time.deltaTime;
-        BotPortalTimer += Time.deltaTime;
-        #region BackUp de codigo por si explota CheckForPortalActivation
-        if (DerPortalGo)
+        #region Activacion Portal Top
+        if (Activated_Top)
         {
-            portalDer.transform.position = Vector3.Lerp(portalDerSP, portalDerEP, DerPortalTimer / TimeToGo);
-            if (DerPortalTimer >= TimeToGo)
+            timer_top += Time.deltaTime;
+            if (GoingUp_Top)
             {
-                DerPortalTimer = 0;
-                DerPortalReturn = true;
-                DerPortalGo = false;
+                Material_Portal_Top.SetFloat("Vector1_EAB94DAD", -1f); // importante
+                Luz_Portal_Top.range = timer_top * 200; // importante
+
+                if (timer_top > 0.1)
+                {
+                    GoingUp_Top = false;
+                    GoingDown_Top = true;
+                    timer_top = 0;
+                }
             }
-        }
-        else if (DerPortalReturn)
-        {
-            portalDer.transform.position = Vector3.Lerp(portalDerEP, portalDerSP, DerPortalTimer / TimeToReturn);
-            if (DerPortalTimer >= TimeToReturn)
+            else if (GoingDown_Top)
             {
-                DerPortalTimer = 0;
-                DerPortalReturn = false;
-            }
-        }
-        if (IzqPortalGo)
-        {
-            portalIzq.transform.position = Vector3.Lerp(portalIzqSP, portalIzqEP, IzqPortalTimer / TimeToGo);
-            if (IzqPortalTimer >= TimeToGo)
-            {
-                IzqPortalTimer = 0;
-                IzqPortalReturn = true;
-                IzqPortalGo = false;
-            }
-        }
-        else if (IzqPortalReturn)
-        {
-            portalIzq.transform.position = Vector3.Lerp(portalIzqEP, portalIzqSP, IzqPortalTimer / TimeToReturn);
-            if (IzqPortalTimer >= TimeToReturn)
-            {
-                IzqPortalTimer = 0;
-                IzqPortalReturn = false;
-            }
-        }
-        if (TopPortalGo)
-        {
-            portalTop.transform.position = Vector3.Lerp(portalTopSP, portalTopEP, TopPortalTimer / (TimeToGo));
-            if (TopPortalTimer >= TimeToGo)
-            {
-                TopPortalTimer = 0;
-                TopPortalReturn = true;
-                TopPortalGo = false;
-            }
-        }
-        else if (TopPortalReturn)
-        {
-            portalTop.transform.position = Vector3.Lerp(portalTopEP, portalTopSP, TopPortalTimer / (TimeToReturn + 0.17f));
-            if (TopPortalTimer >= TimeToReturn + 0.17f)
-            {
-                TopPortalTimer = 0;
-                TopPortalReturn = false;
-            }
-        }
-        if (BotPortalGo)
-        {
-            portalBot.transform.position = Vector3.Lerp(portalBotSP, portalBotEP, BotPortalTimer / (TimeToGo));
-            if (BotPortalTimer >= TimeToGo)
-            {
-                BotPortalTimer = 0;
-                BotPortalReturn = true;
-                BotPortalGo = false;
-            }
-        }
-        else if (BotPortalReturn)
-        {
-            portalBot.transform.position = Vector3.Lerp(portalBotEP, portalBotSP, BotPortalTimer / (TimeToReturn + 0.07f));
-            if (BotPortalTimer >= TimeToReturn + 0.07f)
-            {
-                BotPortalTimer = 0;
-                BotPortalReturn = false;
+                Luz_Portal_Top.range = 23 - timer_top * 23; // importante
+                Material_Portal_Top.SetFloat("Vector1_EAB94DAD", timer_top * 6); // importante
+                if (timer_top > 1)
+                {
+                    GoingDown_Top = false;
+                    timer_top = 0;
+                    Luz_Portal_Top.range = 0;
+                    Material_Portal_Top.SetFloat("Vector1_EAB94DAD", 5.08f);
+                    Activated_Top = false;
+                }
             }
         }
         #endregion
-        DebugKeys();
-    }
-
-    void DebugKeys()
-    {
-        if (Input.GetKeyDown(KeyCode.O)) ActivateRightPortal();
-        if (Input.GetKeyDown(KeyCode.P)) ActivateLeftPortal();
-        if (Input.GetKeyDown(KeyCode.L)) ActivateTopPortal();
-        if (Input.GetKeyDown(KeyCode.K)) ActivateBotPortal();
-    }
-    void AssignValues(Vector3 StartingPos, Vector3 EndingPos, GameObject ParticleGO)
-    {
-        StartingPos = ParticleGO.transform.position;
-        EndingPos = new Vector3(
-            ParticleGO == portalIzq ? ParticleGO.transform.position.x + DistanceToGo :
-            ParticleGO == portalDer ? ParticleGO.transform.position.x - DistanceToGo :
-            ParticleGO.transform.position.x
-            ,
-            ParticleGO == portalTop ? ParticleGO.transform.position.y - 3f :
-            ParticleGO == portalBot ? ParticleGO.transform.position.y + 6f :
-            ParticleGO.transform.position.y
-            ,
-            ParticleGO.transform.position.z);
-    }
-    void CheckForPortalActivation(bool go, bool ret, float timer, List<Vector3> StartPos, List<Vector3> EndPos, List<GameObject> Particles)
-    {
-        if (go)
+        #region Activacion Portal Bot
+        if (Activated_Bot)
         {
-            for (int i = 0; i < Particles.Count; i++)
+            timer_Bot += Time.deltaTime;
+            if (GoingUp_Bot)
             {
-                Particles[i].transform.position = Vector3.Lerp(StartPos[i], EndPos[i], timer / TimeToGo);
-                var main = Particles[i].GetComponent<ParticleSystem>().main;
-                main.startColor = new Color(timer * 50, 0, 0);
-            }
+                Material_Portal_Bot.SetFloat("Vector1_EAB94DAD", -1f); // importante
+                Luz_Portal_Bot.range = timer_Bot * 200; // importante
 
-            if (timer >= TimeToGo)
+                if (timer_Bot > 0.1)
+                {
+                    GoingUp_Bot = false;
+                    GoingDown_Bot = true;
+                    timer_Bot = 0;
+                }
+            }
+            else if (GoingDown_Bot)
             {
-                timer = 0;
-                ret = true;
-                go = false;
+                Luz_Portal_Bot.range = 23 - timer_Bot * 23; // importante
+                Material_Portal_Bot.SetFloat("Vector1_EAB94DAD", timer_Bot * 6); // importante
+                if (timer_Bot > 1)
+                {
+                    GoingDown_Bot = false;
+                    timer_Bot = 0;
+                    Luz_Portal_Bot.range = 0;
+                    Material_Portal_Bot.SetFloat("Vector1_EAB94DAD", 5.08f);
+                    Activated_Bot = false;
+                }
             }
         }
-        else if (ret)
+        #endregion
+        #region Activacion Portal Izq
+        if (Activated_Izq)
         {
-            for (int i = 0; i < Particles.Count; i++)
-                Particles[i].transform.position = Vector3.Lerp(EndPos[i], StartPos[i], timer / TimeToReturn);
-            if (timer >= TimeToReturn)
+            timer_Izq += Time.deltaTime;
+            if (GoingUp_Izq)
             {
-                timer = 0;
-                ret = false;
+                Material_Portal_Izq.SetFloat("Vector1_EAB94DAD", -1f); // importante
+                Luz_Portal_Izq.range = timer_Izq * 200; // importante
+
+                if (timer_Izq > 0.1)
+                {
+                    GoingUp_Izq = false;
+                    GoingDown_Izq = true;
+                    timer_Izq = 0;
+                }
+            }
+            else if (GoingDown_Izq)
+            {
+                Luz_Portal_Izq.range = 23 - timer_Izq * 23; // importante
+                Material_Portal_Izq.SetFloat("Vector1_EAB94DAD", timer_Izq * 6); // importante
+                if (timer_Izq > 1)
+                {
+                    GoingDown_Izq = false;
+                    timer_Izq = 0;
+                    Luz_Portal_Izq.range = 0;
+                    Material_Portal_Izq.SetFloat("Vector1_EAB94DAD", 5.08f);
+                    Activated_Izq = false;
+                }
             }
         }
+        #endregion
+        #region Activacion Portal Der
+        if (Activated_Der)
+        {
+            timer_Der += Time.deltaTime;
+            if (GoingUp_Der)
+            {
+                Material_Portal_Der.SetFloat("Vector1_EAB94DAD", -1f); // importante
+                Luz_Portal_Der.range = timer_Der * 200; // importante
+
+                if (timer_Der > 0.1)
+                {
+                    GoingUp_Der = false;
+                    GoingDown_Der = true;
+                    timer_Der = 0;
+                }
+            }
+            else if (GoingDown_Der)
+            {
+                Luz_Portal_Der.range = 23 - timer_Der * 23; // importante
+                Material_Portal_Der.SetFloat("Vector1_EAB94DAD", timer_Der * 6); // importante
+                if (timer_Der > 1)
+                {
+                    GoingDown_Der = false;
+                    timer_Der = 0;
+                    Luz_Portal_Der.range = 0;
+                    Material_Portal_Der.SetFloat("Vector1_EAB94DAD", 5.08f);
+                    Activated_Der = false;
+                }
+            }
+        }
+        #endregion
     }
+
     public void ActivateRightPortal()
     {
-        if (!DerPortalGo && !DerPortalReturn)
-        {
-            DerPortalTimer = 0;
-            DerPortalGo = true;
-        }
+        Activated_Der = true;
+        GoingUp_Der = true;
+        Particulas_Portal_Der.Play();
     }
     public void ActivateLeftPortal()
     {
-        if (!IzqPortalGo && !IzqPortalReturn)
-        {
-            IzqPortalTimer = 0;
-            IzqPortalGo = true;
-        }
+        Activated_Izq = true;
+        GoingUp_Izq = true;
+        Particulas_Portal_Izq.Play();
     }
     public void ActivateTopPortal()
     {
-        if (!TopPortalGo && !TopPortalReturn)
-        {
-            TopPortalTimer = 0;
-            TopPortalGo = true;
-        }
+        Activated_Top = true;
+        GoingUp_Top = true;
+        Particulas_Portal_Top.Play();
     }
     public void ActivateBotPortal()
     {
-        if (!BotPortalGo && !BotPortalReturn)
-        {
-            BotPortalTimer = 0;
-            BotPortalGo = true;
-        }
+        Activated_Bot = true;
+        GoingUp_Bot = true;
+        Particulas_Portal_Bot.Play();
     }
 }

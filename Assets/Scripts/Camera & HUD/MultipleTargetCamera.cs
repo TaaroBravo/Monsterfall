@@ -6,7 +6,11 @@ using System.Linq;
 [RequireComponent(typeof(Camera))]
 public class MultipleTargetCamera : MonoBehaviour
 {
+
     bool gameStarted;
+    bool StartMoving;
+    float StartTimer;
+    public float Time_To_Start_Moving;
     public List<Transform> targets = new List<Transform>();
 
     public Vector3 offset;
@@ -34,16 +38,21 @@ public class MultipleTargetCamera : MonoBehaviour
 
     void LateUpdate()
     {
+        StartTimer += Time.deltaTime;
+        if (StartTimer > Time_To_Start_Moving) StartMoving = true;
         if (!targets.Any() || !gameStarted)
-            return;
+                return;
 
         for (int i = 0; i < targets.Count; i++)
             if (targets[i] == null)
                 targets.Remove(targets[i]);
-
-        Move();
-        Zoom();
-        BoundsOfCamera();
+        if (StartMoving)
+        {
+            Move();
+            Zoom();
+            BoundsOfCamera();
+        }
+          
     }
 
     public void StartShaking()
