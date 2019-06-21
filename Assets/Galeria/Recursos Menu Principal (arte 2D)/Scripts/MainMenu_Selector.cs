@@ -99,7 +99,7 @@ public class MainMenu_Selector : MonoBehaviour
     void Update()
     {
         GetGamepadInputs();
-        MM_Manager.selector.transform.Rotate(0, 0, 50 * Time.deltaTime);
+        //MM_Manager.selector.transform.Rotate(0, 0, 50 * Time.deltaTime);
         SelectionFeedback.Instance.SetKey(currentindex);
         if (optionsCanvasActive)
         {
