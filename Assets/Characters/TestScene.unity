@@ -372,11 +372,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224098390104371762, guid: 20f9fbd263b9d984180a98a88354de71,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 198311341089430146, guid: 20f9fbd263b9d984180a98a88354de71,
         type: 3}
       propertyPath: LightsModule.light
@@ -529,11 +524,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4193912330262040, guid: f5380917b63adba40bb20dad3d630266, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224031637964182308, guid: f5380917b63adba40bb20dad3d630266,
-        type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198032309564704930, guid: f5380917b63adba40bb20dad3d630266,
@@ -757,7 +747,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31be29ab0207e2548907d1f759bbefe0, type: 2}
+  - {fileID: 2100000, guid: 20743c32069abd64086b7e165bcde00d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1112,11 +1102,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4400254763351854, guid: 04cc4e21583e41f42b5e047ed8128771, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224667044396920540, guid: 04cc4e21583e41f42b5e047ed8128771,
-        type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198622104812045858, guid: 04cc4e21583e41f42b5e047ed8128771,
@@ -1823,11 +1808,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224932254013746048, guid: 68b805a12f528b64383d8d12a9ce977e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 198213416011364530, guid: 68b805a12f528b64383d8d12a9ce977e,
         type: 3}
       propertyPath: LightsModule.light
@@ -2078,11 +2058,6 @@ PrefabInstance:
       propertyPath: CristalBuff
       value: 
       objectReference: {fileID: 1264671141}
-    - target: {fileID: 224786439713571378, guid: 1e5b7ac1bab485847ae81f6274aa1a61,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 198148663199554744, guid: 1e5b7ac1bab485847ae81f6274aa1a61,
         type: 3}
       propertyPath: LightsModule.light
@@ -2583,11 +2558,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224664452810859166, guid: d14f4f174080fca47901f96c1ee0ce2b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 198261527632595822, guid: d14f4f174080fca47901f96c1ee0ce2b,
         type: 3}
       propertyPath: LightsModule.light
@@ -2747,11 +2717,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4717810603839100, guid: b151e669a8b956740879ae70aaf0ee5d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224666604778355860, guid: b151e669a8b956740879ae70aaf0ee5d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198332157591764268, guid: b151e669a8b956740879ae70aaf0ee5d,
@@ -3654,11 +3619,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4289924665117732, guid: a8b93057d69100e4f8e1fde83039f7fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224786383988389156, guid: a8b93057d69100e4f8e1fde83039f7fe,
-        type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198355423596027108, guid: a8b93057d69100e4f8e1fde83039f7fe,
