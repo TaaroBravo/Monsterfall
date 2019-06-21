@@ -96,7 +96,7 @@ public class MultipleTargetCamera : MonoBehaviour
     void Zoom()
     {
         float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
-        newZoom = Mathf.Clamp(newZoom, 20f, 60f);
+        newZoom = Mathf.Clamp(newZoom, 20f, 50f);
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
     }
 
