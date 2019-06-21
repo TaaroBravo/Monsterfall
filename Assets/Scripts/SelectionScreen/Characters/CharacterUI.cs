@@ -19,7 +19,7 @@ public class CharacterUI : MonoBehaviour
 
     public GameObject readyLight;
 
-    public Image pedestal;
+    //public Image pedestal;
 
     public Image sphere;
     public Sprite onSphere;
@@ -47,7 +47,7 @@ public class CharacterUI : MonoBehaviour
 
     public void StartState()
     {
-        pedestal.gameObject.SetActive(false);
+        //pedestal.gameObject.SetActive(false);
         sphere.gameObject.SetActive(false);
         characterBar.gameObject.SetActive(false);
         if (lerpValueIn >= 1)
@@ -70,7 +70,7 @@ public class CharacterUI : MonoBehaviour
 
     public void SelectingState()
     {
-        pedestal.gameObject.SetActive(true);
+        //pedestal.gameObject.SetActive(true);
         sphere.gameObject.SetActive(true);
         characterBar.gameObject.SetActive(true);
         if (lerpValueOut >= 1)

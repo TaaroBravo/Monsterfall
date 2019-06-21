@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.017826881, g: 0.061677758, b: 0.1567173, a: 1}
+  m_IndirectSpecularColor: {r: 0.017826881, g: 0.061669156, b: 0.1567173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1632,7 +1632,6 @@ VFXRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -47987,7 +47986,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 855216045}
   m_LocalRotation: {x: 0.707075, y: -0, z: -0, w: 0.70713866}
-  m_LocalPosition: {x: 4.2, y: -486.2, z: 14.5}
+  m_LocalPosition: {x: 4.2, y: -484.1, z: 14.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1410589623}
@@ -49715,7 +49714,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903651708}
   m_LocalRotation: {x: 0.00003771364, y: -0.7071387, z: 0.70707494, w: 0.000037602767}
-  m_LocalPosition: {x: 3.2, y: -497.4, z: 215.2}
+  m_LocalPosition: {x: 3.2, y: -500.5, z: 196.9}
   m_LocalScale: {x: 1.0000211, y: 0.9999924, z: 1.0000008}
   m_Children: []
   m_Father: {fileID: 1410589623}
@@ -55653,7 +55652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: abb2d7aa6d9f21646ba7eeea4c13e0fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 63.1
+      value: 63.02
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: abb2d7aa6d9f21646ba7eeea4c13e0fb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -67095,7 +67094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9d65da6cb0dfc9e4a90a1d7da9fdde66, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9d65da6cb0dfc9e4a90a1d7da9fdde66, type: 3}
       propertyPath: m_LocalRotation.x
@@ -74287,7 +74286,6 @@ VFXRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -90369,7 +90367,7 @@ GameObject:
   - component: {fileID: 1375389145}
   - component: {fileID: 1375389144}
   m_Layer: 0
-  m_Name: Particulas_Efecto_Portal_Izquierdo (1)
+  m_Name: Particulas_Efecto_Portal_Derecho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90406,7 +90404,6 @@ VFXRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -110582,7 +110579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646388879}
   m_LocalRotation: {x: 0.4600271, y: -0.0000010318997, z: -0.88790494, w: -0.0000019222527}
-  m_LocalPosition: {x: -363.36, y: 67.41, z: -34.42}
+  m_LocalPosition: {x: -363.22, y: 62.5, z: -33.8}
   m_LocalScale: {x: 1.0000004, y: 0.99999994, z: 1.0000004}
   m_Children: []
   m_Father: {fileID: 2036626793}
@@ -110605,7 +110602,6 @@ VFXRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -118085,16 +118081,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7053201e1c90e324a8ecd64e2a183ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Particulas_Portal_Top: {fileID: 903651711}
+  Particulas_Portal_Top: {fileID: 1646388882}
   Luz_Portal_Top: {fileID: 117725377}
   Material_Portal_Top: {fileID: 2100000, guid: 1062e39bc59c46a4e8b01d0a39e6afc6, type: 2}
-  Particulas_Portal_Bot: {fileID: 855216048}
+  Particulas_Portal_Bot: {fileID: 33294484}
   Luz_Portal_Bot: {fileID: 1731137349}
   Material_Portal_Bot: {fileID: 2100000, guid: b847b5ffa0381244d9005646fb8e85c8, type: 2}
-  Particulas_Portal_Izq: {fileID: 1476546754}
+  Particulas_Portal_Izq: {fileID: 1198839772}
   Luz_Portal_Izq: {fileID: 422169631}
   Material_Portal_Izq: {fileID: 2100000, guid: e74bb76cd2dcd8e4a916b05ed242eed9, type: 2}
-  Particulas_Portal_Der: {fileID: 223857098}
+  Particulas_Portal_Der: {fileID: 1375389145}
   Luz_Portal_Der: {fileID: 646834170}
   Material_Portal_Der: {fileID: 2100000, guid: af61fc9293c7660449156d6c86f4df20, type: 2}
   leftWarp: {fileID: 41582881}
