@@ -889,7 +889,7 @@ MonoBehaviour:
   pressPos: {fileID: 1531117373}
   selectingPos: {fileID: 1530481836}
   readyLight: {fileID: 476863707}
-  pedestal: {fileID: 1684874976}
+  pedestal: {fileID: 0}
   sphere: {fileID: 1751117923}
   onSphere: {fileID: 21300000, guid: d52f1b6a5b067ff459e3bea5ef93a372, type: 3}
   offSphere: {fileID: 21300000, guid: 23da69c30d34fb94086df84cd82a0fac, type: 3}
@@ -3944,7 +3944,7 @@ MonoBehaviour:
   pressPos: {fileID: 364111309}
   selectingPos: {fileID: 221574811}
   readyLight: {fileID: 2006672304}
-  pedestal: {fileID: 1038413060}
+  pedestal: {fileID: 0}
   sphere: {fileID: 999952584}
   onSphere: {fileID: 21300000, guid: d52f1b6a5b067ff459e3bea5ef93a372, type: 3}
   offSphere: {fileID: 21300000, guid: 23da69c30d34fb94086df84cd82a0fac, type: 3}
@@ -4600,7 +4600,7 @@ MonoBehaviour:
   pressPos: {fileID: 653047259}
   selectingPos: {fileID: 969656658}
   readyLight: {fileID: 187132198}
-  pedestal: {fileID: 547935109}
+  pedestal: {fileID: 0}
   sphere: {fileID: 404905539}
   onSphere: {fileID: 21300000, guid: d52f1b6a5b067ff459e3bea5ef93a372, type: 3}
   offSphere: {fileID: 21300000, guid: 23da69c30d34fb94086df84cd82a0fac, type: 3}
@@ -7235,7 +7235,7 @@ MonoBehaviour:
   pressPos: {fileID: 1024005803}
   selectingPos: {fileID: 2094617271}
   readyLight: {fileID: 25030430}
-  pedestal: {fileID: 1256788673}
+  pedestal: {fileID: 0}
   sphere: {fileID: 812733840}
   onSphere: {fileID: 21300000, guid: d52f1b6a5b067ff459e3bea5ef93a372, type: 3}
   offSphere: {fileID: 21300000, guid: 23da69c30d34fb94086df84cd82a0fac, type: 3}
@@ -9054,7 +9054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1494891851
 MonoBehaviour:
   m_ObjectHideFlags: 0
