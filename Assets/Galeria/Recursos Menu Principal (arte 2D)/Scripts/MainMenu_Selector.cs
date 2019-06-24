@@ -17,6 +17,8 @@ public class MainMenu_Selector : MonoBehaviour
     int currentindexInOptions;
     float currentindexInSlider;
     Dictionary<int, Slider> slidePositions;
+    public List<Image> buttonsImages = new List<Image>();
+    public List<Sprite> buttonsSprites = new List<Sprite>();
 
     bool loading;
     bool pauseMenu;
@@ -98,6 +100,11 @@ public class MainMenu_Selector : MonoBehaviour
 
     void Update()
     {
+        buttonsImages[0].sprite = currentindex == 0 ? buttonsSprites[0] : buttonsSprites[1];
+        buttonsImages[1].sprite = currentindex == 1 ? buttonsSprites[2] : buttonsSprites[3];
+        buttonsImages[2].sprite = currentindex == 2 ? buttonsSprites[4] : buttonsSprites[5];
+        buttonsImages[3].sprite = currentindex == 3 ? buttonsSprites[6] : buttonsSprites[7];
+
         GetGamepadInputs();
         //MM_Manager.selector.transform.Rotate(0, 0, 50 * Time.deltaTime);
         SelectionFeedback.Instance.SetKey(currentindex);

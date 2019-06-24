@@ -59,10 +59,10 @@ public class PortalesFeedback : MonoBehaviour
         rightWarp.OnTeleportPlayer += () => ActivateLeftPortal();
         upWarp.OnTeleportPlayer += () => ActivateBotPortal();
         downWarp.OnTeleportPlayer += () => ActivateTopPortal();
-        Particulas_Portal_Top.Stop();
-        Particulas_Portal_Bot.Stop();
-        Particulas_Portal_Izq.Stop();
-        Particulas_Portal_Der.Stop();
+        Particulas_Portal_Top.SendEvent("Parar");
+        Particulas_Portal_Bot.SendEvent("Parar");
+        Particulas_Portal_Izq.SendEvent("Parar");
+        Particulas_Portal_Der.SendEvent("Parar");
     }
 
     void Update()
@@ -197,24 +197,24 @@ public class PortalesFeedback : MonoBehaviour
     {
         Activated_Der = true;
         GoingUp_Der = true;
-        Particulas_Portal_Der.Reinit();
+        Particulas_Portal_Der.SendEvent("Reproducir");
     }
     public void ActivateLeftPortal()
     {
         Activated_Izq = true;
         GoingUp_Izq = true;
-        Particulas_Portal_Izq.Reinit();
+        Particulas_Portal_Izq.SendEvent("Reproducir");
     }
     public void ActivateTopPortal()
     {
         Activated_Top = true;
         GoingUp_Top = true;
-        Particulas_Portal_Top.Reinit();
+        Particulas_Portal_Top.SendEvent("Reproducir");
     }
     public void ActivateBotPortal()
     {
         Activated_Bot = true;
         GoingUp_Bot = true;
-        Particulas_Portal_Bot.Reinit();
+        Particulas_Portal_Bot.SendEvent("Reproducir");
     }
 }

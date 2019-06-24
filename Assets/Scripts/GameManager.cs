@@ -282,7 +282,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (player.GetComponent<PlayerInput>().id == info.ID)
                     {
-                        if (info.newKills + info.previousKills >= 5)
+                        if (info.newKills + info.previousKills >= 3)
                         {
                             if (alivePlayers.Contains(player))
                                 WinTheGame();
@@ -297,7 +297,7 @@ public class GameManager : MonoBehaviour
         {
             finishCanvas.SetActive(true);
             inGameCanvas.SetActive(false);
-            if (infoManager.playersInfo.First().round >= 9)
+            if (infoManager.playersInfo.First().round >= 5)
                 WinTheGame();
             else
                 StartCoroutine(StartNewRound());
@@ -312,7 +312,7 @@ public class GameManager : MonoBehaviour
         if (firstPlayer != null && !diesByPlayerHit)
         {
             firstPlayer.newKills++;
-            if (firstPlayer.newKills + firstPlayer.previousKills >= 5)
+            if (firstPlayer.newKills + firstPlayer.previousKills >= 3)
                 WinTheGame();
             else
             {
