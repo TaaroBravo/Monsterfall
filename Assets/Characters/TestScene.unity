@@ -372,6 +372,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224098390104371762, guid: 20f9fbd263b9d984180a98a88354de71,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198311341089430146, guid: 20f9fbd263b9d984180a98a88354de71,
         type: 3}
       propertyPath: LightsModule.light
@@ -384,6 +389,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212356179343303740, guid: 20f9fbd263b9d984180a98a88354de71,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d8b884fbd3993244183f245b01a181ab,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f9fbd263b9d984180a98a88354de71, type: 3}
 --- !u!4 &186363386 stripped
@@ -526,6 +537,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 54200146760226434, guid: f5380917b63adba40bb20dad3d630266,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224031637964182308, guid: f5380917b63adba40bb20dad3d630266,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198032309564704930, guid: f5380917b63adba40bb20dad3d630266,
         type: 3}
       propertyPath: LightsModule.light
@@ -538,6 +559,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212819099355168852, guid: f5380917b63adba40bb20dad3d630266,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7457a1ff5e04a8749a3a08fdb7afcfd6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5380917b63adba40bb20dad3d630266, type: 3}
 --- !u!4 &213219317 stripped
@@ -875,6 +902,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212946283966086114, guid: 76b08385cafc29a47a7a8199f1b7209c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d8b884fbd3993244183f245b01a181ab,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76b08385cafc29a47a7a8199f1b7209c, type: 3}
 --- !u!4 &360993658 stripped
@@ -961,6 +994,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212675944174360506, guid: 7d65d2a9998afa241b98af6b3d0e8922,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7457a1ff5e04a8749a3a08fdb7afcfd6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d65d2a9998afa241b98af6b3d0e8922, type: 3}
 --- !u!1001 &595811378
@@ -1035,6 +1074,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212094117720100462, guid: bbb1e6fba50218a4c8c00cae4d584a24,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f6c1490b23bf4ff46b949d1c0f913f1b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbb1e6fba50218a4c8c00cae4d584a24, type: 3}
 --- !u!4 &595811379 stripped
@@ -1104,6 +1149,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224667044396920540, guid: 04cc4e21583e41f42b5e047ed8128771,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198622104812045858, guid: 04cc4e21583e41f42b5e047ed8128771,
         type: 3}
       propertyPath: LightsModule.light
@@ -1116,6 +1166,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212710969887937648, guid: 04cc4e21583e41f42b5e047ed8128771,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f6c1490b23bf4ff46b949d1c0f913f1b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04cc4e21583e41f42b5e047ed8128771, type: 3}
 --- !u!1001 &640448177
@@ -1188,6 +1244,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212065477826017714, guid: fee11fc765d3fa045a3c32a6f143f627,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d8b884fbd3993244183f245b01a181ab,
+        type: 3}
     - target: {fileID: 198175492022960714, guid: fee11fc765d3fa045a3c32a6f143f627,
         type: 3}
       propertyPath: LightsModule.light
@@ -1274,6 +1336,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212734355110926560, guid: 2c8125cdd5807e64fab62b558d2eee7d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d8b884fbd3993244183f245b01a181ab,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c8125cdd5807e64fab62b558d2eee7d, type: 3}
 --- !u!1001 &726060630
@@ -1348,6 +1416,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212125396547256442, guid: 6e2113cec26f32b4ca860aa8a234f0ee,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7457a1ff5e04a8749a3a08fdb7afcfd6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e2113cec26f32b4ca860aa8a234f0ee, type: 3}
 --- !u!1001 &783076800
@@ -1422,6 +1496,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212377985838508602, guid: 9b2595490e5d4dc46a287b4ec9ff2fca,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f6c1490b23bf4ff46b949d1c0f913f1b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b2595490e5d4dc46a287b4ec9ff2fca, type: 3}
 --- !u!1 &786318061
@@ -1808,6 +1888,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224932254013746048, guid: 68b805a12f528b64383d8d12a9ce977e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198213416011364530, guid: 68b805a12f528b64383d8d12a9ce977e,
         type: 3}
       propertyPath: LightsModule.light
@@ -1820,6 +1905,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212338066229948736, guid: 68b805a12f528b64383d8d12a9ce977e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98b5bf764502b104dbdea9a4e87b5d41,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68b805a12f528b64383d8d12a9ce977e, type: 3}
 --- !u!1001 &1028157069
@@ -1894,6 +1985,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212814187197649930, guid: 2948cd493a50da5428cdea72379cd0fb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f6c1490b23bf4ff46b949d1c0f913f1b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2948cd493a50da5428cdea72379cd0fb, type: 3}
 --- !u!1001 &1037380286
@@ -1966,6 +2063,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212547919492727608, guid: 5df06bc7afc45634eae0f1068f79331e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98b5bf764502b104dbdea9a4e87b5d41,
+        type: 3}
     - target: {fileID: 198113531338997532, guid: 5df06bc7afc45634eae0f1068f79331e,
         type: 3}
       propertyPath: LightsModule.light
@@ -2058,6 +2161,11 @@ PrefabInstance:
       propertyPath: CristalBuff
       value: 
       objectReference: {fileID: 1264671141}
+    - target: {fileID: 224786439713571378, guid: 1e5b7ac1bab485847ae81f6274aa1a61,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198148663199554744, guid: 1e5b7ac1bab485847ae81f6274aa1a61,
         type: 3}
       propertyPath: LightsModule.light
@@ -2070,6 +2178,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212453345998708488, guid: 1e5b7ac1bab485847ae81f6274aa1a61,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f6c1490b23bf4ff46b949d1c0f913f1b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e5b7ac1bab485847ae81f6274aa1a61, type: 3}
 --- !u!1001 &1061272658
@@ -2144,6 +2258,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212072815710944876, guid: 674e48c9b321db2488645d96bff4b4ea,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7457a1ff5e04a8749a3a08fdb7afcfd6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 674e48c9b321db2488645d96bff4b4ea, type: 3}
 --- !u!4 &1061272659 stripped
@@ -2230,6 +2350,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212095922839452338, guid: f387a1a18bc44e54695f88126f35869b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98b5bf764502b104dbdea9a4e87b5d41,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f387a1a18bc44e54695f88126f35869b, type: 3}
 --- !u!1001 &1107696212
@@ -2558,6 +2684,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224664452810859166, guid: d14f4f174080fca47901f96c1ee0ce2b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198261527632595822, guid: d14f4f174080fca47901f96c1ee0ce2b,
         type: 3}
       propertyPath: LightsModule.light
@@ -2570,6 +2701,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212202245450004442, guid: d14f4f174080fca47901f96c1ee0ce2b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7457a1ff5e04a8749a3a08fdb7afcfd6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d14f4f174080fca47901f96c1ee0ce2b, type: 3}
 --- !u!1 &1336144341
@@ -2719,6 +2856,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224666604778355860, guid: b151e669a8b956740879ae70aaf0ee5d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198332157591764268, guid: b151e669a8b956740879ae70aaf0ee5d,
         type: 3}
       propertyPath: LightsModule.light
@@ -2731,6 +2873,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212509376393191628, guid: b151e669a8b956740879ae70aaf0ee5d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d8b884fbd3993244183f245b01a181ab,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b151e669a8b956740879ae70aaf0ee5d, type: 3}
 --- !u!1001 &1346845215
@@ -2805,6 +2953,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212668331679609194, guid: 07d39eaf907cf9c49b5e70e48b651529,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98b5bf764502b104dbdea9a4e87b5d41,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07d39eaf907cf9c49b5e70e48b651529, type: 3}
 --- !u!198 &1346845216 stripped
@@ -3101,6 +3255,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212521432778471148, guid: 311508bb3fc94a44da954e94db3207ee,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d8b884fbd3993244183f245b01a181ab,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 311508bb3fc94a44da954e94db3207ee, type: 3}
 --- !u!1 &1651560638
@@ -3423,6 +3583,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212031517218710498, guid: 5ad9a501079de7b4aa552c9136061ba4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f6c1490b23bf4ff46b949d1c0f913f1b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ad9a501079de7b4aa552c9136061ba4, type: 3}
 --- !u!4 &1796025266 stripped
@@ -3564,6 +3730,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212966710191060516, guid: c3e6aa7e0be21cd40bfbb2f1e91ae60c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98b5bf764502b104dbdea9a4e87b5d41,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3e6aa7e0be21cd40bfbb2f1e91ae60c, type: 3}
 --- !u!1001 &1926180646
@@ -3621,6 +3793,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224786383988389156, guid: a8b93057d69100e4f8e1fde83039f7fe,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198355423596027108, guid: a8b93057d69100e4f8e1fde83039f7fe,
         type: 3}
       propertyPath: LightsModule.light
@@ -3633,6 +3810,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212451401299207464, guid: a8b93057d69100e4f8e1fde83039f7fe,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98b5bf764502b104dbdea9a4e87b5d41,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8b93057d69100e4f8e1fde83039f7fe, type: 3}
 --- !u!4 &1944396148 stripped
@@ -3806,6 +3989,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108865512935066902, guid: 6633944d8e8da2948a5813e22fca3c64,
         type: 2}
+    - target: {fileID: 212196758786268978, guid: ede7703d40353e8418deb2d45f70747c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7457a1ff5e04a8749a3a08fdb7afcfd6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ede7703d40353e8418deb2d45f70747c, type: 3}
 --- !u!4 &2072468955 stripped

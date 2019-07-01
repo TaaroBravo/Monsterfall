@@ -171,7 +171,7 @@ public class CreatorRays : MonoBehaviour
         //cristal.SetActive(true);
         activeMode = true;
         countOfRays = 0;
-        yield return ChangeScale(cristal.transform.Find("Cristal").localScale, new Vector3(0.3290589f, 0.3290589f, 0.239385f), 1f);
+        yield return ChangeScale(cristal.transform.Find("Cristal").localScale, new Vector3(0.2066146f, 0.2066146f, 0.2066146f), 1f);
         //yield return new WaitForSeconds(1f);
         countOfRays = 2;
         rotationSpeed = 10;

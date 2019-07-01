@@ -23,10 +23,10 @@ public class VictoryManager : MonoBehaviour {
 
     void Start()
     {
-        FinalPositions.Add(BorderGlow1.GetComponent<RectTransform>().position + new Vector3(270, 0, 0));
-        FinalPositions.Add(BorderGlow2.GetComponent<RectTransform>().position + new Vector3(-270, 0, 0));
-        InitialPositions.Add(BorderGlow1.GetComponent<RectTransform>().position);
-        InitialPositions.Add(BorderGlow2.GetComponent<RectTransform>().position);
+        //FinalPositions.Add(BorderGlow1.GetComponent<RectTransform>().position + new Vector3(270, 0, 0));
+        //FinalPositions.Add(BorderGlow2.GetComponent<RectTransform>().position + new Vector3(-270, 0, 0));
+        //InitialPositions.Add(BorderGlow1.GetComponent<RectTransform>().position);
+        //InitialPositions.Add(BorderGlow2.GetComponent<RectTransform>().position);
         for (int i = 0; i < Heroes.Count; i++)
         {
             FinalScale.Add(Heroes[i].GetComponent<RectTransform>().localScale);
@@ -44,8 +44,8 @@ public class VictoryManager : MonoBehaviour {
         if (startanimation)
         {
             animationtimer += Time.deltaTime;
-            BorderGlow1.GetComponent<RectTransform>().position = Vector3.Lerp(InitialPositions[0],FinalPositions[0],animationtimer / 2);
-            BorderGlow2.GetComponent<RectTransform>().position = Vector3.Lerp(InitialPositions[1], FinalPositions[1], animationtimer / 2);
+            //BorderGlow1.GetComponent<RectTransform>().position = Vector3.Lerp(InitialPositions[0],FinalPositions[0],animationtimer / 2);
+            //BorderGlow2.GetComponent<RectTransform>().position = Vector3.Lerp(InitialPositions[1], FinalPositions[1], animationtimer / 2);
             if (BlackScreen.color.a < 0.4f)
             BlackScreen.color = new Color(BlackScreen.color.r, BlackScreen.color.g, BlackScreen.color.b, animationtimer / 3f);
             Circle.color = new Color(Circle.color.r, Circle.color.g, Circle.color.b, animationtimer / 1f);
@@ -59,8 +59,8 @@ public class VictoryManager : MonoBehaviour {
     {
         Circle.color = PlayerColors[id];
         Banner.color = PlayerColors[id];
-        BorderGlow1.color = PlayerColors[id];
-        BorderGlow2.color = PlayerColors[id];
+        //BorderGlow1.color = PlayerColors[id];
+        //BorderGlow2.color = PlayerColors[id];
         Heroes[hero].gameObject.SetActive(true);
         activehero = hero;
         startanimation = true;

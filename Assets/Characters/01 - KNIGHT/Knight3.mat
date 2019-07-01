@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Knight3
   m_Shader: {fileID: 4800000, guid: 60c9fd8db6aaaaa4994ff649b99093e9, type: 3}
   m_ShaderKeywords: 
@@ -60,7 +61,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Cutoff: 0.5
-    - _DissolveIntensity: 1
+    - _DissolveIntensity: -27.07782
     - _EmissionIntensity: 21.95
     - _Float0: 1
     - _Float1: 0.01
