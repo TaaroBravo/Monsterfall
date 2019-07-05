@@ -8,7 +8,8 @@ using UnityEngine.Experimental.VFX;
 public class PortalesFeedback : MonoBehaviour
 {
     #region Top Portal
-    public VisualEffect Particulas_Portal_Top; // VFX ( visual effect )
+    //public VisualEffect Particulas_Portal_Top; // VFX ( visual effect )
+    public ParticleSystem Efecto_Top;
     public Light Luz_Portal_Top; // Point Light
     public Material Material_Portal_Top;
     bool Activated_Top;
@@ -18,7 +19,8 @@ public class PortalesFeedback : MonoBehaviour
     #endregion
 
     #region Top Portal
-    public VisualEffect Particulas_Portal_Bot; // VFX ( visual effect )
+    //public VisualEffect Particulas_Portal_Bot; // VFX ( visual effect )
+    public ParticleSystem Efecto_Bot;
     public Light Luz_Portal_Bot; // Point Light
     public Material Material_Portal_Bot;
     bool Activated_Bot;
@@ -28,7 +30,8 @@ public class PortalesFeedback : MonoBehaviour
     #endregion
 
     #region Top Portal
-    public VisualEffect Particulas_Portal_Izq; // VFX ( visual effect )
+    //public VisualEffect Particulas_Portal_Izq; // VFX ( visual effect )
+    public ParticleSystem Efecto_Izq;
     public Light Luz_Portal_Izq; // Point Light
     public Material Material_Portal_Izq;
     bool Activated_Izq;
@@ -38,7 +41,8 @@ public class PortalesFeedback : MonoBehaviour
     #endregion
 
     #region Top Portal
-    public VisualEffect Particulas_Portal_Der; // VFX ( visual effect )
+    //public VisualEffect Particulas_Portal_Der; // VFX ( visual effect )
+    public ParticleSystem Efecto_Der;
     public Light Luz_Portal_Der; // Point Light
     public Material Material_Portal_Der;
     bool Activated_Der;
@@ -59,10 +63,10 @@ public class PortalesFeedback : MonoBehaviour
         rightWarp.OnTeleportPlayer += () => ActivateLeftPortal();
         upWarp.OnTeleportPlayer += () => ActivateBotPortal();
         downWarp.OnTeleportPlayer += () => ActivateTopPortal();
-        Particulas_Portal_Top.SendEvent("Parar");
-        Particulas_Portal_Bot.SendEvent("Parar");
-        Particulas_Portal_Izq.SendEvent("Parar");
-        Particulas_Portal_Der.SendEvent("Parar");
+        //Particulas_Portal_Top.SendEvent("Parar");
+        //Particulas_Portal_Bot.SendEvent("Parar");
+        //Particulas_Portal_Izq.SendEvent("Parar");
+        //Particulas_Portal_Der.SendEvent("Parar");
     }
 
     void Update()
@@ -197,24 +201,24 @@ public class PortalesFeedback : MonoBehaviour
     {
         Activated_Der = true;
         GoingUp_Der = true;
-        Particulas_Portal_Der.SendEvent("Reproducir");
+        Efecto_Der.Play();
     }
     public void ActivateLeftPortal()
     {
         Activated_Izq = true;
         GoingUp_Izq = true;
-        Particulas_Portal_Izq.SendEvent("Reproducir");
+        Efecto_Izq.Play();
     }
     public void ActivateTopPortal()
     {
         Activated_Top = true;
         GoingUp_Top = true;
-        Particulas_Portal_Top.SendEvent("Reproducir");
+        Efecto_Top.Play();
     }
     public void ActivateBotPortal()
     {
         Activated_Bot = true;
         GoingUp_Bot = true;
-        Particulas_Portal_Bot.SendEvent("Reproducir");
+        Efecto_Bot.Play();
     }
 }
